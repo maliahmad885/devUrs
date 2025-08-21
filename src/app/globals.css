@@ -8,57 +8,38 @@
   }
   
   body {
-    @apply bg-imperial-primer text-white;
+    @apply bg-white text-gray-900;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
 }
 
 @layer components {
-  .neon-text-shadow {
-    text-shadow: 
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 15px currentColor,
-      0 0 20px currentColor;
-  }
-  
-  .neon-box-shadow {
-    box-shadow: 
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 15px currentColor;
-  }
-  
   .glass-effect {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply bg-white/80 backdrop-blur-sm border border-gray-200;
   }
   
   .gradient-border {
-    background: linear-gradient(45deg, #00F5FF, #FF00FF, #00FF00, #8A2BE2);
+    background: linear-gradient(45deg, #3B82F6, #8B5CF6, #10B981, #F59E0B);
     padding: 2px;
     border-radius: 0.5rem;
   }
   
   .gradient-border > * {
-    @apply bg-imperial-primer rounded-md;
+    @apply bg-white rounded-md;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-neon-blue via-neon-pink to-neon-green bg-clip-text text-transparent;
-  }
-  
-  .bg-neon-gradient {
-    background: linear-gradient(45deg, #00F5FF, #FF00FF, #00FF00, #8A2BE2);
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-gray-800 bg-clip-text text-transparent;
   }
   
   .animate-float-slow {
     animation: float 8s ease-in-out infinite;
   }
   
-  .animate-glow-slow {
-    animation: glow 3s ease-in-out infinite alternate;
+  .animate-pulse-slow {
+    animation: pulse 4s ease-in-out infinite;
   }
 }
 
@@ -68,22 +49,22 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-imperial-primer;
+  @apply bg-gray-100;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-neon-blue/50 rounded-full;
+  @apply bg-gray-400 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-neon-blue/70;
+  @apply bg-gray-500;
 }
 
 /* Selection styling */
 ::selection {
-  @apply bg-neon-blue/30 text-white;
+  @apply bg-blue-500/30 text-gray-900;
 }
 
 ::-moz-selection {
-  @apply bg-neon-blue/30 text-white;
+  @apply bg-blue-500/30 text-gray-900;
 }

@@ -47,7 +47,7 @@ export default function Navigation({ className }: NavigationProps) {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 bg-imperial-primer/90 backdrop-blur-md border-b border-neon-blue/30',
+        'fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm',
         className
       )}
     >
@@ -61,10 +61,10 @@ export default function Navigation({ className }: NavigationProps) {
             transition={{ duration: 0.5 }}
             className="flex items-center space-x-3"
           >
-            <div className="w-10 h-10 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center animate-glow">
+            <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center">
               <Zap className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-neon-blue via-neon-pink to-neon-green bg-clip-text text-transparent">
+            <span className="text-2xl font-bold text-gray-800">
               Nexus Bloom
             </span>
           </motion.div>
@@ -79,11 +79,11 @@ export default function Navigation({ className }: NavigationProps) {
                 initial="hidden"
                 animate="visible"
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative text-gray-300 hover:text-neon-blue transition-colors duration-300"
+                className="group relative text-gray-600 hover:text-gray-900 transition-colors duration-300"
               >
                 <span className="relative">
                   {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue group-hover:w-full transition-all duration-300" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-800 group-hover:w-full transition-all duration-300" />
                 </span>
               </motion.a>
             ))}
@@ -95,7 +95,7 @@ export default function Navigation({ className }: NavigationProps) {
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="hidden md:block px-6 py-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-neon-blue/50 transition-all duration-300 transform hover:scale-105"
+            className="hidden md:block px-6 py-2 bg-gray-800 text-white rounded-lg font-semibold hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
           >
             Get Started
           </motion.button>
@@ -103,7 +103,7 @@ export default function Navigation({ className }: NavigationProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden text-gray-300 hover:text-neon-blue transition-colors duration-300 p-2"
+            className="md:hidden text-gray-600 hover:text-gray-900 transition-colors duration-300 p-2"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
@@ -123,7 +123,7 @@ export default function Navigation({ className }: NavigationProps) {
               animate="visible"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="md:hidden border-t border-neon-blue/30"
+              className="md:hidden border-t border-gray-200 bg-white"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {NAV_ITEMS.map((item, index) => (
@@ -133,7 +133,7 @@ export default function Navigation({ className }: NavigationProps) {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="block px-3 py-2 text-gray-300 hover:text-neon-blue hover:bg-neon-blue/10 rounded-md transition-colors duration-300"
+                    className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-300"
                     onClick={closeMobileMenu}
                   >
                     {item.name}
@@ -144,7 +144,7 @@ export default function Navigation({ className }: NavigationProps) {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: NAV_ITEMS.length * 0.1 }}
-                  className="w-full mt-4 px-3 py-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white rounded-md font-semibold"
+                  className="w-full mt-4 px-3 py-2 bg-gray-800 text-white rounded-md font-semibold hover:bg-gray-700"
                   onClick={closeMobileMenu}
                 >
                   Get Started
