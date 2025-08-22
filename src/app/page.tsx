@@ -3,6 +3,9 @@
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
+import ScrollIndicator from '@/components/ScrollIndicator'
+import SectionDivider from '@/components/SectionDivider'
+import ScrollDebug from '@/components/ScrollDebug'
 import { motion } from 'framer-motion'
 import { 
   Users, 
@@ -18,26 +21,106 @@ import {
   ArrowRight,
   Send
 } from 'lucide-react'
+import { useEffect } from 'react'
+import { 
+  createScrollProgress, 
+  createScrollReveal,
+  createParallaxEffect,
+  createMomentumScroll,
+  smoothScrollToSection
+} from '@/lib/utils'
 
 export default function Home() {
+  useEffect(() => {
+    // Initialize enhanced scroll features
+    const cleanupProgress = createScrollProgress()
+    
+    // Initialize momentum-based scrolling for mobile
+    const cleanupMomentum = createMomentumScroll()
+    
+    // Create scroll-triggered reveal animations
+    const revealElements = document.querySelectorAll('.reveal-on-scroll')
+    const revealObserver = createScrollReveal(revealElements)
+    
+    // Create parallax effects for background elements
+    const parallaxElements = document.querySelectorAll('.parallax-layer')
+    const parallaxCleanups: (() => void)[] = []
+    
+    parallaxElements.forEach((el) => {
+      if (el instanceof HTMLElement) {
+        const cleanup = createParallaxEffect(el, 0.3)
+        parallaxCleanups.push(cleanup)
+      }
+    })
+
+    // Test scroll functionality
+    const testScroll = () => {
+      console.log('Scroll test: All scroll utilities initialized successfully')
+      // Test smooth scroll to a section
+      setTimeout(() => {
+        const aboutSection = document.getElementById('about')
+        if (aboutSection) {
+          console.log('Scroll test: About section found, scroll functionality ready')
+        }
+      }, 1000)
+    }
+    
+    testScroll()
+    
+    return () => {
+      cleanupProgress()
+      cleanupMomentum()
+      revealObserver.disconnect()
+      parallaxCleanups.forEach(cleanup => cleanup())
+    }
+  }, [])
+
+  const sections = ['home', 'about', 'features', 'services', 'tools', 'projects', 'blogs', 'contact']
+
   return (
     <main className="min-h-screen">
+      {/* Scroll Progress Bar */}
+      <div className="scroll-progress" />
+      
+      {/* Innovative Scroll Indicator */}
+      <ScrollIndicator sections={sections} />
+      
+      {/* Scroll Debug Component (development only) */}
+      <ScrollDebug />
+      
       <Navigation />
       
       {/* Hero Section */}
-      <section id="home" className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-purple-50">
+      <section id="home" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
+        <div className="parallax-layer">
+          <motion.div
+            className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50"
+            animate={{
+              y: [0, -20, 0],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
         <Hero />
       </section>
 
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="magnetic" />
+
       {/* About Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section id="about" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
+            className="reveal-on-scroll text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               About Nexus Bloom
@@ -49,10 +132,11 @@ export default function Home() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
+              className="reveal-on-scroll"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-100px" }}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
@@ -73,13 +157,13 @@ export default function Home() {
             </motion.div>
             
             <motion.div
+              className="reveal-on-scroll"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-100px" }}
             >
-              <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl p-8">
+              <div className="glass-card rounded-2xl p-8">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -116,20 +200,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="sparkle" />
+
       {/* Features Section */}
-      <section id="features" className="py-20 bg-gradient-to-br from-white to-gray-50">
+      <section id="features" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
         <Features />
       </section>
 
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="flowing" />
+
       {/* Services Section */}
-      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section id="services" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
+            className="reveal-on-scroll text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Our Services
@@ -162,11 +252,11 @@ export default function Home() {
             ].map((service, index) => (
               <motion.div
                 key={service.title}
+                className="reveal-on-scroll glass-card rounded-2xl p-8 text-center group hover-lift"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center group"
+                transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-100px" }}
               >
                 <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <service.icon className="w-8 h-8 text-white" />
@@ -179,15 +269,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="magnetic" />
+
       {/* Tools Section */}
-      <section id="tools" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-purple-50">
-        <div className="max-w-7xl mx-auto">
+      <section id="tools" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
+            className="reveal-on-scroll text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Powerful Tools
@@ -210,11 +303,11 @@ export default function Home() {
             ].map((tool, index) => (
               <motion.div
                 key={tool.name}
+                className="reveal-on-scroll glass-card rounded-xl p-6 text-center hover-lift"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 text-center"
+                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-100px" }}
               >
                 <div className="text-4xl mb-4">{tool.icon}</div>
                 <h3 className="font-semibold text-gray-900">{tool.name}</h3>
@@ -224,15 +317,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="sparkle" />
+
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section id="projects" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
+            className="reveal-on-scroll text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Featured Projects
@@ -289,11 +385,11 @@ export default function Home() {
             ].map((project, index) => (
               <motion.div
                 key={project.title}
+                className="reveal-on-scroll glass-card rounded-2xl overflow-hidden group hover-lift"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100"
+                transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-100px" }}
               >
                 <div className="p-6">
                   <div className="text-6xl mb-4 text-center">{project.image}</div>
@@ -323,15 +419,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="flowing" />
+
       {/* Blogs Section */}
-      <section id="blogs" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-purple-50">
-        <div className="max-w-7xl mx-auto">
+      <section id="blogs" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
+            className="reveal-on-scroll text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Latest Insights & Updates
@@ -394,11 +493,11 @@ export default function Home() {
             ].map((blog, index) => (
               <motion.div
                 key={blog.title}
+                className="reveal-on-scroll glass-card rounded-2xl overflow-hidden group hover-lift"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100"
+                transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+                viewport={{ once: true, margin: "-100px" }}
               >
                 <div className="p-6">
                   <div className="text-6xl mb-4 text-center">{blog.image}</div>
@@ -427,17 +526,18 @@ export default function Home() {
         </div>
       </section>
 
-
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="magnetic" />
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-purple-50">
-        <div className="max-w-4xl mx-auto">
+      <section id="contact" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
+            className="reveal-on-scroll text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -446,11 +546,11 @@ export default function Home() {
           </motion.div>
 
           <motion.div
+            className="reveal-on-scroll glass-card rounded-2xl p-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl p-8 shadow-lg"
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
@@ -508,7 +608,7 @@ export default function Home() {
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 flex items-center justify-center space-x-2 hover-lift"
               >
                 <Send className="w-5 h-5" />
                 <span>Send Message</span>
