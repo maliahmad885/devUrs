@@ -693,18 +693,15 @@ export default function Hero({ className }: HeroProps) {
         >
           {/* Enhanced Heading with Animated Gradient Text */}
           <motion.div variants={itemVariants} className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 relative">
+            <h1 className="heading-1 md:text-8xl mb-6 relative">
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`main-${currentHeadingIndex}`}
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-purple-600 to-blue-600 relative z-10"
+                  className="text-gradient font-display font-bold relative z-10"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  style={{
-                    backgroundSize: '200% 200%',
-                  }}
                 >
                   {currentHeading.main}
                 </motion.span>
@@ -713,21 +710,18 @@ export default function Hero({ className }: HeroProps) {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`sub-${currentHeadingIndex}`}
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-gray-800 relative z-10"
+                  className="text-gradient-reverse font-display font-semibold relative z-10"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
-                  style={{
-                    backgroundSize: '200% 200%',
-                  }}
                 >
                   {currentHeading.sub}
                 </motion.span>
               </AnimatePresence>
               
               {/* 3D Text Shadow Effect */}
-              <div className="absolute inset-0 text-5xl md:text-7xl font-bold text-gray-300/20 transform translate-x-1 translate-y-1 -z-10">
+              <div className="absolute inset-0 heading-1 md:text-8xl font-bold text-gray-300/20 transform translate-x-1 translate-y-1 -z-10">
                 <span>{currentHeading.main}</span>
                 <br />
                 <span>{currentHeading.sub}</span>
@@ -738,7 +732,7 @@ export default function Hero({ className }: HeroProps) {
             <AnimatePresence mode="wait">
               <motion.p 
                 key={`desc-${currentHeadingIndex}`}
-                className="text-xl md:text-2xl text-gray-600 max-w-6xl mx-auto leading-relaxed mb-8"
+                className="text-body-large md:text-2xl text-gray-600 max-w-6xl mx-auto mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}

@@ -5,6 +5,40 @@
 @layer base {
   :root {
     --font-inter: 'Inter', system-ui, sans-serif;
+    --font-poppins: 'Poppins', system-ui, sans-serif;
+    --font-open-sans: 'Open Sans', system-ui, sans-serif;
+    --font-roboto-mono: 'Roboto Mono', monospace;
+    
+    /* Typography Scale */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.125rem;   /* 18px */
+    --text-xl: 1.25rem;    /* 20px */
+    --text-2xl: 1.5rem;    /* 24px */
+    --text-3xl: 1.875rem;  /* 30px */
+    --text-4xl: 2.25rem;   /* 36px */
+    --text-5xl: 3rem;      /* 48px */
+    --text-6xl: 3.75rem;   /* 60px */
+    --text-7xl: 4.5rem;    /* 72px */
+    --text-8xl: 6rem;      /* 96px */
+    --text-9xl: 8rem;      /* 128px */
+    
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
   }
   
   html {
@@ -12,15 +46,24 @@
     /* Fixed scroll padding for navigation offset */
     scroll-padding-top: 80px;
     /* Removed conflicting scroll-snap */
+    font-size: 16px; /* Base font size */
+    line-height: 1.6; /* Base line height */
   }
   
   body {
     @apply bg-white text-gray-900;
     font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-normal);
     overflow-x: hidden;
     /* Enhanced scroll performance */
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
+    /* Better text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   /* Fixed scroll sections - removed conflicting scroll-snap */
@@ -264,6 +307,98 @@
 }
 
 @layer components {
+  /* Typography Classes */
+  .font-display {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+  }
+  
+  .font-body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+  
+  .font-sans {
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+  }
+  
+  .font-mono {
+    font-family: var(--font-roboto-mono), monospace;
+  }
+  
+  /* Heading Styles */
+  .heading-1 {
+    @apply font-display font-bold text-6xl leading-tight tracking-tight;
+    font-size: var(--text-6xl);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+  }
+  
+  .heading-2 {
+    @apply font-display font-semibold text-5xl leading-tight tracking-tight;
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.01em;
+  }
+  
+  .heading-3 {
+    @apply font-display font-semibold text-4xl leading-snug tracking-tight;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-snug);
+    letter-spacing: -0.01em;
+  }
+  
+  .heading-4 {
+    @apply font-display font-medium text-3xl leading-snug;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+  }
+  
+  .heading-5 {
+    @apply font-display font-medium text-2xl leading-snug;
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+  }
+  
+  .heading-6 {
+    @apply font-display font-medium text-xl leading-snug;
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+  }
+  
+  /* Body Text Styles */
+  .text-body-large {
+    @apply font-body text-lg leading-relaxed;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+  
+  .text-body {
+    @apply font-body text-base leading-relaxed;
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+  }
+  
+  .text-body-small {
+    @apply font-body text-sm leading-relaxed;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+  
+  .text-caption {
+    @apply font-body text-xs leading-tight;
+    font-size: var(--text-xs);
+    line-height: var(--leading-tight);
+  }
+  
+  /* Special Text Styles */
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-600 via-blue-600 to-gray-800 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-reverse {
+    @apply bg-gradient-to-r from-gray-800 via-purple-600 to-blue-600 bg-clip-text text-transparent;
+  }
+  
+  /* Component Styles */
   .glass-effect {
     @apply bg-white/95 backdrop-blur-xl border border-gray-100/50 shadow-2xl;
   }
@@ -292,6 +427,7 @@
 }
 
 @layer utilities {
+  /* Typography Utilities */
   .text-gradient {
     @apply bg-gradient-to-r from-purple-600 via-blue-600 to-gray-800 bg-clip-text text-transparent;
   }
@@ -299,6 +435,54 @@
   .text-gradient-reverse {
     @apply bg-gradient-to-r from-gray-800 via-purple-600 to-blue-600 bg-clip-text text-transparent;
   }
+  
+  /* Font Family Utilities */
+  .font-display {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+  }
+  
+  .font-body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+  
+  .font-sans {
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+  }
+  
+  .font-mono {
+    font-family: var(--font-roboto-mono), monospace;
+  }
+  
+  /* Text Size Utilities */
+  .text-xs { font-size: var(--text-xs); }
+  .text-sm { font-size: var(--text-sm); }
+  .text-base { font-size: var(--text-base); }
+  .text-lg { font-size: var(--text-lg); }
+  .text-xl { font-size: var(--text-xl); }
+  .text-2xl { font-size: var(--text-2xl); }
+  .text-3xl { font-size: var(--text-3xl); }
+  .text-4xl { font-size: var(--text-4xl); }
+  .text-5xl { font-size: var(--text-5xl); }
+  .text-6xl { font-size: var(--text-6xl); }
+  .text-7xl { font-size: var(--text-7xl); }
+  .text-8xl { font-size: var(--text-8xl); }
+  .text-9xl { font-size: var(--text-9xl); }
+  
+  /* Line Height Utilities */
+  .leading-none { line-height: var(--leading-none); }
+  .leading-tight { line-height: var(--leading-tight); }
+  .leading-snug { line-height: var(--leading-snug); }
+  .leading-normal { line-height: var(--leading-normal); }
+  .leading-relaxed { line-height: var(--leading-relaxed); }
+  .leading-loose { line-height: var(--leading-loose); }
+  
+  /* Font Weight Utilities */
+  .font-light { font-weight: var(--font-light); }
+  .font-normal { font-weight: var(--font-normal); }
+  .font-medium { font-weight: var(--font-medium); }
+  .font-semibold { font-weight: var(--font-semibold); }
+  .font-bold { font-weight: var(--font-bold); }
+  .font-extrabold { font-weight: var(--font-extrabold); }
   
   .animate-float-slow {
     animation: float 10s ease-in-out infinite;

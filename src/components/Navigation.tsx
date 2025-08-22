@@ -210,7 +210,7 @@ export default function Navigation({ className }: NavigationProps) {
             >
               <Zap className="w-6 h-6 text-white" />
             </motion.div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-purple-600 bg-clip-text text-transparent">
+            <span className="heading-5 font-display font-bold text-gradient">
               Nexus Bloom
             </span>
           </motion.div>

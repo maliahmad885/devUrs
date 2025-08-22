@@ -75,12 +75,12 @@ export default function Footer() {
                 <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold">Nexus Bloom</span>
+                <span className="heading-5 font-display font-bold">Nexus Bloom</span>
               </div>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, 
-                we connect your entire tech stack with AI-powered automation.
-              </p>
+                              <p className="text-body text-gray-300 mb-6">
+                  Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, 
+                  we connect your entire tech stack with AI-powered automation.
+                </p>
               
               {/* Contact Info */}
               <div className="space-y-3">

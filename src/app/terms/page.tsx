@@ -54,10 +54,10 @@ export default function TermsOfService() {
             <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <FileText className="w-10 h-10 text-white" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="heading-2 md:text-5xl text-gray-900 mb-6">
               Terms of Service
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
               These terms govern your use of Nexus Bloom's services. 
               Please read them carefully before using our platform.
             </p>

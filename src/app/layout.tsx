@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins, Open_Sans, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
 import NoSSR from "@/components/NoSSR";
@@ -9,6 +9,27 @@ const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
   variable: '--font-inter'
+});
+
+const poppins = Poppins({ 
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-poppins'
+});
+
+const openSans = Open_Sans({ 
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-open-sans'
+});
+
+const robotoMono = Roboto_Mono({ 
+  subsets: ["latin"],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-roboto-mono'
 });
 
 
@@ -65,7 +86,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       </head>
-      <body className={`${inter.className} ${inter.variable}`} suppressHydrationWarning={true}>
+      <body className={`${inter.className} ${inter.variable} ${poppins.variable} ${openSans.variable} ${robotoMono.variable}`} suppressHydrationWarning={true}>
         <NoSSR>
           <ErrorBoundary>
             {children}

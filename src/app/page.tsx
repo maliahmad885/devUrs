@@ -164,10 +164,10 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
               About Nexus Bloom
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
               We're revolutionizing how businesses connect, automate, and grow through intelligent integration solutions.
             </p>
           </motion.div>
@@ -180,11 +180,11 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Story</h3>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <h3 className="heading-5 text-gray-900 mb-6">Our Story</h3>
+              <p className="text-body text-gray-600 mb-6">
                 Founded in 2023, Nexus Bloom emerged from a simple observation: businesses were drowning in disconnected tools and manual processes. Our founders, veterans in both enterprise software and startup ecosystems, recognized that the future belonged to those who could seamlessly connect their digital world.
               </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-body text-gray-600 mb-6">
                 What started as a small team of integration enthusiasts has grown into a powerhouse of automation experts, serving thousands of businesses worldwide.
               </p>
               <div className="flex items-center space-x-4">
@@ -263,10 +263,10 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
               Our Services
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
               Comprehensive integration solutions to connect your entire tech stack.
             </p>
           </motion.div>
@@ -324,10 +324,10 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
               Powerful Tools
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
               Built for developers and business users alike.
             </p>
           </motion.div>
@@ -372,10 +372,10 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
               Featured Projects
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
               Discover how we've helped businesses transform their operations with our integration solutions.
             </p>
           </motion.div>
@@ -474,10 +474,10 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
               Latest Insights & Updates
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
               Stay updated with the latest trends, tips, and insights in automation and integration.
             </p>
           </motion.div>
@@ -581,8 +581,8 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="heading-3 text-gray-900 mb-6">Get in Touch</h2>
+            <p className="text-body-large text-gray-600 max-w-2xl mx-auto">
               Ready to transform your business? Let's start a conversation about how Nexus Bloom can help.
             </p>
           </motion.div>

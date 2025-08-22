@@ -54,10 +54,10 @@ export default function PrivacyPolicy() {
             <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <Shield className="w-10 h-10 text-white" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="heading-2 md:text-5xl text-gray-900 mb-6">
               Privacy Policy
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
               We respect your privacy and are committed to protecting your personal information. 
               This policy explains how we collect, use, and safeguard your data.
             </p>
@@ -87,10 +87,10 @@ export default function PrivacyPolicy() {
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                    <h2 className="heading-5 text-gray-900 mb-4">
                       {section.title}
                     </h2>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-body text-gray-600">
                       {section.content}
                     </p>
                   </div>
@@ -105,10 +105,10 @@ export default function PrivacyPolicy() {
               transition={{ duration: 0.8, delay: 0.7 }}
               className="glass-card rounded-2xl p-8 text-center"
             >
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="heading-5 text-gray-900 mb-4">
                 Contact Us
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-body text-gray-600 mb-6">
                 If you have any questions about this Privacy Policy or our data practices, 
                 please contact us:
               </p>
