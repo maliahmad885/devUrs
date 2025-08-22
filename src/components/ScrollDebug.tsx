@@ -7,17 +7,28 @@ export default function ScrollDebug() {
     scrollY: 0,
     scrollHeight: 0,
     clientHeight: 0,
-    scrollBehavior: 'auto'
+    scrollBehavior: 'auto',
+    scrollPaddingTop: '0px'
   })
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
+    
     const updateScrollInfo = () => {
-      setScrollInfo({
-        scrollY: window.scrollY,
-        scrollHeight: document.documentElement.scrollHeight,
-        clientHeight: window.innerHeight,
-        scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior
-      })
+      try {
+        if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+          setScrollInfo({
+            scrollY: window.scrollY,
+            scrollHeight: document.documentElement.scrollHeight,
+            clientHeight: window.innerHeight,
+            scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior,
+            scrollPaddingTop: getComputedStyle(document.documentElement).scrollPaddingTop
+          })
+        }
+      } catch (error) {
+        console.warn('ScrollDebug: Error getting scroll info:', error)
+      }
     }
 
     // Check initial scroll state
@@ -35,8 +46,8 @@ export default function ScrollDebug() {
     }
   }, [])
 
-  // Only show in development
-  if (process.env.NODE_ENV !== 'development') {
+  // Only show in development and on client side
+  if (process.env.NODE_ENV !== 'development' || !isClient) {
     return null
   }
 
@@ -46,7 +57,7 @@ export default function ScrollDebug() {
       <div>Scroll Height: {scrollInfo.scrollHeight}</div>
       <div>Client Height: {scrollInfo.clientHeight}</div>
       <div>Scroll Behavior: {scrollInfo.scrollBehavior}</div>
-      <div>Scroll Padding: {getComputedStyle(document.documentElement).scrollPaddingTop}</div>
+      <div>Scroll Padding: {scrollInfo.scrollPaddingTop}</div>
     </div>
   )
 } 

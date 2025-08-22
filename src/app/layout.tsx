@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import StructuredData from "@/components/StructuredData";
+import NoSSR from "@/components/NoSSR";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  variable: '--font-inter'
+});
+
+
 
 export const metadata: Metadata = {
   title: "Nexus Bloom - Integration Hub | Connect Everything",
@@ -12,28 +21,28 @@ export const metadata: Metadata = {
   creator: "Nexus Bloom",
   publisher: "Nexus Bloom",
   robots: "index, follow",
-  openGraph: {
-    title: "Nexus Bloom - Integration Hub | Connect Everything",
-    description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack.",
-    url: "https://nexusbloom.com",
-    siteName: "Nexus Bloom",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Nexus Bloom - Integration Hub",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Nexus Bloom - Integration Hub | Connect Everything",
-    description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack.",
-    images: ["/og-image.jpg"],
-  },
+      openGraph: {
+      title: "Nexus Bloom - Integration Hub | Connect Everything",
+      description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack.",
+      url: "https://nexusbloom.com",
+      siteName: "Nexus Bloom",
+      images: [
+        {
+          url: "/og-image.svg",
+          width: 1200,
+          height: 630,
+          alt: "Nexus Bloom - Integration Hub",
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+      twitter: {
+      card: "summary_large_image",
+      title: "Nexus Bloom - Integration Hub | Connect Everything",
+      description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack.",
+      images: ["/og-image.svg"],
+    },
   viewport: "width=device-width, initial-scale=1",
   themeColor: "#8B5CF6",
 };
@@ -44,8 +53,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning={true}>
+      <head>
+        <StructuredData />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#8B5CF6" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Nexus Bloom" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      </head>
+      <body className={`${inter.className} ${inter.variable}`} suppressHydrationWarning={true}>
+        <NoSSR>
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
+        </NoSSR>
+      </body>
     </html>
   );
 }

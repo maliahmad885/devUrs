@@ -10,16 +10,24 @@ interface ScrollIndicatorProps {
 }
 
 export default function ScrollIndicator({ sections, className }: ScrollIndicatorProps) {
-  const [activeSection, setActiveSection] = useState(0)
+  const [activeSection, setActiveSection] = useState(-1)
   const [isVisible, setIsVisible] = useState(false)
   const indicatorRef = useRef<HTMLDivElement>(null)
   const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const lastScrollY = useRef(0)
 
   useEffect(() => {
-    // Show indicator after initial load with smooth fade-in
-    const timer = setTimeout(() => setIsVisible(true), 1200)
-    return () => clearTimeout(timer)
+    // Don't show indicator initially - only show after user starts scrolling
+    const handleFirstScroll = () => {
+      setIsVisible(true)
+      window.removeEventListener('scroll', handleFirstScroll)
+    }
+    
+    window.addEventListener('scroll', handleFirstScroll, { passive: true })
+    
+    return () => {
+      window.removeEventListener('scroll', handleFirstScroll)
+    }
   }, [])
 
   // Fixed scroll detection with better performance and less conflicts
@@ -46,7 +54,7 @@ export default function ScrollIndicator({ sections, className }: ScrollIndicator
             const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
             const visibility = visibleHeight / section.offsetHeight
             
-            if (visibility > 0.3) {
+            if (visibility > 0.6) {
               setActiveSection(index)
             }
           }

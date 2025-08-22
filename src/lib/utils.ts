@@ -47,11 +47,19 @@ export function enhancedScrollToSection(sectionId: string) {
   const navHeight = 80
   const targetPosition = section.offsetTop - navHeight
   
+  // Temporarily enable smooth scrolling for this action
+  document.documentElement.style.scrollBehavior = 'smooth'
+  
   // Use native smooth scroll for better compatibility
   window.scrollTo({
     top: targetPosition,
     behavior: 'smooth'
   })
+  
+  // Reset to auto after scrolling
+  setTimeout(() => {
+    document.documentElement.style.scrollBehavior = 'auto'
+  }, 1000)
 }
 
 // Fixed magnetic hover effect with better performance
@@ -189,6 +197,11 @@ export function createMagneticNavigation(navElements: NodeListOf<Element>) {
       navItem.classList.add('magnetic-nav')
     }
   })
+}
+
+// Enable smooth scrolling when user starts interacting
+export function enableSmoothScrolling() {
+  document.documentElement.style.scrollBehavior = 'smooth'
 }
 
 // Fixed momentum-based scroll utility for mobile

@@ -62,10 +62,11 @@ const mobileMenuVariants = {
 
 export default function Navigation({ className }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
+  const [activeSection, setActiveSection] = useState('')
   const [isScrolling, setIsScrolling] = useState(false)
   const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const navRef = useRef<HTMLElement>(null)
+  const [isClient, setIsClient] = useState(false)
 
   // Enhanced navigation click handler with smooth transitions
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -99,6 +100,7 @@ export default function Navigation({ className }: NavigationProps) {
 
   // Enhanced active section detection with better performance
   useEffect(() => {
+    setIsClient(true)
     const handleScroll = () => {
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current)
@@ -109,7 +111,7 @@ export default function Navigation({ className }: NavigationProps) {
         const scrollPosition = window.scrollY + window.innerHeight / 3
         
         // Find the most visible section
-        let bestSection = 'home'
+        let bestSection = ''
         let bestVisibility = 0
         
         sections.forEach(sectionId => {
@@ -119,14 +121,17 @@ export default function Navigation({ className }: NavigationProps) {
             const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
             const visibility = visibleHeight / section.offsetHeight
             
-            if (visibility > bestVisibility) {
+            if (visibility > bestVisibility && visibility > 0.5) {
               bestVisibility = visibility
               bestSection = sectionId
             }
           }
         })
         
-        setActiveSection(bestSection)
+        // Only set active section if we found one with good visibility
+        if (bestSection && bestVisibility > 0.5) {
+          setActiveSection(bestSection)
+        }
       }, 50) // Debounce scroll events for better performance
     }
 
@@ -166,6 +171,11 @@ export default function Navigation({ className }: NavigationProps) {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Only render on client side
+  if (process.env.NODE_ENV !== 'development' || !isClient) {
+    return null
+  }
 
   return (
     <motion.nav

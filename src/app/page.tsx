@@ -6,6 +6,9 @@ import Features from '@/components/Features'
 import ScrollIndicator from '@/components/ScrollIndicator'
 import SectionDivider from '@/components/SectionDivider'
 import ScrollDebug from '@/components/ScrollDebug'
+import ContactForm from '@/components/ContactForm'
+import CookieConsent from '@/components/CookieConsent'
+import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
 import { 
   Users, 
@@ -21,17 +24,27 @@ import {
   ArrowRight,
   Send
 } from 'lucide-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { 
   createScrollProgress, 
   createScrollReveal,
   createParallaxEffect,
   createMomentumScroll,
-  smoothScrollToSection
+  smoothScrollToSection,
+  enableSmoothScrolling
 } from '@/lib/utils'
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false)
+
   useEffect(() => {
+    setIsClient(true)
+    
+    // Ensure page starts at the top
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0)
+    }
+    
     // Initialize enhanced scroll features
     const cleanupProgress = createScrollProgress()
     
@@ -53,6 +66,17 @@ export default function Home() {
       }
     })
 
+    // Enable smooth scrolling when user starts scrolling
+    let hasScrolled = false
+    const handleFirstScroll = () => {
+      if (!hasScrolled) {
+        hasScrolled = true
+        enableSmoothScrolling()
+        window.removeEventListener('scroll', handleFirstScroll)
+      }
+    }
+    window.addEventListener('scroll', handleFirstScroll, { passive: true })
+    
     // Test scroll functionality
     const testScroll = () => {
       console.log('Scroll test: All scroll utilities initialized successfully')
@@ -72,10 +96,28 @@ export default function Home() {
       cleanupMomentum()
       revealObserver.disconnect()
       parallaxCleanups.forEach(cleanup => cleanup())
+      window.removeEventListener('scroll', handleFirstScroll)
     }
   }, [])
 
   const sections = ['home', 'about', 'features', 'services', 'tools', 'projects', 'blogs', 'contact']
+
+  // Don't render scroll-related components during SSR
+  if (!isClient) {
+    return (
+      <main className="min-h-screen">
+        <Navigation />
+        <Hero />
+        {/* Show loading state for other components */}
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading...</p>
+          </div>
+        </div>
+      </main>
+    )
+  }
 
   return (
     <main className="min-h-screen">
@@ -545,78 +587,15 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <motion.div
-            className="reveal-on-scroll glass-card rounded-2xl p-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-300"
-                    placeholder="Your first name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-300"
-                    placeholder="Your last name"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-300"
-                  placeholder="your.email@company.com"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-300 resize-none"
-                  placeholder="Tell us about your integration needs..."
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 flex items-center justify-center space-x-2 hover-lift"
-              >
-                <Send className="w-5 h-5" />
-                <span>Send Message</span>
-              </button>
-            </form>
-          </motion.div>
+          <ContactForm />
         </div>
       </section>
+      
+      {/* Cookie Consent Banner */}
+      <CookieConsent />
+      
+      {/* Footer */}
+      <Footer />
     </main>
   )
 }
