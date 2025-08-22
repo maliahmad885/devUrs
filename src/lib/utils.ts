@@ -210,15 +210,24 @@ export function createMomentumScroll() {
   let startY = 0
   let startTime = 0
   let velocity = 0
+  let isMobile = false
+  
+  const checkMobile = () => {
+    isMobile = window.innerWidth < 768
+  }
+  
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
   
   const handleTouchStart = (e: TouchEvent) => {
+    if (!isMobile) return
     startY = e.touches[0].clientY
     startTime = Date.now()
     isScrolling = true
   }
   
   const handleTouchMove = (e: TouchEvent) => {
-    if (!isScrolling) return
+    if (!isScrolling || !isMobile) return
     
     const currentY = e.touches[0].clientY
     const deltaY = startY - currentY
@@ -228,7 +237,7 @@ export function createMomentumScroll() {
   }
   
   const handleTouchEnd = () => {
-    if (!isScrolling) return
+    if (!isScrolling || !isMobile) return
     
     isScrolling = false
     const momentum = velocity * 30 // Reduced momentum for better control
@@ -246,6 +255,7 @@ export function createMomentumScroll() {
   document.addEventListener('touchend', handleTouchEnd, { passive: true })
   
   return () => {
+    window.removeEventListener('resize', checkMobile)
     document.removeEventListener('touchstart', handleTouchStart)
     document.removeEventListener('touchmove', handleTouchMove)
     document.removeEventListener('touchend', handleTouchEnd)

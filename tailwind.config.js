@@ -5,6 +5,7 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -61,6 +62,7 @@ module.exports = {
       
       animation: {
         'glow': 'glow 3s ease-in-out infinite',
+
         'float': 'float 6s ease-in-out infinite',
         'float-slow': 'float 8s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -81,6 +83,7 @@ module.exports = {
             boxShadow: '0 0 40px rgba(139, 92, 246, 0.6), 0 0 80px rgba(139, 92, 246, 0.2)' 
           },
         },
+
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
@@ -125,6 +128,7 @@ module.exports = {
         'gradient-primary': 'linear-gradient(135deg, #8B5CF6 0%, #3B82F6 50%, #10B981 100%)',
         'gradient-hero': 'linear-gradient(135deg, #faf5ff 0%, #ffffff 50%, #eff6ff 100%)',
         'gradient-card': 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+
       },
       
       fontFamily: {
@@ -154,6 +158,7 @@ module.exports = {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         'large': '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+
       },
     },
   },

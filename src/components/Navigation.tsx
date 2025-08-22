@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Zap } from 'lucide-react'
 import { cn, enhancedScrollToSection, createMagneticNavigation } from '@/lib/utils'
+import DarkModeToggle from './DarkModeToggle'
 
 // Types
 interface NavItem {
@@ -265,6 +266,15 @@ export default function Navigation({ className }: NavigationProps) {
                 </motion.a>
               )
             })}
+            
+            {/* Dark Mode Toggle */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <DarkModeToggle />
+            </motion.div>
           </div>
 
           {/* Enhanced Mobile Menu Button */}

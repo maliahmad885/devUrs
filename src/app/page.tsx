@@ -3,6 +3,9 @@
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
+import EnhancedFeatures from '@/components/EnhancedFeatures'
+import Testimonials from '@/components/Testimonials'
+import ThreeDBackground from '@/components/3DBackground'
 import ScrollIndicator from '@/components/ScrollIndicator'
 import SectionDivider from '@/components/SectionDivider'
 import ScrollDebug from '@/components/ScrollDebug'
@@ -121,6 +124,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
+      {/* 3D Interactive Background */}
+      <ThreeDBackground />
+      
       {/* Scroll Progress Bar */}
       <div className="scroll-progress" />
       
@@ -158,16 +164,16 @@ export default function Home() {
       <section id="about" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
-            className="reveal-on-scroll text-center mb-16"
+            className="reveal-on-scroll text-center mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-4 sm:mb-6">
               About Nexus Bloom
             </h2>
-            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
               We're revolutionizing how businesses connect, automate, and grow through intelligent integration solutions.
             </p>
           </motion.div>
@@ -253,25 +259,34 @@ export default function Home() {
       {/* Innovative Section Divider */}
       <SectionDivider variant="flowing" />
 
+      {/* Enhanced Features Section */}
+      <EnhancedFeatures />
+
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="sparkle" />
+
+      {/* Testimonials Section */}
+      <Testimonials />
+
       {/* Services Section */}
       <section id="services" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
-            className="reveal-on-scroll text-center mb-16"
+            className="reveal-on-scroll text-center mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-4 sm:mb-6">
               Our Services
             </h2>
-            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
               Comprehensive integration solutions to connect your entire tech stack.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
             {[
               {
                 icon: Zap,
@@ -318,21 +333,21 @@ export default function Home() {
       <section id="tools" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
-            className="reveal-on-scroll text-center mb-16"
+            className="reveal-on-scroll text-center mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-4 sm:mb-6">
               Powerful Tools
             </h2>
-            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
               Built for developers and business users alike.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { name: "Visual Workflow Builder", icon: "🎨" },
               { name: "REST API", icon: "🔌" },
@@ -366,21 +381,21 @@ export default function Home() {
       <section id="projects" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
-            className="reveal-on-scroll text-center mb-16"
+            className="reveal-on-scroll text-center mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-4 sm:mb-6">
               Featured Projects
             </h2>
-            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
               Discover how we've helped businesses transform their operations with our integration solutions.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {[
               {
                 title: "E-commerce Automation",
@@ -468,21 +483,21 @@ export default function Home() {
       <section id="blogs" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
-            className="reveal-on-scroll text-center mb-16"
+            className="reveal-on-scroll text-center mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="heading-3 md:text-4xl text-gray-900 mb-6">
+            <h2 className="heading-3 md:text-4xl text-gray-900 mb-4 sm:mb-6">
               Latest Insights & Updates
             </h2>
-            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-large text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
               Stay updated with the latest trends, tips, and insights in automation and integration.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {[
               {
                 title: "The Future of Workflow Automation in 2024",
@@ -575,14 +590,14 @@ export default function Home() {
       <section id="contact" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
-            className="reveal-on-scroll text-center mb-12"
+            className="reveal-on-scroll text-center mb-10 sm:mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="heading-3 text-gray-900 mb-6">Get in Touch</h2>
-            <p className="text-body-large text-gray-600 max-w-2xl mx-auto">
+            <h2 className="heading-3 text-gray-900 mb-4 sm:mb-6">Get in Touch</h2>
+            <p className="text-body-large text-gray-600 max-w-2xl mx-auto px-4 sm:px-0">
               Ready to transform your business? Let's start a conversation about how Nexus Bloom can help.
             </p>
           </motion.div>

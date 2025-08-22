@@ -86,6 +86,12 @@ export default function ScrollIndicator({ sections, className }: ScrollIndicator
     enhancedScrollToSection(sectionId)
   }, [])
 
+  // Add touch event handling for mobile
+  const handleTouchStart = useCallback((e: React.TouchEvent, sectionId: string) => {
+    e.preventDefault()
+    scrollToSection(sectionId)
+  }, [scrollToSection])
+
   // Enhanced animation variants for ultra-smooth motion
   const scrollVariants: Variants = {
     hidden: { opacity: 0, x: 60, scale: 0.8 },
@@ -162,6 +168,7 @@ export default function ScrollIndicator({ sections, className }: ScrollIndicator
                 whileHover="hover"
                 className={`scroll-dot nav-link ${isActive ? 'active' : ''}`}
                 onClick={() => scrollToSection(sectionId)}
+                onTouchStart={(e) => handleTouchStart(e, sectionId)}
                 whileTap={{ scale: 0.8 }}
                 style={{ cursor: 'pointer' }}
               >

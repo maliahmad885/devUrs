@@ -129,12 +129,25 @@ const chatBubbleVariants = {
 const ParticleSystem = () => {
   const [particles, setParticles] = useState<Particle[]>([])
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isMobile, setIsMobile] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     const generateParticles = () => {
       const newParticles: Particle[] = []
-      for (let i = 0; i < 50; i++) {
+      // Reduce particles on mobile for better performance
+      const particleCount = isMobile ? 20 : 50
+      for (let i = 0; i < particleCount; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * window.innerWidth,
@@ -235,6 +248,11 @@ const ParticleSystem = () => {
     return () => window.removeEventListener('resize', resizeCanvas)
   }, [particles, mousePosition])
 
+  // Don't render particle system on mobile for better performance
+  if (isMobile) {
+    return null
+  }
+
   return (
     <canvas
       ref={canvasRef}
@@ -267,14 +285,27 @@ const AutomationMascot = ({
   left?: string
 }) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const springConfig = { stiffness: 300, damping: 20 }
   const scale = useSpring(isHovered ? 1.2 : 1, springConfig)
   const rotation = useSpring(isHovered ? 15 : 0, springConfig)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   return (
     <motion.div
       className={cn(
         'absolute flex flex-col items-center cursor-pointer group',
+        // Mobile responsive positioning
+        'hidden sm:flex', // Hide on mobile
         position,
         left
       )}
@@ -354,13 +385,13 @@ const ChatbotRobot = ({
       onHoverEnd={() => setIsHovered(false)}
       style={{ scale, rotateY: rotationY }}
     >
-      {/* Robot Body with Glassmorphism */}
-      <motion.div
-        className="w-20 h-24 bg-gradient-to-b from-blue-400/90 to-blue-600/90 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center shadow-2xl relative overflow-hidden border border-white/20"
-        variants={walkingVariants}
-        animate="walk"
-        style={{ animationDelay: `${delay}s` }}
-      >
+              {/* Robot Body with Glassmorphism */}
+        <motion.div
+          className="w-20 h-24 bg-gradient-to-b from-blue-400/90 to-blue-600/90 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center shadow-2xl relative overflow-hidden border border-white/20"
+          variants={walkingVariants}
+          animate="walk"
+          style={{ animationDelay: `${delay}s` }}
+        >
         {/* Animated Background Pattern */}
         <motion.div
           className="absolute inset-0 opacity-20"
@@ -437,14 +468,27 @@ const WalkingMascot = ({
   left?: string
 }) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const springConfig = { stiffness: 300, damping: 20 }
   const scale = useSpring(isHovered ? 1.15 : 1, springConfig)
   const rotationZ = useSpring(isHovered ? 5 : 0, springConfig)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   return (
     <motion.div
       className={cn(
         'absolute flex flex-col items-center cursor-pointer group',
+        // Mobile responsive positioning
+        'hidden sm:flex', // Hide on mobile
         position,
         left
       )}
@@ -525,17 +569,17 @@ export default function Hero({ className }: HeroProps) {
           style={{ y: y1 }}
           variants={floatingVariants}
           animate="float"
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50"
+          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50 hidden sm:block"
         />
         <motion.div
           style={{ y: y2, animationDelay: '2s' }}
           variants={floatingVariants}
           animate="float"
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50"
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50 hidden sm:block"
         />
         <motion.div 
           style={{ opacity }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-100/40 to-pink-100/40 rounded-full blur-3xl animate-pulse"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-100/40 to-pink-100/40 rounded-full blur-3xl animate-pulse hidden sm:block"
         />
         
         {/* Additional floating geometric shapes */}
@@ -546,7 +590,7 @@ export default function Hero({ className }: HeroProps) {
             opacity: [0.2, 0.4, 0.2]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-purple-200/30 rounded-full"
+          className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-purple-200/30 rounded-full hidden sm:block"
         />
         <motion.div
           animate={{ 
@@ -555,7 +599,7 @@ export default function Hero({ className }: HeroProps) {
             opacity: [0.1, 0.3, 0.1]
           }}
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="absolute bottom-1/4 right-1/4 w-24 h-24 border-2 border-blue-200/30 transform rotate-45"
+          className="absolute bottom-1/4 right-1/4 w-24 h-24 border-2 border-blue-200/30 transform rotate-45 hidden sm:block"
         />
       </div>
 
@@ -634,7 +678,7 @@ export default function Hero({ className }: HeroProps) {
           scale: [1, 1.2, 1]
         }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/4 left-10 w-4 h-4 bg-purple-400 rounded-full animate-pulse shadow-lg"
+        className="absolute top-1/4 left-10 w-4 h-4 bg-purple-400 rounded-full animate-pulse shadow-lg hidden sm:block"
       />
       <motion.div
         animate={{ 
@@ -643,7 +687,7 @@ export default function Hero({ className }: HeroProps) {
           scale: [1, 0.8, 1]
         }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute top-1/3 right-20 w-3 h-3 bg-blue-400 rounded-full animate-pulse shadow-lg"
+        className="absolute top-1/3 right-20 w-3 h-3 bg-blue-400 rounded-full animate-pulse shadow-lg hidden sm:block"
       />
       <motion.div
         animate={{ 
@@ -652,7 +696,7 @@ export default function Hero({ className }: HeroProps) {
           scale: [1, 1.1, 1]
         }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute bottom-1/4 left-20 w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg"
+        className="absolute bottom-1/4 left-20 w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg hidden sm:block"
       />
       
       {/* Additional floating sparkles */}
@@ -663,7 +707,7 @@ export default function Hero({ className }: HeroProps) {
           rotate: [0, 360]
         }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-        className="absolute top-1/2 right-1/4"
+        className="absolute top-1/2 right-1/4 hidden sm:block"
       >
         <Sparkles className="w-6 h-6 text-yellow-400 animate-pulse" />
       </motion.div>
@@ -675,7 +719,7 @@ export default function Hero({ className }: HeroProps) {
           rotate: [360, 0]
         }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-        className="absolute bottom-1/3 left-1/3"
+        className="absolute bottom-1/3 left-1/3 hidden sm:block"
       >
         <ZapIcon className="w-5 h-5 text-orange-400 animate-pulse" />
       </motion.div>
@@ -683,17 +727,17 @@ export default function Hero({ className }: HeroProps) {
       
 
       {/* Main Content Area */}
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 text-center text-gray-900">
         {/* Main Content with Enhanced Animations */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="mb-16"
+          className="mb-12 sm:mb-16"
         >
           {/* Enhanced Heading with Animated Gradient Text */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <h1 className="heading-1 md:text-8xl mb-6 relative">
+          <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
+            <h1 className="heading-1 md:text-8xl mb-4 sm:mb-6 relative">
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`main-${currentHeadingIndex}`}
@@ -721,7 +765,7 @@ export default function Hero({ className }: HeroProps) {
               </AnimatePresence>
               
               {/* 3D Text Shadow Effect */}
-              <div className="absolute inset-0 heading-1 md:text-8xl font-bold text-gray-300/20 transform translate-x-1 translate-y-1 -z-10">
+              <div className="absolute inset-0 heading-1 md:text-8xl font-bold text-gray-300/20 transform translate-x-1 translate-y-1 -z-10 hidden sm:block">
                 <span>{currentHeading.main}</span>
                 <br />
                 <span>{currentHeading.sub}</span>
@@ -732,7 +776,7 @@ export default function Hero({ className }: HeroProps) {
             <AnimatePresence mode="wait">
               <motion.p 
                 key={`desc-${currentHeadingIndex}`}
-                className="text-body-large md:text-2xl text-gray-600 max-w-6xl mx-auto mb-8"
+                className="text-body-large md:text-2xl text-gray-600 max-w-4xl sm:max-w-6xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -744,7 +788,7 @@ export default function Hero({ className }: HeroProps) {
 
             {/* Progress Dots */}
             <motion.div 
-              className="flex justify-center items-center gap-3 mb-8"
+              className="flex justify-center items-center gap-2 sm:gap-3 mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -753,7 +797,7 @@ export default function Hero({ className }: HeroProps) {
                 <motion.button
                   key={index}
                   onClick={() => setCurrentHeadingIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                  className={`w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     index === currentHeadingIndex 
                       ? 'bg-purple-600 scale-125 shadow-lg' 
                       : 'bg-gray-300 hover:bg-gray-400'
@@ -766,7 +810,7 @@ export default function Hero({ className }: HeroProps) {
 
             {/* Progress Bar */}
             <motion.div 
-              className="w-full max-w-md mx-auto h-1.5 bg-gray-200 rounded-full overflow-hidden mb-10"
+              className="w-full max-w-sm sm:max-w-md mx-auto h-1 sm:h-1.5 bg-gray-200 rounded-full overflow-hidden mb-8 sm:mb-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 1.0 }}
@@ -781,35 +825,35 @@ export default function Hero({ className }: HeroProps) {
 
             {/* Key Benefits Bullet Points */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-10"
+              className="flex flex-row gap-2 sm:gap-3 justify-center items-center mb-10 flex-wrap"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className="flex items-center gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100">
-                <div className="w-3 h-3 bg-green-500 rounded-full shadow-sm"></div>
-                <span className="text-sm font-semibold">No-Code Required</span>
+              <div className="flex items-center gap-2 sm:gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm border border-gray-100">
+                <div className="w-2 sm:w-3 h-2 sm:h-3 bg-green-500 rounded-full shadow-sm"></div>
+                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">No-Code Required</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100">
-                <div className="w-3 h-3 bg-blue-500 rounded-full shadow-sm"></div>
-                <span className="text-sm font-semibold">AI-Powered</span>
+              <div className="flex items-center gap-2 sm:gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm border border-gray-100">
+                <div className="w-2 sm:w-3 h-2 sm:h-3 bg-blue-500 rounded-full shadow-sm"></div>
+                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">AI-Powered</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100">
-                <div className="w-3 h-3 bg-purple-500 rounded-full shadow-sm"></div>
-                <span className="text-sm font-semibold">Enterprise Ready</span>
+              <div className="flex items-center gap-2 sm:gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm border border-gray-100">
+                <div className="w-2 sm:w-3 h-2 sm:h-3 bg-purple-500 rounded-full shadow-sm"></div>
+                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">Enterprise Ready</span>
               </div>
             </motion.div>
           </motion.div>
 
           {/* Enhanced CTA Buttons with Advanced Hover Effects */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+          <motion.div variants={itemVariants} className="flex flex-row gap-3 sm:gap-6 justify-center items-center mb-16 flex-wrap">
             <motion.button 
-              className="group px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 shadow-xl hover:shadow-2xl relative overflow-hidden"
+              className="group px-4 sm:px-10 py-2.5 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold text-sm sm:text-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 sm:space-x-3 shadow-xl hover:shadow-2xl relative overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative z-10">Start Automating</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+              <ArrowRight className="w-3.5 sm:w-5 h-3.5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
               
               {/* Animated background overlay */}
               <motion.div
@@ -829,11 +873,11 @@ export default function Hero({ className }: HeroProps) {
             </motion.button>
             
             <motion.button 
-              className="px-10 py-4 border-2 border-purple-600 text-purple-600 rounded-xl font-semibold text-lg hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center space-x-3 hover:shadow-xl relative overflow-hidden group bg-white/90 backdrop-blur-sm"
+              className="px-4 sm:px-10 py-2.5 sm:py-4 border-2 border-purple-600 text-purple-600 rounded-xl font-semibold text-sm sm:text-lg hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center space-x-2 sm:space-x-3 hover:shadow-xl relative overflow-hidden group bg-white/90 backdrop-blur-sm"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+              <Play className="w-3.5 sm:w-5 h-3.5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
               <span>Watch Demo</span>
               
               {/* Hover background animation */}
@@ -855,12 +899,12 @@ export default function Hero({ className }: HeroProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-20"
+          className="mt-16 sm:mt-20"
         >
-          <p className="text-gray-500 mb-8 text-lg font-medium">Trusted by leading companies worldwide</p>
+          <p className="text-gray-500 mb-6 sm:mb-8 text-base sm:text-lg font-medium">Trusted by leading companies worldwide</p>
           
           {/* Enhanced Company Logos */}
-          <div className="flex flex-wrap justify-center items-center gap-10 opacity-70">
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10 opacity-70">
             {[
               { name: 'Make.com', color: 'text-blue-600' },
               { name: 'Zapier', color: 'text-orange-600' },
@@ -870,7 +914,7 @@ export default function Hero({ className }: HeroProps) {
             ].map((company, index) => (
               <motion.div
                 key={company.name}
-                className={`font-bold text-xl cursor-pointer hover:opacity-100 transition-all duration-300 ${company.color} hover:scale-110`}
+                className={`font-bold text-lg sm:text-xl cursor-pointer hover:opacity-100 transition-all duration-300 ${company.color} hover:scale-110`}
                 whileHover={{ 
                   scale: 1.1, 
                   y: -2,

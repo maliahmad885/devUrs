@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Cpu, Rocket, Brain, Zap, Shield, Sparkles } from 'lucide-react'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 // Interactive 3D Card Component
@@ -20,14 +20,25 @@ const Interactive3DCard = ({
   delay?: number
 }) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), { stiffness: 300, damping: 30 })
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), { stiffness: 300, damping: 30 })
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
+    if (isMobile || !cardRef.current) return
     
     const rect = cardRef.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
@@ -38,6 +49,7 @@ const Interactive3DCard = ({
   }
 
   const handleMouseLeave = () => {
+    if (isMobile) return
     mouseX.set(0)
     mouseY.set(0)
     setIsHovered(false)
@@ -56,12 +68,13 @@ const Interactive3DCard = ({
       viewport={{ once: true }}
       style={{
         transformStyle: 'preserve-3d',
-        rotateX,
-        rotateY,
+        // Disable 3D transforms on mobile for better performance
+        rotateX: isMobile ? 0 : rotateX,
+        rotateY: isMobile ? 0 : rotateY,
       }}
     >
       <motion.div
-        className="relative p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-gray-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
+        className="relative p-4 sm:p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-gray-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
         style={{ transform: 'translateZ(20px)' }}
         whileHover={{ 
           scale: 1.05,
@@ -102,7 +115,7 @@ const Interactive3DCard = ({
         
         {/* Icon with Enhanced Hover Effects */}
         <motion.div
-          className="relative z-10 w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200"
+          className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-xl flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200"
           animate={{ 
             y: isHovered ? -5 : 0,
             scale: isHovered ? 1.1 : 1
@@ -114,7 +127,7 @@ const Interactive3DCard = ({
           }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
-          <Icon className="w-8 h-8 text-gray-700" />
+          <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-gray-700" />
         </motion.div>
         
         {/* Content with Enhanced Hover Effects */}
@@ -123,8 +136,8 @@ const Interactive3DCard = ({
           whileHover={{ y: -2 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
-          <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
-          <p className="text-gray-600 text-sm">{description}</p>
+          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">{title}</h3>
+          <p className="text-gray-600 text-xs sm:text-sm">{description}</p>
         </motion.div>
         
         {/* Enhanced Glow effect */}
@@ -150,12 +163,12 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
             Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Nexus Bloom</span>?
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
             Discover the powerful features that make us the leading AI automation platform
           </p>
         </motion.div>
@@ -166,7 +179,7 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto"
         >
           <Interactive3DCard
             icon={Cpu}
