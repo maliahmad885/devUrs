@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Zap } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -19,9 +19,12 @@ interface NavigationProps {
 // Constants
 const NAV_ITEMS: NavItem[] = [
   { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Features', href: '#features' },
   { name: 'Services', href: '#services' },
   { name: 'Tools', href: '#tools' },
-  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Blogs', href: '#blogs' },
   { name: 'Contact', href: '#contact' },
 ]
 
@@ -39,10 +42,32 @@ const mobileMenuVariants = {
 
 export default function Navigation({ className }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   // Handlers
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
+
+  // Track active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = NAV_ITEMS.map(item => item.href.replace('#', ''))
+      const scrollPosition = window.scrollY + 100 // Offset for better detection
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i])
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i])
+          break
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check initial position
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <nav
@@ -71,22 +96,33 @@ export default function Navigation({ className }: NavigationProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {NAV_ITEMS.map((item, index) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                variants={navVariants}
-                initial="hidden"
-                animate="visible"
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative text-gray-600 hover:text-purple-600 transition-colors duration-300 font-medium"
-              >
-                <span className="relative">
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 group-hover:w-full transition-all duration-300" />
-                </span>
-              </motion.a>
-            ))}
+            {NAV_ITEMS.map((item, index) => {
+              const isActive = activeSection === item.href.replace('#', '')
+              return (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  variants={navVariants}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={cn(
+                    "group relative font-medium transition-colors duration-300",
+                    isActive 
+                      ? "text-purple-600" 
+                      : "text-gray-600 hover:text-purple-600"
+                  )}
+                >
+                  <span className="relative">
+                    {item.name}
+                    <span className={cn(
+                      "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300",
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    )} />
+                  </span>
+                </motion.a>
+              )
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -115,20 +151,27 @@ export default function Navigation({ className }: NavigationProps) {
               className="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
-                {NAV_ITEMS.map((item, index) => (
-                  <motion.a
-                    key={item.name}
-                    href={item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="block px-3 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-md transition-colors duration-300 font-medium"
-                    onClick={closeMobileMenu}
-                  >
-                    {item.name}
-                  </motion.a>
-                ))}
-              
+                {NAV_ITEMS.map((item, index) => {
+                  const isActive = activeSection === item.href.replace('#', '')
+                  return (
+                    <motion.a
+                      key={item.name}
+                      href={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      className={cn(
+                        "block px-3 py-2 rounded-md transition-colors duration-300 font-medium",
+                        isActive
+                          ? "text-purple-600 bg-purple-50 border-l-4 border-purple-500"
+                          : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
+                      )}
+                      onClick={closeMobileMenu}
+                    >
+                      {item.name}
+                    </motion.a>
+                  )
+                })}
               </div>
             </motion.div>
           )}
