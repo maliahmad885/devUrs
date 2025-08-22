@@ -5,16 +5,16 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nexus Bloom - AI Automation & No-Code Solutions",
-  description: "Transform your business with cutting-edge AI automation and no-code tools. Specializing in Integromat, Make.com, Zapier, and ManyChat solutions.",
-  keywords: "AI automation, no-code tools, workflow automation, Integromat, Make.com, Zapier, ManyChat, chatbot development",
+  title: "Nexus Bloom - Integration Hub | Connect Everything",
+  description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack with AI-powered automation.",
+  keywords: "integration hub, app integration, workflow automation, AI automation, no-code tools, Make.com, Zapier, ManyChat, Zoho, HubSpot",
   authors: [{ name: "Nexus Bloom" }],
   creator: "Nexus Bloom",
   publisher: "Nexus Bloom",
   robots: "index, follow",
   openGraph: {
-    title: "Nexus Bloom - AI Automation & No-Code Solutions",
-    description: "Transform your business with cutting-edge AI automation and no-code tools.",
+    title: "Nexus Bloom - Integration Hub | Connect Everything",
+    description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack.",
     url: "https://nexusbloom.com",
     siteName: "Nexus Bloom",
     images: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Nexus Bloom - AI Automation Solutions",
+        alt: "Nexus Bloom - Integration Hub",
       },
     ],
     locale: "en_US",
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexus Bloom - AI Automation & No-Code Solutions",
-    description: "Transform your business with cutting-edge AI automation and no-code tools.",
+    title: "Nexus Bloom - Integration Hub | Connect Everything",
+    description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack.",
     images: ["/og-image.jpg"],
   },
   viewport: "width=device-width, initial-scale=1",
-  themeColor: "#1A202C",
+  themeColor: "#8B5CF6",
 };
 
 export default function RootLayout({

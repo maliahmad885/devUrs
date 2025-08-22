@@ -33,6 +33,35 @@ interface CodeSnippet {
 // Constants
 // FEATURES array removed
 
+// Dynamic Headings and Descriptions
+const HEADING_VARIANTS = [
+  {
+    main: "AI Automation",
+    sub: "Made Simple",
+    description: "Transform your business with cutting-edge AI automation and no-code tools. From Make.com to Zapier, we make complex workflows effortless and fun."
+  },
+  {
+    main: "No-Code Tools",
+    sub: "Built for Everyone",
+    description: "Create powerful automations without writing a single line of code. Our intuitive platform makes complex workflows accessible to everyone."
+  },
+  {
+    main: "Smart Workflows",
+    sub: "That Learn & Adapt",
+    description: "AI-powered decision making that learns from your business patterns and continuously improves your automation processes."
+  },
+  {
+    main: "Enterprise Solutions",
+    sub: "Scale with Confidence",
+    description: "Bank-grade security, compliance, and scalability for enterprise teams. Trust your business automation to industry-leading standards."
+  },
+  {
+    main: "Integration Hub",
+    sub: "Connect Everything",
+    description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack."
+  }
+]
+
 
 // Animation variants
 const containerVariants = {
@@ -594,14 +623,27 @@ export default function Hero({ className }: HeroProps) {
   const y2 = useTransform(scrollY, [0, 300], [0, 100])
   const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
 
+  // State for dynamic headings
+  const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0)
+
+  // Auto-cycle through headings
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeadingIndex((prev) => (prev + 1) % HEADING_VARIANTS.length)
+    }, 4000) // Change every 4 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const currentHeading = HEADING_VARIANTS[currentHeadingIndex]
+
   return (
     <>
-
       
       <section
         id="home"
         className={cn(
-          'relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50',
+          'relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50/30',
           className
         )}
       >
@@ -615,17 +657,17 @@ export default function Hero({ className }: HeroProps) {
           style={{ y: y1 }}
           variants={floatingVariants}
           animate="float"
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-100/80 to-purple-100/80 rounded-full blur-3xl opacity-60"
+          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50"
         />
         <motion.div
           style={{ y: y2, animationDelay: '2s' }}
           variants={floatingVariants}
           animate="float"
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-100/80 to-blue-100/80 rounded-full blur-3xl opacity-60"
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50"
         />
         <motion.div 
           style={{ opacity }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-100/60 to-pink-100/60 rounded-full blur-3xl animate-pulse"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-100/40 to-pink-100/40 rounded-full blur-3xl animate-pulse"
         />
         
         {/* Additional floating geometric shapes */}
@@ -633,19 +675,19 @@ export default function Hero({ className }: HeroProps) {
           animate={{ 
             rotate: 360,
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3]
+            opacity: [0.2, 0.4, 0.2]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-blue-200/40 rounded-full"
+          className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-purple-200/30 rounded-full"
         />
         <motion.div
           animate={{ 
             rotate: -360,
             scale: [1, 0.8, 1],
-            opacity: [0.2, 0.5, 0.2]
+            opacity: [0.1, 0.3, 0.1]
           }}
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="absolute bottom-1/4 right-1/4 w-24 h-24 border-2 border-purple-200/40 transform rotate-45"
+          className="absolute bottom-1/4 right-1/4 w-24 h-24 border-2 border-blue-200/30 transform rotate-45"
         />
       </div>
 
@@ -724,7 +766,7 @@ export default function Hero({ className }: HeroProps) {
           scale: [1, 1.2, 1]
         }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/4 left-10 w-4 h-4 bg-blue-400 rounded-full animate-pulse shadow-lg"
+        className="absolute top-1/4 left-10 w-4 h-4 bg-purple-400 rounded-full animate-pulse shadow-lg"
       />
       <motion.div
         animate={{ 
@@ -733,7 +775,7 @@ export default function Hero({ className }: HeroProps) {
           scale: [1, 0.8, 1]
         }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute top-1/3 right-20 w-3 h-3 bg-purple-400 rounded-full animate-pulse shadow-lg"
+        className="absolute top-1/3 right-20 w-3 h-3 bg-blue-400 rounded-full animate-pulse shadow-lg"
       />
       <motion.div
         animate={{ 
@@ -784,64 +826,123 @@ export default function Hero({ className }: HeroProps) {
           {/* Enhanced Heading with Animated Gradient Text */}
           <motion.div variants={itemVariants} className="mb-8">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 relative">
-              <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 relative z-10"
-                whileHover={{ scale: 1.02 }}
-                animate={{
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-                style={{
-                  backgroundSize: '200% 200%',
-                }}
-              >
-                AI Automation
-              </motion.span>
+              <AnimatePresence mode="wait">
+                <motion.span 
+                  key={`main-${currentHeadingIndex}`}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-purple-600 to-blue-600 relative z-10"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  style={{
+                    backgroundSize: '200% 200%',
+                  }}
+                >
+                  {currentHeading.main}
+                </motion.span>
+              </AnimatePresence>
               <br />
-              <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-gray-800 relative z-10"
-                whileHover={{ scale: 1.02 }}
-                animate={{
-                  backgroundPosition: ['100% 50%', '0% 50%', '100% 50%'],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-                style={{
-                  backgroundSize: '200% 200%',
-                }}
-              >
-                Made Simple
-              </motion.span>
+              <AnimatePresence mode="wait">
+                <motion.span 
+                  key={`sub-${currentHeadingIndex}`}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-gray-800 relative z-10"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
+                  style={{
+                    backgroundSize: '200% 200%',
+                  }}
+                >
+                  {currentHeading.sub}
+                </motion.span>
+              </AnimatePresence>
               
               {/* 3D Text Shadow Effect */}
-              <div className="absolute inset-0 text-5xl md:text-7xl font-bold text-gray-300/30 transform translate-x-1 translate-y-1 -z-10">
-                <span>AI Automation</span>
+              <div className="absolute inset-0 text-5xl md:text-7xl font-bold text-gray-300/20 transform translate-x-1 translate-y-1 -z-10">
+                <span>{currentHeading.main}</span>
                 <br />
-                <span>Made Simple</span>
+                <span>{currentHeading.sub}</span>
               </div>
             </h1>
             
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 400 }}
+            {/* Enhanced Subtitle */}
+            <AnimatePresence mode="wait">
+              <motion.p 
+                key={`desc-${currentHeadingIndex}`}
+                className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }}
+              >
+                {currentHeading.description}
+              </motion.p>
+            </AnimatePresence>
+
+            {/* Progress Dots */}
+            <motion.div 
+              className="flex justify-center items-center gap-3 mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
             >
-              Transform your business with cutting-edge AI automation and no-code tools. 
-              From Make.com to Zapier, we make complex workflows effortless and fun.
-            </motion.p>
+              {HEADING_VARIANTS.map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => setCurrentHeadingIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                    index === currentHeadingIndex 
+                      ? 'bg-purple-600 scale-125 shadow-lg' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                />
+              ))}
+            </motion.div>
+
+            {/* Progress Bar */}
+            <motion.div 
+              className="w-full max-w-md mx-auto h-1.5 bg-gray-200 rounded-full overflow-hidden mb-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+            >
+              <motion.div
+                className="h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-full shadow-sm"
+                initial={{ width: "0%" }}
+                animate={{ width: `${((currentHeadingIndex + 1) / HEADING_VARIANTS.length) * 100}%` }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+              />
+            </motion.div>
+
+            {/* Key Benefits Bullet Points */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="flex items-center gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                <div className="w-3 h-3 bg-green-500 rounded-full shadow-sm"></div>
+                <span className="text-sm font-semibold">No-Code Required</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                <div className="w-3 h-3 bg-blue-500 rounded-full shadow-sm"></div>
+                <span className="text-sm font-semibold">AI-Powered</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100">
+                <div className="w-3 h-3 bg-purple-500 rounded-full shadow-sm"></div>
+                <span className="text-sm font-semibold">Enterprise Ready</span>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Enhanced CTA Buttons with Advanced Hover Effects */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <motion.button 
-              className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 shadow-lg hover:shadow-xl relative overflow-hidden"
+              className="group px-10 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 shadow-xl hover:shadow-2xl relative overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -850,15 +951,23 @@ export default function Hero({ className }: HeroProps) {
               
               {/* Animated background overlay */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500"
+                className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: '0%' }}
                 transition={{ duration: 0.3 }}
               />
+              
+              {/* Ripple effect */}
+              <motion.div
+                className="absolute inset-0 bg-white/20 rounded-xl"
+                initial={{ scale: 0, opacity: 1 }}
+                whileHover={{ scale: 2, opacity: 0 }}
+                transition={{ duration: 0.6 }}
+              />
             </motion.button>
             
             <motion.button 
-              className="px-8 py-4 border-2 border-gray-800 text-gray-800 rounded-lg font-semibold text-lg hover:bg-gray-800 hover:text-white transition-all duration-300 flex items-center space-x-2 hover:shadow-lg relative overflow-hidden group"
+              className="px-10 py-4 border-2 border-purple-600 text-purple-600 rounded-xl font-semibold text-lg hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center space-x-3 hover:shadow-xl relative overflow-hidden group bg-white/90 backdrop-blur-sm"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -867,7 +976,7 @@ export default function Hero({ className }: HeroProps) {
               
               {/* Hover background animation */}
               <motion.div
-                className="absolute inset-0 bg-gray-800"
+                className="absolute inset-0 bg-purple-600"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3 }}
@@ -884,20 +993,32 @@ export default function Hero({ className }: HeroProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16"
+          className="mt-20"
         >
-          <p className="text-gray-500 mb-6">Trusted by leading companies worldwide</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            {['Make.com', 'Zapier', 'ManyChat', 'Zoho', 'HubSpot'].map((company, index) => (
+          <p className="text-gray-500 mb-8 text-lg font-medium">Trusted by leading companies worldwide</p>
+          
+          {/* Enhanced Company Logos */}
+          <div className="flex flex-wrap justify-center items-center gap-10 opacity-70">
+            {[
+              { name: 'Make.com', color: 'text-blue-600' },
+              { name: 'Zapier', color: 'text-orange-600' },
+              { name: 'ManyChat', color: 'text-green-600' },
+              { name: 'Zoho', color: 'text-blue-500' },
+              { name: 'HubSpot', color: 'text-orange-500' }
+            ].map((company, index) => (
               <motion.div
-                key={company}
-                className="text-gray-700 font-bold text-lg cursor-pointer hover:opacity-100 transition-opacity duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
+                key={company.name}
+                className={`font-bold text-xl cursor-pointer hover:opacity-100 transition-all duration-300 ${company.color} hover:scale-110`}
+                whileHover={{ 
+                  scale: 1.1, 
+                  y: -2,
+                  opacity: 1
+                }}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 0.6, y: 0 }}
+                animate={{ opacity: 0.7, y: 0 }}
                 transition={{ duration: 0.5, delay: 2 + index * 0.1 }}
               >
-                {company}
+                {company.name}
               </motion.div>
             ))}
           </div>
@@ -919,7 +1040,7 @@ export default function Hero({ className }: HeroProps) {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Nexus Bloom</span>?
+            Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Nexus Bloom</span>?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Discover the powerful features that make us the leading AI automation platform
