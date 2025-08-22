@@ -1,18 +1,11 @@
 'use client'
 
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Play, Bot, Code, BarChart3, MessageCircle, Zap, Settings, Database, Shield, Sparkles, Zap as ZapIcon, Cpu, Rocket, Brain, Zap as Lightning } from 'lucide-react'
+import { ArrowRight, Play, MessageCircle, Zap, Settings, Database, Shield, Sparkles, Zap as ZapIcon, Cpu, Rocket, Brain, Zap as Lightning } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useEffect, useRef, useState } from 'react'
 
 // Types
-interface Feature {
-  icon: React.ComponentType<{ className?: string }>
-  text: string
-  description: string
-  color: string
-}
-
 interface HeroProps {
   className?: string
 }
@@ -38,27 +31,7 @@ interface CodeSnippet {
 }
 
 // Constants
-const FEATURES: Feature[] = [
-  {
-    icon: Bot,
-    text: 'AI Automation',
-    description: 'Intelligent workflows that adapt and learn',
-    color: 'bg-gradient-to-br from-blue-100 to-purple-100',
-  },
-  {
-    icon: Code,
-    text: 'No-Code Tools',
-    description: 'Build powerful automations without coding',
-    color: 'bg-gradient-to-br from-green-100 to-blue-100',
-  },
-  {
-    icon: BarChart3,
-    text: 'Analytics',
-    description: 'Deep insights into your automation performance',
-    color: 'bg-gradient-to-br from-orange-100 to-red-100',
-  },
-]
-
+// FEATURES array removed
 
 
 // Animation variants
@@ -242,49 +215,7 @@ const ParticleSystem = () => {
   )
 }
 
-// Magnetic Cursor Effect Component
-const MagneticCursor = () => {
-  const cursorRef = useRef<HTMLDivElement>(null)
-  const cursorSize = 20
 
-  useEffect(() => {
-    const cursor = cursorRef.current
-    if (!cursor) return
-
-    const onMouseMove = (e: MouseEvent) => {
-      cursor.style.left = e.clientX - cursorSize / 2 + 'px'
-      cursor.style.top = e.clientY - cursorSize / 2 + 'px'
-    }
-
-    const onMouseEnter = () => {
-      cursor.style.transform = 'scale(1.5)'
-      cursor.style.opacity = '1'
-    }
-
-    const onMouseLeave = () => {
-      cursor.style.transform = 'scale(1)'
-      cursor.style.opacity = '0.5'
-    }
-
-    document.addEventListener('mousemove', onMouseMove)
-    document.addEventListener('mouseenter', onMouseEnter)
-    document.addEventListener('mouseleave', onMouseLeave)
-
-    return () => {
-      document.removeEventListener('mousemove', onMouseMove)
-      document.removeEventListener('mouseenter', onMouseEnter)
-      document.removeEventListener('mouseleave', onMouseLeave)
-    }
-  }, [])
-
-  return (
-    <div
-      ref={cursorRef}
-      className="fixed w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full pointer-events-none z-50 mix-blend-difference transition-all duration-200 ease-out"
-      style={{ opacity: 0.5 }}
-    />
-  )
-}
 
 
 
@@ -345,8 +276,21 @@ const Interactive3DCard = ({
       <motion.div
         className="relative p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-gray-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
         style={{ transform: 'translateZ(20px)' }}
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ 
+          scale: 1.05,
+          y: -10
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
+        {/* Unique Border Glow Effect */}
+        <motion.div
+          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background: `linear-gradient(45deg, ${gradient} 0%, transparent 50%, ${gradient} 100%)`,
+            filter: 'blur(1px)',
+          }}
+        />
+        
         {/* Animated background */}
         <motion.div
           className={`absolute inset-0 ${gradient} opacity-20`}
@@ -357,29 +301,50 @@ const Interactive3DCard = ({
           transition={{ duration: 0.6 }}
         />
         
-        {/* Icon */}
+        {/* Unique Pattern Overlay for Each Card */}
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            rotate: [0, 90, 180]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+        >
+          <div className="w-full h-full bg-gradient-to-br from-white/40 to-transparent" />
+        </motion.div>
+        
+        {/* Icon with Enhanced Hover Effects */}
         <motion.div
           className="relative z-10 w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200"
           animate={{ 
             y: isHovered ? -5 : 0,
             scale: isHovered ? 1.1 : 1
           }}
-          transition={{ duration: 0.3 }}
+          whileHover={{ 
+            scale: 1.1,
+            rotate: 5,
+            y: -2
+          }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
           <Icon className="w-8 h-8 text-gray-700" />
         </motion.div>
         
-        {/* Content */}
-        <div className="relative z-10 text-center">
+        {/* Content with Enhanced Hover Effects */}
+        <motion.div 
+          className="relative z-10 text-center"
+          whileHover={{ y: -2 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+        >
           <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
           <p className="text-gray-600 text-sm">{description}</p>
-        </div>
+        </motion.div>
         
-        {/* Glow effect */}
+        {/* Enhanced Glow effect */}
         <motion.div
           className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${gradient} 0%, transparent 50%)`,
+            background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${gradient} 0%, transparent 70%)`,
             filter: 'blur(20px)',
           }}
         />
@@ -631,8 +596,7 @@ export default function Hero({ className }: HeroProps) {
 
   return (
     <>
-      {/* Magnetic Cursor Effect */}
-      <MagneticCursor />
+
       
       <section
         id="home"
@@ -733,7 +697,7 @@ export default function Hero({ className }: HeroProps) {
 
       {/* Enhanced Walking Mascots */}
       <WalkingMascot 
-        icon={Code} 
+        icon={Settings} 
         name="No-Code" 
         color="bg-gradient-to-br from-indigo-400 to-purple-600"
         position="bottom-1/3"
@@ -742,7 +706,7 @@ export default function Hero({ className }: HeroProps) {
       />
       
       <WalkingMascot 
-        icon={BarChart3} 
+        icon={Database} 
         name="Analytics" 
         color="bg-gradient-to-br from-teal-400 to-cyan-600"
         position="bottom-2/5"
@@ -940,8 +904,7 @@ export default function Hero({ className }: HeroProps) {
         </motion.div>
       </div>
 
-      {/* Magnetic Cursor */}
-      <MagneticCursor />
+
     </section>
 
     {/* Features Section - All 6 Cards */}
@@ -975,93 +938,48 @@ export default function Hero({ className }: HeroProps) {
             icon={Cpu}
             title="Smart AI Engine"
             description="Advanced machine learning algorithms that adapt to your business needs"
-            gradient="bg-gradient-to-br from-blue-500 to-cyan-500"
+            gradient="bg-gradient-to-br from-indigo-500 to-blue-500"
             delay={0.6}
           />
           <Interactive3DCard
             icon={Rocket}
             title="Lightning Fast"
             description="Deploy automations in seconds with our optimized infrastructure"
-            gradient="bg-gradient-to-br from-purple-500 to-pink-500"
+            gradient="bg-gradient-to-br from-emerald-500 to-teal-500"
             delay={0.8}
           />
           <Interactive3DCard
             icon={Brain}
             title="Intelligent Workflows"
             description="AI-powered decision making that learns and improves over time"
-            gradient="bg-gradient-to-br from-green-500 to-emerald-500"
+            gradient="bg-gradient-to-br from-violet-500 to-purple-500"
             delay={1.0}
+          />
+          <Interactive3DCard
+            icon={Zap}
+            title="Powerful Automation"
+            description="Streamline complex processes with intelligent automation tools"
+            gradient="bg-gradient-to-br from-orange-500 to-red-500"
+            delay={1.2}
+          />
+          <Interactive3DCard
+            icon={Shield}
+            title="Enterprise Security"
+            description="Bank-grade security and compliance for your business operations"
+            gradient="bg-gradient-to-br from-green-500 to-emerald-500"
+            delay={1.4}
+          />
+          <Interactive3DCard
+            icon={Sparkles}
+            title="Innovation Hub"
+            description="Cutting-edge features and continuous platform improvements"
+            gradient="bg-gradient-to-br from-pink-500 to-rose-500"
+            delay={1.6}
           />
         </motion.div>
 
         {/* Enhanced Features Grid with Glassmorphism */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-        >
-          {FEATURES.map((feature, index) => (
-            <motion.div
-              key={feature.text}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-              viewport={{ once: true }}
-              className="group relative cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              {/* Card with Beautiful Background Colors */}
-              <div className="relative p-6 rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                
-                {/* Beautiful Background Colors for Each Card */}
-                {index === 0 && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-cyan-400/20" />
-                )}
-                {index === 1 && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-pink-400/20" />
-                )}
-                {index === 2 && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-400/20" />
-                )}
-                
-                {/* Animated Background Pattern */}
-                <motion.div
-                  className="absolute inset-0 opacity-20"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                >
-                  <div className="w-full h-full bg-gradient-to-br from-white/30 to-transparent" />
-                </motion.div>
-                
-                {/* Icon Container */}
-                <motion.div
-                  className={cn(
-                    'w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 relative z-10',
-                    feature.color
-                  )}
-                >
-                  <feature.icon className="w-8 h-8 text-gray-700" />
-                </motion.div>
-                
-                {/* Content */}
-                <div className="relative z-10 text-center">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                    {feature.text}
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Removed the second features grid that rendered the FEATURES array */}
       </div>
     </section>
     </>
