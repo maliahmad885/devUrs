@@ -72,6 +72,16 @@ module.exports = {
         'scale-in': 'scaleIn 0.4s ease-out',
         'gradient-x': 'gradient-x 3s ease infinite',
         'gradient-y': 'gradient-y 3s ease infinite',
+        
+        // Enhanced About Page Animations
+        'image-float': 'image-float 8s ease-in-out infinite',
+        'image-glow': 'image-glow 4s ease-in-out infinite',
+        'image-scale': 'image-scale 3s ease-in-out infinite',
+        'image-rotate': 'image-rotate 20s linear infinite',
+        'image-bounce': 'image-bounce 2s ease-in-out infinite',
+        'image-shimmer': 'image-shimmer 2s infinite',
+        'image-pulse': 'image-pulse 3s ease-in-out infinite',
+        'image-wiggle': 'image-wiggle 2s ease-in-out infinite',
       },
       
       keyframes: {
@@ -119,6 +129,55 @@ module.exports = {
             'background-size': '200% 200%',
             'background-position': 'center bottom'
           },
+        },
+        
+        // Enhanced About Page Keyframes
+        'image-float': {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '25%': { transform: 'translateY(-10px) rotate(1deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(0deg)' },
+          '75%': { transform: 'translateY(-10px) rotate(-1deg)' },
+        },
+        'image-glow': {
+          '0%, 100%': { 
+            filter: 'drop-shadow(0 0 10px rgba(139, 92, 246, 0.3))'
+          },
+          '50%': { 
+            filter: 'drop-shadow(0 0 25px rgba(139, 92, 246, 0.6))'
+          },
+        },
+        'image-scale': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+        },
+        'image-rotate': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'image-bounce': {
+          '0%, 20%, 53%, 80%, 100%': { transform: 'translateY(0)' },
+          '40%, 43%': { transform: 'translateY(-20px)' },
+          '70%': { transform: 'translateY(-10px)' },
+          '90%': { transform: 'translateY(-5px)' },
+        },
+        'image-shimmer': {
+          '0%': { 'background-position': '-200% 0' },
+          '100%': { 'background-position': '200% 0' },
+        },
+        'image-pulse': {
+          '0%, 100%': { 
+            transform: 'scale(1)',
+            opacity: '1'
+          },
+          '50%': { 
+            transform: 'scale(1.1)',
+            opacity: '0.8'
+          },
+        },
+        'image-wiggle': {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(3deg)' },
+          '75%': { transform: 'rotate(-3deg)' },
         },
       },
       

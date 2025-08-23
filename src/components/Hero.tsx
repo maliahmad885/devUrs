@@ -38,22 +38,22 @@ const HEADING_VARIANTS = [
   {
     main: "AI Automation",
     sub: "Made Simple",
-    description: "Transform your business with cutting-edge AI automation and no-code tools. From Make.com to Zapier, we make complex workflows effortless and fun."
+    description: "Transform your business with cutting-edge AI automation and no-code tools. From Make.com to n8n, we make complex workflows effortless and fun."
   },
   {
-    main: "No-Code Tools",
-    sub: "Built for Everyone",
-    description: "Create powerful automations without writing a single line of code. Our intuitive platform makes complex workflows accessible to everyone."
+    main: "n8n & Make.com",
+    sub: "Expert Solutions",
+    description: "Certified automation expert with 5+ years building AI agents, voice systems, and backend workflows that save 20+ hours weekly."
   },
   {
-    main: "Smart Workflows",
-    sub: "That Learn & Adapt",
-    description: "AI-powered decision making that learns from your business patterns and continuously improves your automation processes."
+    main: "AI Voice Agents",
+    sub: "24/7 Operations",
+    description: "Intelligent voice systems that qualify leads, handle support, book calls, and run your business operations around the clock."
   },
   {
-    main: "Enterprise Solutions",
-    sub: "Scale with Confidence",
-    description: "Bank-grade security, compliance, and scalability for enterprise teams. Trust your business automation to industry-leading standards."
+    main: "Smart CRM Workflows",
+    sub: "Boost Close Rates",
+    description: "AI-powered CRM pipelines that eliminate manual work, route leads smarter, and scale without hiring more staff."
   },
   {
     main: "Integration Hub",
@@ -894,41 +894,7 @@ export default function Hero({ className }: HeroProps) {
           
         </motion.div>
 
-        {/* Enhanced Trust Indicators with Animated Icons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 sm:mt-20"
-        >
-          <p className="text-gray-500 mb-6 sm:mb-8 text-base sm:text-lg font-medium">Trusted by leading companies worldwide</p>
-          
-          {/* Enhanced Company Logos */}
-          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10 opacity-70">
-            {[
-              { name: 'Make.com', color: 'text-blue-600' },
-              { name: 'Zapier', color: 'text-orange-600' },
-              { name: 'ManyChat', color: 'text-green-600' },
-              { name: 'Zoho', color: 'text-blue-500' },
-              { name: 'HubSpot', color: 'text-orange-500' }
-            ].map((company, index) => (
-              <motion.div
-                key={company.name}
-                className={`font-bold text-lg sm:text-xl cursor-pointer hover:opacity-100 transition-all duration-300 ${company.color} hover:scale-110`}
-                whileHover={{ 
-                  scale: 1.1, 
-                  y: -2,
-                  opacity: 1
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 0.7, y: 0 }}
-                transition={{ duration: 0.5, delay: 2 + index * 0.1 }}
-              >
-                {company.name}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+
       </div>
 
 

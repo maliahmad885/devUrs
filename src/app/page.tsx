@@ -176,13 +176,13 @@ export default function Home() {
         {/* Floating 3D Elements */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-32 right-20 opacity-20 animate-float-slow">
-            <img src="/images/floating-3d-elements.svg" alt="" className="w-24 h-24" />
+            <img src="/images/floating-3d-elements.svg" alt="" className="w-24 h-24 floating-elements about-image-hover" />
           </div>
           <div className="absolute bottom-32 left-20 opacity-20 animate-float-medium">
-            <img src="/images/floating-3d-elements.svg" alt="" className="w-20 h-20" />
+            <img src="/images/floating-3d-elements.svg" alt="" className="w-20 h-20 floating-elements about-image-hover" />
           </div>
           <div className="absolute top-1/3 left-1/4 opacity-15 animate-float-fast">
-            <img src="/images/floating-3d-elements.svg" alt="" className="w-16 h-16" />
+            <img src="/images/floating-3d-elements.svg" alt="" className="w-16 h-16 floating-elements about-image-hover" />
           </div>
         </div>
         
@@ -198,7 +198,7 @@ export default function Home() {
               About <span className="heading-3d-gradient">Nexus Bloom</span>
             </h2>
             <p className="text-body-large text-gray-600 max-w-4xl mx-auto px-4 sm:px-0 text-lg">
-              We're revolutionizing how businesses connect, automate, and grow through intelligent integration solutions that transform the digital landscape.
+              We're revolutionizing how businesses automate, integrate, and grow through intelligent AI agents and cutting-edge automation solutions that transform operations 24/7.
             </p>
             
             {/* 3D Decorative Elements */}
@@ -223,17 +223,17 @@ export default function Home() {
                 <img 
                   src="/images/3d-integration.svg" 
                   alt="Integration Platform"
-                  className="w-24 h-24 mx-auto lg:mx-0"
+                  className="w-24 h-24 mx-auto lg:mx-0 integration-icon about-image-hover animate-image-float"
                 />
               </div>
               
               <div className="space-y-6">
                 <h3 className="heading-4 text-gray-900">Our Story</h3>
                 <p className="text-body text-gray-600 leading-relaxed">
-                  Founded in 2023, Nexus Bloom emerged from a simple observation: businesses were drowning in disconnected tools and manual processes. Our founders, veterans in both enterprise software and startup ecosystems, recognized that the future belonged to those who could seamlessly connect their digital world.
+                  Founded in 2023, Nexus Bloom emerged from a deep understanding of the automation challenges businesses face daily. Our founder, a certified Make.com and n8n automation expert with 5+ years of hands-on experience, recognized that businesses were drowning in manual processes and disconnected tools.
                 </p>
                 <p className="text-body text-gray-600 leading-relaxed">
-                  What started as a small team of integration enthusiasts has grown into a powerhouse of automation experts, serving thousands of businesses worldwide with cutting-edge AI-powered solutions.
+                  What started as a passion for building AI agents and voice systems has grown into a powerhouse of automation expertise, serving businesses worldwide with intelligent solutions that save 20+ hours weekly and boost close rates through smart CRM workflows.
                 </p>
                 
                 {/* 3D Timeline */}
@@ -242,7 +242,7 @@ export default function Home() {
                   <img 
                     src="/images/3d-timeline.svg" 
                     alt="Company Timeline"
-                    className="w-full max-w-sm mx-auto"
+                    className="w-full max-w-sm mx-auto timeline-image about-image-hover animate-image-glow"
                   />
                 </div>
                 
@@ -255,7 +255,7 @@ export default function Home() {
                     Our Mission
                   </h4>
                   <p className="text-gray-700 text-sm leading-relaxed">
-                    To democratize enterprise-grade integration capabilities, making complex automation accessible to businesses of all sizes while maintaining the highest standards of security and reliability.
+                    To democratize enterprise-grade automation capabilities, making complex AI agents, voice systems, and workflow automation accessible to businesses of all sizes while maintaining the highest standards of security and reliability.
                   </p>
                 </div>
                 
@@ -265,8 +265,8 @@ export default function Home() {
                     <Zap className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">500+ Integrations</p>
-                    <p className="text-sm text-gray-500">And counting every day</p>
+                    <p className="font-semibold text-gray-900">500+ Automations</p>
+                    <p className="text-sm text-gray-500">Built & deployed successfully</p>
                   </div>
                 </div>
               </div>
@@ -285,7 +285,7 @@ export default function Home() {
                 <img 
                   src="/images/about-3d-illustration.svg" 
                   alt="Nexus Bloom Platform Overview"
-                  className="w-full max-w-md mx-auto"
+                  className="w-full max-w-md mx-auto about-image-hover animate-image-float"
                 />
               </div>
               
@@ -294,38 +294,38 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-8">
                   <div className="text-center group">
                     <div className="w-20 h-20 mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                      <img src="/images/3d-users.svg" alt="Happy Customers" className="w-full h-full" />
+                      <img src="/images/3d-users.svg" alt="Automations Built" className="w-full h-full stats-image about-image-interactive" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">10,000+</h3>
-                    <p className="text-sm text-gray-600 font-medium">Happy Customers</p>
-                    <p className="text-xs text-gray-500 mt-1">Trusting our platform</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">500+</h3>
+                    <p className="text-sm text-gray-600 font-medium">Automations Built</p>
+                    <p className="text-xs text-gray-500 mt-1">Successfully deployed</p>
                   </div>
                   
                   <div className="text-center group">
                     <div className="w-20 h-20 mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                      <img src="/images/3d-globe.svg" alt="Global Reach" className="w-full h-full" />
+                      <img src="/images/3d-globe.svg" alt="Hours Saved" className="w-full h-full stats-image about-image-interactive" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">50+</h3>
-                    <p className="text-sm text-gray-600 font-medium">Countries Served</p>
-                    <p className="text-xs text-gray-500 mt-1">Worldwide presence</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">20+</h3>
+                    <p className="text-sm text-gray-600 font-medium">Hours Saved Weekly</p>
+                    <p className="text-xs text-gray-500 mt-1">Per business</p>
                   </div>
                   
                   <div className="text-center group">
                     <div className="w-20 h-20 mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                      <img src="/images/3d-uptime.svg" alt="Reliability" className="w-full h-full" />
+                      <img src="/images/3d-uptime.svg" alt="AI Operations" className="w-full h-full stats-image about-image-interactive" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">99.9%</h3>
-                    <p className="text-sm text-gray-600 font-medium">Uptime</p>
-                    <p className="text-xs text-gray-500 mt-1">Enterprise reliability</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">24/7</h3>
+                    <p className="text-sm text-gray-600 font-medium">AI Agent Operations</p>
+                    <p className="text-xs text-gray-500 mt-1">Always available</p>
                   </div>
                   
                   <div className="text-center group">
                     <div className="w-20 h-20 mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                      <img src="/images/3d-award.svg" alt="Industry Recognition" className="w-full h-full" />
+                      <img src="/images/3d-award.svg" alt="Experience" className="w-full h-full stats-image about-image-interactive" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors duration-300">15+</h3>
-                    <p className="text-sm text-gray-600 font-medium">Industry Awards</p>
-                    <p className="text-xs text-gray-500 mt-1">Excellence recognized</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors duration-300">5+</h3>
+                    <p className="text-sm text-gray-600 font-medium">Years Experience</p>
+                    <p className="text-xs text-gray-500 mt-1">Automation expert</p>
                   </div>
                 </div>
                 
@@ -334,18 +334,18 @@ export default function Home() {
                   <div className="text-center space-y-4">
                     <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 px-4 py-2 rounded-full">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                      <span className="text-sm font-medium text-gray-700">Trusted by Fortune 500 companies</span>
+                      <span className="text-sm font-medium text-gray-700">Certified Make.com & n8n Expert</span>
                     </div>
                     
                     {/* 3D Achievement Badge */}
                     <div className="flex justify-center">
                       <img 
                         src="/images/3d-achievement-badge.svg" 
-                        alt="Excellence Award"
-                        className="w-20 h-20 transition-transform duration-300 hover:scale-110"
+                        alt="Automation Expert"
+                        className="w-20 h-20 transition-transform duration-300 hover:scale-110 achievement-badge about-image-hover animate-image-bounce"
                       />
                     </div>
-                    <p className="text-xs text-gray-500 font-medium">Industry Excellence Award 2024</p>
+                    <p className="text-xs text-gray-500 font-medium">Automation Excellence 2024</p>
                   </div>
                 </div>
               </div>
@@ -428,7 +428,7 @@ export default function Home() {
                 delay: 0.4
               }}
             >
-              Comprehensive automation and development solutions to transform your business operations.
+              Comprehensive AI automation, voice agents, and workflow solutions to transform your business operations 24/7.
             </motion.p>
           </motion.div>
 
@@ -728,7 +728,7 @@ export default function Home() {
                 delay: 1.0
               }}
             >
-              Ready to transform your business with intelligent automation? Let's discuss how our services can help you achieve your goals.
+              Ready to transform your business with AI agents and intelligent automation? Let's discuss how our services can save you 20+ hours weekly and boost your close rates.
             </motion.p>
             <motion.button
               className="btn-modern-primary px-8 py-4"
@@ -832,7 +832,7 @@ export default function Home() {
               Innovation Portfolio
             </h2>
             <p className="text-body-large text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-              Explore our cutting-edge solutions that transform businesses through intelligent automation, seamless integration, and innovative technology.
+              Explore our cutting-edge AI automation solutions that transform businesses through intelligent voice agents, smart CRM workflows, and 24/7 operational efficiency.
             </p>
           </motion.div>
 
@@ -858,55 +858,55 @@ export default function Home() {
               Latest Insights & Updates
             </h2>
             <p className="text-body-large text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-              Stay updated with the latest trends, tips, and insights in automation and integration.
+              Stay updated with the latest trends, tips, and insights in AI automation, voice agents, and workflow optimization.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {[
               {
-                title: "The Future of Workflow Automation in 2024",
-                excerpt: "Discover the emerging trends and technologies that will shape the future of business automation.",
-                image: "🚀",
-                category: "Trends",
+                title: "AI Voice Agents: The Future of Customer Service",
+                excerpt: "Discover how AI voice agents are revolutionizing customer service and lead qualification 24/7.",
+                image: "🎤",
+                category: "AI",
                 readTime: "5 min read",
                 date: "Dec 15, 2024"
               },
               {
-                title: "How to Choose the Right Integration Platform",
-                excerpt: "A comprehensive guide to selecting the perfect integration solution for your business needs.",
-                image: "🔍",
+                title: "n8n vs Make.com: Which Automation Platform to Choose",
+                excerpt: "A comprehensive comparison of leading automation platforms to help you choose the right solution.",
+                image: "⚖️",
                 category: "Guide",
                 readTime: "8 min read",
                 date: "Dec 12, 2024"
               },
               {
-                title: "Top 10 Automation Mistakes to Avoid",
-                excerpt: "Learn from common pitfalls and ensure your automation projects succeed from the start.",
+                title: "Top 10 AI Automation Mistakes to Avoid",
+                excerpt: "Learn from common pitfalls and ensure your AI automation projects succeed from the start.",
                 image: "⚠️",
                 category: "Tips",
                 readTime: "6 min read",
                 date: "Dec 10, 2024"
               },
               {
-                title: "Building Scalable Integration Architecture",
-                excerpt: "Best practices for designing integration systems that grow with your business.",
+                title: "Building Scalable AI Agent Architecture",
+                excerpt: "Best practices for designing AI agent systems that grow with your business and handle increasing complexity.",
                 image: "🏗️",
                 category: "Technical",
                 readTime: "10 min read",
                 date: "Dec 8, 2024"
               },
               {
-                title: "AI-Powered Workflows: What's Next?",
-                excerpt: "Exploring the cutting-edge developments in AI-driven automation and decision making.",
-                image: "🤖",
+                title: "AI-Powered CRM Workflows: Boost Your Close Rates",
+                excerpt: "Exploring how AI-driven CRM automation can significantly increase your sales conversion rates.",
+                image: "📈",
                 category: "AI",
                 readTime: "7 min read",
                 date: "Dec 5, 2024"
               },
               {
-                title: "Customer Success Stories: Real Results",
-                excerpt: "Inspiring stories from businesses that transformed their operations with Nexus Bloom.",
+                title: "Customer Success Stories: 20+ Hours Saved Weekly",
+                excerpt: "Inspiring stories from businesses that transformed their operations with Nexus Bloom's AI automation.",
                 image: "📖",
                 category: "Case Study",
                 readTime: "4 min read",
@@ -963,7 +963,7 @@ export default function Home() {
           >
             <h2 className="heading-3 heading-3d text-gray-900 mb-4 sm:mb-6">Get in Touch</h2>
             <p className="text-body-large text-gray-600 max-w-2xl mx-auto px-4 sm:px-0">
-              Ready to transform your business? Let's start a conversation about how Nexus Bloom can help.
+              Ready to automate your business with AI agents? Let's start a conversation about how Nexus Bloom can save you 20+ hours weekly.
             </p>
           </motion.div>
 
@@ -982,10 +982,10 @@ export default function Home() {
                 className="w-full max-w-md mx-auto lg:mx-0 mb-6"
               />
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-800">Let's Build Something Amazing Together</h3>
+                <h3 className="text-xl font-semibold text-gray-800">Let's Automate Your Business Together</h3>
                 <p className="text-gray-600">
-                  Our team of integration experts is ready to help you streamline your workflows, 
-                  connect your applications, and unlock the full potential of your business.
+                  Our team of automation experts is ready to help you build AI agents, streamline your workflows, 
+                  and unlock the full potential of your business with 24/7 automation.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <div className="flex items-center gap-2 text-sm text-gray-600">

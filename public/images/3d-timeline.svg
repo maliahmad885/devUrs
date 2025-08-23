@@ -1,0 +1,166 @@
+<svg width="300" height="120" viewBox="0 0 300 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Enhanced Gradients -->
+    <linearGradient id="timelineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6D28D9;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0891B2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0E7490;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#D97706;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B45309;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Enhanced Filters -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+    
+    <!-- Patterns -->
+    <pattern id="gridPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(139, 92, 246, 0.1)" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background Grid -->
+  <rect width="300" height="120" fill="url(#gridPattern)" opacity="0.2"/>
+  
+  <!-- Enhanced Timeline Base Line with 3D Effect -->
+  <path d="M40 60L260 60" stroke="url(#timelineGrad)" stroke-width="6" opacity="0.9" filter="url(#shadow)"/>
+  <path d="M40 60L260 60" stroke="url(#timelineGrad)" stroke-width="4" opacity="0.7"/>
+  <path d="M40 60L260 60" stroke="white" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Timeline Nodes with Enhanced 3D Effects -->
+  <!-- 2023 - Founded -->
+  <circle cx="60" cy="60" r="12" fill="url(#nodeGrad)" filter="url(#glow)"/>
+  <circle cx="60" cy="60" r="10" fill="url(#nodeGrad)" opacity="0.9"/>
+  <circle cx="60" cy="60" r="8" fill="url(#nodeGrad)" opacity="0.7"/>
+  <circle cx="60" cy="60" r="6" fill="white" opacity="0.9"/>
+  
+  <!-- 2024 - Growth -->
+  <circle cx="120" cy="60" r="12" fill="url(#accentGrad)" filter="url(#glow)"/>
+  <circle cx="120" cy="60" r="10" fill="url(#accentGrad)" opacity="0.9"/>
+  <circle cx="120" cy="60" r="8" fill="url(#accentGrad)" opacity="0.7"/>
+  <circle cx="120" cy="60" r="6" fill="white" opacity="0.9"/>
+  
+  <!-- 2025 - Scale -->
+  <circle cx="180" cy="60" r="12" fill="url(#goldGrad)" filter="url(#glow)"/>
+  <circle cx="180" cy="60" r="10" fill="url(#goldGrad)" opacity="0.9"/>
+  <circle cx="180" cy="60" r="8" fill="url(#goldGrad)" opacity="0.7"/>
+  <circle cx="180" cy="60" r="6" fill="white" opacity="0.9"/>
+  
+  <!-- Future - Innovate -->
+  <circle cx="240" cy="60" r="12" fill="url(#timelineGrad)" filter="url(#glow)" opacity="0.8"/>
+  <circle cx="240" cy="60" r="10" fill="url(#timelineGrad)" opacity="0.6"/>
+  <circle cx="240" cy="60" r="8" fill="url(#timelineGrad)" opacity="0.4"/>
+  <circle cx="240" cy="60" r="6" fill="white" opacity="0.6"/>
+  
+  <!-- Enhanced Timeline Labels with Better Typography -->
+  <text x="60" y="85" text-anchor="middle" fill="#6B7280" font-size="12" font-weight="bold" font-family="Arial, sans-serif">2023</text>
+  <text x="120" y="85" text-anchor="middle" fill="#6B7280" font-size="12" font-weight="bold" font-family="Arial, sans-serif">2024</text>
+  <text x="180" y="85" text-anchor="middle" fill="#6B7280" font-size="12" font-weight="bold" font-family="Arial, sans-serif">2025</text>
+  <text x="240" y="85" text-anchor="middle" fill="#6B7280" font-size="12" font-weight="bold" font-family="Arial, sans-serif">Future</text>
+  
+  <!-- Enhanced Timeline Milestones with Icons -->
+  <text x="60" y="35" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="bold" font-family="Arial, sans-serif">Founded</text>
+  <text x="120" y="35" text-anchor="middle" fill="#10B981" font-size="10" font-weight="bold" font-family="Arial, sans-serif">Growth</text>
+  <text x="180" y="35" text-anchor="middle" fill="#F59E0B" font-size="10" font-weight="bold" font-family="Arial, sans-serif">Scale</text>
+  <text x="240" y="35" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="bold" font-family="Arial, sans-serif">Innovate</text>
+  
+  <!-- Enhanced Connection Lines with Glow -->
+  <path d="M60 48L60 52" stroke="url(#timelineGrad)" stroke-width="3" opacity="0.8" filter="url(#glow)"/>
+  <path d="M120 48L120 52" stroke="url(#accentGrad)" stroke-width="3" opacity="0.8" filter="url(#glow)"/>
+  <path d="M180 48L180 52" stroke="url(#goldGrad)" stroke-width="3" opacity="0.8" filter="url(#glow)"/>
+  <path d="M240 48L240 52" stroke="url(#timelineGrad)" stroke-width="3" opacity="0.6" filter="url(#glow)"/>
+  
+  <!-- Progress Indicator with Enhanced Animation -->
+  <circle cx="180" cy="60" r="4" fill="white" opacity="0.9" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Enhanced Progress Bar -->
+  <rect x="40" y="58" width="140" height="4" rx="2" fill="url(#accentGrad)" opacity="0.8">
+    <animate attributeName="width" values="140;160;140" dur="3s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Floating Achievement Icons -->
+  <!-- Rocket for Growth -->
+  <g transform="translate(120, 30)">
+    <path d="M0 0L2 -4L-2 -4Z" fill="url(#accentGrad)" opacity="0.8">
+      <animate attributeName="transform" values="translate(0,0);translate(0,-3);translate(0,0)" dur="2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Star for Scale -->
+  <g transform="translate(180, 30)">
+    <path d="M0 -2L0.5 -1L1 -2L0.5 -3Z" fill="url(#goldGrad)" opacity="0.8">
+      <animate attributeName="transform" values="rotate(0);rotate(180);rotate(360)" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Lightbulb for Innovate -->
+  <g transform="translate(240, 30)">
+    <circle cx="0" cy="0" r="2" fill="url(#timelineGrad)" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Data Flow Indicators -->
+  <path d="M40 60L260 60" stroke="url(#timelineGrad)" stroke-width="2" opacity="0.3" stroke-dasharray="5,5">
+    <animate attributeName="stroke-dashoffset" values="0;10;0" dur="3s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Success Checkmarks -->
+  <g transform="translate(60, 60)">
+    <path d="M-3 0L-1 2L3 -2" stroke="white" stroke-width="2" opacity="0.9" fill="none">
+      <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <g transform="translate(120, 60)">
+    <path d="M-3 0L-1 2L3 -2" stroke="white" stroke-width="2" opacity="0.9" fill="none">
+      <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+    </path>
+  </g>
+  
+  <!-- Pulse Effects for Active Nodes -->
+  <circle cx="180" cy="60" r="20" fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity="0.4">
+    <animate attributeName="r" values="20;30;20" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Future Node Pulse -->
+  <circle cx="240" cy="60" r="20" fill="none" stroke="url(#timelineGrad)" stroke-width="1" opacity="0.3">
+    <animate attributeName="r" values="20;25;20" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Background Enhancement -->
+  <rect x="35" y="45" width="230" height="30" rx="15" fill="rgba(139, 92, 246, 0.05)" opacity="0.3"/>
+  
+  <!-- Timeline Shadow -->
+  <ellipse cx="150" cy="66" rx="110" ry="3" fill="rgba(0,0,0,0.1)"/>
+</svg> 

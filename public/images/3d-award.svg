@@ -1,0 +1,51 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 3D Base Platform -->
+  <rect x="15" y="55" width="50" height="6" rx="2" fill="url(#grad1)" filter="url(#glow)"/>
+  
+  <!-- 3D Award Trophy -->
+  <path d="M32 20L32 45L28 45L28 50L36 50L36 45L32 45L32 20Z" fill="url(#grad1)" filter="url(#glow)"/>
+  
+  <!-- 3D Trophy Cup -->
+  <path d="M28 20C28 20 30 18 32 18C34 18 36 20 36 20L36 25C36 25 34 27 32 27C30 27 28 25 28 25L28 20Z" fill="url(#grad1)" filter="url(#glow)"/>
+  
+  <!-- 3D Trophy Handles -->
+  <path d="M28 22C28 22 26 23 26 25C26 27 28 28 28 28" stroke="url(#grad1)" stroke-width="2" opacity="0.8"/>
+  <path d="M36 22C36 22 38 23 38 25C38 27 36 28 36 28" stroke="url(#grad1)" stroke-width="2" opacity="0.8"/>
+  
+  <!-- 3D Star Accent -->
+  <path d="M32 15L33 17L35 17L33.5 18.5L34 20.5L32 19L30 20.5L30.5 18.5L29 17L31 17L32 15Z" fill="url(#grad1)" filter="url(#glow)"/>
+  
+  <!-- 3D Ribbon -->
+  <path d="M25 45L39 45L39 48L37 48L37 50L35 50L35 48L33 48L33 50L31 50L31 48L29 48L29 50L27 50L27 48L25 48L25 45Z" fill="url(#grad1)" filter="url(#glow)"/>
+  
+  <!-- 3D Shadow Effects -->
+  <rect x="17" y="57" width="46" height="3" rx="1" fill="rgba(0,0,0,0.1)"/>
+  <rect x="30" y="47" width="4" height="2" rx="1" fill="rgba(0,0,0,0.1)"/>
+  
+  <!-- 3D Animation Effects -->
+  <circle cx="32" cy="18" r="1" fill="white" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- 3D Sparkle Effects -->
+  <circle cx="26" cy="25" r="1" fill="white" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="38" cy="25" r="1" fill="white" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+</svg> 

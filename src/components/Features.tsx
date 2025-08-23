@@ -169,7 +169,7 @@ export default function Features() {
             Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Nexus Bloom</span>?
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-            Discover the powerful features that make us the leading AI automation platform
+            Discover the powerful automation capabilities that make us the leading AI integration platform
           </p>
         </motion.div>
 
@@ -183,43 +183,43 @@ export default function Features() {
         >
           <Interactive3DCard
             icon={Cpu}
-            title="Smart AI Engine"
-            description="Advanced machine learning algorithms that adapt to your business needs"
+            title="AI Voice Agents"
+            description="24/7 inbound & outbound voice systems that qualify leads and handle support"
             gradient="bg-gradient-to-br from-indigo-500 to-blue-500"
             delay={0.6}
           />
           <Interactive3DCard
             icon={Rocket}
-            title="Lightning Fast"
-            description="Deploy automations in seconds with our optimized infrastructure"
+            title="n8n & Make.com"
+            description="Certified expert building complex workflows and integrations across platforms"
             gradient="bg-gradient-to-br from-emerald-500 to-teal-500"
             delay={0.8}
           />
           <Interactive3DCard
             icon={Brain}
-            title="Intelligent Workflows"
-            description="AI-powered decision making that learns and improves over time"
+            title="Smart CRM Pipelines"
+            description="AI-powered workflows for HubSpot, GHL, Salesforce, and Airtable"
             gradient="bg-gradient-to-br from-violet-500 to-purple-500"
             delay={1.0}
           />
           <Interactive3DCard
             icon={Zap}
-            title="Powerful Automation"
-            description="Streamline complex processes with intelligent automation tools"
+            title="WhatsApp & Slack Bots"
+            description="24/7 sales and support automation across messaging platforms"
             gradient="bg-gradient-to-br from-orange-500 to-red-500"
             delay={1.2}
           />
           <Interactive3DCard
             icon={Shield}
-            title="Enterprise Security"
-            description="Bank-grade security and compliance for your business operations"
+            title="Lead Monitoring"
+            description="Automated lead generation from IG, LinkedIn, Reddit, and websites"
             gradient="bg-gradient-to-br from-green-500 to-emerald-500"
             delay={1.4}
           />
           <Interactive3DCard
             icon={Sparkles}
-            title="Innovation Hub"
-            description="Cutting-edge features and continuous platform improvements"
+            title="Content Automation"
+            description="Auto blogs, YouTube Shorts, and image workflows with AI"
             gradient="bg-gradient-to-br from-pink-500 to-rose-500"
             delay={1.6}
           />

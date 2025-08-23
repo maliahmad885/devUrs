@@ -1,0 +1,217 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Enhanced Gradients -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6D28D9;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="secondaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0891B2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0E7490;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#D97706;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B45309;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Enhanced Filters -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+    
+    <filter id="innerGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feComposite in="SourceGraphic" in2="coloredBlur" operator="over"/>
+    </filter>
+    
+    <!-- Patterns -->
+    <pattern id="gridPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(139, 92, 246, 0.1)" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background Grid -->
+  <rect width="200" height="200" fill="url(#gridPattern)" opacity="0.2"/>
+  
+  <!-- Central User Group Hub -->
+  <circle cx="100" cy="100" r="40" fill="url(#primaryGrad)" filter="url(#glow)"/>
+  <circle cx="100" cy="100" r="35" fill="url(#primaryGrad)" opacity="0.9"/>
+  <circle cx="100" cy="100" r="30" fill="url(#primaryGrad)" opacity="0.7"/>
+  
+  <!-- Central Core -->
+  <circle cx="100" cy="100" r="25" fill="white" opacity="0.95"/>
+  <circle cx="100" cy="100" r="22" fill="url(#primaryGrad)" opacity="0.8"/>
+  <circle cx="100" cy="100" r="18" fill="white" opacity="0.9"/>
+  
+  <!-- Users Symbol -->
+  <circle cx="95" cy="95" r="4" fill="url(#primaryGrad)" opacity="0.9"/>
+  <circle cx="105" cy="95" r="4" fill="url(#primaryGrad)" opacity="0.9"/>
+  <circle cx="100" cy="105" r="4" fill="url(#primaryGrad)" opacity="0.9"/>
+  
+  <!-- Connection Lines Between Users -->
+  <path d="M95 95L105 95" stroke="url(#primaryGrad)" stroke-width="1" opacity="0.6"/>
+  <path d="M95 95L100 105" stroke="url(#primaryGrad)" stroke-width="1" opacity="0.6"/>
+  <path d="M105 95L100 105" stroke="url(#primaryGrad)" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Satellite User Nodes -->
+  <!-- Top Left User -->
+  <circle cx="60" cy="60" r="18" fill="url(#secondaryGrad)" filter="url(#glow)"/>
+  <circle cx="60" cy="60" r="15" fill="url(#secondaryGrad)" opacity="0.9"/>
+  <circle cx="60" cy="60" r="12" fill="white" opacity="0.8"/>
+  <circle cx="60" cy="60" r="8" fill="url(#secondaryGrad)" opacity="0.9"/>
+  <circle cx="60" cy="58" r="3" fill="white" opacity="0.9"/>
+  <circle cx="58" cy="56" r="2" fill="white" opacity="0.7"/>
+  <circle cx="62" cy="56" r="2" fill="white" opacity="0.7"/>
+  
+  <!-- Top Right User -->
+  <circle cx="140" cy="60" r="18" fill="url(#accentGrad)" filter="url(#glow)"/>
+  <circle cx="140" cy="60" r="15" fill="url(#accentGrad)" opacity="0.9"/>
+  <circle cx="140" cy="60" r="12" fill="white" opacity="0.8"/>
+  <circle cx="140" cy="60" r="8" fill="url(#accentGrad)" opacity="0.9"/>
+  <circle cx="140" cy="58" r="3" fill="white" opacity="0.9"/>
+  <circle cx="138" cy="56" r="2" fill="white" opacity="0.7"/>
+  <circle cx="142" cy="56" r="2" fill="white" opacity="0.7"/>
+  
+  <!-- Bottom Left User -->
+  <circle cx="60" cy="140" r="18" fill="url(#goldGrad)" filter="url(#glow)"/>
+  <circle cx="60" cy="140" r="15" fill="url(#goldGrad)" opacity="0.9"/>
+  <circle cx="60" cy="140" r="12" fill="white" opacity="0.8"/>
+  <circle cx="60" cy="140" r="8" fill="url(#goldGrad)" opacity="0.9"/>
+  <circle cx="60" cy="138" r="3" fill="white" opacity="0.9"/>
+  <circle cx="58" cy="136" r="2" fill="white" opacity="0.7"/>
+  <circle cx="62" cy="136" r="2" fill="white" opacity="0.7"/>
+  
+  <!-- Bottom Right User -->
+  <circle cx="140" cy="140" r="18" fill="url(#primaryGrad)" filter="url(#glow)"/>
+  <circle cx="140" cy="140" r="15" fill="url(#primaryGrad)" opacity="0.9"/>
+  <circle cx="140" cy="140" r="12" fill="white" opacity="0.8"/>
+  <circle cx="140" cy="140" r="8" fill="url(#primaryGrad)" opacity="0.9"/>
+  <circle cx="140" cy="138" r="3" fill="white" opacity="0.9"/>
+  <circle cx="138" cy="136" r="2" fill="white" opacity="0.7"/>
+  <circle cx="142" cy="136" r="2" fill="white" opacity="0.7"/>
+  
+  <!-- Enhanced Connection Lines with Glow -->
+  <path d="M75 75L85 85" stroke="url(#primaryGrad)" stroke-width="3" opacity="0.8" filter="url(#glow)"/>
+  <path d="M125 75L115 85" stroke="url(#primaryGrad)" stroke-width="3" opacity="0.8" filter="url(#glow)"/>
+  <path d="M75 125L85 115" stroke="url(#primaryGrad)" stroke-width="3" opacity="0.8" filter="url(#glow)"/>
+  <path d="M125 125L115 115" stroke="url(#primaryGrad)" stroke-width="3" opacity="0.8" filter="url(#glow)"/>
+  
+  <!-- Data Flow Indicators -->
+  <path d="M75 75L85 85" stroke="url(#secondaryGrad)" stroke-width="2" opacity="0.6" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="0;6;0" dur="2s" repeatCount="indefinite"/>
+  </path>
+  
+  <path d="M125 75L115 85" stroke="url(#accentGrad)" stroke-width="2" opacity="0.6" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="0;6;0" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+  </path>
+  
+  <path d="M75 125L85 115" stroke="url(#goldGrad)" stroke-width="2" opacity="0.6" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="0;6;0" dur="2s" repeatCount="indefinite" begin="1s"/>
+  </path>
+  
+  <path d="M125 125L115 115" stroke="url(#primaryGrad)" stroke-width="2" opacity="0.6" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="0;6;0" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+  </path>
+  
+  <!-- Floating Data Particles -->
+  <circle cx="40" cy="40" r="3" fill="url(#secondaryGrad)" opacity="0.8" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="160" cy="40" r="3" fill="url(#accentGrad)" opacity="0.8" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="3s" repeatCount="indefinite" begin="1s"/>
+    <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="40" cy="160" r="3" fill="url(#goldGrad)" opacity="0.8" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="3s" repeatCount="indefinite" begin="2s"/>
+    <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="160" cy="160" r="3" fill="url(#primaryGrad)" opacity="0.8" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+    <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Central Processing Pulse -->
+  <circle cx="100" cy="100" r="25" fill="none" stroke="url(#primaryGrad)" stroke-width="2" opacity="0.6">
+    <animate attributeName="r" values="25;35;25" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Node Pulse Effects -->
+  <circle cx="60" cy="60" r="25" fill="none" stroke="url(#secondaryGrad)" stroke-width="1" opacity="0.4">
+    <animate attributeName="r" values="25;30;25" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="140" cy="60" r="25" fill="none" stroke="url(#accentGrad)" stroke-width="1" opacity="0.4">
+    <animate attributeName="r" values="25;30;25" dur="4s" repeatCount="indefinite" begin="1s"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="60" cy="140" r="25" fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity="0.4">
+    <animate attributeName="r" values="25;30;25" dur="4s" repeatCount="indefinite" begin="2s"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="140" cy="140" r="25" fill="none" stroke="url(#primaryGrad)" stroke-width="1" opacity="0.4">
+    <animate attributeName="r" values="25;30;25" dur="4s" repeatCount="indefinite" begin="3s"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Performance Indicators -->
+  <rect x="85" y="180" width="30" height="6" rx="3" fill="url(#accentGrad)" opacity="0.8">
+    <animate attributeName="width" values="30;40;30" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  
+  <rect x="85" y="190" width="20" height="6" rx="3" fill="url(#goldGrad)" opacity="0.8">
+    <animate attributeName="width" values="20;30;20" dur="2.5s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Enhanced Shadow Effects -->
+  <ellipse cx="100" cy="195" rx="40" ry="4" fill="rgba(0,0,0,0.1)"/>
+  <ellipse cx="100" cy="193" rx="37" ry="3" fill="rgba(0,0,0,0.05)"/>
+  
+  <!-- Connection Status Indicators -->
+  <circle cx="60" cy="60" r="3" fill="white" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="140" cy="60" r="3" fill="white" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+  
+  <circle cx="60" cy="140" r="3" fill="white" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite" begin="1s"/>
+  </circle>
+  
+  <circle cx="140" cy="140" r="3" fill="white" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+  </circle>
+  
+  <!-- User Activity Indicators -->
+  <circle cx="100" cy="100" r="3" fill="white" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+</svg> 

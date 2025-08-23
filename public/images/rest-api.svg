@@ -1,0 +1,54 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="28" fill="url(#grad1)" opacity="0.1"/>
+  
+  <!-- API Endpoints -->
+  <rect x="12" y="16" width="8" height="8" rx="1" fill="url(#grad1)" filter="url(#glow)"/>
+  <rect x="20" y="16" width="8" height="8" rx="1" fill="url(#grad1)" filter="url(#glow)"/>
+  <rect x="28" y="16" width="8" height="8" rx="1" fill="url(#grad1)" filter="url(#glow)"/>
+  <rect x="36" y="16" width="8" height="8" rx="1" fill="url(#grad1)" filter="url(#glow)"/>
+  <rect x="44" y="16" width="8" height="8" rx="1" fill="url(#grad1)" filter="url(#grad1)"/>
+  
+  <!-- Data Flow Lines -->
+  <path d="M16 20L16 32" stroke="url(#grad1)" stroke-width="2" opacity="0.8"/>
+  <path d="M24 20L24 32" stroke="url(#grad1)" stroke-width="2" opacity="0.8"/>
+  <path d="M32 20L32 32" stroke="url(#grad1)" stroke-width="2" opacity="0.8"/>
+  <path d="M40 20L40 32" stroke="url(#grad1)" stroke-width="2" opacity="0.8"/>
+  <path d="M48 20L48 32" stroke="url(#grad1)" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Central Hub -->
+  <circle cx="32" cy="40" r="8" fill="url(#grad1)" filter="url(#glow)"/>
+  
+  <!-- Connection Nodes -->
+  <circle cx="16" cy="32" r="3" fill="#F59E0B"/>
+  <circle cx="24" cy="32" r="3" fill="#EF4444"/>
+  <circle cx="32" cy="32" r="3" fill="#8B5CF6"/>
+  <circle cx="40" cy="32" r="3" fill="#10B981"/>
+  <circle cx="48" cy="32" r="3" fill="#F59E0B"/>
+  
+  <!-- Data Processing -->
+  <circle cx="32" cy="40" r="3" fill="white" opacity="0.9">
+    <animate attributeName="r" values="3;4;3" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- API Methods -->
+  <text x="16" y="14" text-anchor="middle" fill="white" font-size="6" font-weight="bold">GET</text>
+  <text x="24" y="14" text-anchor="middle" fill="white" font-size="6" font-weight="bold">POST</text>
+  <text x="32" y="14" text-anchor="middle" fill="white" font-size="6" font-weight="bold">PUT</text>
+  <text x="40" y="14" text-anchor="middle" fill="white" font-size="6" font-weight="bold">DELETE</text>
+  <text x="48" y="14" text-anchor="middle" fill="white" font-size="6" font-weight="bold">PATCH</text>
+</svg> 
