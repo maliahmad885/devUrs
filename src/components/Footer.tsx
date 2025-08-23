@@ -40,7 +40,6 @@ export default function Footer() {
       links: [
         { name: "Features", href: "#features" },
         { name: "Services", href: "#services" },
-        { name: "Tools", href: "#tools" },
         { name: "Pricing", href: "/pricing" },
         { name: "API", href: "/api" }
       ]

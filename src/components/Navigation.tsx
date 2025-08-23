@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Zap } from 'lucide-react'
-import { cn, enhancedScrollToSection, createMagneticNavigation } from '@/lib/utils'
+import { Menu, X, Zap, ChevronDown } from 'lucide-react'
+import { cn, enhancedScrollToSection } from '@/lib/utils'
 import DarkModeToggle from './DarkModeToggle'
 
 // Types
@@ -23,42 +23,21 @@ const NAV_ITEMS: NavItem[] = [
   { name: 'About', href: '#about' },
   { name: 'Features', href: '#features' },
   { name: 'Services', href: '#services' },
-  { name: 'Tools', href: '#tools' },
   { name: 'Projects', href: '#projects' },
   { name: 'Blogs', href: '#blogs' },
   { name: 'Contact', href: '#contact' },
 ]
 
-// Enhanced animation variants with smoother transitions
+// Enhanced animation variants
 const navVariants = {
   hidden: { opacity: 0, y: -20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.6
-    }
-  },
+  visible: { opacity: 1, y: 0 }
 }
 
 const mobileMenuVariants = {
-  hidden: { opacity: 0, height: 0, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
-    height: 'auto',
-    scale: 1,
-    transition: {
-      duration: 0.4
-    }
-  },
-  exit: { 
-    opacity: 0, 
-    height: 0,
-    scale: 0.95,
-    transition: {
-      duration: 0.3
-    }
-  },
+  hidden: { opacity: 0, height: 0, y: -20 },
+  visible: { opacity: 1, height: 'auto', y: 0 },
+  exit: { opacity: 0, height: 0, y: -20 }
 }
 
 export default function Navigation({ className }: NavigationProps) {
@@ -69,23 +48,18 @@ export default function Navigation({ className }: NavigationProps) {
   const navRef = useRef<HTMLElement>(null)
   const [isClient, setIsClient] = useState(false)
 
-  // Enhanced navigation click handler with smooth transitions
+  // Enhanced navigation click handler
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const sectionId = href.replace('#', '')
     
-    // Add smooth transition class
     setIsScrolling(true)
-    
-    // Enhanced scroll with better timing
     enhancedScrollToSection(sectionId)
     
-    // Close mobile menu with smooth animation
     if (isMobileMenuOpen) {
       closeMobileMenu()
     }
     
-    // Remove scrolling state after animation
     setTimeout(() => {
       setIsScrolling(false)
     }, 1200)
@@ -99,7 +73,7 @@ export default function Navigation({ className }: NavigationProps) {
     setIsMobileMenuOpen(false)
   }, [])
 
-  // Enhanced active section detection with better performance
+  // Enhanced active section detection
   useEffect(() => {
     setIsClient(true)
     const handleScroll = () => {
@@ -111,7 +85,6 @@ export default function Navigation({ className }: NavigationProps) {
         const sections = NAV_ITEMS.map(item => item.href.replace('#', ''))
         const scrollPosition = window.scrollY + window.innerHeight / 3
         
-        // Find the most visible section
         let bestSection = ''
         let bestVisibility = 0
         
@@ -129,15 +102,14 @@ export default function Navigation({ className }: NavigationProps) {
           }
         })
         
-        // Only set active section if we found one with good visibility
         if (bestSection && bestVisibility > 0.5) {
           setActiveSection(bestSection)
         }
-      }, 50) // Debounce scroll events for better performance
+      }, 50)
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Check initial position
+    handleScroll()
 
     return () => {
       if (scrollTimeoutRef.current) {
@@ -147,19 +119,12 @@ export default function Navigation({ className }: NavigationProps) {
     }
   }, [])
 
-  // Initialize magnetic navigation effects with better performance
-  useEffect(() => {
-    const navElements = document.querySelectorAll('.nav-link')
-    const cleanup = createMagneticNavigation(navElements)
-    return cleanup
-  }, [])
-
   // Enhanced scroll-based navigation styling
   useEffect(() => {
     const handleScroll = () => {
       if (navRef.current) {
         const scrollY = window.scrollY
-        const threshold = 100
+        const threshold = 50
         
         if (scrollY > threshold) {
           navRef.current.classList.add('nav-scrolled')
@@ -182,42 +147,50 @@ export default function Navigation({ className }: NavigationProps) {
     <motion.nav
       ref={navRef}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out',
-        'bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out',
+        'bg-white/90 backdrop-blur-xl border-b border-gray-100/50',
+        'shadow-lg shadow-black/5',
         isScrolling && 'pointer-events-none',
+        'nav-scrolled:bg-white/95 nav-scrolled:shadow-xl nav-scrolled:shadow-black/10',
         className
       )}
       variants={navVariants}
       initial="hidden"
       animate="visible"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Enhanced Logo with magnetic effect */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Enhanced Logo */}
           <motion.div
-            className="flex items-center space-x-3 nav-link"
+            className="flex items-center space-x-4"
             whileHover={{ 
-              scale: 1.05,
+              scale: 1.02,
               transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
             }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.98 }}
           >
             <motion.div 
-              className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg"
+              className="w-12 h-12 bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-xl shadow-purple-500/25 border border-white/20"
               whileHover={{ 
                 rotate: 360,
+                scale: 1.1,
                 transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
               }}
             >
-              <Zap className="w-6 h-6 text-white" />
+              <Zap className="w-7 h-7 text-white" />
             </motion.div>
-            <span className="heading-5 font-display font-bold text-gradient">
-              Nexus Bloom
-            </span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-blue-900 bg-clip-text text-transparent">
+                Nexus
+              </span>
+              <span className="text-lg font-semibold text-gray-600">
+                Bloom
+              </span>
+            </div>
           </motion.div>
 
           {/* Enhanced Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-1">
             {NAV_ITEMS.map((item, index) => {
               const isActive = activeSection === item.href.replace('#', '')
               return (
@@ -229,38 +202,41 @@ export default function Navigation({ className }: NavigationProps) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ 
                     duration: 0.6, 
-                    delay: index * 0.08
+                    delay: index * 0.1,
+                    ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                   className={cn(
-                    "nav-link relative font-medium transition-all duration-500 cursor-pointer group",
+                    "relative px-6 py-3 rounded-xl font-medium transition-all duration-500 cursor-pointer group",
                     isActive 
-                      ? "text-purple-600" 
-                      : "text-gray-600 hover:text-purple-600"
+                      ? "text-purple-700 bg-purple-50/80" 
+                      : "text-gray-700 hover:text-purple-700 hover:bg-purple-50/60"
                   )}
                   whileHover={{ 
-                    y: -3,
-                    transition: { duration: 0.3 }
+                    y: -2,
+                    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
                   }}
                 >
-                  <span className="relative">
+                  <span className="relative z-10">
                     {item.name}
-                    <motion.span 
-                      className={cn(
-                        "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500",
-                        isActive ? "w-full" : "w-0"
-                      )}
-                      initial={{ width: 0 }}
-                      animate={{ width: isActive ? "100%" : "0%" }}
-                      transition={{ duration: 0.4 }}
-                    />
                   </span>
                   
-                  {/* Enhanced hover indicator */}
+                  {/* Enhanced active indicator */}
+                  {isActive && (
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl border border-purple-200/50"
+                      layoutId="activeNav"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    />
+                  )}
+                  
+                  {/* Hover effect */}
                   {!isActive && (
-                    <motion.span 
-                      className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 w-0"
-                      whileHover={{ width: "100%" }}
-                      transition={{ duration: 0.3 }}
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl opacity-0"
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                     />
                   )}
                 </motion.a>
@@ -272,6 +248,7 @@ export default function Navigation({ className }: NavigationProps) {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
+              className="ml-6"
             >
               <DarkModeToggle />
             </motion.div>
@@ -280,13 +257,13 @@ export default function Navigation({ className }: NavigationProps) {
           {/* Enhanced Mobile Menu Button */}
           <motion.button
             onClick={toggleMobileMenu}
-            className="md:hidden text-gray-600 hover:text-purple-600 transition-colors duration-300 p-2 nav-link"
+            className="lg:hidden relative p-3 text-gray-700 hover:text-purple-700 transition-all duration-300 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-md hover:shadow-lg hover:bg-white"
             aria-label="Toggle mobile menu"
             whileHover={{ 
-              scale: 1.1,
-              transition: { duration: 0.2 }
+              scale: 1.05,
+              transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }
             }}
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 0.95 }}
           >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
@@ -295,7 +272,7 @@ export default function Navigation({ className }: NavigationProps) {
                   initial={{ rotate: -90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <X className="w-6 h-6" />
                 </motion.div>
@@ -305,7 +282,7 @@ export default function Navigation({ className }: NavigationProps) {
                   initial={{ rotate: 90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <Menu className="w-6 h-6" />
                 </motion.div>
@@ -322,9 +299,9 @@ export default function Navigation({ className }: NavigationProps) {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md overflow-hidden"
+              className="lg:hidden border-t border-gray-100/50 bg-white/95 backdrop-blur-xl overflow-hidden rounded-b-2xl shadow-xl shadow-black/10"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1">
+              <div className="px-4 py-6 space-y-2">
                 {NAV_ITEMS.map((item, index) => {
                   const isActive = activeSection === item.href.replace('#', '')
                   return (
@@ -336,17 +313,18 @@ export default function Navigation({ className }: NavigationProps) {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ 
                         duration: 0.4, 
-                        delay: index * 0.05
+                        delay: index * 0.08,
+                        ease: [0.25, 0.46, 0.45, 0.94]
                       }}
                       className={cn(
-                        "nav-link block px-3 py-2 rounded-md transition-all duration-300 font-medium cursor-pointer",
+                        "block px-4 py-3 rounded-xl transition-all duration-300 font-medium cursor-pointer",
                         isActive
-                          ? "text-purple-600 bg-purple-50"
-                          : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
+                          ? "text-purple-700 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200/50 shadow-md"
+                          : "text-gray-700 hover:text-purple-700 hover:bg-gradient-to-r hover:from-purple-50/60 hover:to-blue-50/60 border border-transparent hover:border-purple-200/30"
                       )}
                       whileHover={{ 
                         x: 8,
-                        transition: { duration: 0.3 }
+                        transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
                       }}
                     >
                       {item.name}
