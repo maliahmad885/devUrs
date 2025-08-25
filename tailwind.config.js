@@ -62,16 +62,20 @@ module.exports = {
       
       animation: {
         'glow': 'glow 3s ease-in-out infinite',
-
         'float': 'float 6s ease-in-out infinite',
         'float-slow': 'float 8s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float-fast': 'float 4s ease-in-out infinite',
+        'float-reverse': 'float-reverse 6s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0.6, 1) infinite',
         'bounce-slow': 'bounce 3s infinite',
         'fade-in': 'fadeIn 0.6s ease-in-out',
         'slide-up': 'slideUp 0.6s ease-out',
         'scale-in': 'scaleIn 0.4s ease-out',
         'gradient-x': 'gradient-x 3s ease infinite',
         'gradient-y': 'gradient-y 3s ease infinite',
+        'text-reveal': 'text-reveal 1s ease-out forwards',
+        'text-slide-up': 'text-slide-up 0.8s ease-out forwards',
+        'gradient-shift': 'gradient-shift 3s ease infinite',
         
         // Enhanced About Page Animations
         'image-float': 'image-float 8s ease-in-out infinite',
@@ -97,6 +101,10 @@ module.exports = {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
+        },
+        'float-reverse': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(20px)' },
         },
         fadeIn: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
@@ -129,6 +137,30 @@ module.exports = {
             'background-size': '200% 200%',
             'background-position': 'center bottom'
           },
+        },
+        'text-reveal': {
+          '0%': { 
+            opacity: '0',
+            transform: 'translateY(30px) scale(0.9)'
+          },
+          '100%': { 
+            opacity: '1',
+            transform: 'translateY(0) scale(1)'
+          },
+        },
+        'text-slide-up': {
+          '0%': { 
+            opacity: '0',
+            transform: 'translateY(20px)'
+          },
+          '100%': { 
+            opacity: '1',
+            transform: 'translateY(0)'
+          },
+        },
+        'gradient-shift': {
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
         },
         
         // Enhanced About Page Keyframes
@@ -187,7 +219,7 @@ module.exports = {
         'gradient-primary': 'linear-gradient(135deg, #8B5CF6 0%, #3B82F6 50%, #10B981 100%)',
         'gradient-hero': 'linear-gradient(135deg, #faf5ff 0%, #ffffff 50%, #eff6ff 100%)',
         'gradient-card': 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-
+        'gradient-hero-enhanced': 'linear-gradient(135deg, #faf5ff 0%, #ffffff 25%, #eff6ff 50%, #f0f9ff 75%, #fef7ff 100%)',
       },
       
       fontFamily: {
@@ -217,7 +249,17 @@ module.exports = {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         'large': '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-
+        'hero': '0 0 20px rgba(139, 92, 246, 0.2), 0 0 40px rgba(139, 92, 246, 0.1)',
+        'hero-hover': '0 0 30px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.15)',
+        '3xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        '4xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+        '5xl': '0 50px 80px -20px rgba(0, 0, 0, 0.35)',
+      },
+      
+      transitionTimingFunction: {
+        'bounce-in': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+        'smooth': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        'elastic': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
       },
     },
   },

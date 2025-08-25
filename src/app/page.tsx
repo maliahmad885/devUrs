@@ -7,9 +7,10 @@ import EnhancedFeatures from '@/components/EnhancedFeatures'
 import Testimonials from '@/components/Testimonials'
 import ThreeDBackground from '@/components/3DBackground'
 import ScrollIndicator from '@/components/ScrollIndicator'
+import ScrollProgress from '@/components/ScrollProgress'
 import SectionDivider from '@/components/SectionDivider'
 import ScrollDebug from '@/components/ScrollDebug'
-import ContactForm from '@/components/ContactForm'
+
 import CookieConsent from '@/components/CookieConsent'
 import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
@@ -26,20 +27,17 @@ import {
   Star,
   ArrowRight,
   Send,
-  Sparkles
+  Sparkles,
+  Mail,
+  Phone,
+  MessageSquare
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { 
-  createScrollProgress, 
-  createScrollReveal,
-  createParallaxEffect,
-  createMomentumScroll,
-  smoothScrollToSection,
-  enableSmoothScrolling
-} from '@/lib/utils'
 import { Canvas } from '@react-three/fiber'
+import { OrbitControls, Float, Sphere, Box, Torus } from '@react-three/drei'
 import EnhancedProjectBackground from '@/components/EnhancedProjectBackground'
 import ProjectShowcase from '@/components/ProjectShowcase'
+import ThreeJSParticles from '@/components/ThreeJSParticles'
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false)
@@ -52,59 +50,7 @@ export default function Home() {
       window.scrollTo(0, 0)
     }
     
-    // Initialize enhanced scroll features
-    const cleanupProgress = createScrollProgress()
-    
-    // Initialize momentum-based scrolling for mobile
-    const cleanupMomentum = createMomentumScroll()
-    
-    // Create scroll-triggered reveal animations
-    const revealElements = document.querySelectorAll('.reveal-on-scroll')
-    const revealObserver = createScrollReveal(revealElements)
-    
-    // Create parallax effects for background elements
-    const parallaxElements = document.querySelectorAll('.parallax-layer')
-    const parallaxCleanups: (() => void)[] = []
-    
-    parallaxElements.forEach((el) => {
-      if (el instanceof HTMLElement) {
-        const cleanup = createParallaxEffect(el, 0.3)
-        parallaxCleanups.push(cleanup)
-      }
-    })
-
-    // Enable smooth scrolling when user starts scrolling
-    let hasScrolled = false
-    const handleFirstScroll = () => {
-      if (!hasScrolled) {
-        hasScrolled = true
-        enableSmoothScrolling()
-        window.removeEventListener('scroll', handleFirstScroll)
-      }
-    }
-    window.addEventListener('scroll', handleFirstScroll, { passive: true })
-    
-    // Test scroll functionality
-    const testScroll = () => {
-      console.log('Scroll test: All scroll utilities initialized successfully')
-      // Test smooth scroll to a section
-      setTimeout(() => {
-        const aboutSection = document.getElementById('about')
-        if (aboutSection) {
-          console.log('Scroll test: About section found, scroll functionality ready')
-        }
-      }, 1000)
-    }
-    
-    testScroll()
-    
-    return () => {
-      cleanupProgress()
-      cleanupMomentum()
-      revealObserver.disconnect()
-      parallaxCleanups.forEach(cleanup => cleanup())
-      window.removeEventListener('scroll', handleFirstScroll)
-    }
+    // Scroll progress is now handled by ScrollProgress component
   }, [])
 
   const sections = ['home', 'about', 'features', 'services', 'projects', 'blogs', 'contact']
@@ -127,12 +73,12 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       {/* 3D Interactive Background */}
       <ThreeDBackground />
       
       {/* Scroll Progress Bar */}
-      <div className="scroll-progress" />
+      <ScrollProgress />
       
       {/* Innovative Scroll Indicator */}
       <ScrollIndicator sections={sections} />
@@ -143,10 +89,10 @@ export default function Home() {
       <Navigation />
       
       {/* Hero Section */}
-      <section id="home" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
+      <section id="home" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern overflow-hidden">
         <div className="parallax-layer">
           <motion.div
-            className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50"
+            className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50"
             animate={{
               y: [0, -20, 0],
               scale: [1, 1.1, 1]
@@ -186,9 +132,9 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
           <motion.div
-            className="reveal-on-scroll text-center mb-16 sm:mb-20"
+            className="reveal-on-scroll text-center mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -209,17 +155,17 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Story & Mission */}
             <motion.div
-              className="reveal-on-scroll space-y-8"
+              className="reveal-on-scroll space-y-6"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true, margin: "-100px" }}
             >
               {/* 3D Integration Icon */}
-              <div className="mb-8">
+              <div className="mb-6">
                 <img 
                   src="/images/3d-integration.svg" 
                   alt="Integration Platform"
@@ -227,7 +173,7 @@ export default function Home() {
                 />
               </div>
               
-              <div className="space-y-6">
+              <div className="space-y-5">
                 <h3 className="heading-4 text-gray-900">Our Story</h3>
                 <p className="text-body text-gray-600 leading-relaxed">
                   Founded in 2023, Nexus Bloom emerged from a deep understanding of the automation challenges businesses face daily. Our founder, a certified Make.com and n8n automation expert with 5+ years of hands-on experience, recognized that businesses were drowning in manual processes and disconnected tools.
@@ -237,8 +183,8 @@ export default function Home() {
                 </p>
                 
                 {/* 3D Timeline */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-4 text-center">Our Journey</h4>
+                <div className="mb-4">
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Our Journey</h4>
                   <img 
                     src="/images/3d-timeline.svg" 
                     alt="Company Timeline"
@@ -247,8 +193,8 @@ export default function Home() {
                 </div>
                 
                 {/* Mission Statement */}
-                <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-2xl border border-purple-100">
-                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-3">
+                <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-5 rounded-2xl border border-purple-100">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-3">
                     <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center">
                       <Target className="w-4 h-4 text-white" />
                     </div>
@@ -260,7 +206,7 @@ export default function Home() {
                 </div>
                 
                 {/* Key Achievement */}
-                <div className="flex items-center space-x-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div className="flex items-center space-x-4 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center">
                     <Zap className="w-6 h-6 text-white" />
                   </div>
@@ -274,14 +220,14 @@ export default function Home() {
             
             {/* Right Column - 3D Illustration & Stats */}
             <motion.div
-              className="reveal-on-scroll space-y-8"
+              className="reveal-on-scroll space-y-6"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true, margin: "-100px" }}
             >
               {/* 3D Main Illustration */}
-              <div className="text-center mb-8">
+              <div className="text-center mb-6">
                 <img 
                   src="/images/about-3d-illustration.svg" 
                   alt="Nexus Bloom Platform Overview"
@@ -290,10 +236,10 @@ export default function Home() {
               </div>
               
               {/* Enhanced Stats Grid */}
-              <div className="glass-card rounded-2xl p-8 bg-white/80 backdrop-blur-sm border border-gray-200/50 shadow-xl">
-                <div className="grid grid-cols-2 gap-8">
+              <div className="glass-card rounded-2xl p-6 bg-white/80 backdrop-blur-sm border border-gray-200/50 shadow-xl">
+                <div className="grid grid-cols-2 gap-6">
                   <div className="text-center group">
-                    <div className="w-20 h-20 mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                    <div className="w-20 h-20 mx-auto mb-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                       <img src="/images/3d-users.svg" alt="Automations Built" className="w-full h-full stats-image about-image-interactive" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">500+</h3>
@@ -302,16 +248,16 @@ export default function Home() {
                   </div>
                   
                   <div className="text-center group">
-                    <div className="w-20 h-20 mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                    <div className="w-20 h-20 mx-auto mb-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                       <img src="/images/3d-globe.svg" alt="Hours Saved" className="w-full h-full stats-image about-image-interactive" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">20+</h3>
                     <p className="text-sm text-gray-600 font-medium">Hours Saved Weekly</p>
-                    <p className="text-xs text-gray-500 mt-1">Per business</p>
+                    <p className="text-sm text-gray-500 mt-1">Per business</p>
                   </div>
                   
                   <div className="text-center group">
-                    <div className="w-20 h-20 mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                    <div className="w-20 h-20 mx-auto mb-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                       <img src="/images/3d-uptime.svg" alt="AI Operations" className="w-full h-full stats-image about-image-interactive" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors duration-300">24/7</h3>
@@ -320,7 +266,7 @@ export default function Home() {
                   </div>
                   
                   <div className="text-center group">
-                    <div className="w-20 h-20 mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                    <div className="w-20 h-20 mx-auto mb-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                       <img src="/images/3d-award.svg" alt="Experience" className="w-full h-full stats-image about-image-interactive" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-yellow-600 transition-colors duration-300">5+</h3>
@@ -330,8 +276,8 @@ export default function Home() {
                 </div>
                 
                 {/* Additional Achievement */}
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <div className="text-center space-y-4">
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <div className="text-center space-y-3">
                     <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 px-4 py-2 rounded-full">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                       <span className="text-sm font-medium text-gray-700">Certified Make.com & n8n Expert</span>
@@ -358,7 +304,7 @@ export default function Home() {
       <SectionDivider variant="sparkle" />
 
       {/* Features Section */}
-      <section id="features" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
+      <section id="features" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern overflow-hidden">
         <Features />
       </section>
 
@@ -375,7 +321,7 @@ export default function Home() {
       <Testimonials />
 
       {/* Services Section */}
-      <section id="services" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <section id="services" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
             className="reveal-on-scroll text-center mb-12 sm:mb-16"
@@ -845,7 +791,7 @@ export default function Home() {
       <SectionDivider variant="flowing" />
 
       {/* Blogs Section */}
-      <section id="blogs" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern">
+      <section id="blogs" className="scroll-section bg-gradient-to-br from-gray-50 via-white to-purple-50 bg-pattern overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
             className="reveal-on-scroll text-center mb-12 sm:mb-16"
@@ -948,65 +894,236 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Innovative Section Divider */}
-      <SectionDivider variant="magnetic" />
-
       {/* Contact Section */}
-      <section id="contact" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section id="contact" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden relative">
+        {/* 3D Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-purple-200/40 to-blue-200/40 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-indigo-200/40 to-purple-200/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-blue-200/30 to-indigo-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            className="reveal-on-scroll text-center mb-10 sm:mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="heading-3 heading-3d text-gray-900 mb-4 sm:mb-6">Get in Touch</h2>
-            <p className="text-body-large text-gray-600 max-w-2xl mx-auto px-4 sm:px-0">
-              Ready to automate your business with AI agents? Let's start a conversation about how Nexus Bloom can save you 20+ hours weekly.
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Ready to Get Started?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Let&apos;s discuss how AI automation can transform your business and save you 20+ hours weekly.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Contact Illustration */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Three.js 3D Scene - Left Side */}
             <motion.div
-              className="reveal-on-scroll text-center lg:text-left"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="h-96 lg:h-[500px] relative"
+            >
+              <Canvas
+                camera={{ position: [0, 0, 8], fov: 75 }}
+                style={{ background: 'transparent' }}
+                className="w-full h-full"
+              >
+                <ambientLight intensity={0.6} />
+                <pointLight position={[10, 10, 10]} intensity={1} />
+                <pointLight position={[-10, -10, -10]} intensity={0.5} />
+                
+                {/* Central AI Brain */}
+                <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
+                  <Sphere 
+                    args={[1.2, 32, 32]} 
+                    position={[0, 0, 0]}
+                  >
+                    <meshStandardMaterial 
+                      color="#8B5CF6" 
+                      transparent 
+                      opacity={0.9}
+                      metalness={0.3}
+                      roughness={0.1}
+                      emissive="#4338CA"
+                      emissiveIntensity={0.2}
+                    />
+                  </Sphere>
+                </Float>
+
+                {/* Orbiting Elements */}
+                <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
+                  <Box 
+                    args={[0.6, 0.6, 0.6]} 
+                    position={[3, 2, 0]}
+                  >
+                    <meshStandardMaterial 
+                      color="#10B981" 
+                      transparent 
+                      opacity={0.8}
+                      metalness={0.4}
+                      roughness={0.2}
+                    />
+                  </Box>
+                </Float>
+
+                <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.4}>
+                  <Torus 
+                    args={[1.5, 0.4, 16, 32]} 
+                    position={[-3, -1, 0]}
+                  >
+                    <meshStandardMaterial 
+                      color="#F59E0B" 
+                      transparent 
+                      opacity={0.7}
+                      metalness={0.2}
+                      roughness={0.3}
+                    />
+                  </Torus>
+                </Float>
+
+                {/* Floating Particles */}
+                {Array.from({ length: 15 }).map((_, i) => (
+                  <Float key={i} speed={1 + Math.random()} rotationIntensity={0.2} floatIntensity={0.3}>
+                    <Sphere 
+                      args={[0.1 + Math.random() * 0.2, 16, 16]} 
+                      position={[
+                        (Math.random() - 0.5) * 6,
+                        (Math.random() - 0.5) * 6,
+                        (Math.random() - 0.5) * 6
+                      ]}
+                    >
+                      <meshStandardMaterial 
+                        color={['#8B5CF6', '#3B82F6', '#10B981', '#F59E0B'][Math.floor(Math.random() * 4)]}
+                        transparent 
+                        opacity={0.6}
+                      />
+                    </Sphere>
+                  </Float>
+                ))}
+
+                <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+              </Canvas>
+            </motion.div>
+
+            {/* Contact Form - Right Side */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <img 
-                src="/images/contact-illustration.svg" 
-                alt="Contact us illustration"
-                className="w-full max-w-md mx-auto lg:mx-0 mb-6"
-              />
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-800">Let's Automate Your Business Together</h3>
-                <p className="text-gray-600">
-                  Our team of automation experts is ready to help you build AI agents, streamline your workflows, 
-                  and unlock the full potential of your business with 24/7 automation.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>24/7 Support Available</span>
+              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  Get in Touch
+                </h3>
+                
+                <form className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                        First Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                        placeholder="Your first name"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                        Last Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                        placeholder="Your last name"
+                        required
+                      />
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Free Consultation</span>
+                  
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                      Company Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                      placeholder="Your company name"
+                      required
+                    />
                   </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                      placeholder="your.email@company.com"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 resize-none"
+                      placeholder="Tell us about your automation needs..."
+                      required
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 hover:scale-105 shadow-lg"
+                  >
+                    <Send className="w-5 h-5 inline mr-2" />
+                    Send Message
+                  </button>
+                </form>
+                
+                <div className="mt-6 text-center">
+                  <p className="text-sm text-gray-500">
+                    By submitting this form, you agree to our{' '}
+                    <a href="/privacy" className="text-purple-600 hover:text-purple-700 underline">
+                      Privacy Policy
+                    </a>{' '}
+                    and{' '}
+                    <a href="/terms" className="text-purple-600 hover:text-purple-700 underline">
+                      Terms of Service
+                    </a>
+                  </p>
                 </div>
               </div>
             </motion.div>
-
-            {/* Contact Form */}
-            <div className="lg:order-2">
-              <ContactForm />
-            </div>
           </div>
         </div>
       </section>
+
+      {/* Innovative Section Divider */}
+      <SectionDivider variant="magnetic" />
       
       {/* Cookie Consent Banner */}
       <CookieConsent />

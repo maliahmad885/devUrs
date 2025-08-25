@@ -1,0 +1,106 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="secondaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    
+    <!-- Shadows -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <!-- Glow effects -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#primaryGradient)" opacity="0.05"/>
+  
+  <!-- Central AI Brain Sphere -->
+  <circle cx="200" cy="150" r="60" fill="url(#primaryGradient)" filter="url(#shadow)"/>
+  <circle cx="200" cy="150" r="50" fill="url(#primaryGradient)" opacity="0.8"/>
+  <circle cx="200" cy="150" r="40" fill="url(#primaryGradient)" opacity="0.6"/>
+  
+  <!-- Brain Circuit Pattern -->
+  <path d="M180 130 Q200 120 220 130 Q200 140 180 150 Q200 160 220 150" 
+        stroke="white" stroke-width="2" fill="none" opacity="0.8"/>
+  <path d="M170 140 Q200 130 230 140 Q200 150 170 160 Q200 170 230 160" 
+        stroke="white" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- Orbiting Elements -->
+  <!-- Top Right Cube -->
+  <rect x="280" y="80" width="40" height="40" rx="8" fill="url(#secondaryGradient)" 
+        filter="url(#shadow)" opacity="0.9"/>
+  <rect x="285" y="85" width="30" height="30" rx="4" fill="url(#secondaryGradient)" opacity="0.7"/>
+  
+  <!-- Bottom Left Torus -->
+  <ellipse cx="120" cy="220" rx="35" ry="15" fill="url(#accentGradient)" 
+           filter="url(#shadow)" opacity="0.9"/>
+  <ellipse cx="120" cy="220" rx="25" ry="10" fill="url(#accentGradient)" opacity="0.7"/>
+  
+  <!-- Top Left Sphere -->
+  <circle cx="80" cy="100" r="25" fill="url(#purpleGradient)" 
+          filter="url(#shadow)" opacity="0.8"/>
+  <circle cx="80" cy="100" r="20" fill="url(#purpleGradient)" opacity="0.6"/>
+  
+  <!-- Bottom Right Pyramid -->
+  <polygon points="320,200 300,240 340,240" fill="url(#secondaryGradient)" 
+           filter="url(#shadow)" opacity="0.8"/>
+  <polygon points="320,210 305,235 335,235" fill="url(#secondaryGradient)" opacity="0.6"/>
+  
+  <!-- Floating Particles -->
+  <circle cx="50" cy="50" r="3" fill="#8B5CF6" opacity="0.6"/>
+  <circle cx="350" cy="60" r="2" fill="#3B82F6" opacity="0.7"/>
+  <circle cx="70" cy="250" r="2.5" fill="#10B981" opacity="0.6"/>
+  <circle cx="330" cy="280" r="2" fill="#F59E0B" opacity="0.7"/>
+  <circle cx="30" cy="180" r="2" fill="#A855F7" opacity="0.6"/>
+  <circle cx="370" cy="200" r="2.5" fill="#8B5CF6" opacity="0.7"/>
+  
+  <!-- Connection Lines -->
+  <line x1="200" y1="150" x2="280" y2="100" stroke="url(#primaryGradient)" 
+        stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+  <line x1="200" y1="150" x2="120" y2="220" stroke="url(#primaryGradient)" 
+        stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+  <line x1="200" y1="150" x2="80" y2="100" stroke="url(#primaryGradient)" 
+        stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+  <line x1="200" y1="150" x2="320" y2="220" stroke="url(#primaryGradient)" 
+        stroke-width="2" opacity="0.4" stroke-dasharray="5,5"/>
+  
+  <!-- Energy Waves -->
+  <path d="M200 90 Q220 85 240 90 Q260 95 280 90" 
+        stroke="url(#primaryGradient)" stroke-width="3" fill="none" opacity="0.6" filter="url(#glow)"/>
+  <path d="M200 210 Q220 215 240 210 Q260 205 280 210" 
+        stroke="url(#primaryGradient)" stroke-width="3" fill="none" opacity="0.6" filter="url(#glow)"/>
+  
+  <!-- Data Flow Arrows -->
+  <path d="M160 120 L180 130 L160 140" stroke="white" stroke-width="2" fill="none" opacity="0.8"/>
+  <path d="M240 130 L260 120 L240 110" stroke="white" stroke-width="2" fill="none" opacity="0.8"/>
+  <path d="M180 170 L200 180 L220 170" stroke="white" stroke-width="2" fill="none" opacity="0.8"/>
+  
+  <!-- Glowing Center -->
+  <circle cx="200" cy="150" r="15" fill="white" opacity="0.9" filter="url(#glow)"/>
+  <circle cx="200" cy="150" r="8" fill="url(#primaryGradient)" opacity="0.8"/>
+</svg> 

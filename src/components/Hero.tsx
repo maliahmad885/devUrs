@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Play, MessageCircle, Zap, Settings, Database, Shield, Sparkles, Zap as ZapIcon, Zap as Lightning } from 'lucide-react'
+import { ArrowRight, Play, MessageCircle, Zap, Settings, Database, Shield, Sparkles, Zap as ZapIcon, Zap as Lightning, Star, CheckCircle, Rocket, Target, TrendingUp, Clock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useEffect, useRef, useState } from 'react'
 
@@ -21,111 +21,104 @@ interface Particle {
   color: string
 }
 
-interface CodeSnippet {
-  id: number
-  code: string
-  language: string
-  x: number
-  y: number
-  rotation: number
-}
-
-// Constants
-// FEATURES array removed
-
-// Dynamic Headings and Descriptions
+// Enhanced Dynamic Headings with better messaging
 const HEADING_VARIANTS = [
   {
     main: "AI Automation",
     sub: "Made Simple",
-    description: "Transform your business with cutting-edge AI automation and no-code tools. From Make.com to n8n, we make complex workflows effortless and fun."
+    description: "Transform your business with cutting-edge AI automation and no-code tools. From Make.com to n8n, we make complex workflows effortless and fun.",
+    highlight: "20+ hours saved weekly",
+    icon: Rocket
   },
   {
     main: "n8n & Make.com",
     sub: "Expert Solutions",
-    description: "Certified automation expert with 5+ years building AI agents, voice systems, and backend workflows that save 20+ hours weekly."
+    description: "Certified automation expert with 5+ years building AI agents, voice systems, and backend workflows that save 20+ hours weekly.",
+    highlight: "500+ integrations",
+    icon: Target
   },
   {
     main: "AI Voice Agents",
     sub: "24/7 Operations",
-    description: "Intelligent voice systems that qualify leads, handle support, book calls, and run your business operations around the clock."
+    description: "Intelligent voice systems that qualify leads, handle support, book calls, and run your business operations around the clock.",
+    highlight: "24/7 availability",
+    icon: MessageCircle
   },
   {
     main: "Smart CRM Workflows",
     sub: "Boost Close Rates",
-    description: "AI-powered CRM pipelines that eliminate manual work, route leads smarter, and scale without hiring more staff."
+    description: "AI-powered CRM pipelines that eliminate manual work, route leads smarter, and scale without hiring more staff.",
+    highlight: "3x faster closing",
+    icon: TrendingUp
   },
   {
     main: "Integration Hub",
     sub: "Connect Everything",
-    description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack."
+    description: "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack.",
+    highlight: "500+ apps connected",
+    icon: Zap
   }
 ]
 
-
-// Animation variants
+// Enhanced Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
       delayChildren: 0.1,
     },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut" as const
+    }
+  },
 }
 
 const floatingVariants = {
   float: {
-    y: [0, -20, 0],
+    y: [0, -25, 0],
     transition: {
-      duration: 4,
+      duration: 6,
       repeat: Infinity,
-      ease: 'easeInOut' as const,
+      ease: "easeInOut" as const,
     },
   },
 }
 
-const walkingVariants = {
-  walk: {
-    x: [0, 100, 0],
-    transition: {
-      duration: 8,
-      repeat: Infinity,
-      ease: 'easeInOut' as const,
-    },
-  },
-}
-
-const waveVariants = {
-  wave: {
-    rotate: [0, 20, -20, 0],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      ease: 'easeInOut' as const,
-    },
-  },
-}
-
-const chatBubbleVariants = {
-  chat: {
-    scale: [1, 1.1, 1],
-    opacity: [0.7, 1, 0.7],
+const pulseVariants = {
+  pulse: {
+    scale: [1, 1.05, 1],
+    opacity: [0.8, 1, 0.8],
     transition: {
       duration: 3,
       repeat: Infinity,
-      ease: 'easeInOut' as const,
+      ease: "easeInOut" as const,
     },
   },
 }
 
-// Interactive Particle System
+const rotateVariants = {
+  rotate: {
+    rotate: 360,
+    transition: {
+      duration: 20,
+      repeat: Infinity,
+      ease: "linear" as const,
+    },
+  },
+}
+
+// Enhanced Interactive Particle System
 const ParticleSystem = () => {
   const [particles, setParticles] = useState<Particle[]>([])
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -145,18 +138,17 @@ const ParticleSystem = () => {
   useEffect(() => {
     const generateParticles = () => {
       const newParticles: Particle[] = []
-      // Reduce particles on mobile for better performance
-      const particleCount = isMobile ? 20 : 50
+      const particleCount = isMobile ? 30 : 80
       for (let i = 0; i < particleCount; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
-          size: Math.random() * 3 + 1,
-          speedX: (Math.random() - 0.5) * 0.5,
-          speedY: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.5 + 0.2,
-          color: ['#3B82F6', '#8B5CF6', '#06B6D4', '#10B981', '#F59E0B'][Math.floor(Math.random() * 5)]
+          size: Math.random() * 4 + 1,
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3,
+          opacity: Math.random() * 0.6 + 0.3,
+          color: ['#8B5CF6', '#3B82F6', '#06B6D4', '#10B981', '#F59E0B', '#EC4899'][Math.floor(Math.random() * 6)]
         })
       }
       setParticles(newParticles)
@@ -197,37 +189,54 @@ const ParticleSystem = () => {
         if (particle.y < 0) particle.y = canvas.height
         if (particle.y > canvas.height) particle.y = 0
 
-        // Mouse interaction
+        // Enhanced mouse interaction
         const dx = mousePosition.x - particle.x
         const dy = mousePosition.y - particle.y
         const distance = Math.sqrt(dx * dx + dy * dy)
         
-        if (distance < 100) {
-          const force = (100 - distance) / 100
-          particle.x -= dx * force * 0.01
-          particle.y -= dy * force * 0.01
+        if (distance < 120) {
+          const force = (120 - distance) / 120
+          particle.x -= dx * force * 0.015
+          particle.y -= dy * force * 0.015
         }
 
-        // Draw particle
+        // Draw particle with glow effect
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
+        
+        // Create gradient for glow
+        const gradient = ctx.createRadialGradient(
+          particle.x, particle.y, 0,
+          particle.x, particle.y, particle.size * 2
+        )
+        gradient.addColorStop(0, particle.color)
+        gradient.addColorStop(1, 'transparent')
+        
+        ctx.fillStyle = gradient
         ctx.globalAlpha = particle.opacity
         ctx.fill()
 
-        // Draw connections
+        // Draw connections with improved styling
         particles.forEach(otherParticle => {
           const dx = particle.x - otherParticle.x
           const dy = particle.y - otherParticle.y
           const distance = Math.sqrt(dx * dx + dy * dy)
           
-          if (distance < 100) {
+          if (distance < 120) {
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = particle.color
-            ctx.globalAlpha = (100 - distance) / 100 * 0.3
-            ctx.lineWidth = 0.5
+            
+            // Create gradient for connections
+            const lineGradient = ctx.createLinearGradient(
+              particle.x, particle.y, otherParticle.x, otherParticle.y
+            )
+            lineGradient.addColorStop(0, particle.color)
+            lineGradient.addColorStop(1, otherParticle.color)
+            
+            ctx.strokeStyle = lineGradient
+            ctx.globalAlpha = (120 - distance) / 120 * 0.4
+            ctx.lineWidth = 1
             ctx.stroke()
           }
         })
@@ -248,7 +257,6 @@ const ParticleSystem = () => {
     return () => window.removeEventListener('resize', resizeCanvas)
   }, [particles, mousePosition])
 
-  // Don't render particle system on mobile for better performance
   if (isMobile) {
     return null
   }
@@ -262,20 +270,15 @@ const ParticleSystem = () => {
   )
 }
 
-
-
-
-
-
-
-// Enhanced Animated Mascot Components
-const AutomationMascot = ({ 
+// Enhanced Floating Icon Component
+const FloatingIcon = ({ 
   icon: Icon, 
   name, 
   color, 
   delay = 0,
   position = 'top-1/4',
-  left = 'left-20'
+  left = 'left-20',
+  size = 'w-16 h-16'
 }: { 
   icon: React.ComponentType<{ className?: string }>
   name: string
@@ -283,42 +286,30 @@ const AutomationMascot = ({
   delay?: number
   position?: string
   left?: string
+  size?: string
 }) => {
   const [isHovered, setIsHovered] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
   const springConfig = { stiffness: 300, damping: 20 }
-  const scale = useSpring(isHovered ? 1.2 : 1, springConfig)
+  const scale = useSpring(isHovered ? 1.15 : 1, springConfig)
   const rotation = useSpring(isHovered ? 15 : 0, springConfig)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   return (
     <motion.div
       className={cn(
-        'absolute flex flex-col items-center cursor-pointer group',
-        // Mobile responsive positioning
-        'hidden sm:flex', // Hide on mobile
+        'absolute flex flex-col items-center cursor-pointer group hidden lg:flex',
         position,
         left
       )}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay }}
+      initial={{ opacity: 0, scale: 0, y: 50 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 1, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       style={{ scale, rotateZ: rotation }}
     >
       <motion.div
         className={cn(
-          'w-16 h-16 rounded-full flex items-center justify-center mb-2 shadow-lg relative overflow-hidden',
+          `${size} rounded-2xl flex items-center justify-center shadow-2xl relative overflow-hidden border border-white/20`,
           color
         )}
         variants={floatingVariants}
@@ -326,29 +317,45 @@ const AutomationMascot = ({
         style={{ animationDelay: `${delay}s` }}
       >
         <Icon className="w-8 h-8 text-white relative z-10" />
+        
+        {/* Animated shine effect */}
         <motion.div
-          className="absolute inset-0 bg-white/20"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
           animate={{ x: ['-100%', '100%'] }}
           transition={{ duration: 2, repeat: Infinity, delay }}
         />
+        
+        {/* Hover glow effect */}
+        {isHovered && (
+          <motion.div
+            className="absolute inset-0 bg-white/20 rounded-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
       </motion.div>
+      
       <motion.div
-        className="text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border border-gray-200/50"
-        variants={waveVariants}
-        animate="wave"
+        className="text-sm font-semibold text-gray-700 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-gray-200/60 mt-3"
+        variants={pulseVariants}
+        animate="pulse"
         style={{ animationDelay: `${delay + 1}s` }}
       >
         {name}
       </motion.div>
       
-      {/* Hover Tooltip */}
+      {/* Enhanced Hover Tooltip */}
       {isHovered && (
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute -top-20 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg shadow-xl whitespace-nowrap"
+          initial={{ opacity: 0, y: 10, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          className="absolute -top-24 bg-gray-900 text-white text-sm px-4 py-3 rounded-xl shadow-2xl whitespace-nowrap border border-gray-700"
         >
-          Click to learn more about {name}
+          <div className="flex items-center gap-2">
+            <Star className="w-4 h-4 text-yellow-400" />
+            <span>Learn more about {name}</span>
+          </div>
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
         </motion.div>
       )}
@@ -356,178 +363,77 @@ const AutomationMascot = ({
   )
 }
 
-// Enhanced ChatbotRobot with 3D effects
-const ChatbotRobot = ({ 
-  position = 'bottom-1/4',
-  left = 'right-20',
-  delay = 0
-}: { 
-  position?: string
-  left?: string
-  delay?: number
-}) => {
-  const [isHovered, setIsHovered] = useState(false)
-  const springConfig = { stiffness: 300, damping: 20 }
-  const scale = useSpring(isHovered ? 1.1 : 1, springConfig)
-  const rotationY = useSpring(isHovered ? 10 : 0, springConfig)
+// Enhanced Stats Component
+const StatsSection = () => {
+  const stats = [
+    { number: "500+", label: "Integrations", icon: Zap },
+    { number: "20+", label: "Hours Saved", icon: Clock },
+    { number: "99.9%", label: "Uptime", icon: Shield },
+    { number: "24/7", label: "Support", icon: MessageCircle }
+  ]
 
   return (
-    <motion.div
-      className={cn(
-        'absolute flex flex-col items-center cursor-pointer group',
-        position,
-        left
-      )}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      style={{ scale, rotateY: rotationY }}
+    <motion.div 
+      className="flex flex-wrap justify-center gap-6 mb-12"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 1.2 }}
     >
-              {/* Robot Body with Glassmorphism */}
+      {stats.map((stat, index) => (
         <motion.div
-          className="w-20 h-24 bg-gradient-to-b from-blue-400/90 to-blue-600/90 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center shadow-2xl relative overflow-hidden border border-white/20"
-          variants={walkingVariants}
-          animate="walk"
-          style={{ animationDelay: `${delay}s` }}
+          key={stat.label}
+          className="flex items-center gap-3 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-lg border border-gray-200/50"
+          whileHover={{ scale: 1.05, y: -5 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
         >
-        {/* Animated Background Pattern */}
-        <motion.div
-          className="absolute inset-0 opacity-20"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-        >
-          <div className="w-full h-full bg-gradient-to-br from-white/30 to-transparent" />
+          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <stat.icon className="w-5 h-5 text-white" />
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-gray-900">{stat.number}</div>
+            <div className="text-sm text-gray-600">{stat.label}</div>
+          </div>
         </motion.div>
-        
-        {/* Robot Head */}
-        <div className="w-16 h-16 bg-gradient-to-b from-blue-300/90 to-blue-500/90 backdrop-blur-sm rounded-xl mb-2 flex items-center justify-center relative border border-white/20">
-          <motion.div 
-            className="w-3 h-3 bg-green-400 rounded-full"
-            animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-          <motion.div 
-            className="w-3 h-3 bg-green-400 rounded-full absolute right-2"
-            animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-          />
-        </div>
-        
-        {/* Robot Arms */}
-        <div className="flex justify-between w-full px-2">
-          <motion.div
-            className="w-2 h-8 bg-blue-500/80 rounded-full"
-            variants={waveVariants}
-            animate="wave"
-            style={{ animationDelay: `${delay + 0.5}s` }}
-          />
-          <motion.div
-            className="w-2 h-8 bg-blue-500/80 rounded-full"
-            variants={waveVariants}
-            animate="wave"
-            style={{ animationDelay: `${delay + 1}s` }}
-          />
-        </div>
-      </motion.div>
-      
-      {/* Enhanced Chat Bubble with Glassmorphism */}
-      <motion.div
-        className="absolute -top-16 -left-24 bg-white/90 backdrop-blur-md rounded-2xl px-3 py-2 shadow-2xl border border-white/20"
-        variants={chatBubbleVariants}
-        animate="chat"
-        style={{ animationDelay: `${delay + 2}s` }}
-      >
-        <div className="text-xs text-gray-700 font-medium">Hello! 👋</div>
-        <div className="text-xs text-gray-500">Let's automate!</div>
-        <div className="absolute bottom-0 right-0 w-3 h-3 bg-white/90 border-r border-b border-white/20 transform rotate-45 translate-x-1 translate-y-1" />
-      </motion.div>
-      
-      <div className="text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-lg border border-gray-200/50 mt-2">
-        AI Bot
-      </div>
+      ))}
     </motion.div>
   )
 }
 
-// Enhanced WalkingMascot with 3D effects
-const WalkingMascot = ({ 
-  icon: Icon, 
-  name, 
-  color, 
-  delay = 0,
-  position = 'bottom-1/3',
-  left = 'left-1/4'
-}: { 
-  icon: React.ComponentType<{ className?: string }>
-  name: string
-  color: string
-  delay?: number
-  position?: string
-  left?: string
-}) => {
-  const [isHovered, setIsHovered] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const springConfig = { stiffness: 300, damping: 20 }
-  const scale = useSpring(isHovered ? 1.15 : 1, springConfig)
-  const rotationZ = useSpring(isHovered ? 5 : 0, springConfig)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+// Enhanced Feature Pills
+const FeaturePills = () => {
+  const features = [
+    { text: "No-Code Required", color: "from-green-500 to-emerald-600", icon: CheckCircle },
+    { text: "AI-Powered", color: "from-blue-500 to-indigo-600", icon: Sparkles },
+    { text: "Enterprise Ready", color: "from-purple-500 to-violet-600", icon: Shield },
+    { text: "24/7 Support", color: "from-orange-500 to-red-600", icon: MessageCircle }
+  ]
 
   return (
-    <motion.div
-      className={cn(
-        'absolute flex flex-col items-center cursor-pointer group',
-        // Mobile responsive positioning
-        'hidden sm:flex', // Hide on mobile
-        position,
-        left
-      )}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      style={{ scale, rotateZ: rotationZ }}
+    <motion.div 
+      className="flex flex-wrap justify-center gap-3 mb-10"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.8 }}
     >
-      <motion.div
-        className={cn(
-          'w-14 h-14 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden border border-white/20',
-          color
-        )}
-        variants={walkingVariants}
-        animate="walk"
-        style={{ animationDelay: `${delay}s` }}
-      >
-        <Icon className="w-7 h-7 text-white relative z-10" />
+      {features.map((feature, index) => (
         <motion.div
-          className="absolute inset-0 bg-white/20"
-          animate={{ x: ['-100%', '100%'] }}
-          transition={{ duration: 3, repeat: Infinity, delay }}
-        />
-      </motion.div>
-      <motion.div
-        className="text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-lg border border-gray-200/50"
-        variants={waveVariants}
-        animate="wave"
-        style={{ animationDelay: `${delay + 1}s` }}
-      >
-        {name}
-      </motion.div>
+          key={feature.text}
+          className="flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-gray-200/50"
+          whileHover={{ scale: 1.05, y: -2 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 1.0 + index * 0.1 }}
+        >
+          <div className={`w-2 h-2 bg-gradient-to-r ${feature.color} rounded-full`}></div>
+          <feature.icon className="w-4 h-4 text-gray-600" />
+          <span className="text-sm font-semibold text-gray-700">{feature.text}</span>
+        </motion.div>
+      ))}
     </motion.div>
   )
 }
-
-
 
 export default function Hero({ className }: HeroProps) {
   const { scrollY } = useScroll()
@@ -535,14 +441,12 @@ export default function Hero({ className }: HeroProps) {
   const y2 = useTransform(scrollY, [0, 300], [0, 100])
   const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
 
-  // State for dynamic headings
   const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0)
 
-  // Auto-cycle through headings
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHeadingIndex((prev) => (prev + 1) % HEADING_VARIANTS.length)
-    }, 4000) // Change every 4 seconds
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [])
@@ -550,156 +454,77 @@ export default function Hero({ className }: HeroProps) {
   const currentHeading = HEADING_VARIANTS[currentHeadingIndex]
 
   return (
-    <>
+    <section
+      id="home"
+      className={cn(
+        'relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50/30',
+        className
+      )}
+    >
+      {/* Enhanced Interactive Particle System */}
+      <ParticleSystem />
       
-      <section
-        id="home"
-        className={cn(
-          'relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50/30',
-          className
-        )}
-      >
-        {/* Interactive Particle System */}
-        <ParticleSystem />
-      
-        
-        {/* Enhanced Background Elements with 3D Parallax */}
-        <div className="absolute inset-0 overflow-hidden">
+      {/* Enhanced Background Elements with 3D Parallax - Fixed positioning to prevent overflow */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
           style={{ y: y1 }}
           variants={floatingVariants}
           animate="float"
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50 hidden sm:block"
+          className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-60 hidden lg:block"
         />
         <motion.div
           style={{ y: y2, animationDelay: '2s' }}
           variants={floatingVariants}
           animate="float"
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-green-100/60 to-blue-100/60 rounded-full blur-3xl opacity-50 hidden sm:block"
+          className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-green-100/60 to-blue-100/60 rounded-full blur-3xl opacity-60 hidden lg:block"
         />
         <motion.div 
           style={{ opacity }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-100/40 to-pink-100/40 rounded-full blur-3xl animate-pulse hidden sm:block"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-100/40 to-pink-100/40 rounded-full blur-3xl animate-pulse hidden lg:block"
         />
         
-        {/* Additional floating geometric shapes */}
+        {/* Enhanced floating geometric shapes - Fixed positioning */}
         <motion.div
-          animate={{ 
-            rotate: 360,
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-purple-200/30 rounded-full hidden sm:block"
+          variants={rotateVariants}
+          animate="rotate"
+          className="absolute top-1/4 left-0 w-32 h-32 border-2 border-purple-200/40 rounded-full hidden lg:block"
         />
         <motion.div
-          animate={{ 
-            rotate: -360,
-            scale: [1, 0.8, 1],
-            opacity: [0.1, 0.3, 0.1]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="absolute bottom-1/4 right-1/4 w-24 h-24 border-2 border-blue-200/30 transform rotate-45 hidden sm:block"
+          variants={rotateVariants}
+          animate="rotate"
+          className="absolute bottom-1/4 right-0 w-24 h-24 border-2 border-blue-200/40 transform rotate-45 hidden lg:block"
         />
       </div>
 
-      {/* Enhanced Animated Mascots with 3D effects */}
-      <AutomationMascot 
+      {/* Enhanced Floating Icons - Fixed positioning to prevent overflow */}
+      <FloatingIcon 
         icon={Zap} 
         name="Zapier" 
         color="bg-gradient-to-br from-orange-400 to-red-500"
         position="top-1/4"
-        left="left-16"
+        left="left-4"
         delay={0.5}
       />
       
-      <AutomationMascot 
-        icon={Settings} 
-        name="Make.com" 
-        color="bg-gradient-to-br from-blue-400 to-indigo-600"
-        position="top-1/3"
-        left="right-24"
-        delay={1}
-      />
-      
-      <AutomationMascot 
+      <FloatingIcon 
         icon={MessageCircle} 
         name="ManyChat" 
         color="bg-gradient-to-br from-green-400 to-emerald-600"
         position="top-1/2"
-        left="left-32"
+        left="left-8"
         delay={1.5}
       />
       
-      <AutomationMascot 
-        icon={Database} 
-        name="Zoho" 
-        color="bg-gradient-to-br from-purple-400 to-violet-600"
-        position="top-2/3"
-        left="right-16"
-        delay={2}
-      />
-      
-      <AutomationMascot 
+      <FloatingIcon 
         icon={Shield} 
         name="HubSpot" 
         color="bg-gradient-to-br from-red-400 to-pink-600"
         position="bottom-1/4"
-        left="left-24"
+        left="left-6"
         delay={2.5}
       />
 
-      {/* Enhanced Walking Mascots */}
-      <WalkingMascot 
-        icon={Settings} 
-        name="No-Code" 
-        color="bg-gradient-to-br from-indigo-400 to-purple-600"
-        position="bottom-1/3"
-        left="left-1/4"
-        delay={3}
-      />
-      
-      <WalkingMascot 
-        icon={Database} 
-        name="Analytics" 
-        color="bg-gradient-to-br from-teal-400 to-cyan-600"
-        position="bottom-2/5"
-        left="right-1/3"
-        delay={3.5}
-      />
-
-
-
-      {/* Enhanced Floating Elements with 3D Movement */}
-      <motion.div
-        animate={{ 
-          y: [0, -20, 0],
-          rotate: [0, 180, 360],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/4 left-10 w-4 h-4 bg-purple-400 rounded-full animate-pulse shadow-lg hidden sm:block"
-      />
-      <motion.div
-        animate={{ 
-          y: [0, 20, 0],
-          rotate: [360, 180, 0],
-          scale: [1, 0.8, 1]
-        }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute top-1/3 right-20 w-3 h-3 bg-blue-400 rounded-full animate-pulse shadow-lg hidden sm:block"
-      />
-      <motion.div
-        animate={{ 
-          y: [0, -15, 0],
-          rotate: [0, 90, 180],
-          scale: [1, 1.1, 1]
-        }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute bottom-1/4 left-20 w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg hidden sm:block"
-      />
-      
-      {/* Additional floating sparkles */}
+      {/* Enhanced Floating Sparkles - Fixed positioning */}
       <motion.div
         animate={{ 
           y: [0, -30, 0],
@@ -707,9 +532,9 @@ export default function Hero({ className }: HeroProps) {
           rotate: [0, 360]
         }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-        className="absolute top-1/2 right-1/4 hidden sm:block"
+        className="absolute top-1/2 right-8 hidden lg:block"
       >
-        <Sparkles className="w-6 h-6 text-yellow-400 animate-pulse" />
+        <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
       </motion.div>
       
       <motion.div
@@ -719,16 +544,13 @@ export default function Hero({ className }: HeroProps) {
           rotate: [360, 0]
         }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-        className="absolute bottom-1/3 left-1/3 hidden sm:block"
+        className="absolute bottom-1/3 left-8 hidden lg:block"
       >
-        <ZapIcon className="w-5 h-5 text-orange-400 animate-pulse" />
+        <ZapIcon className="w-6 h-6 text-orange-400 animate-pulse" />
       </motion.div>
 
-      
-
       {/* Main Content Area */}
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 text-center text-gray-900">
-        {/* Main Content with Enhanced Animations */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-900 pt-20 sm:pt-24 lg:pt-32">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -736,16 +558,16 @@ export default function Hero({ className }: HeroProps) {
           className="mb-12 sm:mb-16"
         >
           {/* Enhanced Heading with Animated Gradient Text */}
-          <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
-            <h1 className="heading-1 md:text-8xl mb-4 sm:mb-6 relative">
+          <motion.div variants={itemVariants} className="mb-8 sm:mb-12">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 relative font-bold leading-tight">
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`main-${currentHeadingIndex}`}
-                  className="text-gradient font-display font-bold relative z-10"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   {currentHeading.main}
                 </motion.span>
@@ -754,18 +576,18 @@ export default function Hero({ className }: HeroProps) {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`sub-${currentHeadingIndex}`}
-                  className="text-gradient-reverse font-display font-semibold relative z-10"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
                 >
                   {currentHeading.sub}
                 </motion.span>
               </AnimatePresence>
               
-              {/* 3D Text Shadow Effect */}
-              <div className="absolute inset-0 heading-1 md:text-8xl font-bold text-gray-300/20 transform translate-x-1 translate-y-1 -z-10 hidden sm:block">
+              {/* Enhanced 3D Text Shadow Effect */}
+              <div className="absolute inset-0 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-300/20 transform translate-x-2 translate-y-2 -z-10 hidden lg:block">
                 <span>{currentHeading.main}</span>
                 <br />
                 <span>{currentHeading.sub}</span>
@@ -776,30 +598,45 @@ export default function Hero({ className }: HeroProps) {
             <AnimatePresence mode="wait">
               <motion.p 
                 key={`desc-${currentHeadingIndex}`}
-                className="text-body-large md:text-2xl text-gray-600 max-w-4xl sm:max-w-6xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0"
-                initial={{ opacity: 0, y: 20 }}
+                className="text-xl sm:text-2xl lg:text-3xl text-gray-600 max-w-4xl sm:max-w-6xl mx-auto mb-8 sm:mb-10 px-4 sm:px-0 leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
               >
                 {currentHeading.description}
               </motion.p>
             </AnimatePresence>
 
-            {/* Progress Dots */}
+            {/* Enhanced Highlight Badge */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`highlight-${currentHeadingIndex}`}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-blue-600 text-white px-6 py-3 rounded-full shadow-lg mb-8"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <currentHeading.icon className="w-5 h-5" />
+                <span className="font-semibold text-sm sm:text-base">{currentHeading.highlight}</span>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Enhanced Progress Dots */}
             <motion.div 
-              className="flex justify-center items-center gap-2 sm:gap-3 mb-8"
+              className="flex justify-center items-center gap-3 mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
             >
               {HEADING_VARIANTS.map((_, index) => (
                 <motion.button
                   key={index}
                   onClick={() => setCurrentHeadingIndex(index)}
-                  className={`w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     index === currentHeadingIndex 
-                      ? 'bg-purple-600 scale-125 shadow-lg' 
+                      ? 'bg-gradient-to-r from-purple-600 to-blue-600 scale-125 shadow-lg' 
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                   whileHover={{ scale: 1.2 }}
@@ -808,99 +645,75 @@ export default function Hero({ className }: HeroProps) {
               ))}
             </motion.div>
 
-            {/* Progress Bar */}
+            {/* Enhanced Progress Bar */}
             <motion.div 
-              className="w-full max-w-sm sm:max-w-md mx-auto h-1 sm:h-1.5 bg-gray-200 rounded-full overflow-hidden mb-8 sm:mb-10"
+              className="w-full max-w-md mx-auto h-2 bg-gray-200 rounded-full overflow-hidden mb-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
             >
               <motion.div
                 className="h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-full shadow-sm"
                 initial={{ width: "0%" }}
                 animate={{ width: `${((currentHeadingIndex + 1) / HEADING_VARIANTS.length) * 100}%` }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
+                transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
             </motion.div>
 
-            {/* Key Benefits Bullet Points */}
-            <motion.div 
-              className="flex flex-row gap-2 sm:gap-3 justify-center items-center mb-10 flex-wrap"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <div className="flex items-center gap-2 sm:gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm border border-gray-100">
-                <div className="w-2 sm:w-3 h-2 sm:h-3 bg-green-500 rounded-full shadow-sm"></div>
-                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">No-Code Required</span>
-              </div>
-              <div className="flex items-center gap-2 sm:gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm border border-gray-100">
-                <div className="w-2 sm:w-3 h-2 sm:h-3 bg-blue-500 rounded-full shadow-sm"></div>
-                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">AI-Powered</span>
-              </div>
-              <div className="flex items-center gap-2 sm:gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm border border-gray-100">
-                <div className="w-2 sm:w-3 h-2 sm:h-3 bg-purple-500 rounded-full shadow-sm"></div>
-                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">Enterprise Ready</span>
-              </div>
-            </motion.div>
+            {/* Enhanced Feature Pills */}
+            <FeaturePills />
+
+            {/* Enhanced Stats Section */}
+            <StatsSection />
           </motion.div>
 
           {/* Enhanced CTA Buttons with Advanced Hover Effects */}
-          <motion.div variants={itemVariants} className="flex flex-row gap-3 sm:gap-6 justify-center items-center mb-16 flex-wrap">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16">
             <motion.button 
-              className="group px-4 sm:px-10 py-2.5 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold text-sm sm:text-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 sm:space-x-3 shadow-xl hover:shadow-2xl relative overflow-hidden"
+              className="group px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl font-bold text-lg sm:text-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 shadow-2xl hover:shadow-3xl relative overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative z-10">Start Automating</span>
-              <ArrowRight className="w-3.5 sm:w-5 h-3.5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
               
-              {/* Animated background overlay */}
+              {/* Enhanced animated background overlay */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: '0%' }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4 }}
               />
               
-              {/* Ripple effect */}
+              {/* Enhanced ripple effect */}
               <motion.div
-                className="absolute inset-0 bg-white/20 rounded-xl"
+                className="absolute inset-0 bg-white/20 rounded-2xl"
                 initial={{ scale: 0, opacity: 1 }}
-                whileHover={{ scale: 2, opacity: 0 }}
-                transition={{ duration: 0.6 }}
+                whileHover={{ scale: 2.5, opacity: 0 }}
+                transition={{ duration: 0.8 }}
               />
             </motion.button>
             
             <motion.button 
-              className="px-4 sm:px-10 py-2.5 sm:py-4 border-2 border-purple-600 text-purple-600 rounded-xl font-semibold text-sm sm:text-lg hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center space-x-2 sm:space-x-3 hover:shadow-xl relative overflow-hidden group bg-white/90 backdrop-blur-sm"
+              className="px-8 sm:px-12 py-4 sm:py-5 border-2 border-purple-600 text-purple-600 rounded-2xl font-bold text-lg sm:text-xl hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center space-x-3 hover:shadow-2xl relative overflow-hidden group bg-white/95 backdrop-blur-md"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Play className="w-3.5 sm:w-5 h-3.5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
+              <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
               <span>Watch Demo</span>
               
-              {/* Hover background animation */}
+              {/* Enhanced hover background animation */}
               <motion.div
                 className="absolute inset-0 bg-purple-600"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4 }}
                 style={{ transformOrigin: 'left' }}
               />
             </motion.button>
           </motion.div>
-
-          
         </motion.div>
-
-
       </div>
-
-
     </section>
-
-
-    </>
   )
 } 

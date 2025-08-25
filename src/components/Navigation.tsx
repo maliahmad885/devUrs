@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Zap, ChevronDown } from 'lucide-react'
-import { cn, enhancedScrollToSection } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import DarkModeToggle from './DarkModeToggle'
 
 // Types
@@ -48,21 +48,37 @@ export default function Navigation({ className }: NavigationProps) {
   const navRef = useRef<HTMLElement>(null)
   const [isClient, setIsClient] = useState(false)
 
-  // Enhanced navigation click handler
+  // Enhanced navigation click handler with smooth scroll
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const sectionId = href.replace('#', '')
     
     setIsScrolling(true)
-    enhancedScrollToSection(sectionId)
+    
+    // Use native smooth scroll for better performance
+    const section = document.getElementById(sectionId)
+    if (section) {
+      const navHeight = 80
+      const targetPosition = section.offsetTop - navHeight
+      
+      // Temporarily enable smooth scrolling
+      document.documentElement.style.scrollBehavior = 'smooth'
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      })
+      
+      // Reset scroll behavior after animation
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = 'auto'
+        setIsScrolling(false)
+      }, 1000)
+    }
     
     if (isMobileMenuOpen) {
       closeMobileMenu()
     }
-    
-    setTimeout(() => {
-      setIsScrolling(false)
-    }, 1200)
   }, [isMobileMenuOpen])
 
   const toggleMobileMenu = useCallback(() => {
@@ -73,9 +89,10 @@ export default function Navigation({ className }: NavigationProps) {
     setIsMobileMenuOpen(false)
   }, [])
 
-  // Enhanced active section detection
+  // Enhanced active section detection with better performance
   useEffect(() => {
     setIsClient(true)
+    
     const handleScroll = () => {
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current)
@@ -95,17 +112,17 @@ export default function Navigation({ className }: NavigationProps) {
             const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
             const visibility = visibleHeight / section.offsetHeight
             
-            if (visibility > bestVisibility && visibility > 0.5) {
+            if (visibility > bestVisibility && visibility > 0.3) {
               bestVisibility = visibility
               bestSection = sectionId
             }
           }
         })
         
-        if (bestSection && bestVisibility > 0.5) {
+        if (bestSection && bestVisibility > 0.3) {
           setActiveSection(bestSection)
         }
-      }, 50)
+      }, 100) // Increased debounce for better performance
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -139,7 +156,7 @@ export default function Navigation({ className }: NavigationProps) {
   }, [])
 
   // Only render on client side
-  if (process.env.NODE_ENV !== 'development' || !isClient) {
+  if (!isClient) {
     return null
   }
 
@@ -147,7 +164,7 @@ export default function Navigation({ className }: NavigationProps) {
     <motion.nav
       ref={navRef}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out',
         'bg-white/90 backdrop-blur-xl border-b border-gray-100/50',
         'shadow-lg shadow-black/5',
         isScrolling && 'pointer-events-none',
@@ -206,7 +223,7 @@ export default function Navigation({ className }: NavigationProps) {
                     ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                   className={cn(
-                    "relative px-6 py-3 rounded-xl font-medium transition-all duration-500 cursor-pointer group",
+                    "relative px-6 py-3 rounded-xl font-medium transition-all duration-300 cursor-pointer group",
                     isActive 
                       ? "text-purple-700 bg-purple-50/80" 
                       : "text-gray-700 hover:text-purple-700 hover:bg-purple-50/60"
