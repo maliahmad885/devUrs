@@ -50,6 +50,12 @@ export default function Navigation({ className }: NavigationProps) {
 
   // Enhanced navigation click handler with smooth scroll
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Handle external links (like /contact)
+    if (href.startsWith('/')) {
+      // Allow normal navigation for external links
+      return
+    }
+    
     e.preventDefault()
     const sectionId = href.replace('#', '')
     
@@ -99,7 +105,7 @@ export default function Navigation({ className }: NavigationProps) {
       }
       
       scrollTimeoutRef.current = setTimeout(() => {
-        const sections = NAV_ITEMS.map(item => item.href.replace('#', ''))
+        const sections = NAV_ITEMS.filter(item => item.href.startsWith('#')).map(item => item.href.replace('#', ''))
         const scrollPosition = window.scrollY + window.innerHeight / 3
         
         let bestSection = ''

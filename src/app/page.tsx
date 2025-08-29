@@ -25,11 +25,7 @@ import {
   TrendingUp,
   Star,
   ArrowRight,
-  Send,
-  Sparkles,
-  Mail,
-  Phone,
-  MessageSquare
+  Sparkles
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
@@ -659,71 +655,6 @@ export default function Home() {
             }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <motion.p 
-              className="text-gray-600 mb-6 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                type: "spring",
-                stiffness: 120,
-                damping: 20,
-                delay: 1.0
-              }}
-            >
-              Ready to transform your business with AI agents and intelligent automation? Let's discuss how our services can save you 20+ hours weekly and boost your close rates.
-            </motion.p>
-            <motion.button
-              className="btn-modern-primary px-8 py-4"
-              whileHover={{ 
-                scale: 1.02,
-                y: -2,
-                transition: { type: "spring", stiffness: 300, damping: 20 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Animated Background */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-700 opacity-0 group-hover:opacity-100"
-                transition={{ duration: 0.3 }}
-              />
-              
-              {/* Button Content */}
-              <motion.span 
-                className="relative z-10"
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { type: "spring", stiffness: 400, damping: 20 }
-                }}
-              >
-                Get Started Today
-              </motion.span>
-              
-              {/* Floating Particles around Button */}
-              {[...Array(4)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white rounded-full opacity-60"
-                  style={{
-                    left: `${20 + i * 20}%`,
-                    top: "50%",
-                    transform: "translateY(-50%)"
-                  }}
-                  animate={{
-                    y: -10,
-                    x: 5,
-                    opacity: 0.8,
-                    scale: 1.3
-                  }}
-                  transition={{
-                    duration: 3 + i * 0.8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.3
-                  }}
-                />
-              ))}
-            </motion.button>
           </motion.div>
         </div>
       </section>
@@ -891,229 +822,146 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden relative">
-        {/* 3D Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-purple-200/40 to-blue-200/40 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-indigo-200/40 to-purple-200/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-blue-200/30 to-indigo-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
-        </div>
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section id="contact" className="scroll-section bg-white py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
           <motion.div
-            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Ready to Get Started?
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Contact Us
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Let&apos;s discuss how AI automation can transform your business and save you 20+ hours weekly.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Let's create something amazing together. Whether you have a project in mind or just want to chat about possibilities, I'd love to hear from you.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Three.js 3D Scene - Left Side */}
+          {/* Main Content */}
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="h-96 lg:h-[500px] relative"
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
             >
-              <Canvas
-                camera={{ position: [0, 0, 8], fov: 75 }}
-                style={{ background: 'transparent' }}
-                className="w-full h-full"
-              >
-                <ambientLight intensity={0.6} />
-                <pointLight position={[10, 10, 10]} intensity={1} />
-                <pointLight position={[-10, -10, -10]} intensity={0.5} />
-                
-                {/* Central AI Brain */}
-                <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-                  <Sphere 
-                    args={[1.2, 32, 32]} 
-                    position={[0, 0, 0]}
-                  >
-                    <meshStandardMaterial 
-                      color="#8B5CF6" 
-                      transparent 
-                      opacity={0.9}
-                      metalness={0.3}
-                      roughness={0.1}
-                      emissive="#4338CA"
-                      emissiveIntensity={0.2}
-                    />
-                  </Sphere>
-                </Float>
-
-                {/* Orbiting Elements */}
-                <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
-                  <Box 
-                    args={[0.6, 0.6, 0.6]} 
-                    position={[3, 2, 0]}
-                  >
-                    <meshStandardMaterial 
-                      color="#10B981" 
-                      transparent 
-                      opacity={0.8}
-                      metalness={0.4}
-                      roughness={0.2}
-                    />
-                  </Box>
-                </Float>
-
-                <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.4}>
-                  <Torus 
-                    args={[1.5, 0.4, 16, 32]} 
-                    position={[-3, -1, 0]}
-                  >
-                    <meshStandardMaterial 
-                      color="#F59E0B" 
-                      transparent 
-                      opacity={0.7}
-                      metalness={0.2}
-                      roughness={0.3}
-                    />
-                  </Torus>
-                </Float>
-
-                {/* Floating Particles */}
-                {Array.from({ length: 15 }).map((_, i) => (
-                  <Float key={i} speed={1 + Math.random()} rotationIntensity={0.2} floatIntensity={0.3}>
-                    <Sphere 
-                      args={[0.1 + Math.random() * 0.2, 16, 16]} 
-                      position={[
-                        (Math.random() - 0.5) * 6,
-                        (Math.random() - 0.5) * 6,
-                        (Math.random() - 0.5) * 6
-                      ]}
-                    >
-                      <meshStandardMaterial 
-                        color={['#8B5CF6', '#3B82F6', '#10B981', '#F59E0B'][Math.floor(Math.random() * 4)]}
-                        transparent 
-                        opacity={0.6}
-                      />
-                    </Sphere>
-                  </Float>
-                ))}
-
-                <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
-              </Canvas>
-            </motion.div>
-
-            {/* Contact Form - Right Side */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Get in Touch
-                </h3>
+              <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Send a Message</h3>
                 
                 <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                        First Name *
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        Name
                       </label>
                       <input
                         type="text"
-                        id="firstName"
-                        name="firstName"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
-                        placeholder="Your first name"
-                        required
+                        id="name"
+                        placeholder="Your Name"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
                       />
                     </div>
-                    
+
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                        Last Name *
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Email
                       </label>
                       <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
-                        placeholder="Your last name"
-                        required
+                        type="email"
+                        id="email"
+                        placeholder="Your Email"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
                       />
                     </div>
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                      Company Name *
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                      Subject
                     </label>
                     <input
                       type="text"
-                      id="company"
-                      name="company"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
-                      placeholder="Your company name"
-                      required
+                      id="subject"
+                      placeholder="Subject"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
-                      placeholder="your.email@company.com"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
+                      Message
                     </label>
                     <textarea
                       id="message"
-                      name="message"
-                      rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Tell us about your automation needs..."
-                      required
+                      placeholder="Your Message"
+                      rows={6}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-500 resize-none"
                     />
                   </div>
-                  
+
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 hover:scale-105 shadow-lg"
+                    className="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2"
                   >
-                    <Send className="w-5 h-5 inline mr-2" />
-                    Send Message
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                    <span>Send Message</span>
                   </button>
                 </form>
-                
-                <div className="mt-6 text-center">
-                  <p className="text-sm text-gray-500">
-                    By submitting this form, you agree to our{' '}
-                    <a href="/privacy" className="text-purple-600 hover:text-purple-700 underline">
-                      Privacy Policy
-                    </a>{' '}
-                    and{' '}
-                    <a href="/terms" className="text-purple-600 hover:text-purple-700 underline">
-                      Terms of Service
-                    </a>
-                  </p>
-                </div>
               </div>
             </motion.div>
+
+                          {/* Contact Info */}
+              <motion.div 
+                className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Let's Connect</h3>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Email</p>
+                      <p className="text-gray-900 font-medium">hello@nexusbloom.com</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Phone</p>
+                      <p className="text-gray-900 font-medium">+1 (555) 123-4567</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-gray-500 text-sm">Location</p>
+                      <p className="text-gray-900 font-medium">San Francisco, CA</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
           </div>
         </div>
       </section>
