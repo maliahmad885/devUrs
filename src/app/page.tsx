@@ -4,7 +4,6 @@ import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
 import EnhancedFeatures from '@/components/EnhancedFeatures'
-import Testimonials from '@/components/Testimonials'
 import ThreeDBackground from '@/components/3DBackground'
 import ScrollIndicator from '@/components/ScrollIndicator'
 import ScrollProgress from '@/components/ScrollProgress'
@@ -316,9 +315,6 @@ export default function Home() {
 
       {/* Innovative Section Divider */}
       <SectionDivider variant="sparkle" />
-
-      {/* Testimonials Section */}
-      <Testimonials />
 
       {/* Services Section */}
       <section id="services" className="scroll-section bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
