@@ -139,7 +139,7 @@ export default function Home() {
               About <span className="heading-3d-gradient">Nexus Bloom</span>
             </h2>
             <p className="text-body-large text-gray-600 max-w-4xl mx-auto px-4 sm:px-0 text-lg">
-              We're revolutionizing how businesses automate, integrate, and grow through intelligent AI agents and cutting-edge automation solutions that transform operations 24/7.
+              We&apos;re revolutionizing how businesses automate, integrate, and grow through intelligent AI agents and cutting-edge automation solutions that transform operations 24/7.
             </p>
             
             {/* 3D Decorative Elements */}
@@ -836,7 +836,7 @@ export default function Home() {
               Contact Us
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Let's create something amazing together. Whether you have a project in mind or just want to chat about possibilities, I'd love to hear from you.
+              Let&apos;s create something amazing together. Whether you have a project in mind or just want to chat about possibilities, I&apos;d love to hear from you.
             </p>
           </motion.div>
 
@@ -924,7 +924,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Let's Connect</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Let&apos;s Connect</h3>
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center">

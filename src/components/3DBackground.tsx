@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Sphere, Box, Torus } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -76,7 +76,7 @@ const FloatingElements = () => {
 
 // Animated Grid
 const AnimatedGrid = () => {
-  const gridRef = useRef<any>(null)
+  const gridRef = useRef<THREE.GridHelper>(null)
 
   useFrame((state) => {
     if (gridRef.current) {

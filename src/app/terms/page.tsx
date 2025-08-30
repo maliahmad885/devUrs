@@ -58,7 +58,7 @@ export default function TermsOfService() {
               Terms of Service
             </h1>
             <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
-              These terms govern your use of Nexus Bloom's services. 
+              These terms govern your use of Nexus Bloom&apos;s services. 
               Please read them carefully before using our platform.
             </p>
             <div className="mt-6 text-sm text-gray-500">

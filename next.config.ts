@@ -16,7 +16,6 @@ const nextConfig: NextConfig = {
   
   // Optimize bundle
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['@heroicons/react', 'lucide-react', 'framer-motion'],
   },
   
