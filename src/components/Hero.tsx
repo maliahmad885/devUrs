@@ -138,15 +138,15 @@ const ParticleSystem = () => {
   useEffect(() => {
     const generateParticles = () => {
       const newParticles: Particle[] = []
-      const particleCount = isMobile ? 30 : 80
+      const particleCount = isMobile ? 60 : 150
       for (let i = 0; i < particleCount; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
           size: Math.random() * 4 + 1,
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.3,
+          speedX: (Math.random() - 0.5) * 1.2,
+          speedY: (Math.random() - 0.5) * 1.2,
           opacity: Math.random() * 0.6 + 0.3,
           color: ['#8B5CF6', '#3B82F6', '#06B6D4', '#10B981', '#F59E0B', '#EC4899'][Math.floor(Math.random() * 6)]
         })
@@ -196,8 +196,8 @@ const ParticleSystem = () => {
         
         if (distance < 120) {
           const force = (120 - distance) / 120
-          particle.x -= dx * force * 0.015
-          particle.y -= dy * force * 0.015
+          particle.x -= dx * force * 0.05
+          particle.y -= dy * force * 0.05
         }
 
         // Draw particle with glow effect
@@ -533,11 +533,11 @@ export default function Hero({ className }: HeroProps) {
         >
           {/* Enhanced Heading with Animated Gradient Text */}
           <motion.div variants={itemVariants} className="mb-8 sm:mb-12">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 relative font-bold leading-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 relative font-bold leading-tight font-poppins">
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`main-${currentHeadingIndex}`}
-                  className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-clip-text text-transparent"
+                  className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-clip-text text-transparent font-poppins"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -550,7 +550,7 @@ export default function Hero({ className }: HeroProps) {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`sub-${currentHeadingIndex}`}
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
+                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent font-poppins"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -561,7 +561,7 @@ export default function Hero({ className }: HeroProps) {
               </AnimatePresence>
               
               {/* Enhanced 3D Text Shadow Effect */}
-              <div className="absolute inset-0 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-300/20 transform translate-x-2 translate-y-2 -z-10 hidden lg:block">
+              <div className="absolute inset-0 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-300/20 transform translate-x-2 translate-y-2 -z-10 hidden lg:block font-poppins">
                 <span>{currentHeading.main}</span>
                 <br />
                 <span>{currentHeading.sub}</span>

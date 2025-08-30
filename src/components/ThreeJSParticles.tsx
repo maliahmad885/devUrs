@@ -20,7 +20,7 @@ export default function ThreeJSParticles() {
   // Create particles
   const particles = useMemo(() => {
     const temp: Particle[] = []
-    const particleCount = 300 // Reduced from 1000 to 300
+    const particleCount = 500 // Increased from 300 to 500
     
     for (let i = 0; i < particleCount; i++) {
       const time = Math.random() * 100
@@ -31,9 +31,9 @@ export default function ThreeJSParticles() {
           (Math.random() - 0.5) * 15
         ),
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.04, // Doubled speed
-          (Math.random() - 0.5) * 0.04,
-          (Math.random() - 0.5) * 0.04
+          (Math.random() - 0.5) * 0.15, // Increased speed significantly
+          (Math.random() - 0.5) * 0.15,
+          (Math.random() - 0.5) * 0.15
         ),
         color: new THREE.Color().setHSL(
           Math.random() * 0.3 + 0.5, // Purple to blue range
@@ -88,9 +88,9 @@ export default function ThreeJSParticles() {
       particle.position.add(particle.velocity)
       
       // Add some wave motion (increased amplitude)
-      particle.position.x += Math.sin(time * 1.0 + i * 0.1) * 0.002
-      particle.position.y += Math.cos(time * 0.8 + i * 0.1) * 0.002
-      particle.position.z += Math.sin(time * 1.2 + i * 0.1) * 0.002
+      particle.position.x += Math.sin(time * 1.0 + i * 0.1) * 0.008
+      particle.position.y += Math.cos(time * 0.8 + i * 0.1) * 0.008
+      particle.position.z += Math.sin(time * 1.2 + i * 0.1) * 0.008
 
       // Wrap around boundaries (adjusted for smaller spread)
       if (particle.position.x > 7.5) particle.position.x = -7.5
@@ -171,7 +171,7 @@ export function AdvancedParticleSystem() {
     const systems = []
     
     // Energy particles
-    for (let i = 0; i < 80; i++) { // Reduced from 200 to 80
+    for (let i = 0; i < 120; i++) { // Increased from 80 to 120
       systems.push({
         position: new THREE.Vector3(
           (Math.random() - 0.5) * 20, // Reduced spread
@@ -179,9 +179,9 @@ export function AdvancedParticleSystem() {
           (Math.random() - 0.5) * 20
         ),
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.02, // Doubled speed
-          (Math.random() - 0.5) * 0.02,
-          (Math.random() - 0.5) * 0.02
+          (Math.random() - 0.5) * 0.08, // Increased speed significantly
+          (Math.random() - 0.5) * 0.08,
+          (Math.random() - 0.5) * 0.08
         ),
         color: new THREE.Color().setHSL(
           Math.random() * 0.2 + 0.6, // Blue to purple
@@ -194,7 +194,7 @@ export function AdvancedParticleSystem() {
     }
 
     // Data particles
-    for (let i = 0; i < 60; i++) { // Reduced from 150 to 60
+    for (let i = 0; i < 90; i++) { // Increased from 60 to 90
       systems.push({
         position: new THREE.Vector3(
           (Math.random() - 0.5) * 18, // Reduced spread
@@ -202,9 +202,9 @@ export function AdvancedParticleSystem() {
           (Math.random() - 0.5) * 18
         ),
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.025, // Increased speed
-          (Math.random() - 0.5) * 0.025,
-          (Math.random() - 0.5) * 0.025
+          (Math.random() - 0.5) * 0.1, // Increased speed significantly
+          (Math.random() - 0.5) * 0.1,
+          (Math.random() - 0.5) * 0.1
         ),
         color: new THREE.Color().setHSL(
           Math.random() * 0.3 + 0.1, // Green to blue
@@ -217,7 +217,7 @@ export function AdvancedParticleSystem() {
     }
 
     // Connection particles
-    for (let i = 0; i < 40; i++) { // Reduced from 100 to 40
+    for (let i = 0; i < 60; i++) { // Increased from 40 to 60
       systems.push({
         position: new THREE.Vector3(
           (Math.random() - 0.5) * 15, // Reduced spread
@@ -225,9 +225,9 @@ export function AdvancedParticleSystem() {
           (Math.random() - 0.5) * 15
         ),
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.03, // Increased speed
-          (Math.random() - 0.5) * 0.03,
-          (Math.random() - 0.5) * 0.03
+          (Math.random() - 0.5) * 0.12, // Increased speed significantly
+          (Math.random() - 0.5) * 0.12,
+          (Math.random() - 0.5) * 0.12
         ),
         color: new THREE.Color().setHSL(
           Math.random() * 0.2 + 0.8, // Purple to pink
@@ -256,14 +256,14 @@ export function AdvancedParticleSystem() {
       switch (particle.type) {
         case 'energy':
           // Energy particles move in waves
-          particle.position.x += Math.sin(time * 0.8 + i * 0.1) * 0.002
-          particle.position.y += Math.cos(time * 0.6 + i * 0.1) * 0.002
+          particle.position.x += Math.sin(time * 0.8 + i * 0.1) * 0.006
+          particle.position.y += Math.cos(time * 0.6 + i * 0.1) * 0.006
           break
         case 'data':
           // Data particles move in spirals
           const angle = time * 0.5 + i * 0.1
-          particle.position.x += Math.cos(angle) * 0.001
-          particle.position.y += Math.sin(angle) * 0.001
+          particle.position.x += Math.cos(angle) * 0.004
+          particle.position.y += Math.sin(angle) * 0.004
           break
         case 'connection':
           // Connection particles move towards center

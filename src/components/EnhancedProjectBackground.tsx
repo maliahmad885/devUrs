@@ -37,7 +37,7 @@ export default function EnhancedProjectBackground() {
   }, [])
 
   // Create particle system for floating elements
-  const particleCount = 150
+  const particleCount = 250
   const particlePositions = useMemo(() => {
     const positions = new Float32Array(particleCount * 3)
     const colors = new Float32Array(particleCount * 3)
