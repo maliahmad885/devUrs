@@ -496,33 +496,7 @@ export default function Hero({ className }: HeroProps) {
         />
       </div>
 
-      {/* Enhanced Floating Icons - Fixed positioning to prevent overflow */}
-      <FloatingIcon 
-        icon={Zap} 
-        name="Zapier" 
-        color="bg-gradient-to-br from-orange-400 to-red-500"
-        position="top-1/4"
-        left="left-4"
-        delay={0.5}
-      />
-      
-      <FloatingIcon 
-        icon={MessageCircle} 
-        name="ManyChat" 
-        color="bg-gradient-to-br from-green-400 to-emerald-600"
-        position="top-1/2"
-        left="left-8"
-        delay={1.5}
-      />
-      
-      <FloatingIcon 
-        icon={Shield} 
-        name="HubSpot" 
-        color="bg-gradient-to-br from-red-400 to-pink-600"
-        position="bottom-1/4"
-        left="left-6"
-        delay={2.5}
-      />
+
 
       {/* Enhanced Floating Sparkles - Fixed positioning */}
       <motion.div
