@@ -86,7 +86,6 @@ export default function ContactForm() {
           <motion.div
             variants={inputVariants}
             whileFocus="focus"
-            whileBlur="blur"
             className="relative"
           >
             <div className="absolute left-4 top-4 text-gray-400">
@@ -107,7 +106,6 @@ export default function ContactForm() {
           <motion.div
             variants={inputVariants}
             whileFocus="focus"
-            whileBlur="blur"
             className="relative"
           >
             <div className="absolute left-4 top-4 text-gray-400">
@@ -129,7 +127,6 @@ export default function ContactForm() {
         <motion.div
           variants={inputVariants}
           whileFocus="focus"
-          whileBlur="blur"
           className="relative"
         >
           <div className="absolute left-4 top-4 text-gray-400">
@@ -150,7 +147,6 @@ export default function ContactForm() {
         <motion.div
           variants={inputVariants}
           whileFocus="focus"
-          whileBlur="blur"
           className="relative"
         >
           <div className="absolute left-4 top-4 text-gray-400">
