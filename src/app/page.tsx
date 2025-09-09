@@ -180,32 +180,38 @@ export default function Home() {
               {
                 title: "n8n, Make, Zapier Automations",
                 description: "Seamless integration with leading automation platforms. Connect workflows across multiple tools and services.",
-                category: "Automation"
+                category: "Automation",
+                image: "/images/automation-zap.svg"
               },
               {
                 title: "AI Agents",
                 description: "Intelligent AI agents that automate complex tasks, learn from patterns, and optimize your business processes.",
-                category: "AI"
+                category: "AI",
+                image: "/images/ai-engine.svg"
               },
               {
                 title: "Smart Workflows",
                 description: "Build intelligent, adaptive workflows that respond to business events and optimize performance automatically.",
-                category: "Workflow"
+                category: "Workflow",
+                image: "/images/workflow-builder.svg"
               },
               {
                 title: "Business Automations",
                 description: "End-to-end business process automation from lead capture to customer retention and everything in between.",
-                category: "Automation"
+                category: "Automation",
+                image: "/images/ai-automation-flow.svg"
               },
               {
                 title: "Lead Generation",
                 description: "Automated lead generation systems that identify, qualify, and nurture prospects with AI-powered insights.",
-                category: "Marketing"
+                category: "Marketing",
+                image: "/images/brain-intelligence.svg"
               },
               {
                 title: "CRM Integration",
                 description: "Seamlessly integrate with popular CRM systems like Salesforce, HubSpot, and Pipedrive for unified customer data.",
-                category: "Integration"
+                category: "Integration",
+                image: "/images/3d-integration.svg"
               }
             ].map((service, index) => (
               <div
@@ -213,7 +219,11 @@ export default function Home() {
                 className="bg-white/80 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <div className="w-8 h-8 bg-white rounded-lg"></div>
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-10 h-10 text-white"
+                  />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-tight">
                   {service.title}
