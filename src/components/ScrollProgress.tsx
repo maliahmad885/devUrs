@@ -4,7 +4,7 @@ import { useEffect, useRef, useCallback } from 'react'
 
 export default function ScrollProgress() {
   const progressRef = useRef<HTMLDivElement>(null)
-  const rafRef = useRef<number>()
+  const rafRef = useRef<number | undefined>(undefined)
   const lastScrollY = useRef(0)
 
   const updateProgress = useCallback(() => {

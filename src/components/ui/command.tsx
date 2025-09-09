@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { type DialogProps } from "@radix-ui/react-dialog"
 import { Command as CommandPrimitive } from "cmdk"
@@ -23,8 +25,7 @@ Command.displayName = CommandPrimitive.displayName
 
 interface CommandDialogProps extends DialogProps {
   children?: React.ReactNode
-  children?: React.ReactNode
-  children?: React.ReactNode
+}
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
@@ -73,10 +74,10 @@ CommandList.displayName = CommandPrimitive.List.displayName
 const CommandEmpty = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Empty>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
->((props, ref) => (
+>(({ className, ...props }, ref) => (
   <CommandPrimitive.Empty
     ref={ref}
-    className="py-6 text-center text-sm"
+    className={cn("py-6 text-center text-sm", className)}
     {...props}
   />
 ))
@@ -152,4 +153,5 @@ export {
   CommandGroup,
   CommandItem,
   CommandShortcut,
+  CommandSeparator,
 }

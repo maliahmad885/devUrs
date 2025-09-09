@@ -184,7 +184,7 @@ export default function ContactForm() {
         >
           <h3 className="text-3xl font-bold text-white mb-2 flex items-center">
             <Zap className="w-8 h-8 mr-3 text-yellow-400" />
-            Let's Build Something Amazing
+            Tell us about your automation needs and we&apos;ll create a custom solution for you.
           </h3>
           <p className="text-gray-300">
             Tell us about your automation needs and we&apos;ll create a custom solution for you.

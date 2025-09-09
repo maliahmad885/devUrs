@@ -124,7 +124,7 @@ const ParticleSystem = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMobile, setIsMobile] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
   const lastTimeRef = useRef<number>(0)
 
   useEffect(() => {

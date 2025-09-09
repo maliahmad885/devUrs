@@ -11,7 +11,7 @@ interface ScrollIndicatorProps {
 export default function ScrollIndicator({ sections }: ScrollIndicatorProps) {
   const [currentSection, setCurrentSection] = useState('')
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const rafRef = useRef<number>()
+  const rafRef = useRef<number | undefined>(undefined)
   const lastScrollY = useRef(0)
   const sectionElements = useRef<Map<string, HTMLElement>>(new Map())
 

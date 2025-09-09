@@ -1,10 +1,38 @@
 import type { Metadata } from "next";
+import { Inter, Poppins, Open_Sans, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
 import NoSSR from "@/components/NoSSR";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import AnalyticsWrapper from "@/components/Analytics";
 import { ThemeProvider } from "@/components/ThemeProvider";
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  variable: '--font-inter'
+});
+
+const poppins = Poppins({ 
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-poppins'
+});
+
+const openSans = Open_Sans({ 
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-open-sans'
+});
+
+const robotoMono = Roboto_Mono({ 
+  subsets: ["latin"],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-roboto-mono'
+});
 
 export const metadata: Metadata = {
   title: "Nexus Bloom - AI Automation & Voice Agents | Transform Your Business",
@@ -66,7 +94,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#8B5CF6" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
-      <body className="font-sans" suppressHydrationWarning={true}>
+      <body className={`${inter.className} ${inter.variable} ${poppins.variable} ${openSans.variable} ${robotoMono.variable}`} suppressHydrationWarning={true}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

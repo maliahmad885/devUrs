@@ -13,10 +13,10 @@ export default function PerformanceMonitor() {
             console.log('LCP:', entry.startTime)
           }
           if (entry.entryType === 'first-input') {
-            console.log('FID:', entry.processingStart - entry.startTime)
+            console.log('FID:', (entry as PerformanceEntry & { processingStart: number }).processingStart - entry.startTime)
           }
           if (entry.entryType === 'layout-shift') {
-            console.log('CLS:', entry.value)
+            console.log('CLS:', (entry as PerformanceEntry & { value: number }).value)
           }
         }
       })
@@ -51,9 +51,9 @@ export default function PerformanceMonitor() {
     }
 
     // Memory usage monitoring (if available)
-    if ('memory' in performance) {
+    if (typeof window !== 'undefined' && 'memory' in performance) {
       const checkMemory = () => {
-        const memory = (performance as Performance (performance as any).memory { memory: any }).memory
+        const memory = (performance as Performance & { memory: { usedJSHeapSize: number; jsHeapSizeLimit: number } }).memory
         if (memory.usedJSHeapSize > memory.jsHeapSizeLimit * 0.8) {
           console.warn('High memory usage detected')
         }

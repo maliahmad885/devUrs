@@ -38,7 +38,7 @@ const mobileMenuVariants = {
     y: 0,
     transition: {
       duration: 0.3,
-      ease: "easeOut"
+      ease: [0.25, 0.46, 0.45, 0.94] as const
     }
   },
   exit: { 
@@ -47,7 +47,7 @@ const mobileMenuVariants = {
     y: -20,
     transition: {
       duration: 0.2,
-      ease: "easeIn"
+      ease: [0.55, 0.06, 0.68, 0.19] as const
     }
   }
 }
@@ -60,10 +60,10 @@ export default function Navigation({ className }: NavigationProps) {
   const [isClient, setIsClient] = useState(false)
   
   // Performance optimization refs
-  const rafRef = useRef<number>()
+  const rafRef = useRef<number | undefined>(undefined)
   const lastScrollY = useRef(0)
   const sectionElements = useRef<Map<string, HTMLElement>>(new Map())
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>()
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   // Cache section elements for better performance
   useEffect(() => {
@@ -292,7 +292,7 @@ export default function Navigation({ className }: NavigationProps) {
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-purple-100 to-blue-100 rounded-lg -z-10"
                     layoutId="activeSection"
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const }}
                   />
                 )}
               </motion.a>

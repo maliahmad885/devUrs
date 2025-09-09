@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --font-inter: 'Inter', system-ui, sans-serif;
-    --font-poppins: 'Poppins', system-ui, sans-serif;
-    --font-open-sans: 'Open Sans', system-ui, sans-serif;
-    --font-roboto-mono: 'Roboto Mono', monospace;
+    --font-inter: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    
+    
+    
     
     /* Light Theme Colors */
     --bg-primary: #ffffff;
