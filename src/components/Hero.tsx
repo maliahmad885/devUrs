@@ -1,9 +1,9 @@
 'use client'
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Play, MessageCircle, Zap, Settings, Database, Shield, Sparkles, Zap as ZapIcon, Zap as Lightning, Star, CheckCircle, Rocket, Target, TrendingUp, Clock } from 'lucide-react'
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion'
+import { ArrowRight, Play, MessageCircle, Zap, Sparkles, Rocket, Target, TrendingUp, Clock, Shield, CheckCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 // Types
 interface HeroProps {
@@ -118,12 +118,14 @@ const rotateVariants = {
   },
 }
 
-// Enhanced Interactive Particle System
+// Optimized Interactive Particle System
 const ParticleSystem = () => {
   const [particles, setParticles] = useState<Particle[]>([])
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMobile, setIsMobile] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const animationRef = useRef<number>()
+  const lastTimeRef = useRef<number>(0)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -138,16 +140,17 @@ const ParticleSystem = () => {
   useEffect(() => {
     const generateParticles = () => {
       const newParticles: Particle[] = []
-      const particleCount = isMobile ? 60 : 150
+      // Reduced particle count for better performance
+      const particleCount = isMobile ? 30 : 80
       for (let i = 0; i < particleCount; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
-          size: Math.random() * 4 + 1,
-          speedX: (Math.random() - 0.5) * 1.2,
-          speedY: (Math.random() - 0.5) * 1.2,
-          opacity: Math.random() * 0.6 + 0.3,
+          size: Math.random() * 3 + 1,
+          speedX: (Math.random() - 0.5) * 0.8,
+          speedY: (Math.random() - 0.5) * 0.8,
+          opacity: Math.random() * 0.4 + 0.2,
           color: ['#8B5CF6', '#3B82F6', '#06B6D4', '#10B981', '#F59E0B', '#EC4899'][Math.floor(Math.random() * 6)]
         })
       }
@@ -157,16 +160,16 @@ const ParticleSystem = () => {
     generateParticles()
     window.addEventListener('resize', generateParticles)
     return () => window.removeEventListener('resize', generateParticles)
+  }, [isMobile])
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    setMousePosition({ x: e.clientX, y: e.clientY })
   }, [])
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
+  }, [handleMouseMove])
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -175,7 +178,14 @@ const ParticleSystem = () => {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const animate = () => {
+    const animate = (currentTime: number) => {
+      // Throttle animation to 60fps
+      if (currentTime - lastTimeRef.current < 16) {
+        animationRef.current = requestAnimationFrame(animate)
+        return
+      }
+      
+      lastTimeRef.current = currentTime
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       particles.forEach(particle => {
@@ -189,60 +199,43 @@ const ParticleSystem = () => {
         if (particle.y < 0) particle.y = canvas.height
         if (particle.y > canvas.height) particle.y = 0
 
-        // Enhanced mouse interaction
+        // Optimized mouse interaction
         const dx = mousePosition.x - particle.x
         const dy = mousePosition.y - particle.y
         const distance = Math.sqrt(dx * dx + dy * dy)
         
-        if (distance < 120) {
-          const force = (120 - distance) / 120
-          particle.x -= dx * force * 0.05
-          particle.y -= dy * force * 0.05
+        if (distance < 100) {
+          const force = (100 - distance) / 100
+          particle.x -= dx * force * 0.03
+          particle.y -= dy * force * 0.03
         }
 
-        // Draw particle with glow effect
+        // Draw particle with optimized rendering
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        
-        // Create gradient for glow
-        const gradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, particle.size * 2
-        )
-        gradient.addColorStop(0, particle.color)
-        gradient.addColorStop(1, 'transparent')
-        
-        ctx.fillStyle = gradient
+        ctx.fillStyle = particle.color
         ctx.globalAlpha = particle.opacity
         ctx.fill()
 
-        // Draw connections with improved styling
+        // Draw connections with reduced complexity
         particles.forEach(otherParticle => {
           const dx = particle.x - otherParticle.x
           const dy = particle.y - otherParticle.y
           const distance = Math.sqrt(dx * dx + dy * dy)
           
-          if (distance < 120) {
+          if (distance < 80) {
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
-            
-            // Create gradient for connections
-            const lineGradient = ctx.createLinearGradient(
-              particle.x, particle.y, otherParticle.x, otherParticle.y
-            )
-            lineGradient.addColorStop(0, particle.color)
-            lineGradient.addColorStop(1, otherParticle.color)
-            
-            ctx.strokeStyle = lineGradient
-            ctx.globalAlpha = (120 - distance) / 120 * 0.4
-            ctx.lineWidth = 1
+            ctx.strokeStyle = particle.color
+            ctx.globalAlpha = (80 - distance) / 80 * 0.2
+            ctx.lineWidth = 0.5
             ctx.stroke()
           }
         })
       })
 
-      requestAnimationFrame(animate)
+      animationRef.current = requestAnimationFrame(animate)
     }
 
     const resizeCanvas = () => {
@@ -252,9 +245,14 @@ const ParticleSystem = () => {
 
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
-    animate()
+    animationRef.current = requestAnimationFrame(animate)
 
-    return () => window.removeEventListener('resize', resizeCanvas)
+    return () => {
+      window.removeEventListener('resize', resizeCanvas)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
   }, [particles, mousePosition])
 
   if (isMobile) {
@@ -267,99 +265,6 @@ const ParticleSystem = () => {
       className="absolute inset-0 pointer-events-none"
       style={{ zIndex: 1 }}
     />
-  )
-}
-
-// Enhanced Floating Icon Component
-const FloatingIcon = ({ 
-  icon: Icon, 
-  name, 
-  color, 
-  delay = 0,
-  position = 'top-1/4',
-  left = 'left-20',
-  size = 'w-16 h-16'
-}: { 
-  icon: React.ComponentType<{ className?: string }>
-  name: string
-  color: string
-  delay?: number
-  position?: string
-  left?: string
-  size?: string
-}) => {
-  const [isHovered, setIsHovered] = useState(false)
-  const springConfig = { stiffness: 300, damping: 20 }
-  const scale = useSpring(isHovered ? 1.15 : 1, springConfig)
-  const rotation = useSpring(isHovered ? 15 : 0, springConfig)
-
-  return (
-    <motion.div
-      className={cn(
-        'absolute flex flex-col items-center cursor-pointer group hidden lg:flex',
-        position,
-        left
-      )}
-      initial={{ opacity: 0, scale: 0, y: 50 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 1, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      style={{ scale, rotateZ: rotation }}
-    >
-      <motion.div
-        className={cn(
-          `${size} rounded-2xl flex items-center justify-center shadow-2xl relative overflow-hidden border border-white/20`,
-          color
-        )}
-        variants={floatingVariants}
-        animate="float"
-        style={{ animationDelay: `${delay}s` }}
-      >
-        <Icon className="w-8 h-8 text-white relative z-10" />
-        
-        {/* Animated shine effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-          animate={{ x: ['-100%', '100%'] }}
-          transition={{ duration: 2, repeat: Infinity, delay }}
-        />
-        
-        {/* Hover glow effect */}
-        {isHovered && (
-          <motion.div
-            className="absolute inset-0 bg-white/20 rounded-2xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          />
-        )}
-      </motion.div>
-      
-      <motion.div
-        className="text-sm font-semibold text-gray-700 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-gray-200/60 mt-3"
-        variants={pulseVariants}
-        animate="pulse"
-        style={{ animationDelay: `${delay + 1}s` }}
-      >
-        {name}
-      </motion.div>
-      
-      {/* Enhanced Hover Tooltip */}
-      {isHovered && (
-        <motion.div
-          initial={{ opacity: 0, y: 10, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          className="absolute -top-24 bg-gray-900 text-white text-sm px-4 py-3 rounded-xl shadow-2xl whitespace-nowrap border border-gray-700"
-        >
-          <div className="flex items-center gap-2">
-            <Star className="w-4 h-4 text-yellow-400" />
-            <span>Learn more about {name}</span>
-          </div>
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
-        </motion.div>
-      )}
-    </motion.div>
   )
 }
 
@@ -461,7 +366,7 @@ export default function Hero({ className }: HeroProps) {
         className
       )}
     >
-      {/* Enhanced Interactive Particle System */}
+      {/* Optimized Interactive Particle System */}
       <ParticleSystem />
       
       {/* Enhanced Background Elements with 3D Parallax - Fixed positioning to prevent overflow */}
@@ -496,8 +401,6 @@ export default function Hero({ className }: HeroProps) {
         />
       </div>
 
-
-
       {/* Enhanced Floating Sparkles - Fixed positioning */}
       <motion.div
         animate={{ 
@@ -520,7 +423,7 @@ export default function Hero({ className }: HeroProps) {
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
         className="absolute bottom-1/3 left-8 hidden lg:block"
       >
-        <ZapIcon className="w-6 h-6 text-orange-400 animate-pulse" />
+        <Zap className="w-6 h-6 text-orange-400 animate-pulse" />
       </motion.div>
 
       {/* Main Content Area */}
@@ -690,4 +593,4 @@ export default function Hero({ className }: HeroProps) {
       </div>
     </section>
   )
-} 
+}
