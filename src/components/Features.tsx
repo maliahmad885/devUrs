@@ -58,7 +58,7 @@ const Interactive3DCard = ({
   return (
     <motion.div
       ref={cardRef}
-      className="relative group cursor-pointer perspective-1000"
+      className="relative group cursor-pointer perspective-1000 h-full flex flex-col"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
@@ -74,8 +74,8 @@ const Interactive3DCard = ({
       }}
     >
       <motion.div
-        className="relative p-4 sm:p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-gray-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
-        style={{ transform: 'translateZ(20px)' }}
+        className="relative p-4 sm:p-6 bg-white/90 backdrop-blur-md rounded-2xl border border-gray-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden h-64 flex flex-col"
+        style={{ transform: 'translateZ(20px)', minHeight: '16rem' }}
         whileHover={{ 
           scale: 1.05,
           y: -10
@@ -115,7 +115,7 @@ const Interactive3DCard = ({
         
         {/* Icon with Enhanced Hover Effects */}
         <motion.div
-          className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-xl flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200"
+          className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-xl flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 flex-shrink-0"
           animate={{ 
             y: isHovered ? -5 : 0,
             scale: isHovered ? 1.1 : 1
@@ -132,12 +132,12 @@ const Interactive3DCard = ({
         
         {/* Content with Enhanced Hover Effects */}
         <motion.div 
-          className="relative z-10 text-center"
+          className="relative z-10 text-center flex flex-col flex-1 justify-start"
           whileHover={{ y: -2 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
-          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">{title}</h3>
-          <p className="text-gray-600 text-xs sm:text-sm">{description}</p>
+          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 flex-shrink-0">{title}</h3>
+          <p className="text-gray-600 text-xs sm:text-sm flex-1 flex items-start justify-center">{description}</p>
         </motion.div>
         
         {/* Enhanced Glow effect */}
@@ -166,7 +166,7 @@ export default function Features() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
-            Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Nexus Bloom</span>?
+            Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">AI Solutions</span>?
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
             Discover the powerful automation capabilities that make us the leading AI integration platform
@@ -179,7 +179,7 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto items-stretch"
         >
           <Interactive3DCard
             icon={Cpu}

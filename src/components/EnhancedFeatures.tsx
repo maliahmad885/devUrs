@@ -272,7 +272,7 @@ export default function EnhancedFeatures() {
             Powerful Features That Drive Results
           </h2>
           <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
-            Discover the cutting-edge capabilities that make Nexus Bloom the most advanced automation platform
+            Discover the cutting-edge capabilities that make AI Solutions the most advanced automation platform
           </p>
         </motion.div>
 

@@ -109,7 +109,7 @@ export default function Home() {
           {/* About content - simplified version */}
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-4xl md:text-5xl text-gray-900 mb-6 sm:mb-8 font-bold">
-              About <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Nexus Bloom</span>
+              About <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">AI Solutions</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0">
               We&apos;re revolutionizing how businesses automate, integrate, and grow through intelligent AI agents and cutting-edge automation solutions that transform operations 24/7.
@@ -122,7 +122,7 @@ export default function Home() {
               <div className="space-y-5">
                 <h3 className="text-2xl font-semibold text-gray-900">Our Story</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Founded in 2023, Nexus Bloom emerged from a deep understanding of the automation challenges businesses face daily. Our founder, a certified Make.com and n8n automation expert with 5+ years of hands-on experience, recognized that businesses were drowning in manual processes and disconnected tools.
+                  Founded in 2023, AI Solutions emerged from a deep understanding of the automation challenges businesses face daily. Our founder, a certified Make.com and n8n automation expert with 5+ years of hands-on experience, recognized that businesses were drowning in manual processes and disconnected tools.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
                   What started as a passion for building AI agents and voice systems has grown into a powerhouse of automation expertise, serving businesses worldwide with intelligent solutions that save 20+ hours weekly and boost close rates through smart CRM workflows.
@@ -218,7 +218,7 @@ export default function Home() {
                 key={service.title}
                 className="bg-white/80 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <img 
                     src={service.image} 
                     alt={service.title}

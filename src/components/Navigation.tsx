@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Heart } from 'lucide-react'
 
 interface NavItem {
   name: string
@@ -21,7 +21,7 @@ const NAV_ITEMS: NavItem[] = [
   { name: 'Services', href: '#services' },
   { name: 'Projects', href: '#projects' },
   { name: 'Blogs', href: '#blogs' },
-  { name: 'Contact', href: '#contact' },
+  { name: "Let's Connect", href: '#contact' },
 ]
 
 // Enhanced animation variants
@@ -261,14 +261,16 @@ export default function Navigation({ className }: NavigationProps) {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            {/* Simple AI Logo */}
+            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center shadow-sm">
+              <span className="text-white font-bold text-lg">AI</span>
             </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-gray-900">Nexus</span>
-              <span className="text-sm font-medium text-purple-600 -mt-1">Bloom</span>
+            
+            {/* AI Solutions text on same line */}
+            <div className="flex items-center">
+              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                AI Solutions
+              </span>
             </div>
           </motion.div>
 
@@ -279,16 +281,25 @@ export default function Navigation({ className }: NavigationProps) {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
-                  activeSection === item.href.replace('#', '')
-                    ? 'text-purple-600 bg-purple-50'
-                    : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
+                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 focus:outline-none ${
+                  item.name === "Let's Connect"
+                    ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-xl rounded-lg lg:rounded-full'
+                    : activeSection === item.href.replace('#', '')
+                    ? 'text-purple-600 bg-purple-50 rounded-lg'
+                    : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50 rounded-lg'
                 }`}
-                whileHover={{ y: -2 }}
+                whileHover={{ y: item.name === "Let's Connect" ? 0 : -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {item.name}
-                {activeSection === item.href.replace('#', '') && (
+                {item.name === "Let's Connect" ? (
+                  <div className="flex items-center space-x-2">
+                    <Heart className="w-4 h-4" />
+                    <span>Let's Connect</span>
+                  </div>
+                ) : (
+                  item.name
+                )}
+                {activeSection === item.href.replace('#', '') && item.name !== "Let's Connect" && (
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-purple-100 to-blue-100 rounded-lg -z-10"
                     layoutId="activeSection"
@@ -301,32 +312,32 @@ export default function Navigation({ className }: NavigationProps) {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="lg:hidden p-2 rounded-lg text-gray-700 hover:text-purple-600 hover:bg-gray-50 transition-all duration-300"
+            className="lg:hidden px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-50 transition-all duration-300 focus:outline-none border border-gray-200 hover:border-purple-300"
             onClick={toggleMobileMenu}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             aria-label="Toggle mobile menu"
           >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
                 <motion.div
                   key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-4 h-4" />
                 </motion.div>
               ) : (
                 <motion.div
                   key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu className="w-6 h-6" />
+                  <span className="font-medium">Menu</span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -349,18 +360,27 @@ export default function Navigation({ className }: NavigationProps) {
                     key={item.name}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 ${
-                      activeSection === item.href.replace('#', '')
+                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 focus:outline-none ${
+                      item.name === "Let's Connect"
+                        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg'
+                        : activeSection === item.href.replace('#', '')
                         ? 'text-purple-600 bg-purple-50 border border-purple-200'
                         : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
                     }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    whileHover={{ x: 5 }}
+                    whileHover={{ x: item.name === "Let's Connect" ? 0 : 5 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {item.name}
+                    {item.name === "Let's Connect" ? (
+                      <div className="flex items-center space-x-2">
+                        <Heart className="w-4 h-4" />
+                        <span>Let's Connect</span>
+                      </div>
+                    ) : (
+                      item.name
+                    )}
                   </motion.a>
                 ))}
               </div>

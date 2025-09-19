@@ -6,7 +6,7 @@ export default function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Nexus Bloom",
+    "name": "AI Solutions",
     "url": "https://nexusbloom.com",
     "logo": "https://nexusbloom.com/favicon.svg",
     "description": "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack with AI-powered automation.",

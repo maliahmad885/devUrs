@@ -24,7 +24,7 @@ export default function EnhancedLoading({
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         >
           <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl">
-            <Zap className="w-12 h-12 text-white" />
+            <span className="text-white font-bold text-3xl">AI</span>
           </div>
           
           {/* Orbiting Elements */}
@@ -64,7 +64,7 @@ export default function EnhancedLoading({
           className="mb-6"
         >
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            Nexus Bloom
+            AI Solutions
           </h2>
           <p className="text-gray-600 dark:text-gray-300 text-lg">
             {message}

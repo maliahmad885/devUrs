@@ -81,21 +81,17 @@ export default function Footer() {
             <motion.div variants={itemVariants} className="lg:col-span-1">
               <div className="flex items-center space-x-3 mb-6">
                 <motion.div 
-                  className="w-12 h-12 bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-xl shadow-purple-500/25 border border-white/20"
+                  className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center shadow-lg"
                   whileHover={{ 
-                    rotate: 360,
-                    scale: 1.1,
-                    transition: { duration: 0.6 }
+                    scale: 1.05,
+                    transition: { duration: 0.2 }
                   }}
                 >
-                  <Zap className="w-7 h-7 text-white" />
+                  <span className="text-white font-bold text-xl">AI</span>
                 </motion.div>
-                <div className="flex flex-col">
+                <div className="flex items-center">
                   <span className="text-2xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent">
-                    Nexus
-                  </span>
-                  <span className="text-lg font-semibold text-gray-300">
-                    Bloom
+                    AI Solutions
                   </span>
                 </div>
               </div>
@@ -230,7 +226,7 @@ export default function Footer() {
                 transition={{ duration: 0.6, delay: 0.7 }}
                 viewport={{ once: true }}
               >
-                © {currentYear} Nexus Bloom. Made with 
+                © {currentYear} AI Solutions. Made with 
                 <Heart className="w-4 h-4 mx-1 text-red-500" />
                 for automation excellence.
               </motion.div>

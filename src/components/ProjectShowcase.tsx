@@ -275,7 +275,7 @@ export default function ProjectShowcase() {
             >
               {/* Project Card */}
               <motion.div
-                className="relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-100"
+                className="relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-100 h-full flex flex-col"
                 whileHover={{ y: -8 }}
                 onClick={() => openProjectModal(project)}
               >
@@ -333,12 +333,12 @@ export default function ProjectShowcase() {
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
                     {project.title}
                   </h3>
                   
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2 flex-1">
                     {project.description}
                   </p>
 
@@ -370,7 +370,7 @@ export default function ProjectShowcase() {
                   </div>
 
                   {/* Project Meta */}
-                  <div className="flex items-center justify-between text-xs text-gray-500">
+                  <div className="flex items-center justify-between text-xs text-gray-500 mt-auto">
                     <span>{project.duration}</span>
                     <span>{project.team}</span>
                   </div>

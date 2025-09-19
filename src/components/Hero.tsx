@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'fra
 import { ArrowRight, Play, MessageCircle, Zap, Sparkles, Rocket, Target, TrendingUp, Clock, Shield, CheckCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useEffect, useRef, useState, useCallback } from 'react'
+import VideoModal from './VideoModal'
 
 // Types
 interface HeroProps {
@@ -347,6 +348,7 @@ export default function Hero({ className }: HeroProps) {
   const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
 
   const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0)
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -354,6 +356,14 @@ export default function Hero({ className }: HeroProps) {
     }, 5000)
 
     return () => clearInterval(interval)
+  }, [])
+
+  // Function to scroll to contact section
+  const scrollToContact = useCallback(() => {
+    const contactSection = document.getElementById('contact')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' })
+    }
   }, [])
 
   const currentHeading = HEADING_VARIANTS[currentHeadingIndex]
@@ -369,62 +379,36 @@ export default function Hero({ className }: HeroProps) {
       {/* Optimized Interactive Particle System */}
       <ParticleSystem />
       
-      {/* Enhanced Background Elements with 3D Parallax - Fixed positioning to prevent overflow */}
+      {/* AI Background Image Only */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          style={{ y: y1 }}
-          variants={floatingVariants}
-          animate="float"
-          className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-purple-100/60 to-blue-100/60 rounded-full blur-3xl opacity-60 hidden lg:block"
-        />
-        <motion.div
-          style={{ y: y2, animationDelay: '2s' }}
-          variants={floatingVariants}
-          animate="float"
-          className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-green-100/60 to-blue-100/60 rounded-full blur-3xl opacity-60 hidden lg:block"
-        />
+        {/* Enhanced AI image with animated glow effect - Responsive */}
         <motion.div 
-          style={{ opacity }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-100/40 to-pink-100/40 rounded-full blur-3xl animate-pulse hidden lg:block"
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 opacity-70 sm:opacity-80"
+          animate={{ 
+            scale: [1, 1.05, 1],
+            opacity: [0.7, 0.8, 0.7]
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+          style={{
+            backgroundImage: 'url(/images/pngtree-artificial.png)',
+            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.3))'
+          }}
         />
         
-        {/* Enhanced floating geometric shapes - Fixed positioning */}
-        <motion.div
-          variants={rotateVariants}
-          animate="rotate"
-          className="absolute top-1/4 left-0 w-32 h-32 border-2 border-purple-200/40 rounded-full hidden lg:block"
-        />
-        <motion.div
-          variants={rotateVariants}
-          animate="rotate"
-          className="absolute bottom-1/4 right-0 w-24 h-24 border-2 border-blue-200/40 transform rotate-45 hidden lg:block"
-        />
+        {/* Subtle purple glow behind the AI image */}
+        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-96 h-96 bg-gradient-to-l from-purple-300/20 to-transparent rounded-full blur-3xl" />
+        
+        {/* Light overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/30 to-transparent" />
       </div>
 
-      {/* Enhanced Floating Sparkles - Fixed positioning */}
-      <motion.div
-        animate={{ 
-          y: [0, -30, 0],
-          x: [0, 10, 0],
-          rotate: [0, 360]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-        className="absolute top-1/2 right-8 hidden lg:block"
-      >
-        <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
-      </motion.div>
-      
-      <motion.div
-        animate={{ 
-          y: [0, 25, 0],
-          x: [0, -15, 0],
-          rotate: [360, 0]
-        }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-        className="absolute bottom-1/3 left-8 hidden lg:block"
-      >
-        <Zap className="w-6 h-6 text-orange-400 animate-pulse" />
-      </motion.div>
 
       {/* Main Content Area */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-900 pt-20 sm:pt-24 lg:pt-32">
@@ -436,11 +420,11 @@ export default function Hero({ className }: HeroProps) {
         >
           {/* Enhanced Heading with Animated Gradient Text */}
           <motion.div variants={itemVariants} className="mb-8 sm:mb-12">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 relative font-bold leading-tight font-poppins">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 sm:mb-8 relative font-bold leading-tight font-montserrat">
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`main-${currentHeadingIndex}`}
-                  className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-clip-text text-transparent font-poppins"
+                  className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-clip-text text-transparent font-montserrat"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -453,7 +437,7 @@ export default function Hero({ className }: HeroProps) {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`sub-${currentHeadingIndex}`}
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent font-poppins"
+                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent font-montserrat"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -464,7 +448,7 @@ export default function Hero({ className }: HeroProps) {
               </AnimatePresence>
               
               {/* Enhanced 3D Text Shadow Effect */}
-              <div className="absolute inset-0 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-300/20 transform translate-x-2 translate-y-2 -z-10 hidden lg:block font-poppins">
+              <div className="absolute inset-0 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-300/20 transform translate-x-2 translate-y-2 -z-10 hidden lg:block font-montserrat">
                 <span>{currentHeading.main}</span>
                 <br />
                 <span>{currentHeading.sub}</span>
@@ -547,6 +531,7 @@ export default function Hero({ className }: HeroProps) {
           {/* Enhanced CTA Buttons with Advanced Hover Effects */}
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16">
             <motion.button 
+              onClick={scrollToContact}
               className="group px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl font-bold text-lg sm:text-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 shadow-2xl hover:shadow-3xl relative overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -572,6 +557,7 @@ export default function Hero({ className }: HeroProps) {
             </motion.button>
             
             <motion.button 
+              onClick={() => setIsVideoModalOpen(true)}
               className="px-8 sm:px-12 py-4 sm:py-5 border-2 border-purple-600 text-purple-600 rounded-2xl font-bold text-lg sm:text-xl hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center space-x-3 hover:shadow-2xl relative overflow-hidden group bg-white/95 backdrop-blur-md"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -591,6 +577,13 @@ export default function Hero({ className }: HeroProps) {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal 
+        isOpen={isVideoModalOpen} 
+        onClose={() => setIsVideoModalOpen(false)} 
+        videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      />
     </section>
   )
 }

@@ -9,7 +9,7 @@ export default function TermsOfService() {
     {
       icon: CheckCircle,
       title: "Acceptance of Terms",
-      content: "By accessing and using Nexus Bloom's services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
+      content: "By accessing and using AI Solutions' services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
     },
     {
       icon: Users,
@@ -19,12 +19,12 @@ export default function TermsOfService() {
     {
       icon: Scale,
       title: "Intellectual Property",
-      content: "The content, features, and functionality of our services are owned by Nexus Bloom and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws."
+      content: "The content, features, and functionality of our services are owned by AI Solutions and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws."
     },
     {
       icon: AlertTriangle,
       title: "Limitation of Liability",
-      content: "In no event shall Nexus Bloom be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses."
+      content: "In no event shall AI Solutions be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses."
     },
     {
       icon: Globe,
@@ -58,7 +58,7 @@ export default function TermsOfService() {
               Terms of Service
             </h1>
             <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
-              These terms govern your use of Nexus Bloom&apos;s services. 
+              These terms govern your use of AI Solutions' services. 
               Please read them carefully before using our platform.
             </p>
             <div className="mt-6 text-sm text-gray-500">

@@ -7,24 +7,24 @@ import AnalyticsWrapper from "@/components/Analytics";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Nexus Bloom - AI Automation & Voice Agents | Transform Your Business",
+  title: "AI Solutions - AI Automation & Voice Agents | Transform Your Business",
   description: "Leading AI automation platform specializing in voice agents, n8n & Make.com workflows, CRM integration, and 24/7 business automation. Save 20+ hours weekly with our certified automation experts.",
   keywords: "AI automation, voice agents, n8n automation, Make.com workflows, CRM integration, lead generation, business automation, AI agents, workflow automation, automation experts",
-  authors: [{ name: "Nexus Bloom" }],
-  creator: "Nexus Bloom",
-  publisher: "Nexus Bloom",
+  authors: [{ name: "AI Solutions" }],
+  creator: "AI Solutions",
+  publisher: "AI Solutions",
   robots: "index, follow",
   openGraph: {
-    title: "Nexus Bloom - AI Automation & Voice Agents | Transform Your Business",
+    title: "AI Solutions - AI Automation & Voice Agents | Transform Your Business",
     description: "Leading AI automation platform specializing in voice agents, n8n & Make.com workflows, CRM integration, and 24/7 business automation.",
     url: "https://nexusbloom.com",
-    siteName: "Nexus Bloom",
+    siteName: "AI Solutions",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Nexus Bloom - AI Automation Platform",
+        alt: "AI Solutions - AI Automation Platform",
       },
     ],
     locale: "en_US",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexus Bloom - AI Automation & Voice Agents | Transform Your Business",
+    title: "AI Solutions - AI Automation & Voice Agents | Transform Your Business",
     description: "Leading AI automation platform specializing in voice agents, n8n & Make.com workflows, CRM integration, and 24/7 business automation.",
     images: ["/og-image.svg"],
   },
@@ -54,11 +54,14 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning={true}>
       <head>
         <StructuredData />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#8B5CF6" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Nexus Bloom" />
+        <meta name="apple-mobile-web-app-title" content="AI Solutions" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
