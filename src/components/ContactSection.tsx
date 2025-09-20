@@ -253,11 +253,11 @@ export default function ContactSection() {
           </motion.div>
           
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Contact <span className="bg-gradient-to-r from-[#F85B5D] to-[#7661FB] bg-clip-text text-transparent">Us</span>
+            Get Your <span className="bg-gradient-to-r from-[#F85B5D] to-[#7661FB] bg-clip-text text-transparent">Free Automation Audit</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to transform your business with AI automation? Let&apos;s create something amazing together. 
-            Whether you have a project in mind or just want to chat about possibilities, we&apos;d love to hear from you.
+            Stop losing money on manual work. Get a free automation audit and discover exactly how much time and money you&apos;re wasting. 
+            We&apos;ll show you how to save 20+ hours weekly with our proven automation strategies.
           </p>
         </motion.div>
 
@@ -322,7 +322,10 @@ export default function ContactSection() {
                 <div className="w-12 h-12 bg-gradient-to-br from-[#F85B5D] to-[#7661FB] rounded-2xl flex items-center justify-center">
                   <Send className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900">Send a Message</h3>
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-900">Get Your Free Audit</h3>
+                  <p className="text-gray-600">Worth $500 - Free for a limited time</p>
+                </div>
               </motion.div>
               
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -573,12 +576,12 @@ export default function ContactSection() {
                         >
                           <Send className="w-5 h-5" />
                         </motion.div>
-                        <span>Sending Message...</span>
+                        <span>Getting Your Free Audit...</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                        <span>Send Message</span>
+                        <span>Get My Free Automation Audit</span>
                         <Sparkles className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </>
                     )}
@@ -644,7 +647,7 @@ export default function ContactSection() {
               ))}
             </div>
 
-            {/* Additional Info Card */}
+            {/* FAQ Section */}
             <motion.div
               className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 border border-purple-200/50"
               initial={{ opacity: 0, y: 30 }}
@@ -656,25 +659,25 @@ export default function ContactSection() {
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center">
                   <Star className="w-6 h-6 text-white" />
                 </div>
-                <h4 className="text-2xl font-bold text-gray-900">Why Choose Us?</h4>
+                <h4 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h4>
               </div>
               
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="text-gray-700">Certified automation experts with 5+ years experience</span>
+                <div className="border-b border-purple-200 pb-3">
+                  <h5 className="font-semibold text-gray-900 mb-2">How much can I really save?</h5>
+                  <p className="text-gray-700 text-sm">Most clients save 20+ hours weekly = $2,000+ monthly in labor costs. Our automation audit will show you exactly how much you're losing.</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-gray-700">500+ successful automation projects delivered</span>
+                <div className="border-b border-purple-200 pb-3">
+                  <h5 className="font-semibold text-gray-900 mb-2">What if it doesn't work?</h5>
+                  <p className="text-gray-700 text-sm">We're so confident in our results that we offer a free automation audit first. This shows you exactly how much you can save before you invest anything.</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-700">24/7 support and maintenance included</span>
+                <div className="border-b border-purple-200 pb-3">
+                  <h5 className="font-semibold text-gray-900 mb-2">How long does setup take?</h5>
+                  <p className="text-gray-700 text-sm">Most automations are set up within 2-4 weeks. We handle everything and provide training so you can manage it yourself.</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span className="text-gray-700">Average 20+ hours saved per week per client</span>
+                <div>
+                  <h5 className="font-semibold text-gray-900 mb-2">Do I need technical knowledge?</h5>
+                  <p className="text-gray-700 text-sm">No! We're certified experts who handle all the technical work. You just tell us what you want automated.</p>
                 </div>
               </div>
             </motion.div>

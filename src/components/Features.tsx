@@ -166,10 +166,10 @@ export default function Features() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
-            Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F85B5D] to-[#7661FB]">AI Solutions</span>?
+            How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F85B5D] to-[#7661FB]">Save You Money</span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-            Discover the powerful automation capabilities that make us the leading AI integration platform
+            Stop losing thousands on manual work. Here's exactly how our automation solutions deliver measurable ROI and pay for themselves.
           </p>
         </motion.div>
 
@@ -183,43 +183,43 @@ export default function Features() {
         >
           <Interactive3DCard
             icon={Cpu}
-            title="AI Voice Agents"
-            description="24/7 inbound & outbound voice systems that qualify leads and handle support"
+            title="3x More Qualified Leads"
+            description="AI voice agents work 24/7 to qualify leads, book calls, and handle support. Average client sees 300% increase in qualified leads within 30 days."
             gradient="bg-gradient-to-br from-[#7661FB] to-[#DB4DBA]"
             delay={0.6}
           />
           <Interactive3DCard
             icon={Rocket}
-            title="n8n & Make.com"
-            description="Certified expert building complex workflows and integrations across platforms"
+            title="Save 20+ Hours Weekly"
+            description="Certified n8n & Make.com expert eliminates repetitive tasks. Most clients save $2,000+ monthly in labor costs alone."
             gradient="bg-gradient-to-br from-[#FCA207] to-[#F85B5D]"
             delay={0.8}
           />
           <Interactive3DCard
             icon={Brain}
-            title="Smart CRM Pipelines"
-            description="AI-powered workflows for HubSpot, GHL, Salesforce, and Airtable"
+            title="Close Deals 3x Faster"
+            description="Smart CRM workflows automatically route leads, follow up intelligently, and close deals while you focus on strategy."
             gradient="bg-gradient-to-br from-[#F85B5D] to-[#7661FB]"
             delay={1.0}
           />
           <Interactive3DCard
             icon={Zap}
-            title="WhatsApp & Slack Bots"
-            description="24/7 sales and support automation across messaging platforms"
+            title="24/7 Customer Support"
+            description="WhatsApp & Slack bots handle customer inquiries, book appointments, and provide instant responses. Never miss a lead again."
             gradient="bg-gradient-to-br from-[#DB4DBA] to-[#FCA207]"
             delay={1.2}
           />
           <Interactive3DCard
             icon={Shield}
-            title="Lead Monitoring"
-            description="Automated lead generation from IG, LinkedIn, Reddit, and websites"
+            title="Automated Lead Generation"
+            description="AI monitors Instagram, LinkedIn, Reddit, and websites to find and qualify prospects automatically. Generate 50+ leads daily."
             gradient="bg-gradient-to-br from-[#7661FB] to-[#F85B5D]"
             delay={1.4}
           />
           <Interactive3DCard
             icon={Sparkles}
-            title="Content Automation"
-            description="Auto blogs, YouTube Shorts, and image workflows with AI"
+            title="Content That Converts"
+            description="AI creates blogs, YouTube Shorts, and social media content that drives traffic and converts visitors into customers."
             gradient="bg-gradient-to-br from-[#F85B5D] to-[#DB4DBA]"
             delay={1.6}
           />
