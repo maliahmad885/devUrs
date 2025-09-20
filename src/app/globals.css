@@ -205,25 +205,25 @@
   }
   
   .hero-glow {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2), 0 0 40px rgba(139, 92, 246, 0.1);
+    box-shadow: 0 0 20px rgba(248, 91, 93, 0.2), 0 0 40px rgba(118, 97, 251, 0.1);
   }
   
   .hero-glow:hover {
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 0 30px rgba(248, 91, 93, 0.3), 0 0 60px rgba(118, 97, 251, 0.15);
   }
   
   /* Enhanced button animations */
   .btn-hero-primary {
-    background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #F85B5D 0%, #7661FB 50%, #F85B5D 100%);
     background-size: 200% 200%;
     animation: gradient-shift 3s ease infinite;
   }
   
   .btn-hero-primary:hover {
-    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #7c3aed 100%);
+    background: linear-gradient(135deg, #DB4DBA 0%, #FCA207 50%, #DB4DBA 100%);
     background-size: 200% 200%;
     transform: translateY(-2px);
-    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 20px 40px rgba(248, 91, 93, 0.3);
   }
   
   .btn-hero-secondary {
@@ -238,14 +238,14 @@
     position: absolute;
     inset: 0;
     padding: 2px;
-    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    background: linear-gradient(135deg, #F85B5D, #7661FB);
     border-radius: inherit;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
   }
   
   .btn-hero-secondary:hover::before {
-    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    background: linear-gradient(135deg, #DB4DBA, #FCA207);
   }
   
   /* Enhanced floating animations */

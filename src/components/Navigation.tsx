@@ -272,7 +272,7 @@ export default function Navigation({ className }: NavigationProps) {
             
             {/* AI Solutions text on same line */}
             <div className="flex items-center">
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-gradient-to-r from-[#F85B5D] via-[#FCA207] to-[#7661FB] bg-clip-text text-transparent">
                 AI Solutions
               </span>
             </div>
@@ -287,10 +287,10 @@ export default function Navigation({ className }: NavigationProps) {
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 focus:outline-none ${
                   item.name === "Let's Connect"
-                    ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-xl rounded-lg lg:rounded-full'
+                    ? 'bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white hover:from-[#DB4DBA] hover:to-[#FCA207] shadow-lg hover:shadow-xl rounded-lg lg:rounded-full'
                     : activeSection === item.href.replace('#', '')
-                    ? 'text-purple-600 bg-purple-50 rounded-lg'
-                    : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50 rounded-lg'
+                    ? 'text-[#F85B5D] bg-[#F85B5D]/10 rounded-lg'
+                    : 'text-gray-700 hover:text-[#7661FB] hover:bg-gray-50 rounded-lg'
                 }`}
                 whileHover={{ y: item.name === "Let's Connect" ? 0 : -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -305,7 +305,7 @@ export default function Navigation({ className }: NavigationProps) {
                 )}
                 {activeSection === item.href.replace('#', '') && item.name !== "Let's Connect" && (
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-100 to-blue-100 rounded-lg -z-10"
+                    className="absolute inset-0 bg-gradient-to-r from-[#F85B5D]/20 to-[#7661FB]/20 rounded-lg -z-10"
                     layoutId="activeSection"
                     transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const }}
                   />
@@ -316,7 +316,7 @@ export default function Navigation({ className }: NavigationProps) {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="lg:hidden px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-50 transition-all duration-300 focus:outline-none border border-gray-200 hover:border-purple-300"
+            className="lg:hidden px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:text-[#7661FB] hover:bg-gray-50 transition-all duration-300 focus:outline-none border border-gray-200 hover:border-[#F85B5D]"
             onClick={toggleMobileMenu}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -366,10 +366,10 @@ export default function Navigation({ className }: NavigationProps) {
                     onClick={(e) => handleNavClick(e, item.href)}
                     className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 focus:outline-none ${
                       item.name === "Let's Connect"
-                        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg'
+                        ? 'bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white hover:from-[#DB4DBA] hover:to-[#FCA207] shadow-lg'
                         : activeSection === item.href.replace('#', '')
-                        ? 'text-purple-600 bg-purple-50 border border-purple-200'
-                        : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
+                        ? 'text-[#F85B5D] bg-[#F85B5D]/10 border border-[#F85B5D]/20'
+                        : 'text-gray-700 hover:text-[#7661FB] hover:bg-gray-50'
                     }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}

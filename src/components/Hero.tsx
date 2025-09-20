@@ -152,7 +152,7 @@ const ParticleSystem = () => {
           speedX: (Math.random() - 0.5) * 0.8,
           speedY: (Math.random() - 0.5) * 0.8,
           opacity: Math.random() * 0.4 + 0.2,
-          color: ['#8B5CF6', '#3B82F6', '#06B6D4', '#10B981', '#F59E0B', '#EC4899'][Math.floor(Math.random() * 6)]
+          color: ['#F85B5D', '#FCA207', '#7661FB', '#DB4DBA', '#C57E9E', '#D7979E'][Math.floor(Math.random() * 6)]
         })
       }
       setParticles(newParticles)
@@ -294,7 +294,7 @@ const StatsSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
         >
-          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center">
+          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#F85B5D] to-[#7661FB] rounded-xl flex items-center justify-center">
             <stat.icon className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
           </div>
           <div>
@@ -310,10 +310,10 @@ const StatsSection = () => {
 // Enhanced Feature Pills
 const FeaturePills = () => {
   const features = [
-    { text: "No-Code Required", color: "from-green-500 to-emerald-600", icon: CheckCircle },
-    { text: "AI-Powered", color: "from-blue-500 to-indigo-600", icon: Sparkles },
-    { text: "Enterprise Ready", color: "from-purple-500 to-violet-600", icon: Shield },
-    { text: "24/7 Support", color: "from-orange-500 to-red-600", icon: MessageCircle }
+    { text: "No-Code Required", color: "from-[#FCA207] to-[#F85B5D]", icon: CheckCircle },
+    { text: "AI-Powered", color: "from-[#7661FB] to-[#DB4DBA]", icon: Sparkles },
+    { text: "Enterprise Ready", color: "from-[#F85B5D] to-[#7661FB]", icon: Shield },
+    { text: "24/7 Support", color: "from-[#DB4DBA] to-[#FCA207]", icon: MessageCircle }
   ]
 
   return (
@@ -372,7 +372,7 @@ export default function Hero({ className }: HeroProps) {
     <section
       id="home"
       className={cn(
-        'relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50/30',
+        'relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F85B5D]/10 via-white to-[#7661FB]/10',
         className
       )}
     >
@@ -398,12 +398,12 @@ export default function Hero({ className }: HeroProps) {
             backgroundPosition: 'center',
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
-            filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.3))'
+            filter: 'drop-shadow(0 0 20px rgba(248, 91, 93, 0.3))'
           }}
         />
         
-        {/* Subtle purple glow behind the AI image */}
-        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-96 h-96 bg-gradient-to-l from-purple-300/20 to-transparent rounded-full blur-3xl" />
+        {/* Subtle logo color glow behind the AI image */}
+        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-96 h-96 bg-gradient-to-l from-[#F85B5D]/20 to-transparent rounded-full blur-3xl" />
         
         {/* Light overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/30 to-transparent" />
@@ -424,7 +424,7 @@ export default function Hero({ className }: HeroProps) {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`main-${currentHeadingIndex}`}
-                  className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-clip-text text-transparent font-montserrat"
+                  className="bg-gradient-to-r from-[#F85B5D] via-[#FCA207] to-[#DB4DBA] bg-clip-text text-transparent font-montserrat"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -437,7 +437,7 @@ export default function Hero({ className }: HeroProps) {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`sub-${currentHeadingIndex}`}
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent font-montserrat"
+                  className="bg-gradient-to-r from-[#7661FB] via-[#FCA207] to-[#7661FB] bg-clip-text text-transparent font-montserrat"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -473,7 +473,7 @@ export default function Hero({ className }: HeroProps) {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`highlight-${currentHeadingIndex}`}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-blue-600 text-white px-6 py-3 rounded-full shadow-lg mb-8"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white px-6 py-3 rounded-full shadow-lg mb-8"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
@@ -497,7 +497,7 @@ export default function Hero({ className }: HeroProps) {
                   onClick={() => setCurrentHeadingIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     index === currentHeadingIndex 
-                      ? 'bg-gradient-to-r from-purple-600 to-blue-600 scale-125 shadow-lg' 
+                      ? 'bg-gradient-to-r from-[#F85B5D] to-[#7661FB] scale-125 shadow-lg' 
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                   whileHover={{ scale: 1.2 }}
@@ -514,7 +514,7 @@ export default function Hero({ className }: HeroProps) {
               transition={{ duration: 0.6, delay: 1.2 }}
             >
               <motion.div
-                className="h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-full shadow-sm"
+                className="h-full bg-gradient-to-r from-[#F85B5D] to-[#7661FB] rounded-full shadow-sm"
                 initial={{ width: "0%" }}
                 animate={{ width: `${((currentHeadingIndex + 1) / HEADING_VARIANTS.length) * 100}%` }}
                 transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -532,7 +532,7 @@ export default function Hero({ className }: HeroProps) {
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <motion.button 
               onClick={scrollToContact}
-              className="px-10 py-4 bg-white text-gray-900 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 border border-gray-200 hover:border-purple-300 hover:bg-purple-50"
+              className="px-10 py-4 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:from-[#DB4DBA] hover:to-[#FCA207]"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
@@ -542,7 +542,7 @@ export default function Hero({ className }: HeroProps) {
             
             <motion.button 
               onClick={() => setIsVideoModalOpen(true)}
-              className="px-10 py-4 bg-gray-900 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:bg-gray-800"
+              className="px-10 py-4 bg-gradient-to-r from-[#7661FB] to-[#DB4DBA] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:from-[#FCA207] hover:to-[#F85B5D]"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >

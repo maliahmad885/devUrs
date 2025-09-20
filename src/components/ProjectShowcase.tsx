@@ -215,17 +215,17 @@ export default function ProjectShowcase() {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'Easy': return 'text-green-600 bg-green-100 border-green-200'
-      case 'Medium': return 'text-yellow-600 bg-yellow-100 border-yellow-200'
-      case 'Hard': return 'text-red-600 bg-red-100 border-red-200'
+      case 'Easy': return 'text-[#FCA207] bg-[#FCA207]/10 border-[#FCA207]/20'
+      case 'Medium': return 'text-[#7661FB] bg-[#7661FB]/10 border-[#7661FB]/20'
+      case 'Hard': return 'text-[#F85B5D] bg-[#F85B5D]/10 border-[#F85B5D]/20'
       default: return 'text-gray-600 bg-gray-100 border-gray-200'
     }
   }
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case 'High': return 'text-purple-600 bg-purple-100 border-purple-200'
-      case 'Medium': return 'text-blue-600 bg-blue-100 border-blue-200'
+      case 'High': return 'text-[#DB4DBA] bg-[#DB4DBA]/10 border-[#DB4DBA]/20'
+      case 'Medium': return 'text-[#7661FB] bg-[#7661FB]/10 border-[#7661FB]/20'
       case 'Low': return 'text-gray-600 bg-gray-100 border-gray-200'
       default: return 'text-gray-600 bg-gray-100 border-gray-200'
     }
@@ -241,8 +241,8 @@ export default function ProjectShowcase() {
             onClick={() => setSelectedCategory(category.name)}
             className={`group flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
               selectedCategory === category.name
-                ? `bg-gradient-to-r ${category.color} text-white shadow-lg`
-                : 'bg-white/80 text-gray-600 hover:bg-white hover:text-gray-900 border border-gray-200 hover:border-gray-300'
+                ? 'bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white shadow-lg'
+                : 'bg-white/80 text-gray-600 hover:bg-white hover:text-gray-900 border border-gray-200 hover:border-[#F85B5D]/30 hover:shadow-md'
             }`}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
@@ -290,7 +290,7 @@ export default function ProjectShowcase() {
                   
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className={`inline-flex items-center gap-2 ${project.gradient} text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg`}>
+                    <span className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
                       {project.icon} {project.category}
                     </span>
                   </div>
@@ -334,7 +334,7 @@ export default function ProjectShowcase() {
 
                 {/* Project Content */}
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#F85B5D] transition-colors duration-300">
                     {project.title}
                   </h3>
                   
@@ -343,10 +343,10 @@ export default function ProjectShowcase() {
                   </p>
 
                   {/* Key Results */}
-                  <div className="mb-4 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200/50">
+                  <div className="mb-4 p-3 bg-gradient-to-r from-[#F85B5D]/10 to-[#7661FB]/10 rounded-xl border border-[#F85B5D]/20">
                     <div className="flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-green-600" />
-                      <span className="text-sm font-semibold text-green-700">
+                      <Zap className="w-4 h-4 text-[#F85B5D]" />
+                      <span className="text-sm font-semibold text-[#F85B5D]">
                         {project.results}
                       </span>
                     </div>
@@ -357,13 +357,13 @@ export default function ProjectShowcase() {
                     {project.technologies.slice(0, 3).map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg"
+                        className="px-2 py-1 bg-gradient-to-r from-[#F85B5D]/10 to-[#7661FB]/10 text-[#F85B5D] text-xs font-medium rounded-lg border border-[#F85B5D]/20"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-lg">
+                      <span className="px-2 py-1 bg-gradient-to-r from-[#7661FB]/10 to-[#DB4DBA]/10 text-[#7661FB] text-xs font-medium rounded-lg border border-[#7661FB]/20">
                         +{project.technologies.length - 3} more
                       </span>
                     )}

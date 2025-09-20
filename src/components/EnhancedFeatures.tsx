@@ -258,7 +258,7 @@ export default function EnhancedFeatures() {
     : features.filter(f => f.category === selectedCategory)
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50">
+    <section className="py-20 bg-gradient-to-br from-[#DB4DBA]/5 via-white to-[#FCA207]/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -268,8 +268,9 @@ export default function EnhancedFeatures() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="heading-3 text-gray-900 mb-6">
-            Powerful Features That Drive Results
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-gray-900">Powerful Features That Drive </span>
+            <span className="bg-gradient-to-r from-[#F85B5D] to-[#7661FB] bg-clip-text text-transparent">Results</span>
           </h2>
           <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
             Discover the cutting-edge capabilities that make AI Solutions the most advanced automation platform
@@ -292,7 +293,7 @@ export default function EnhancedFeatures() {
               whileTap={{ scale: 0.95 }}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category
-                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white shadow-lg"
                   : "bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 hover:bg-white hover:shadow-md"
               }`}
             >

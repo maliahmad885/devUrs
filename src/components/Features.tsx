@@ -166,7 +166,7 @@ export default function Features() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
-            Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">AI Solutions</span>?
+            Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F85B5D] to-[#7661FB]">AI Solutions</span>?
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
             Discover the powerful automation capabilities that make us the leading AI integration platform
@@ -185,42 +185,42 @@ export default function Features() {
             icon={Cpu}
             title="AI Voice Agents"
             description="24/7 inbound & outbound voice systems that qualify leads and handle support"
-            gradient="bg-gradient-to-br from-indigo-500 to-blue-500"
+            gradient="bg-gradient-to-br from-[#7661FB] to-[#DB4DBA]"
             delay={0.6}
           />
           <Interactive3DCard
             icon={Rocket}
             title="n8n & Make.com"
             description="Certified expert building complex workflows and integrations across platforms"
-            gradient="bg-gradient-to-br from-emerald-500 to-teal-500"
+            gradient="bg-gradient-to-br from-[#FCA207] to-[#F85B5D]"
             delay={0.8}
           />
           <Interactive3DCard
             icon={Brain}
             title="Smart CRM Pipelines"
             description="AI-powered workflows for HubSpot, GHL, Salesforce, and Airtable"
-            gradient="bg-gradient-to-br from-violet-500 to-purple-500"
+            gradient="bg-gradient-to-br from-[#F85B5D] to-[#7661FB]"
             delay={1.0}
           />
           <Interactive3DCard
             icon={Zap}
             title="WhatsApp & Slack Bots"
             description="24/7 sales and support automation across messaging platforms"
-            gradient="bg-gradient-to-br from-orange-500 to-red-500"
+            gradient="bg-gradient-to-br from-[#DB4DBA] to-[#FCA207]"
             delay={1.2}
           />
           <Interactive3DCard
             icon={Shield}
             title="Lead Monitoring"
             description="Automated lead generation from IG, LinkedIn, Reddit, and websites"
-            gradient="bg-gradient-to-br from-green-500 to-emerald-500"
+            gradient="bg-gradient-to-br from-[#7661FB] to-[#F85B5D]"
             delay={1.4}
           />
           <Interactive3DCard
             icon={Sparkles}
             title="Content Automation"
             description="Auto blogs, YouTube Shorts, and image workflows with AI"
-            gradient="bg-gradient-to-br from-pink-500 to-rose-500"
+            gradient="bg-gradient-to-br from-[#F85B5D] to-[#DB4DBA]"
             delay={1.6}
           />
         </motion.div>
