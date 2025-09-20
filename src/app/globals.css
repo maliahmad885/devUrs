@@ -625,6 +625,20 @@
     font-family: var(--font-montserrat), system-ui, sans-serif;
   }
   
+  /* Logo styling for background removal */
+  .logo-img {
+    background: transparent;
+    mix-blend-mode: multiply;
+    filter: contrast(1.1) brightness(1.05);
+  }
+  
+  /* Dark background logo styling */
+  .logo-img-dark {
+    background: transparent;
+    mix-blend-mode: screen;
+    filter: contrast(1.1) brightness(0.95);
+  }
+  
   /* Reveal on scroll animation */
   .reveal-on-scroll {
     opacity: 0;

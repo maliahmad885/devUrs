@@ -261,9 +261,13 @@ export default function Navigation({ className }: NavigationProps) {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            {/* Simple AI Logo */}
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center shadow-sm">
-              <span className="text-white font-bold text-lg">AI</span>
+            {/* Logo Image */}
+            <div className="w-10 h-10 flex items-center justify-center">
+              <img 
+                src="/images/logo.png" 
+                alt="AI Solutions Logo" 
+                className="w-full h-full object-contain logo-img"
+              />
             </div>
             
             {/* AI Solutions text on same line */}

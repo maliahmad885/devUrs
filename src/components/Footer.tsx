@@ -18,8 +18,12 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">AI</span>
+            <div className="w-8 h-8 flex items-center justify-center">
+              <img 
+                src="/images/logo.png" 
+                alt="AI Solutions Logo" 
+                className="w-full h-full object-contain logo-img-dark"
+              />
             </div>
             <span className="text-lg font-semibold">AI Solutions</span>
           </div>
