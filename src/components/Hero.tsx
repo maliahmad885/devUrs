@@ -528,51 +528,26 @@ export default function Hero({ className }: HeroProps) {
             <StatsSection />
           </motion.div>
 
-          {/* Enhanced CTA Buttons with Advanced Hover Effects */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16">
+          {/* Simple & Shiny CTA Buttons */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <motion.button 
               onClick={scrollToContact}
-              className="group px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-2xl font-bold text-lg sm:text-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 shadow-2xl hover:shadow-3xl relative overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="px-10 py-4 bg-white text-gray-900 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 border border-gray-200 hover:border-purple-300 hover:bg-purple-50"
+              whileHover={{ y: -2 }}
+              whileTap={{ y: 0 }}
             >
-              <span className="relative z-10">Start Automating</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-              
-              {/* Enhanced animated background overlay */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '0%' }}
-                transition={{ duration: 0.4 }}
-              />
-              
-              {/* Enhanced ripple effect */}
-              <motion.div
-                className="absolute inset-0 bg-white/20 rounded-2xl"
-                initial={{ scale: 0, opacity: 1 }}
-                whileHover={{ scale: 2.5, opacity: 0 }}
-                transition={{ duration: 0.8 }}
-              />
+              <span>Start Automating</span>
+              <ArrowRight className="w-5 h-5" />
             </motion.button>
             
             <motion.button 
               onClick={() => setIsVideoModalOpen(true)}
-              className="px-8 sm:px-12 py-4 sm:py-5 border-2 border-purple-600 text-purple-600 rounded-2xl font-bold text-lg sm:text-xl hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center space-x-3 hover:shadow-2xl relative overflow-hidden group bg-white/95 backdrop-blur-md"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="px-10 py-4 bg-gray-900 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:bg-gray-800"
+              whileHover={{ y: -2 }}
+              whileTap={{ y: 0 }}
             >
-              <Play className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+              <Play className="w-5 h-5" />
               <span>Watch Demo</span>
-              
-              {/* Enhanced hover background animation */}
-              <motion.div
-                className="absolute inset-0 bg-purple-600"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.4 }}
-                style={{ transformOrigin: 'left' }}
-              />
             </motion.button>
           </motion.div>
         </motion.div>

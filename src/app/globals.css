@@ -80,7 +80,7 @@
     overscroll-behavior: none;
   }
   body {
-    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-family: 'Georgia', 'Times New Roman', serif;
     color: var(--text-primary);
     background-color: var(--bg-primary);
     line-height: var(--leading-normal);
@@ -608,11 +608,21 @@
   
   /* Text styles */
   .text-body {
-    @apply text-base;
+    @apply text-base font-serif;
   }
   
   .text-body-large {
-    @apply text-lg;
+    @apply text-lg font-serif;
+  }
+  
+  /* Serif font for normal text elements */
+  p, span, div, li, td, th, label, small, cite, blockquote {
+    font-family: 'Georgia', 'Times New Roman', serif;
+  }
+  
+  /* Keep headings and UI elements with sans-serif */
+  h1, h2, h3, h4, h5, h6, button, input, textarea, select, nav, .font-sans {
+    font-family: var(--font-montserrat), system-ui, sans-serif;
   }
   
   /* Reveal on scroll animation */

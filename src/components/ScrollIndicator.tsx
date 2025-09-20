@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronUp } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 interface ScrollIndicatorProps {
   sections: string[]
@@ -10,7 +9,6 @@ interface ScrollIndicatorProps {
 
 export default function ScrollIndicator({ sections }: ScrollIndicatorProps) {
   const [currentSection, setCurrentSection] = useState('')
-  const [showScrollTop, setShowScrollTop] = useState(false)
   const rafRef = useRef<number | undefined>(undefined)
   const lastScrollY = useRef(0)
   const sectionElements = useRef<Map<string, HTMLElement>>(new Map())
@@ -30,8 +28,6 @@ export default function ScrollIndicator({ sections }: ScrollIndicatorProps) {
     
     // Only update if scroll position changed significantly
     if (Math.abs(scrollY - lastScrollY.current) < 5) return
-    
-    setShowScrollTop(scrollY > 500)
 
     // Optimized section detection with cached elements
     let newCurrentSection = ''
@@ -83,13 +79,6 @@ export default function ScrollIndicator({ sections }: ScrollIndicatorProps) {
     }
   }, [updateScrollState])
 
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }, [])
-
   const scrollToSection = useCallback((sectionId: string) => {
     const element = sectionElements.current.get(sectionId)
     if (element) {
@@ -128,28 +117,6 @@ export default function ScrollIndicator({ sections }: ScrollIndicatorProps) {
           ))}
         </div>
       </div>
-
-      {/* Scroll to Top Button */}
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            onClick={scrollToTop}
-            className="fixed bottom-6 right-6 z-40 p-3 bg-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:bg-purple-700 will-change-transform"
-            initial={{ opacity: 0, scale: 0, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0, y: 20 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            title="Scroll to top"
-            style={{
-              backfaceVisibility: 'hidden',
-              transform: 'translateZ(0)'
-            }}
-          >
-            <ChevronUp className="w-5 h-5" />
-          </motion.button>
-        )}
-      </AnimatePresence>
     </>
   )
 }
