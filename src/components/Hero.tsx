@@ -381,34 +381,64 @@ export default function Hero({ className }: HeroProps) {
       {/* Optimized Interactive Particle System */}
       <ParticleSystem />
       
-      {/* AI Background Image Only */}
+      {/* Background Images - Left and Right */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Enhanced AI image with animated glow effect - Responsive */}
+        {/* Wall-E GIF on the left side - Crisp and Clear */}
         <motion.div 
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 opacity-70 sm:opacity-80"
+          className="absolute top-1/2 left-0 transform -translate-y-1/2 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 opacity-90"
           animate={{ 
-            scale: [1, 1.05, 1],
-            opacity: [0.7, 0.8, 0.7]
+            scale: [1, 1.02, 1],
+            opacity: [0.85, 1, 0.85]
           }}
           transition={{ 
-            duration: 4, 
+            duration: 8, 
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
-          style={{
-            backgroundImage: 'url(/images/pngtree-artificial.png)',
-            backgroundPosition: 'center',
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            filter: 'drop-shadow(0 0 20px rgba(248, 91, 93, 0.3))'
+        >
+          <img 
+            src="/images/wall-e-unscreen.gif" 
+            alt="Wall-E AI Robot" 
+            className="w-full h-full object-contain"
+            style={{
+              imageRendering: 'crisp-edges',
+              filter: 'none'
+            }}
+          />
+        </motion.div>
+
+        {/* AI Head Image - Crisp and Clear - Right side */}
+        <motion.div 
+          className="absolute top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 opacity-90"
+          animate={{ 
+            scale: [1, 1.02, 1],
+            opacity: [0.85, 1, 0.85]
           }}
-        />
+          transition={{ 
+            duration: 6, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        >
+          <img 
+            src="/images/pngtree-artificial.png" 
+            alt="AI Brain with Circuits" 
+            className="w-full h-full object-contain"
+            style={{
+              imageRendering: 'crisp-edges',
+              filter: 'none'
+            }}
+          />
+        </motion.div>
         
-        {/* Subtle logo color glow behind the AI image */}
-        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-96 h-96 bg-gradient-to-l from-[#F85B5D]/20 to-transparent rounded-full blur-3xl" />
+        {/* Subtle glow behind the Wall-E gif - Reduced blur */}
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-gradient-to-r from-[#7661FB]/15 to-transparent rounded-full blur-2xl" />
         
-        {/* Light overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/30 to-transparent" />
+        {/* Subtle logo color glow behind the AI image - Reduced blur */}
+        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-gradient-to-l from-[#F85B5D]/15 to-transparent rounded-full blur-2xl" />
+        
+        {/* Light overlay for text readability - Reduced opacity */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/20" />
       </div>
 
 

@@ -232,7 +232,31 @@ export default function ProjectShowcase() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
+      {/* Wall-E GIF - Floating in background */}
+      <motion.div 
+        className="absolute top-10 left-8 w-20 h-20 sm:w-28 sm:h-28 opacity-50"
+        animate={{ 
+          x: [0, 10, -10, 0],
+          y: [0, -15, 0],
+          rotate: [0, -3, 3, 0]
+        }}
+        transition={{ 
+          duration: 10, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+      >
+        <img 
+          src="/images/wall-e-unscreen.gif" 
+          alt="Wall-E AI Robot" 
+          className="w-full h-full object-contain"
+          style={{
+            imageRendering: 'crisp-edges',
+            filter: 'drop-shadow(0 0 8px rgba(118, 97, 251, 0.2))'
+          }}
+        />
+      </motion.div>
       {/* Category Filter */}
       <div className="flex flex-wrap justify-center gap-3 mb-12">
         {categories.map((category) => (

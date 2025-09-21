@@ -155,7 +155,31 @@ const Interactive3DCard = ({
 
 export default function Features() {
   return (
-    <section className="py-20 bg-gradient-to-br from-white to-gray-50">
+    <section className="py-20 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
+      {/* Wall-E GIF - Floating in background */}
+      <motion.div 
+        className="absolute top-20 right-8 w-24 h-24 sm:w-32 sm:h-32 opacity-60"
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [0, 5, -5, 0]
+        }}
+        transition={{ 
+          duration: 8, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+      >
+        <img 
+          src="/images/wall-e-unscreen.gif" 
+          alt="Wall-E AI Robot" 
+          className="w-full h-full object-contain"
+          style={{
+            imageRendering: 'crisp-edges',
+            filter: 'drop-shadow(0 0 10px rgba(118, 97, 251, 0.3))'
+          }}
+        />
+      </motion.div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div

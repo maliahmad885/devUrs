@@ -233,13 +233,13 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <User className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+            <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4">
+                <User className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Let's Get Started!</h2>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Let's Get Started!</h2>
               <p className="text-gray-600 text-sm sm:text-base">Tell us about yourself and your company</p>
             </div>
 
@@ -308,13 +308,13 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#7661FB] to-[#DB4DBA] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <Building className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+            <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-[#7661FB] to-[#DB4DBA] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4">
+                <Building className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">About Your Business</h2>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">About Your Business</h2>
               <p className="text-gray-600 text-sm sm:text-base">Help us understand your business better</p>
             </div>
 
@@ -387,13 +387,13 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#DB4DBA] to-[#FCA207] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <Target className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+            <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-[#DB4DBA] to-[#FCA207] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4">
+                <Target className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">AI Goals & Vision</h2>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">AI Goals & Vision</h2>
               <p className="text-gray-600 text-sm sm:text-base">What do you want to achieve with AI automation?</p>
             </div>
 
@@ -448,13 +448,13 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#FCA207] to-[#F85B5D] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                <DollarSign className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+            <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-[#FCA207] to-[#F85B5D] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4">
+                <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Budget & Timeline</h2>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Budget & Timeline</h2>
               <p className="text-gray-600 text-sm sm:text-base">Final details to help us prepare your proposal</p>
             </div>
 
@@ -621,7 +621,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -629,7 +629,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
           >
             {/* Modal */}
             <motion.div
-              className="relative w-full max-w-2xl bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden mx-auto my-auto sm:my-0 touch-manipulation"
+              className="relative w-full max-w-2xl bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden mx-auto my-auto touch-manipulation flex flex-col"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -640,10 +640,14 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 duration: 0.4
               }}
               onClick={(e) => e.stopPropagation()}
-              style={{ maxHeight: '95vh', touchAction: 'manipulation' }}
+              style={{ 
+                maxHeight: '90vh', 
+                minHeight: '400px',
+                touchAction: 'manipulation' 
+              }}
             >
               {/* Header */}
-              <div className="relative bg-gradient-to-r from-[#F85B5D] to-[#7661FB] p-4 sm:p-6 text-white">
+              <div className="relative bg-gradient-to-r from-[#F85B5D] to-[#7661FB] p-4 sm:p-6 text-white flex-shrink-0">
                 <button
                   onClick={onClose}
                   className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-8 sm:h-8 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors duration-200 touch-manipulation"
@@ -666,13 +670,13 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
               </div>
 
               {/* Content */}
-              <div className="p-4 sm:p-6 lg:p-8 max-h-[60vh] sm:max-h-[70vh] overflow-y-auto">
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 min-h-0">
                 {isSubmitted ? renderSuccessMessage() : renderStep()}
               </div>
 
               {/* Footer */}
               {!isSubmitted && (
-              <div className="flex flex-col sm:flex-row justify-between items-center p-4 sm:p-6 bg-gray-50 border-t gap-4 sm:gap-0">
+              <div className="flex flex-col sm:flex-row justify-between items-center p-4 sm:p-6 bg-gray-50 border-t gap-4 sm:gap-0 flex-shrink-0">
                 <button
                   onClick={prevStep}
                   disabled={currentStep === 1}

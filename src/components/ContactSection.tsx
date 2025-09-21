@@ -261,6 +261,31 @@ export default function ContactSection() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-[#FCA207]/20 to-[#F85B5D]/20 rounded-full blur-3xl animate-pulse"></div>
       </div>
 
+      {/* Wall-E GIF - Floating in background */}
+      <motion.div 
+        className="absolute top-32 right-12 w-28 h-28 sm:w-36 sm:h-36 opacity-40"
+        animate={{ 
+          x: [0, 15, -15, 0],
+          y: [0, -10, 10, 0],
+          rotate: [0, 2, -2, 0]
+        }}
+        transition={{ 
+          duration: 12, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+      >
+        <img 
+          src="/images/wall-e-unscreen.gif" 
+          alt="Wall-E AI Robot" 
+          className="w-full h-full object-contain"
+          style={{
+            imageRendering: 'crisp-edges',
+            filter: 'drop-shadow(0 0 12px rgba(118, 97, 251, 0.25))'
+          }}
+        />
+      </motion.div>
+
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
