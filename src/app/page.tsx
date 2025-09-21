@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import CookieConsent from '@/components/CookieConsent'
 import ScrollToTop from '@/components/ScrollToTop'
 import ContactSection from '@/components/ContactSection'
+import ClientWizard from '@/components/ClientWizard'
 
 // Lazy load heavy components
 const ThreeDBackground = lazy(() => import('@/components/3DBackground'))
@@ -26,6 +27,7 @@ const LoadingFallback = () => (
 export default function Home() {
   const [isClient, setIsClient] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [isWizardOpen, setIsWizardOpen] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
@@ -451,7 +453,10 @@ export default function Home() {
           <div className="text-center bg-gradient-to-r from-[#F85B5D]/10 to-[#7661FB]/10 rounded-2xl p-8 border border-[#F85B5D]/20">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to See Similar Results?</h3>
             <p className="text-gray-600 mb-6">Join 500+ businesses already saving thousands with our automation solutions.</p>
-            <button className="bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
+            <button 
+              onClick={() => setIsWizardOpen(true)}
+              className="bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
+            >
               Get Your Free Automation Audit
             </button>
           </div>
@@ -525,6 +530,12 @@ export default function Home() {
       </section>
 
       <ContactSection />
+
+      {/* Client Wizard Modal */}
+      <ClientWizard 
+        isOpen={isWizardOpen} 
+        onClose={() => setIsWizardOpen(false)} 
+      />
 
       {/* Cookie Consent Banner */}
       <CookieConsent />

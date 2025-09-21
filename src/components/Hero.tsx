@@ -5,6 +5,7 @@ import { ArrowRight, Play, MessageCircle, Zap, Sparkles, Rocket, Target, Trendin
 import { cn } from '@/lib/utils'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import VideoModal from './VideoModal'
+import ClientWizard from './ClientWizard'
 
 // Types
 interface HeroProps {
@@ -349,6 +350,7 @@ export default function Hero({ className }: HeroProps) {
 
   const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0)
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+  const [isWizardOpen, setIsWizardOpen] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -527,81 +529,12 @@ export default function Hero({ className }: HeroProps) {
             {/* Enhanced Stats Section */}
             <StatsSection />
 
-            {/* Enhanced Social Proof Section */}
-            <motion.div 
-              className="mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.6 }}
-            >
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-200/50">
-                <div className="text-center">
-                  <p className="text-sm text-gray-600 font-medium mb-6">Trusted by 500+ businesses worldwide</p>
-                  
-                  {/* Client Logos */}
-                  <div className="flex items-center justify-center space-x-8 mb-6 opacity-70">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">T</span>
-                      </div>
-                      <span className="text-lg font-bold text-gray-700">TechCorp</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-[#7661FB] to-[#DB4DBA] rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">D</span>
-                      </div>
-                      <span className="text-lg font-bold text-gray-700">DataFlow</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-[#DB4DBA] to-[#FCA207] rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">W</span>
-                      </div>
-                      <span className="text-lg font-bold text-gray-700">WorkflowPro</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-[#FCA207] to-[#F85B5D] rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">I</span>
-                      </div>
-                      <span className="text-lg font-bold text-gray-700">InsightCorp</span>
-                    </div>
-                  </div>
-                  
-                  {/* Star Rating */}
-                  <div className="flex items-center justify-center space-x-2">
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                      <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                      <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                      <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                      <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                    </div>
-                    <span className="text-sm text-gray-600 font-medium ml-2">4.9/5 average rating</span>
-                  </div>
-                  
-                  {/* Additional Trust Signals */}
-                  <div className="mt-4 flex items-center justify-center space-x-6 text-xs text-gray-500">
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Free consultation</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <span>24h response</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      <span>Certified experts</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Client-Winning CTA Buttons */}
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <motion.button 
-              onClick={scrollToContact}
+              onClick={() => setIsWizardOpen(true)}
               className="px-10 py-4 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:from-[#DB4DBA] hover:to-[#FCA207] relative overflow-hidden group"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
@@ -629,6 +562,12 @@ export default function Hero({ className }: HeroProps) {
         isOpen={isVideoModalOpen} 
         onClose={() => setIsVideoModalOpen(false)} 
         videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      />
+
+      {/* Client Wizard Modal */}
+      <ClientWizard 
+        isOpen={isWizardOpen} 
+        onClose={() => setIsWizardOpen(false)} 
       />
     </section>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
+import { X, Play } from 'lucide-react'
 
 interface VideoModalProps {
   isOpen: boolean
@@ -14,9 +14,9 @@ export default function VideoModal({ isOpen, onClose, videoUrl = "https://www.yo
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Clean Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -25,25 +25,39 @@ export default function VideoModal({ isOpen, onClose, videoUrl = "https://www.yo
             {/* Modal Content */}
             <motion.div
               className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden"
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ 
+                type: "spring", 
+                damping: 30, 
+                stiffness: 300,
+                duration: 0.4
+              }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
-                <h3 className="text-xl font-bold">AI Solutions Demo</h3>
-                <button
+              {/* Minimal Header */}
+              <div className="relative flex items-center justify-between p-4 bg-white border-b border-gray-200">
+                <div className="flex items-center gap-3">
+                  <img 
+                    src="/logo.png" 
+                    alt="Logo" 
+                    className="h-8 w-auto"
+                  />
+                  <h3 className="text-lg font-semibold text-gray-900">AI Solutions</h3>
+                </div>
+                <motion.button
                   onClick={onClose}
-                  className="p-2 hover:bg-white/20 rounded-full transition-colors duration-200"
+                  className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors duration-200"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  <X className="w-6 h-6" />
-                </button>
+                  <X className="w-5 h-5 text-gray-600" />
+                </motion.button>
               </div>
 
               {/* Video Container */}
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <div className="relative bg-black" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
                   src={videoUrl}
@@ -52,43 +66,6 @@ export default function VideoModal({ isOpen, onClose, videoUrl = "https://www.yo
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
-              </div>
-
-              {/* Footer */}
-              <div className="p-6 bg-gray-50">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-gray-900 mb-2">Transform Your Business Today</h4>
-                    <p className="text-gray-600 text-sm">
-                      See how AI Solutions can automate your workflows and save you 20+ hours weekly.
-                    </p>
-                  </div>
-                  <div className="flex gap-3">
-                    <motion.button
-                      onClick={onClose}
-                      className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-200"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Close
-                    </motion.button>
-                    <motion.button
-                      className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => {
-                        onClose()
-                        // Scroll to contact section
-                        const contactSection = document.getElementById('contact')
-                        if (contactSection) {
-                          contactSection.scrollIntoView({ behavior: 'smooth' })
-                        }
-                      }}
-                    >
-                      Get Started
-                    </motion.button>
-                  </div>
-                </div>
               </div>
             </motion.div>
           </motion.div>

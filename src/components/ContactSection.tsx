@@ -2,25 +2,26 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ClientWizard from './ClientWizard'
 import { 
   Send, 
   User, 
   Mail, 
+  Phone,
   MessageSquare, 
   FileText, 
   CheckCircle, 
   AlertCircle,
   Sparkles,
   Zap,
-  Phone,
-  MapPin,
   Clock,
   Star,
-  ArrowRight,
   Heart,
   Globe,
   Shield,
-  Rocket
+  Rocket,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react'
 
 export default function ContactSection() {
@@ -37,6 +38,8 @@ export default function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
+  const [isWizardOpen, setIsWizardOpen] = useState(false)
+  const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
 
   const services = [
     'AI Voice Agents',
@@ -48,32 +51,6 @@ export default function ContactSection() {
     'Other'
   ]
 
-  const contactMethods = [
-    {
-      icon: Mail,
-      title: 'Email Us',
-      description: 'Get a response within 24 hours',
-      value: 'hello@nexusbloom.com',
-      color: 'from-[#F85B5D] to-[#7661FB]',
-      action: () => window.open('mailto:hello@nexusbloom.com')
-    },
-    {
-      icon: Phone,
-      title: 'Call Us',
-      description: 'Speak directly with our team',
-      value: '+1 (555) 123-4567',
-      color: 'from-[#7661FB] to-[#DB4DBA]',
-      action: () => window.open('tel:+15551234567')
-    },
-    {
-      icon: MapPin,
-      title: 'Visit Us',
-      description: 'Come see our amazing office',
-      value: 'San Francisco, CA',
-      color: 'from-[#DB4DBA] to-[#FCA207]',
-      action: () => window.open('https://maps.google.com/?q=San+Francisco+CA')
-    }
-  ]
 
   const stats = [
     { number: '24h', label: 'Response Time', icon: Clock },
@@ -81,6 +58,53 @@ export default function ContactSection() {
     { number: '500+', label: 'Projects', icon: Rocket },
     { number: '5+', label: 'Years Experience', icon: Shield }
   ]
+
+  const faqData = [
+    {
+      question: "How much can I really save?",
+      answer: "Most clients save 20+ hours weekly = $2,000+ monthly in labor costs. Our automation audit will show you exactly how much you're losing."
+    },
+    {
+      question: "What if it doesn't work?",
+      answer: "We're so confident in our results that we offer a free automation audit first. This shows you exactly how much you can save before you invest anything."
+    },
+    {
+      question: "How long does setup take?",
+      answer: "Most automations are set up within 2-4 weeks. We handle everything and provide training so you can manage it yourself."
+    },
+    {
+      question: "Do I need technical knowledge?",
+      answer: "No! We're certified experts who handle all the technical work. You just tell us what you want automated."
+    },
+    {
+      question: "What types of businesses do you work with?",
+      answer: "We work with businesses of all sizes - from solo entrepreneurs to large enterprises. Our automation solutions are customized for your specific industry and needs."
+    },
+    {
+      question: "How much does automation cost?",
+      answer: "Costs vary based on complexity and scope. Our free audit will provide a detailed breakdown of costs and ROI. Most clients see returns within 3-6 months."
+    },
+    {
+      question: "Do you provide ongoing support?",
+      answer: "Yes! We provide comprehensive training and ongoing support to ensure your automations continue working smoothly. We're always available for questions and optimizations."
+    },
+    {
+      question: "Can I customize my automation later?",
+      answer: "Absolutely! We build flexible systems that can be easily modified as your business grows and changes. We'll train your team to make basic adjustments."
+    },
+    {
+      question: "What platforms do you integrate with?",
+      answer: "We integrate with 500+ platforms including Salesforce, HubSpot, Zapier, n8n, Make.com, Slack, Google Workspace, Microsoft 365, and many more."
+    },
+    {
+      question: "Is my data secure?",
+      answer: "Security is our top priority. We use enterprise-grade security measures, encrypted connections, and comply with GDPR and other data protection regulations."
+    }
+  ]
+
+  const toggleFAQ = (index: number) => {
+    setExpandedFAQ(expandedFAQ === index ? null : index)
+  }
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
@@ -111,22 +135,61 @@ export default function ContactSection() {
     if (!validateForm()) return
     
     setIsSubmitting(true)
-    await new Promise(resolve => setTimeout(resolve, 2500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
     
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ 
-        name: '', 
-        email: '', 
-        phone: '', 
-        company: '', 
-        subject: '', 
-        message: '', 
-        service: '' 
+    try {
+      // Prepare data for the API
+      const emailData = {
+        firstName: formData.name.split(' ')[0] || formData.name,
+        lastName: formData.name.split(' ').slice(1).join(' ') || '',
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company || '',
+        businessType: 'Contact Form',
+        industry: 'General',
+        teamSize: 'Not specified',
+        currentChallenges: [formData.service || 'General inquiry'],
+        aiGoals: ['Get information'],
+        specificUseCase: formData.message,
+        automationPriority: 'Not specified',
+        budget: 'Not specified',
+        timeline: 'Not specified',
+        additionalInfo: `Subject: ${formData.subject}\nService: ${formData.service}\nMessage: ${formData.message}`
+      }
+
+      const response = await fetch('/api/send-wizard-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
       })
-    }, 4000)
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        setIsSubmitted(true)
+        // Reset form after successful submission
+        setTimeout(() => {
+          setIsSubmitted(false)
+          setFormData({ 
+            name: '', 
+            email: '', 
+            phone: '', 
+            company: '', 
+            subject: '', 
+            message: '', 
+            service: '' 
+          })
+        }, 4000)
+      } else {
+        throw new Error(result.message || 'Failed to send email')
+      }
+    } catch (error) {
+      console.error('Error sending email:', error)
+      alert('There was an error sending your message. Please try again or contact us directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
@@ -241,16 +304,6 @@ export default function ContactSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.div
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-xl"
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <Heart className="w-4 h-4" />
-            Let&apos;s Connect
-          </motion.div>
           
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Get Your <span className="bg-gradient-to-r from-[#F85B5D] to-[#7661FB] bg-clip-text text-transparent">Free Automation Audit</span>
@@ -323,7 +376,7 @@ export default function ContactSection() {
                   <Send className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900">Get Your Free Audit</h3>
+                  <h3 className="text-3xl font-bold text-gray-900">Let's Connect</h3>
                   <p className="text-gray-600">Worth $500 - Free for a limited time</p>
                 </div>
               </motion.div>
@@ -552,7 +605,7 @@ export default function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#F85B5D] via-[#7661FB] to-[#F85B5D] hover:from-[#DB4DBA] hover:via-[#FCA207] hover:to-[#DB4DBA] text-white font-semibold py-4 px-8 rounded-2xl flex items-center justify-center space-x-3 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
+                  className="w-full bg-gradient-to-r from-[#F85B5D] via-[#7661FB] to-[#F85B5D] hover:from-[#DB4DBA] hover:via-[#FCA207] hover:to-[#DB4DBA] text-white font-semibold py-4 px-8 rounded-2xl flex items-center justify-center space-x-3 transition-all duration-300 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ scale: 1.02 }}
@@ -570,18 +623,13 @@ export default function ContactSection() {
                   <span className="relative z-10 flex items-center space-x-2">
                     {isSubmitting ? (
                       <>
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        >
-                          <Send className="w-5 h-5" />
-                        </motion.div>
-                        <span>Getting Your Free Audit...</span>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span>Sending...</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                        <span>Get My Free Automation Audit</span>
+                        <span>Send Message</span>
                         <Sparkles className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </>
                     )}
@@ -599,53 +647,6 @@ export default function ContactSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Contact Methods */}
-            <div className="space-y-6">
-              <motion.h3 
-                className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-[#F85B5D] to-[#7661FB] rounded-2xl flex items-center justify-center">
-                  <Heart className="w-6 h-6 text-white" />
-                </div>
-                Let&apos;s Connect
-              </motion.h3>
-
-              {contactMethods.map((method, index) => (
-                <motion.div
-                  key={method.title}
-                  className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-gray-200/50 cursor-pointer group hover:shadow-2xl transition-all duration-300"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  onClick={method.action}
-                >
-                  <div className="flex items-center space-x-4">
-                    <motion.div
-                      className={`w-16 h-16 bg-gradient-to-br ${method.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300`}
-                      whileHover={{ rotate: 5, scale: 1.1 }}
-                    >
-                      <method.icon className="w-8 h-8 text-white" />
-                    </motion.div>
-                    <div className="flex-1">
-                      <h4 className="text-xl font-semibold text-gray-900 mb-1 group-hover:text-[#F85B5D] transition-colors duration-300">
-                        {method.title}
-                      </h4>
-                      <p className="text-gray-600 mb-2">{method.description}</p>
-                      <p className="text-lg font-medium text-gray-800 group-hover:text-[#7661FB] transition-colors duration-300">
-                        {method.value}
-                      </p>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#F85B5D] group-hover:translate-x-1 transition-all duration-300" />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
 
             {/* FAQ Section */}
             <motion.div
@@ -662,28 +663,88 @@ export default function ContactSection() {
                 <h4 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h4>
               </div>
               
-              <div className="space-y-4">
-                <div className="border-b border-purple-200 pb-3">
-                  <h5 className="font-semibold text-gray-900 mb-2">How much can I really save?</h5>
-                  <p className="text-gray-700 text-sm">Most clients save 20+ hours weekly = $2,000+ monthly in labor costs. Our automation audit will show you exactly how much you're losing.</p>
-                </div>
-                <div className="border-b border-purple-200 pb-3">
-                  <h5 className="font-semibold text-gray-900 mb-2">What if it doesn't work?</h5>
-                  <p className="text-gray-700 text-sm">We're so confident in our results that we offer a free automation audit first. This shows you exactly how much you can save before you invest anything.</p>
-                </div>
-                <div className="border-b border-purple-200 pb-3">
-                  <h5 className="font-semibold text-gray-900 mb-2">How long does setup take?</h5>
-                  <p className="text-gray-700 text-sm">Most automations are set up within 2-4 weeks. We handle everything and provide training so you can manage it yourself.</p>
-                </div>
-                <div>
-                  <h5 className="font-semibold text-gray-900 mb-2">Do I need technical knowledge?</h5>
-                  <p className="text-gray-700 text-sm">No! We're certified experts who handle all the technical work. You just tell us what you want automated.</p>
-                </div>
+              <div className="space-y-2">
+                {faqData.map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    className="border border-purple-200 rounded-lg overflow-hidden will-change-auto"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    style={{ contain: 'layout' }}
+                  >
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      className="w-full px-6 py-4 text-left bg-white hover:bg-purple-50 transition-colors duration-200 flex items-center justify-between group"
+                    >
+                      <h5 className="font-semibold text-gray-900 group-hover:text-purple-700 transition-colors duration-200">
+                        {faq.question}
+                      </h5>
+                      <motion.div
+                        animate={{ rotate: expandedFAQ === index ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown className="w-5 h-5 text-purple-600 group-hover:text-purple-700 transition-colors duration-200" />
+                      </motion.div>
+                    </button>
+                    
+                    <AnimatePresence mode="wait">
+                      {expandedFAQ === index && (
+                        <motion.div
+                          initial={{ 
+                            maxHeight: 0,
+                            opacity: 0,
+                            scaleY: 0,
+                            transformOrigin: 'top'
+                          }}
+                          animate={{ 
+                            maxHeight: 200,
+                            opacity: 1,
+                            scaleY: 1,
+                            transformOrigin: 'top'
+                          }}
+                          exit={{ 
+                            maxHeight: 0,
+                            opacity: 0,
+                            scaleY: 0,
+                            transformOrigin: 'top'
+                          }}
+                          transition={{ 
+                            duration: 0.3, 
+                            ease: [0.25, 0.46, 0.45, 0.94],
+                            maxHeight: { duration: 0.4 },
+                            opacity: { duration: 0.2 },
+                            scaleY: { duration: 0.3 }
+                          }}
+                          className="overflow-hidden bg-purple-50/50 origin-top"
+                        >
+                          <div className="px-6 py-4">
+                            <motion.p 
+                              className="text-gray-700 text-sm leading-relaxed"
+                              initial={{ y: -10, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.1, duration: 0.2 }}
+                            >
+                              {faq.answer}
+                            </motion.p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </motion.div>
         </div>
       </div>
+
+      {/* Client Wizard Modal */}
+      <ClientWizard 
+        isOpen={isWizardOpen} 
+        onClose={() => setIsWizardOpen(false)} 
+      />
     </section>
   )
 }
