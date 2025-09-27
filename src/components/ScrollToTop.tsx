@@ -35,11 +35,11 @@ export default function ScrollToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-gradient-to-br from-[#F85B5D] to-[#7661FB] border-2 border-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 group cursor-pointer"
+          className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-gradient-to-br from-[#3B82F6] to-[#10B981] border-2 border-white rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 group cursor-pointer"
           whileHover={{ 
             scale: 1.15,
             y: -3,
-            boxShadow: '0 15px 35px rgba(248, 91, 93, 0.4)'
+            boxShadow: '0 15px 35px rgba(59, 130, 246, 0.4)'
           }}
           whileTap={{ scale: 0.95 }}
         >

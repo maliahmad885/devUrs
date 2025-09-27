@@ -103,8 +103,8 @@ export default function ScrollIndicator({ sections }: ScrollIndicatorProps) {
               onClick={() => scrollToSection(section)}
               className={`w-3 h-3 rounded-full transition-all duration-200 will-change-transform ${
                 currentSection === section
-                  ? 'bg-purple-600 scale-125'
-                  : 'bg-gray-300 hover:bg-purple-400 hover:scale-110'
+                  ? 'bg-[#3B82F6] scale-125'
+                  : 'bg-gray-300 hover:bg-[#10B981] hover:scale-110'
               }`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}

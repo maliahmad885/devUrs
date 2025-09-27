@@ -44,7 +44,7 @@ export default function VideoModal({ isOpen, onClose, videoUrl = "https://www.yo
                     alt="Logo" 
                     className="h-8 w-auto"
                   />
-                  <h3 className="text-lg font-semibold text-gray-900">AI Solutions</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">DevUrs</h3>
                 </div>
                 <motion.button
                   onClick={onClose}
@@ -61,7 +61,7 @@ export default function VideoModal({ isOpen, onClose, videoUrl = "https://www.yo
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
                   src={videoUrl}
-                  title="AI Solutions Demo Video"
+                  title="DevUrs Demo Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

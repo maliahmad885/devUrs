@@ -23,41 +23,41 @@ interface Particle {
   color: string
 }
 
-// Enhanced Dynamic Headings with client-winning messaging
+// Enhanced Dynamic Headings with development-focused messaging
 const HEADING_VARIANTS = [
   {
-    main: "Save $5,000+ Monthly",
-    sub: "With AI Automation",
-    description: "Stop losing money on manual work. Our certified experts build AI systems that save 20+ hours weekly = $2,000+ monthly value. Join 500+ businesses already automating.",
+    main: "Transform Your Business",
+    sub: "With Custom Software",
+    description: "From mobile apps to web platforms, we build cutting-edge solutions that drive growth. Join 200+ businesses already scaling with our custom software.",
     highlight: "30-day money-back guarantee",
     icon: Rocket
   },
   {
-    main: "3x More Qualified Leads",
-    sub: "AI Voice Agents",
-    description: "24/7 AI voice systems that qualify leads, book calls, and handle support while you sleep. Average client sees 300% increase in qualified leads within 30 days.",
-    highlight: "24/7 lead qualification",
+    main: "3x More Customer Engagement",
+    sub: "Mobile Apps & Websites",
+    description: "Stunning mobile apps and responsive websites that convert visitors into customers. Average client sees 300% increase in user engagement within 60 days.",
+    highlight: "Modern, responsive design",
     icon: Target
   },
   {
-    main: "80% Less Manual Work",
-    sub: "n8n & Make.com Expert",
-    description: "Certified automation expert with 5+ years experience. We eliminate repetitive tasks so you can focus on growing your business. Free consultation included.",
-    highlight: "Free automation audit",
+    main: "Streamline Operations",
+    sub: "CRM & SaaS Solutions",
+    description: "Custom CRM systems and SaaS platforms that automate your business processes. Our expert developers eliminate manual work so you can focus on growth.",
+    highlight: "Free consultation included",
     icon: MessageCircle
   },
   {
-    main: "Close Deals 3x Faster",
-    sub: "Smart CRM Workflows",
-    description: "AI-powered CRM pipelines that route leads automatically, follow up intelligently, and close deals while you focus on strategy. No more missed opportunities.",
-    highlight: "Guaranteed ROI in 60 days",
+    main: "Scale Revenue 5x Faster",
+    sub: "E-commerce & SaaS Platforms",
+    description: "Powerful e-commerce stores and SaaS platforms that handle growth automatically. Built for scale, designed for success.",
+    highlight: "Guaranteed performance boost",
     icon: TrendingUp
   },
   {
-    main: "Connect Everything",
-    sub: "500+ App Integrations",
-    description: "Seamlessly connect your entire tech stack. From CRM to marketing tools, we integrate everything so your business runs like a well-oiled machine.",
-    highlight: "Setup in 2 weeks",
+    main: "Complete Digital Solutions",
+    sub: "Full-Stack Development",
+    description: "End-to-end development services. From concept to deployment, we handle everything - mobile apps, web platforms, APIs, and cloud infrastructure.",
+    highlight: "Delivered in 4-8 weeks",
     icon: Zap
   }
 ]
@@ -153,7 +153,7 @@ const ParticleSystem = () => {
           speedX: (Math.random() - 0.5) * 0.8,
           speedY: (Math.random() - 0.5) * 0.8,
           opacity: Math.random() * 0.4 + 0.2,
-          color: ['#F85B5D', '#FCA207', '#7661FB', '#DB4DBA', '#C57E9E', '#D7979E'][Math.floor(Math.random() * 6)]
+          color: ['#22c55e', '#0ea5e9', '#f59e0b', '#16a34a', '#0284c7', '#d97706'][Math.floor(Math.random() * 6)]
         })
       }
       setParticles(newParticles)
@@ -270,12 +270,12 @@ const ParticleSystem = () => {
   )
 }
 
-// Enhanced Stats Component with client-winning metrics
+// Enhanced Stats Component with development-focused metrics
 const StatsSection = () => {
   const stats = [
-    { number: "500+", label: "Businesses Automated", icon: Zap },
-    { number: "$5M+", label: "Client Savings", icon: Clock },
-    { number: "99.9%", label: "Success Rate", icon: Shield },
+    { number: "200+", label: "Projects Delivered", icon: Zap },
+    { number: "$10M+", label: "Revenue Generated", icon: Clock },
+    { number: "99.9%", label: "Uptime Guarantee", icon: Shield },
     { number: "24h", label: "Response Time", icon: MessageCircle }
   ]
 
@@ -295,7 +295,7 @@ const StatsSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
         >
-          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#F85B5D] to-[#7661FB] rounded-xl flex items-center justify-center">
+          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#22c55e] to-[#0ea5e9] rounded-xl flex items-center justify-center">
             <stat.icon className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
           </div>
           <div>
@@ -308,13 +308,13 @@ const StatsSection = () => {
   )
 }
 
-// Enhanced Feature Pills with client benefits
+// Enhanced Feature Pills with development benefits
 const FeaturePills = () => {
   const features = [
-    { text: "Free Consultation", color: "from-[#FCA207] to-[#F85B5D]", icon: CheckCircle },
-    { text: "AI-Powered", color: "from-[#7661FB] to-[#DB4DBA]", icon: Sparkles },
-    { text: "Certified Experts", color: "from-[#F85B5D] to-[#7661FB]", icon: Shield },
-    { text: "24h Response", color: "from-[#DB4DBA] to-[#FCA207]", icon: MessageCircle }
+    { text: "Free Consultation", color: "from-[#f59e0b] to-[#d97706]", icon: CheckCircle },
+    { text: "Modern Tech Stack", color: "from-[#0ea5e9] to-[#0284c7]", icon: Sparkles },
+    { text: "Expert Developers", color: "from-[#22c55e] to-[#16a34a]", icon: Shield },
+    { text: "24h Response", color: "from-[#0284c7] to-[#f59e0b]", icon: MessageCircle }
   ]
 
   return (
@@ -374,72 +374,13 @@ export default function Hero({ className }: HeroProps) {
     <section
       id="home"
       className={cn(
-        'relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F85B5D]/10 via-white to-[#7661FB]/10',
+        'relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#3B82F6]/10 via-white to-[#10B981]/10',
         className
       )}
     >
       {/* Optimized Interactive Particle System */}
       <ParticleSystem />
       
-      {/* Background Images - Left and Right */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Wall-E GIF on the left side - Crisp and Clear */}
-        <motion.div 
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 opacity-90"
-          animate={{ 
-            scale: [1, 1.02, 1],
-            opacity: [0.85, 1, 0.85]
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        >
-          <img 
-            src="/images/wall-e-unscreen.gif" 
-            alt="Wall-E AI Robot" 
-            className="w-full h-full object-contain"
-            style={{
-              imageRendering: 'crisp-edges',
-              filter: 'none'
-            }}
-          />
-        </motion.div>
-
-        {/* AI Head Image - Crisp and Clear - Right side */}
-        <motion.div 
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 opacity-90"
-          animate={{ 
-            scale: [1, 1.02, 1],
-            opacity: [0.85, 1, 0.85]
-          }}
-          transition={{ 
-            duration: 6, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        >
-          <img 
-            src="/images/pngtree-artificial.png" 
-            alt="AI Brain with Circuits" 
-            className="w-full h-full object-contain"
-            style={{
-              imageRendering: 'crisp-edges',
-              filter: 'none'
-            }}
-          />
-        </motion.div>
-        
-        {/* Subtle glow behind the Wall-E gif - Reduced blur */}
-        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-gradient-to-r from-[#7661FB]/15 to-transparent rounded-full blur-2xl" />
-        
-        {/* Subtle logo color glow behind the AI image - Reduced blur */}
-        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-gradient-to-l from-[#F85B5D]/15 to-transparent rounded-full blur-2xl" />
-        
-        {/* Light overlay for text readability - Reduced opacity */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/20" />
-      </div>
 
 
       {/* Main Content Area */}
@@ -456,7 +397,7 @@ export default function Hero({ className }: HeroProps) {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`main-${currentHeadingIndex}`}
-                  className="bg-gradient-to-r from-[#F85B5D] via-[#FCA207] to-[#DB4DBA] bg-clip-text text-transparent font-montserrat"
+                  className="bg-gradient-to-r from-[#3B82F6] via-[#10B981] to-[#1E40AF] bg-clip-text text-transparent font-montserrat"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -469,7 +410,7 @@ export default function Hero({ className }: HeroProps) {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={`sub-${currentHeadingIndex}`}
-                  className="bg-gradient-to-r from-[#7661FB] via-[#FCA207] to-[#7661FB] bg-clip-text text-transparent font-montserrat"
+                  className="bg-gradient-to-r from-[#1E40AF] via-[#10B981] to-[#3B82F6] bg-clip-text text-transparent font-montserrat"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
@@ -505,7 +446,7 @@ export default function Hero({ className }: HeroProps) {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`highlight-${currentHeadingIndex}`}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white px-6 py-3 rounded-full shadow-lg mb-8"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white px-6 py-3 rounded-full shadow-lg mb-8"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
@@ -529,7 +470,7 @@ export default function Hero({ className }: HeroProps) {
                   onClick={() => setCurrentHeadingIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     index === currentHeadingIndex 
-                      ? 'bg-gradient-to-r from-[#F85B5D] to-[#7661FB] scale-125 shadow-lg' 
+                      ? 'bg-gradient-to-r from-[#3B82F6] to-[#10B981] scale-125 shadow-lg' 
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                   whileHover={{ scale: 1.2 }}
@@ -546,18 +487,13 @@ export default function Hero({ className }: HeroProps) {
               transition={{ duration: 0.6, delay: 1.2 }}
             >
               <motion.div
-                className="h-full bg-gradient-to-r from-[#F85B5D] to-[#7661FB] rounded-full shadow-sm"
+                className="h-full bg-gradient-to-r from-[#3B82F6] to-[#10B981] rounded-full shadow-sm"
                 initial={{ width: "0%" }}
                 animate={{ width: `${((currentHeadingIndex + 1) / HEADING_VARIANTS.length) * 100}%` }}
                 transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
             </motion.div>
 
-            {/* Enhanced Feature Pills */}
-            <FeaturePills />
-
-            {/* Enhanced Stats Section */}
-            <StatsSection />
 
           </motion.div>
 
@@ -565,23 +501,23 @@ export default function Hero({ className }: HeroProps) {
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <motion.button 
               onClick={() => setIsWizardOpen(true)}
-              className="px-10 py-4 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:from-[#DB4DBA] hover:to-[#FCA207] relative overflow-hidden group"
+              className="px-10 py-4 bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:from-[#2563EB] hover:to-[#059669] relative overflow-hidden group"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
-              <span className="relative z-10">Get Free Automation Audit</span>
+              <span className="relative z-10">Get Free Consultation</span>
               <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#DB4DBA] to-[#FCA207] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2563EB] to-[#059669] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </motion.button>
             
             <motion.button 
               onClick={() => setIsVideoModalOpen(true)}
-              className="px-10 py-4 bg-white/90 backdrop-blur-md border-2 border-[#7661FB] text-[#7661FB] rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:bg-[#7661FB] hover:text-white"
+              className="px-10 py-4 bg-white/90 backdrop-blur-md border-2 border-[#3B82F6] text-[#3B82F6] rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:bg-[#3B82F6] hover:text-white"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
               <Play className="w-5 h-5" />
-              <span>See Results in Action</span>
+              <span>View Our Portfolio</span>
             </motion.button>
           </motion.div>
         </motion.div>

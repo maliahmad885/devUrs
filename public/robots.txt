@@ -5,7 +5,7 @@ Disallow: /admin/
 Disallow: /api/
 
 # Host
-Host: https://nexus-bloom.vercel.app
+Host: https://codeurs.com
 
 # Sitemaps
-Sitemap: https://nexus-bloom.vercel.app/sitemap.xml
+Sitemap: https://codeurs.com/sitemap.xml

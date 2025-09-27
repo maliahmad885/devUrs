@@ -31,7 +31,7 @@ const FloatingElements = () => {
         onPointerOut={() => setHovered(null)}
       >
         <meshStandardMaterial 
-          color={hovered === 'sphere' ? '#8B5CF6' : '#3B82F6'} 
+          color={hovered === 'sphere' ? '#22c55e' : '#0ea5e9'} 
           transparent 
           opacity={0.8}
           metalness={0.1}
@@ -47,7 +47,7 @@ const FloatingElements = () => {
         onPointerOut={() => setHovered(null)}
       >
         <meshStandardMaterial 
-          color={hovered === 'cube' ? '#10B981' : '#059669'} 
+          color={hovered === 'cube' ? '#f59e0b' : '#d97706'} 
           transparent 
           opacity={0.7}
           metalness={0.3}
@@ -63,7 +63,7 @@ const FloatingElements = () => {
         onPointerOut={() => setHovered(null)}
       >
         <meshStandardMaterial 
-          color={hovered === 'torus' ? '#F59E0B' : '#D97706'} 
+          color={hovered === 'torus' ? '#16a34a' : '#15803d'} 
           transparent 
           opacity={0.6}
           metalness={0.2}
@@ -87,7 +87,7 @@ const AnimatedGrid = () => {
   return (
     <gridHelper 
       ref={gridRef}
-      args={[20, 20, '#8B5CF6', '#3B82F6']} 
+      args={[20, 20, '#22c55e', '#0ea5e9']} 
       position={[0, -5, 0]}
     />
   )
@@ -123,7 +123,7 @@ export default function ThreeDBackground() {
         <pointLight 
           position={[-10, -10, -5]} 
           intensity={0.5} 
-          color="#8B5CF6"
+          color="#22c55e"
         />
 
         {/* 3D Elements */}

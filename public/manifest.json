@@ -1,7 +1,7 @@
 {
-  "name": "AI Solutions - Integration Hub",
-  "short_name": "AI Solutions",
-  "description": "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack with AI-powered automation.",
+  "name": "DevUrs - Software Development",
+  "short_name": "DevUrs",
+  "description": "Leading software development agency specializing in mobile apps, web applications, CRM systems, and custom software solutions.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
                 please contact us:
               </p>
               <div className="space-y-2 text-gray-600">
-                <p>Email: privacy@nexusbloom.com</p>
+                <p>Email: privacy@codeurs.com</p>
                 <p>Address: 123 Integration Street, Tech City, TC 12345</p>
                 <p>Phone: +1 (555) 123-4567</p>
               </div>

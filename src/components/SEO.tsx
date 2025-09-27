@@ -12,11 +12,11 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = "AI Solutions - AI Automation & Voice Agents | Transform Your Business",
-  description = "Leading AI automation platform specializing in voice agents, n8n & Make.com workflows, CRM integration, and 24/7 business automation. Save 20+ hours weekly with our certified automation experts.",
-  keywords = "AI automation, voice agents, n8n automation, Make.com workflows, CRM integration, lead generation, business automation, AI agents, workflow automation, automation experts",
+  title = "DevUrs - Software Development Agency | Mobile Apps & Web Development",
+  description = "Leading software development agency specializing in mobile apps, web applications, CRM systems, and custom software solutions. Transform your business with cutting-edge technology.",
+  keywords = "mobile app development, web development, CRM development, SaaS development, e-commerce development, custom software, React Native, Next.js, Node.js, software development agency",
   image = "/og-image.svg",
-  url = "https://nexusbloom.com",
+  url = "https://codeurs.com",
   type = "website"
 }: SEOProps) {
   return (
@@ -28,7 +28,7 @@ export default function SEO({
       <meta name="keywords" content={keywords} />
       <meta name="robots" content="index, follow" />
       <meta name="language" content="English" />
-      <meta name="author" content="AI Solutions" />
+      <meta name="author" content="DevUrs" />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
@@ -36,7 +36,7 @@ export default function SEO({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:site_name" content="AI Solutions" />
+      <meta property="og:site_name" content="DevUrs" />
       <meta property="og:locale" content="en_US" />
       
       {/* Twitter */}
@@ -52,7 +52,7 @@ export default function SEO({
       <meta name="msapplication-TileColor" content="#8B5CF6" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-      <meta name="apple-mobile-web-app-title" content="AI Solutions" />
+      <meta name="apple-mobile-web-app-title" content="DevUrs" />
       
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
@@ -75,7 +75,7 @@ export default function SEO({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "AI Solutions",
+            "name": "DevUrs",
             "description": description,
             "url": url,
             "logo": image,
@@ -83,7 +83,7 @@ export default function SEO({
               "@type": "ContactPoint",
               "telephone": "+1-555-123-4567",
               "contactType": "customer service",
-              "email": "hello@nexusbloom.com"
+              "email": "hello@codeurs.com"
             },
             "address": {
               "@type": "PostalAddress",
@@ -98,8 +98,8 @@ export default function SEO({
             ],
             "offers": {
               "@type": "Offer",
-              "name": "AI Automation Services",
-              "description": "Professional AI automation, voice agents, and workflow solutions"
+              "name": "Software Development Services",
+              "description": "Professional mobile app development, web applications, and custom software solutions"
             }
           })
         }}

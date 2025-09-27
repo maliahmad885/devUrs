@@ -28,14 +28,14 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: "maanali348@gmail.com",
-        pass: "nvwo pldk rahk ubav"
+        user: "EmailHERE",
+        pass: "APP PASSWORD HERE"
       }
     })
 
     // Format the email content
     const emailContent = `
-New Client Automation Audit Request
+New Client Project Consultation Request
 
 === BASIC INFORMATION ===
 Name: ${data.firstName} ${data.lastName}
@@ -49,10 +49,10 @@ Industry: ${data.industry}
 Team Size: ${data.teamSize}
 Current Challenges: ${data.currentChallenges.join(', ')}
 
-=== AI GOALS & VISION ===
-AI Goals: ${data.aiGoals.join(', ')}
+=== DEVELOPMENT GOALS & VISION ===
+Development Goals: ${data.aiGoals.join(', ')}
 Specific Use Case: ${data.specificUseCase}
-Automation Priority: ${data.automationPriority}
+Project Priority: ${data.automationPriority}
 
 === BUDGET & TIMELINE ===
 Budget Range: ${data.budget}
@@ -65,19 +65,19 @@ IP Address: ${request.headers.get('x-forwarded-for') || request.headers.get('x-r
 User Agent: ${request.headers.get('user-agent') || 'Unknown'}
 
 ---
-This email was sent from the AI Solutions website automation audit wizard.
+This email was sent from the DevUrs website project consultation wizard.
     `
 
     // Email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'maanali348@gmail.com',
-      subject: `New Automation Audit Request - ${data.firstName} ${data.lastName} (${data.company || 'Individual'})`,
+      subject: `New Project Consultation Request - ${data.firstName} ${data.lastName} (${data.company || 'Individual'})`,
       text: emailContent,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #7661FB; border-bottom: 2px solid #7661FB; padding-bottom: 10px;">
-            New Client Automation Audit Request
+            New Client Project Consultation Request
           </h2>
           
           <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -97,10 +97,10 @@ This email was sent from the AI Solutions website automation audit wizard.
           </div>
 
           <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #F85B5D; margin-top: 0;">AI Goals & Vision</h3>
-            <p><strong>AI Goals:</strong> ${data.aiGoals.join(', ')}</p>
+            <h3 style="color: #F85B5D; margin-top: 0;">Development Goals & Vision</h3>
+            <p><strong>Development Goals:</strong> ${data.aiGoals.join(', ')}</p>
             <p><strong>Specific Use Case:</strong> ${data.specificUseCase}</p>
-            <p><strong>Automation Priority:</strong> ${data.automationPriority}</p>
+            <p><strong>Project Priority:</strong> ${data.automationPriority}</p>
           </div>
 
           <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -119,7 +119,7 @@ This email was sent from the AI Solutions website automation audit wizard.
           <hr style="border: none; border-top: 1px solid #dee2e6; margin: 30px 0;">
           
           <p style="color: #6c757d; font-size: 12px; text-align: center;">
-            This email was sent from the AI Solutions website automation audit wizard.
+            This email was sent from the DevUrs website project consultation wizard.
           </p>
         </div>
       `

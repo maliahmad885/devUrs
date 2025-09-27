@@ -6,10 +6,10 @@ export default function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "AI Solutions",
-    "url": "https://nexusbloom.com",
-    "logo": "https://nexusbloom.com/favicon.svg",
-    "description": "Seamlessly integrate with 500+ apps and services. From CRM to marketing tools, we connect your entire tech stack with AI-powered automation.",
+    "name": "DevUrs",
+    "url": "https://codeurs.com",
+    "logo": "https://codeurs.com/favicon.svg",
+    "description": "Leading software development agency specializing in mobile apps, web applications, CRM systems, and custom software solutions.",
     "foundingDate": "2023",
     "address": {
       "@type": "PostalAddress",
@@ -18,12 +18,12 @@ export default function StructuredData() {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "contact@nexusbloom.com"
+      "email": "hello@codeurs.com"
     },
     "sameAs": [
-      "https://linkedin.com/company/nexus-bloom",
-      "https://twitter.com/nexusbloom",
-      "https://facebook.com/nexusbloom"
+      "https://linkedin.com/company/codeurs",
+      "https://twitter.com/codeurs",
+      "https://facebook.com/codeurs"
     ],
     "serviceArea": {
       "@type": "GeoCircle",
@@ -36,30 +36,30 @@ export default function StructuredData() {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Integration Services",
+      "name": "Software Development Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Workflow Automation",
-            "description": "Automate repetitive tasks and streamline your business processes with intelligent workflows."
+            "name": "Mobile App Development",
+            "description": "Native iOS and Android apps built with React Native, Flutter, and modern technologies."
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "App Integration",
-            "description": "Connect 500+ applications seamlessly with our robust integration platform."
+            "name": "Web Development",
+            "description": "Modern web applications built with React, Next.js, and full-stack technologies."
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Data Security",
-            "description": "Enterprise-grade security with SOC 2 compliance and end-to-end encryption."
+            "name": "CRM & SaaS Development",
+            "description": "Custom CRM systems and SaaS platforms tailored to your business needs."
           }
         }
       ]

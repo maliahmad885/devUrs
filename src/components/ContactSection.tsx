@@ -42,12 +42,13 @@ export default function ContactSection() {
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
 
   const services = [
-    'AI Voice Agents',
-    'n8n & Make.com Automation',
-    'CRM Integration',
-    'Lead Generation',
-    'Social Media Automation',
-    'Custom Development',
+    'Mobile App Development',
+    'Web Development',
+    'CRM Development',
+    'E-commerce Solutions',
+    'SaaS Platform Development',
+    'API Development',
+    'Custom Software',
     'Other'
   ]
 
@@ -61,44 +62,44 @@ export default function ContactSection() {
 
   const faqData = [
     {
-      question: "How much can I really save?",
-      answer: "Most clients save 20+ hours weekly = $2,000+ monthly in labor costs. Our automation audit will show you exactly how much you're losing."
+      question: "How much does custom software development cost?",
+      answer: "Costs vary based on project complexity and scope. Our free consultation will provide a detailed breakdown of costs and timeline. Most projects range from $10,000 to $100,000+ depending on requirements."
     },
     {
-      question: "What if it doesn't work?",
-      answer: "We're so confident in our results that we offer a free automation audit first. This shows you exactly how much you can save before you invest anything."
+      question: "What if the software doesn't meet my needs?",
+      answer: "We're so confident in our development process that we offer a free consultation first. We work closely with you throughout development to ensure the final product exceeds your expectations."
     },
     {
-      question: "How long does setup take?",
-      answer: "Most automations are set up within 2-4 weeks. We handle everything and provide training so you can manage it yourself."
+      question: "How long does development take?",
+      answer: "Most projects are completed within 4-12 weeks depending on complexity. We provide regular updates and work in agile sprints to ensure timely delivery."
     },
     {
       question: "Do I need technical knowledge?",
-      answer: "No! We're certified experts who handle all the technical work. You just tell us what you want automated."
+      answer: "No! Our expert developers handle all the technical work. You just tell us what you want built, and we'll create the perfect solution for your business."
     },
     {
       question: "What types of businesses do you work with?",
-      answer: "We work with businesses of all sizes - from solo entrepreneurs to large enterprises. Our automation solutions are customized for your specific industry and needs."
+      answer: "We work with businesses of all sizes - from startups to large enterprises. Our software solutions are customized for your specific industry and needs."
     },
     {
-      question: "How much does automation cost?",
-      answer: "Costs vary based on complexity and scope. Our free audit will provide a detailed breakdown of costs and ROI. Most clients see returns within 3-6 months."
+      question: "What technologies do you use?",
+      answer: "We use modern tech stacks including React, Next.js, Node.js, React Native, Flutter, Python, AWS, and more. We choose the best technology for your specific project needs."
     },
     {
       question: "Do you provide ongoing support?",
-      answer: "Yes! We provide comprehensive training and ongoing support to ensure your automations continue working smoothly. We're always available for questions and optimizations."
+      answer: "Yes! We provide comprehensive maintenance and support to ensure your software continues working smoothly. We're always available for updates and optimizations."
     },
     {
-      question: "Can I customize my automation later?",
-      answer: "Absolutely! We build flexible systems that can be easily modified as your business grows and changes. We'll train your team to make basic adjustments."
+      question: "Can I modify the software later?",
+      answer: "Absolutely! We build scalable and maintainable software that can be easily modified as your business grows. We'll train your team or provide ongoing development support."
     },
     {
-      question: "What platforms do you integrate with?",
-      answer: "We integrate with 500+ platforms including Salesforce, HubSpot, Zapier, n8n, Make.com, Slack, Google Workspace, Microsoft 365, and many more."
+      question: "Do you handle mobile and web development?",
+      answer: "Yes! We specialize in both mobile app development (iOS, Android, React Native, Flutter) and web development (React, Next.js, full-stack applications)."
     },
     {
       question: "Is my data secure?",
-      answer: "Security is our top priority. We use enterprise-grade security measures, encrypted connections, and comply with GDPR and other data protection regulations."
+      answer: "Security is our top priority. We implement enterprise-grade security measures, encrypted connections, and comply with GDPR and other data protection regulations."
     }
   ]
 
@@ -244,7 +245,7 @@ export default function ContactSection() {
               transition={{ delay: 0.7 }}
             >
               <Sparkles className="w-5 h-5" />
-              <span className="font-semibold">We&apos;re excited to help you automate your business!</span>
+              <span className="font-semibold">We&apos;re excited to help you transform your business!</span>
             </motion.div>
           </motion.div>
         </div>
@@ -261,30 +262,30 @@ export default function ContactSection() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-[#FCA207]/20 to-[#F85B5D]/20 rounded-full blur-3xl animate-pulse"></div>
       </div>
 
-      {/* Wall-E GIF - Floating in background */}
-      <motion.div 
-        className="absolute top-32 right-12 w-28 h-28 sm:w-36 sm:h-36 opacity-40"
-        animate={{ 
-          x: [0, 15, -15, 0],
-          y: [0, -10, 10, 0],
-          rotate: [0, 2, -2, 0]
-        }}
-        transition={{ 
-          duration: 12, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      >
-        <img 
-          src="/images/wall-e-unscreen.gif" 
-          alt="Wall-E AI Robot" 
-          className="w-full h-full object-contain"
-          style={{
-            imageRendering: 'crisp-edges',
-            filter: 'drop-shadow(0 0 12px rgba(118, 97, 251, 0.25))'
+        {/* Development Icon - Floating in background */}
+        <motion.div 
+          className="absolute top-32 right-12 w-28 h-28 sm:w-36 sm:h-36 opacity-40"
+          animate={{ 
+            x: [0, 15, -15, 0],
+            y: [0, -10, 10, 0],
+            rotate: [0, 2, -2, 0]
           }}
-        />
-      </motion.div>
+          transition={{ 
+            duration: 12, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        >
+          <img 
+            src="/images/workflow-builder.svg" 
+            alt="Development Workflow" 
+            className="w-full h-full object-contain"
+            style={{
+              imageRendering: 'crisp-edges',
+              filter: 'drop-shadow(0 0 12px rgba(118, 97, 251, 0.25))'
+            }}
+          />
+        </motion.div>
 
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -331,11 +332,11 @@ export default function ContactSection() {
         >
           
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Get Your <span className="bg-gradient-to-r from-[#F85B5D] to-[#7661FB] bg-clip-text text-transparent">Free Automation Audit</span>
+            Get Your <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Free Project Consultation</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Stop losing money on manual work. Get a free automation audit and discover exactly how much time and money you&apos;re wasting. 
-            We&apos;ll show you how to save 20+ hours weekly with our proven automation strategies.
+            Transform your business with custom software solutions. Get a free consultation and discover how our expert developers can build the perfect solution for your needs.
+            We&apos;ll show you how to scale your business with cutting-edge technology.
           </p>
         </motion.div>
 
@@ -357,7 +358,7 @@ export default function ContactSection() {
               transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-[#F85B5D] to-[#7661FB] rounded-xl flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#10B981] rounded-xl flex items-center justify-center mx-auto mb-3">
                 <stat.icon className="w-6 h-6 text-white" />
               </div>
               <div className="text-2xl font-bold text-gray-900 mb-1">{stat.number}</div>
@@ -379,9 +380,9 @@ export default function ContactSection() {
             onHoverEnd={() => setHoveredCard(null)}
           >
             {/* Form Background Effects */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#F85B5D]/5 to-[#7661FB]/5 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 to-[#10B981]/5 rounded-3xl"></div>
             <motion.div
-              className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#F85B5D]/10 to-[#7661FB]/10 rounded-full blur-3xl"
+              className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#3B82F6]/10 to-[#10B981]/10 rounded-full blur-3xl"
               animate={{ 
                 scale: hoveredCard === 'form' ? 1.2 : 1,
                 rotate: hoveredCard === 'form' ? 180 : 0
@@ -397,12 +398,12 @@ export default function ContactSection() {
                 transition={{ delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-[#F85B5D] to-[#7661FB] rounded-2xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#10B981] rounded-2xl flex items-center justify-center">
                   <Send className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="text-3xl font-bold text-gray-900">Let's Connect</h3>
-                  <p className="text-gray-600">Worth $500 - Free for a limited time</p>
+                  <p className="text-gray-600">Worth $500 - Free consultation</p>
                 </div>
               </motion.div>
               
@@ -427,7 +428,7 @@ export default function ContactSection() {
                       placeholder="Your Full Name"
                       required
                       className={`w-full pl-12 pr-4 py-4 bg-white/80 border rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white transition-all duration-300 ${
-                        errors.name ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-purple-400'
+                        errors.name ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-[#3B82F6]'
                       }`}
                     />
                     {errors.name && (
@@ -460,7 +461,7 @@ export default function ContactSection() {
                       placeholder="your.email@company.com"
                       required
                       className={`w-full pl-12 pr-4 py-4 bg-white/80 border rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white transition-all duration-300 ${
-                        errors.email ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-purple-400'
+                        errors.email ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-[#3B82F6]'
                       }`}
                     />
                     {errors.email && (
@@ -494,7 +495,7 @@ export default function ContactSection() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="+1 (555) 123-4567"
-                      className="w-full pl-12 pr-4 py-4 bg-white/80 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[#F85B5D] focus:bg-white transition-all duration-300"
+                      className="w-full pl-12 pr-4 py-4 bg-white/80 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[#3B82F6] focus:bg-white transition-all duration-300"
                     />
                   </motion.div>
 
@@ -514,7 +515,7 @@ export default function ContactSection() {
                       value={formData.company}
                       onChange={handleInputChange}
                       placeholder="Your Company Name"
-                      className="w-full pl-12 pr-4 py-4 bg-white/80 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[#F85B5D] focus:bg-white transition-all duration-300"
+                      className="w-full pl-12 pr-4 py-4 bg-white/80 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[#3B82F6] focus:bg-white transition-all duration-300"
                     />
                   </motion.div>
                 </div>
@@ -536,7 +537,7 @@ export default function ContactSection() {
                     onChange={handleInputChange}
                     required
                     className={`w-full pl-12 pr-4 py-4 bg-white/80 border rounded-2xl text-gray-900 focus:outline-none focus:bg-white transition-all duration-300 appearance-none ${
-                      errors.service ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-purple-400'
+                      errors.service ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-[#3B82F6]'
                     }`}
                   >
                     <option value="" className="bg-white text-gray-900">Select a Service</option>
@@ -577,7 +578,7 @@ export default function ContactSection() {
                     placeholder="Project Title or Brief Description"
                     required
                     className={`w-full pl-12 pr-4 py-4 bg-white/80 border rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white transition-all duration-300 ${
-                      errors.subject ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-purple-400'
+                      errors.subject ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-[#3B82F6]'
                     }`}
                   />
                   {errors.subject && (
@@ -607,11 +608,11 @@ export default function ContactSection() {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Tell us about your automation needs, current challenges, and goals..."
+                    placeholder="Tell us about your software development needs, current challenges, and goals..."
                     required
                     rows={6}
                     className={`w-full pl-12 pr-4 py-4 bg-white/80 border rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white transition-all duration-300 resize-none ${
-                      errors.message ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-[#F85B5D]'
+                      errors.message ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-[#3B82F6]'
                     }`}
                   />
                   {errors.message && (
@@ -630,7 +631,7 @@ export default function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#F85B5D] via-[#7661FB] to-[#F85B5D] hover:from-[#DB4DBA] hover:via-[#FCA207] hover:to-[#DB4DBA] text-white font-semibold py-4 px-8 rounded-2xl flex items-center justify-center space-x-3 transition-all duration-300 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-[#3B82F6] via-[#10B981] to-[#3B82F6] hover:from-[#2563EB] hover:via-[#059669] hover:to-[#2563EB] text-white font-semibold py-4 px-8 rounded-2xl flex items-center justify-center space-x-3 transition-all duration-300 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ scale: 1.02 }}
@@ -639,7 +640,7 @@ export default function ContactSection() {
                   viewport={{ once: true }}
                 >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-[#F85B5D] to-[#7661FB]"
+                    className="absolute inset-0 bg-gradient-to-r from-[#3B82F6] to-[#10B981]"
                     initial={{ x: '-100%' }}
                     whileHover={{ x: '0%' }}
                     transition={{ duration: 0.4 }}
@@ -675,14 +676,14 @@ export default function ContactSection() {
 
             {/* FAQ Section */}
             <motion.div
-              className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 border border-purple-200/50"
+              className="bg-gradient-to-br from-[#3B82F6]/5 to-[#10B981]/5 rounded-2xl p-8 border border-[#3B82F6]/20"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
               viewport={{ once: true }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#10B981] rounded-2xl flex items-center justify-center">
                   <Star className="w-6 h-6 text-white" />
                 </div>
                 <h4 className="text-2xl font-bold text-gray-900">Frequently Asked Questions</h4>
@@ -692,7 +693,7 @@ export default function ContactSection() {
                 {faqData.map((faq, index) => (
                   <motion.div
                     key={index}
-                    className="border border-purple-200 rounded-lg overflow-hidden will-change-auto"
+                    className="border border-[#3B82F6]/20 rounded-lg overflow-hidden will-change-auto"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -701,16 +702,16 @@ export default function ContactSection() {
                   >
                     <button
                       onClick={() => toggleFAQ(index)}
-                      className="w-full px-6 py-4 text-left bg-white hover:bg-purple-50 transition-colors duration-200 flex items-center justify-between group"
+                      className="w-full px-6 py-4 text-left bg-white hover:bg-[#3B82F6]/5 transition-colors duration-200 flex items-center justify-between group"
                     >
-                      <h5 className="font-semibold text-gray-900 group-hover:text-purple-700 transition-colors duration-200">
+                      <h5 className="font-semibold text-gray-900 group-hover:text-[#3B82F6] transition-colors duration-200">
                         {faq.question}
                       </h5>
                       <motion.div
                         animate={{ rotate: expandedFAQ === index ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <ChevronDown className="w-5 h-5 text-purple-600 group-hover:text-purple-700 transition-colors duration-200" />
+                        <ChevronDown className="w-5 h-5 text-[#3B82F6] group-hover:text-[#10B981] transition-colors duration-200" />
                       </motion.div>
                     </button>
                     

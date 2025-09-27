@@ -31,13 +31,13 @@ interface Feature {
 const features: Feature[] = [
   {
     id: 1,
-    icon: Zap,
-    title: "AI-Powered Automation",
-    description: "Intelligent workflows that learn from your business patterns and continuously optimize performance.",
-    benefits: ["Smart decision making", "Predictive analytics", "Continuous learning", "Adaptive workflows"],
+    icon: Code,
+    title: "Full-Stack Development",
+    description: "Complete software solutions from frontend to backend with modern technologies and best practices.",
+    benefits: ["React & Next.js", "Node.js & Python", "Database design", "API development"],
     color: "from-orange-400 to-red-500",
     gradient: "bg-gradient-to-br from-orange-400 to-red-500",
-    category: "AI & ML"
+    category: "Development"
   },
   {
     id: 2,
@@ -52,29 +52,29 @@ const features: Feature[] = [
   {
     id: 3,
     icon: Globe,
-    title: "Global Integration Hub",
-    description: "Connect with 500+ applications and services from a single, unified platform.",
-    benefits: ["500+ integrations", "Real-time sync", "Custom connectors", "API-first approach"],
+    title: "Cross-Platform Apps",
+    description: "Build once, deploy everywhere with React Native and Flutter for iOS, Android, and web platforms.",
+    benefits: ["iOS & Android", "Web applications", "Single codebase", "Native performance"],
     color: "from-blue-400 to-indigo-600",
     gradient: "bg-gradient-to-br from-blue-400 to-indigo-600",
-    category: "Integration"
+    category: "Mobile"
   },
   {
     id: 4,
-    icon: Brain,
-    title: "No-Code Workflow Builder",
-    description: "Create complex automations with our intuitive drag-and-drop interface. No coding required.",
-    benefits: ["Visual builder", "Drag & drop", "Templates library", "Custom logic"],
+    icon: Database,
+    title: "Database Architecture",
+    description: "Scalable database design and management with PostgreSQL, MongoDB, and cloud solutions.",
+    benefits: ["SQL & NoSQL", "Data modeling", "Performance optimization", "Backup & recovery"],
     color: "from-purple-400 to-violet-600",
     gradient: "bg-gradient-to-br from-purple-400 to-violet-600",
-    category: "No-Code"
+    category: "Database"
   },
   {
     id: 5,
     icon: Rocket,
     title: "Lightning Fast Performance",
-    description: "Optimized for speed with sub-second response times and 99.9% uptime guarantee.",
-    benefits: ["Sub-second response", "99.9% uptime", "Auto-scaling", "Global CDN"],
+    description: "Optimized applications with sub-second load times and 99.9% uptime guarantee.",
+    benefits: ["Performance optimization", "99.9% uptime", "Auto-scaling", "CDN integration"],
     color: "from-yellow-400 to-orange-500",
     gradient: "bg-gradient-to-br from-yellow-400 to-orange-500",
     category: "Performance"
@@ -82,32 +82,32 @@ const features: Feature[] = [
   {
     id: 6,
     icon: Lock,
-    title: "Advanced Access Control",
-    description: "Role-based permissions, SSO integration, and granular access management for enterprise teams.",
-    benefits: ["Role-based access", "SSO integration", "Audit trails", "Multi-factor auth"],
+    title: "Advanced Authentication",
+    description: "Secure user authentication and authorization with OAuth, JWT, and role-based access control.",
+    benefits: ["OAuth integration", "JWT tokens", "Role-based access", "Multi-factor auth"],
     color: "from-red-400 to-pink-600",
     gradient: "bg-gradient-to-br from-red-400 to-pink-600",
-    category: "Access Control"
+    category: "Security"
   },
   {
     id: 7,
-    icon: TrendingUp,
-    title: "Real-Time Analytics",
-    description: "Comprehensive dashboards with real-time insights into your automation performance and ROI.",
-    benefits: ["Real-time data", "Custom dashboards", "Performance metrics", "ROI tracking"],
+    icon: BarChart3,
+    title: "Analytics & Reporting",
+    description: "Comprehensive dashboards with real-time insights into your application performance and user behavior.",
+    benefits: ["Real-time analytics", "Custom dashboards", "User tracking", "Performance metrics"],
     color: "from-teal-400 to-cyan-600",
     gradient: "bg-gradient-to-br from-teal-400 to-cyan-600",
     category: "Analytics"
   },
   {
     id: 8,
-    icon: Users,
-    title: "Team Collaboration",
-    description: "Built-in collaboration tools for teams to work together on automation projects.",
-    benefits: ["Team workspaces", "Version control", "Comments & feedback", "Approval workflows"],
+    icon: Cloud,
+    title: "Cloud Deployment",
+    description: "Scalable cloud infrastructure with AWS, Azure, and Google Cloud for global reach and reliability.",
+    benefits: ["AWS & Azure", "Auto-scaling", "Global deployment", "Cost optimization"],
     color: "from-indigo-400 to-purple-600",
     gradient: "bg-gradient-to-br from-indigo-400 to-purple-600",
-    category: "Collaboration"
+    category: "Cloud"
   }
 ]
 
@@ -258,7 +258,7 @@ export default function EnhancedFeatures() {
     : features.filter(f => f.category === selectedCategory)
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#DB4DBA]/5 via-white to-[#FCA207]/5">
+    <section className="py-20 bg-gradient-to-br from-[#3B82F6]/5 via-white to-[#10B981]/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -270,10 +270,10 @@ export default function EnhancedFeatures() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="text-gray-900">Powerful Features That Drive </span>
-            <span className="bg-gradient-to-r from-[#F85B5D] to-[#7661FB] bg-clip-text text-transparent">Results</span>
+            <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Results</span>
           </h2>
           <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
-            Discover the cutting-edge capabilities that make AI Solutions the most advanced automation platform
+            Discover the cutting-edge capabilities that make DevUrs the most trusted software development partner
           </p>
         </motion.div>
 
@@ -293,7 +293,7 @@ export default function EnhancedFeatures() {
               whileTap={{ scale: 0.95 }}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category
-                  ? "bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white shadow-lg"
+                  ? "bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white shadow-lg"
                   : "bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 hover:bg-white hover:shadow-md"
               }`}
             >

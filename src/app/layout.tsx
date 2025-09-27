@@ -7,24 +7,24 @@ import AnalyticsWrapper from "@/components/Analytics";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "AI Solutions - AI Automation & Voice Agents | Transform Your Business",
-  description: "Leading AI automation platform specializing in voice agents, n8n & Make.com workflows, CRM integration, and 24/7 business automation. Save 20+ hours weekly with our certified automation experts.",
-  keywords: "AI automation, voice agents, n8n automation, Make.com workflows, CRM integration, lead generation, business automation, AI agents, workflow automation, automation experts",
-  authors: [{ name: "AI Solutions" }],
-  creator: "AI Solutions",
-  publisher: "AI Solutions",
+  title: "DevUrs - Mobile Apps, Websites, CRM & SaaS Development | Transform Your Business",
+  description: "Leading development agency specializing in mobile apps, websites, CRM systems, e-commerce platforms, and SaaS software. Transform your business with cutting-edge technology solutions.",
+  keywords: "mobile app development, website development, CRM development, SaaS software, e-commerce development, custom software, web applications, mobile applications, business automation, digital transformation",
+  authors: [{ name: "DevUrs" }],
+  creator: "DevUrs",
+  publisher: "DevUrs",
   robots: "index, follow",
   openGraph: {
-    title: "AI Solutions - AI Automation & Voice Agents | Transform Your Business",
-    description: "Leading AI automation platform specializing in voice agents, n8n & Make.com workflows, CRM integration, and 24/7 business automation.",
-    url: "https://nexusbloom.com",
-    siteName: "AI Solutions",
+    title: "DevUrs - Mobile Apps, Websites, CRM & SaaS Development | Transform Your Business",
+    description: "Leading development agency specializing in mobile apps, websites, CRM systems, e-commerce platforms, and SaaS software.",
+    url: "https://codeurs.com",
+    siteName: "DevUrs",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "AI Solutions - AI Automation Platform",
+        alt: "DevUrs - Development Agency",
       },
     ],
     locale: "en_US",
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Solutions - AI Automation & Voice Agents | Transform Your Business",
-    description: "Leading AI automation platform specializing in voice agents, n8n & Make.com workflows, CRM integration, and 24/7 business automation.",
+    title: "DevUrs - Mobile Apps, Websites, CRM & SaaS Development | Transform Your Business",
+    description: "Leading development agency specializing in mobile apps, websites, CRM systems, e-commerce platforms, and SaaS software.",
     images: ["/og-image.svg"],
   },
   viewport: "width=device-width, initial-scale=1",
-  themeColor: "#8B5CF6",
+  themeColor: "#059669",
   manifest: "/manifest.json",
   icons: {
     icon: [
@@ -69,15 +69,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#8B5CF6" />
+        <meta name="theme-color" content="#059669" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="AI Solutions" />
+        <meta name="apple-mobile-web-app-title" content="DevUrs" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-TileColor" content="#8B5CF6" />
+        <meta name="msapplication-TileColor" content="#059669" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body className="font-sans" suppressHydrationWarning={true}>

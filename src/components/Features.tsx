@@ -155,8 +155,8 @@ const Interactive3DCard = ({
 
 export default function Features() {
   return (
-    <section className="py-20 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
-      {/* Wall-E GIF - Floating in background */}
+    <section className="py-20 bg-gradient-to-br from-[#3B82F6]/5 via-white to-[#10B981]/5 relative overflow-hidden">
+      {/* Development Icon - Floating in background */}
       <motion.div 
         className="absolute top-20 right-8 w-24 h-24 sm:w-32 sm:h-32 opacity-60"
         animate={{ 
@@ -170,12 +170,12 @@ export default function Features() {
         }}
       >
         <img 
-          src="/images/wall-e-unscreen.gif" 
-          alt="Wall-E AI Robot" 
+          src="/images/workflow-builder.svg" 
+          alt="Development Workflow" 
           className="w-full h-full object-contain"
           style={{
             imageRendering: 'crisp-edges',
-            filter: 'drop-shadow(0 0 10px rgba(118, 97, 251, 0.3))'
+            filter: 'drop-shadow(0 0 10px rgba(34, 197, 94, 0.3))'
           }}
         />
       </motion.div>
@@ -190,10 +190,10 @@ export default function Features() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
-            How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F85B5D] to-[#7661FB]">Save You Money</span>
+            How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22c55e] to-[#0ea5e9]">Transform Your Business</span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-            Stop losing thousands on manual work. Here's exactly how our automation solutions deliver measurable ROI and pay for themselves.
+            From mobile apps to enterprise software, here's exactly how our development solutions drive growth and deliver measurable results.
           </p>
         </motion.div>
 
@@ -207,44 +207,44 @@ export default function Features() {
         >
           <Interactive3DCard
             icon={Cpu}
-            title="3x More Qualified Leads"
-            description="AI voice agents work 24/7 to qualify leads, book calls, and handle support. Average client sees 300% increase in qualified leads within 30 days."
-            gradient="bg-gradient-to-br from-[#7661FB] to-[#DB4DBA]"
+            title="Mobile App Development"
+            description="Native iOS & Android apps built with React Native, Flutter, and Swift. Responsive design that converts users into customers."
+            gradient="bg-gradient-to-br from-[#3B82F6] to-[#2563EB]"
             delay={0.6}
           />
           <Interactive3DCard
             icon={Rocket}
-            title="Save 20+ Hours Weekly"
-            description="Certified n8n & Make.com expert eliminates repetitive tasks. Most clients save $2,000+ monthly in labor costs alone."
-            gradient="bg-gradient-to-br from-[#FCA207] to-[#F85B5D]"
+            title="Web Development"
+            description="Modern websites and web applications using React, Next.js, and Node.js. Fast, secure, and optimized for conversions."
+            gradient="bg-gradient-to-br from-[#10B981] to-[#059669]"
             delay={0.8}
           />
           <Interactive3DCard
             icon={Brain}
-            title="Close Deals 3x Faster"
-            description="Smart CRM workflows automatically route leads, follow up intelligently, and close deals while you focus on strategy."
-            gradient="bg-gradient-to-br from-[#F85B5D] to-[#7661FB]"
+            title="CRM & SaaS Platforms"
+            description="Custom CRM systems and SaaS platforms that streamline operations. Built to scale with your business growth."
+            gradient="bg-gradient-to-br from-[#1E40AF] to-[#3B82F6]"
             delay={1.0}
           />
           <Interactive3DCard
             icon={Zap}
-            title="24/7 Customer Support"
-            description="WhatsApp & Slack bots handle customer inquiries, book appointments, and provide instant responses. Never miss a lead again."
-            gradient="bg-gradient-to-br from-[#DB4DBA] to-[#FCA207]"
+            title="E-commerce Solutions"
+            description="Complete e-commerce platforms with payment integration, inventory management, and analytics. Ready to sell online."
+            gradient="bg-gradient-to-br from-[#2563EB] to-[#10B981]"
             delay={1.2}
           />
           <Interactive3DCard
             icon={Shield}
-            title="Automated Lead Generation"
-            description="AI monitors Instagram, LinkedIn, Reddit, and websites to find and qualify prospects automatically. Generate 50+ leads daily."
-            gradient="bg-gradient-to-br from-[#7661FB] to-[#F85B5D]"
+            title="API Development"
+            description="RESTful APIs and microservices architecture. Connect your systems and enable seamless data flow across platforms."
+            gradient="bg-gradient-to-br from-[#059669] to-[#3B82F6]"
             delay={1.4}
           />
           <Interactive3DCard
             icon={Sparkles}
-            title="Content That Converts"
-            description="AI creates blogs, YouTube Shorts, and social media content that drives traffic and converts visitors into customers."
-            gradient="bg-gradient-to-br from-[#F85B5D] to-[#DB4DBA]"
+            title="Cloud Infrastructure"
+            description="AWS, Azure, and Google Cloud deployment. Scalable infrastructure that grows with your business needs."
+            gradient="bg-gradient-to-br from-[#3B82F6] to-[#10B981]"
             delay={1.6}
           />
         </motion.div>

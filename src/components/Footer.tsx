@@ -21,11 +21,11 @@ export default function Footer() {
             <div className="w-8 h-8 flex items-center justify-center">
               <img 
                 src="/images/logo.png" 
-                alt="AI Solutions Logo" 
+                alt="DevUrs Logo" 
                 className="w-full h-full object-contain logo-img-dark"
               />
             </div>
-            <span className="text-lg font-semibold">AI Solutions</span>
+            <span className="text-lg font-semibold">DevUrs</span>
           </div>
 
           {/* Social Links */}
@@ -48,7 +48,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-6 pt-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
             <div>
-              © {currentYear} AI Solutions. All rights reserved.
+              © {currentYear} DevUrs. All rights reserved.
             </div>
             <div className="flex items-center space-x-6">
               <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>

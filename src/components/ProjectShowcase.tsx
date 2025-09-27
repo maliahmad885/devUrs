@@ -215,17 +215,17 @@ export default function ProjectShowcase() {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'Easy': return 'text-[#FCA207] bg-[#FCA207]/10 border-[#FCA207]/20'
-      case 'Medium': return 'text-[#7661FB] bg-[#7661FB]/10 border-[#7661FB]/20'
-      case 'Hard': return 'text-[#F85B5D] bg-[#F85B5D]/10 border-[#F85B5D]/20'
+      case 'Easy': return 'text-[#10B981] bg-[#10B981]/10 border-[#10B981]/20'
+      case 'Medium': return 'text-[#3B82F6] bg-[#3B82F6]/10 border-[#3B82F6]/20'
+      case 'Hard': return 'text-[#1E40AF] bg-[#1E40AF]/10 border-[#1E40AF]/20'
       default: return 'text-gray-600 bg-gray-100 border-gray-200'
     }
   }
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case 'High': return 'text-[#DB4DBA] bg-[#DB4DBA]/10 border-[#DB4DBA]/20'
-      case 'Medium': return 'text-[#7661FB] bg-[#7661FB]/10 border-[#7661FB]/20'
+      case 'High': return 'text-[#059669] bg-[#059669]/10 border-[#059669]/20'
+      case 'Medium': return 'text-[#3B82F6] bg-[#3B82F6]/10 border-[#3B82F6]/20'
       case 'Low': return 'text-gray-600 bg-gray-100 border-gray-200'
       default: return 'text-gray-600 bg-gray-100 border-gray-200'
     }
@@ -314,7 +314,7 @@ export default function ProjectShowcase() {
                   
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+                    <span className="inline-flex items-center gap-2 bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
                       {project.icon} {project.category}
                     </span>
                   </div>
@@ -358,7 +358,7 @@ export default function ProjectShowcase() {
 
                 {/* Project Content */}
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#F85B5D] transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#3B82F6] transition-colors duration-300">
                     {project.title}
                   </h3>
                   
@@ -367,10 +367,10 @@ export default function ProjectShowcase() {
                   </p>
 
                   {/* Key Results */}
-                  <div className="mb-4 p-3 bg-gradient-to-r from-[#F85B5D]/10 to-[#7661FB]/10 rounded-xl border border-[#F85B5D]/20">
+                  <div className="mb-4 p-3 bg-gradient-to-r from-[#3B82F6]/10 to-[#10B981]/10 rounded-xl border border-[#3B82F6]/20">
                     <div className="flex items-center gap-2">
                       <Zap className="w-4 h-4 text-[#F85B5D]" />
-                      <span className="text-sm font-semibold text-[#F85B5D]">
+                      <span className="text-sm font-semibold text-[#3B82F6]">
                         {project.results}
                       </span>
                     </div>
@@ -381,13 +381,13 @@ export default function ProjectShowcase() {
                     {project.technologies.slice(0, 3).map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-2 py-1 bg-gradient-to-r from-[#F85B5D]/10 to-[#7661FB]/10 text-[#F85B5D] text-xs font-medium rounded-lg border border-[#F85B5D]/20"
+                        className="px-2 py-1 bg-gradient-to-r from-[#3B82F6]/10 to-[#10B981]/10 text-[#3B82F6] text-xs font-medium rounded-lg border border-[#3B82F6]/20"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-gradient-to-r from-[#7661FB]/10 to-[#DB4DBA]/10 text-[#7661FB] text-xs font-medium rounded-lg border border-[#7661FB]/20">
+                      <span className="px-2 py-1 bg-gradient-to-r from-[#10B981]/10 to-[#3B82F6]/10 text-[#10B981] text-xs font-medium rounded-lg border border-[#10B981]/20">
                         +{project.technologies.length - 3} more
                       </span>
                     )}

@@ -23,7 +23,7 @@ interface WizardData {
   teamSize: string
   currentChallenges: string[]
   
-  // Step 3: AI Goals
+  // Step 3: Development Goals
   aiGoals: string[]
   specificUseCase: string
   automationPriority: string
@@ -71,32 +71,32 @@ const TEAM_SIZES = [
 ]
 
 const CHALLENGES = [
-  'Manual repetitive tasks',
-  'Time management & productivity',
-  'Lead qualification',
-  'Customer support',
-  'Data management',
-  'Process inefficiencies',
-  'Team coordination',
-  'Reporting & analytics',
-  'Client onboarding',
-  'Sales follow-up',
-  'Content creation',
-  'Administrative tasks',
-  'Scheduling & appointments'
+  'Need a mobile app',
+  'Outdated website',
+  'Manual processes',
+  'Data management issues',
+  'No online presence',
+  'Customer management',
+  'E-commerce needs',
+  'API integrations',
+  'Scalability issues',
+  'Security concerns',
+  'Performance problems',
+  'User experience issues',
+  'Cross-platform compatibility'
 ]
 
 const AI_GOALS = [
-  'Automate repetitive tasks',
-  'Improve lead qualification',
-  'Enhance customer support',
-  'Streamline workflows',
-  'Reduce manual work',
-  'Increase productivity',
-  'Better data insights',
-  '24/7 availability',
-  'Cost reduction',
-  'Scale operations'
+  'Build a mobile app',
+  'Create a website',
+  'Develop a CRM system',
+  'Build an e-commerce platform',
+  'Create a SaaS product',
+  'API development',
+  'Database design',
+  'Cloud deployment',
+  'User authentication',
+  'Payment integration'
 ]
 
 const AUTOMATION_PRIORITIES = [
@@ -236,7 +236,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
             className="space-y-4 sm:space-y-6"
           >
             <div className="text-center mb-4 sm:mb-6 lg:mb-8">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-[#3B82F6] to-[#10B981] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4">
                 <User className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Let's Get Started!</h2>
@@ -250,7 +250,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                   type="text"
                   value={data.firstName}
                   onChange={(e) => updateData('firstName', e.target.value)}
-                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7661FB] focus:border-transparent text-base touch-manipulation"
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent text-base touch-manipulation"
                   placeholder="John"
                 />
               </div>
@@ -260,7 +260,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                   type="text"
                   value={data.lastName}
                   onChange={(e) => updateData('lastName', e.target.value)}
-                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7661FB] focus:border-transparent text-base touch-manipulation"
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent text-base touch-manipulation"
                   placeholder="Doe"
                 />
               </div>
@@ -324,7 +324,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 <select
                   value={data.businessType}
                   onChange={(e) => updateData('businessType', e.target.value)}
-                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7661FB] focus:border-transparent text-base touch-manipulation"
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent text-base touch-manipulation"
                 >
                   <option value="">Select business type</option>
                   {BUSINESS_TYPES.map(type => (
@@ -337,7 +337,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 <select
                   value={data.industry}
                   onChange={(e) => updateData('industry', e.target.value)}
-                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7661FB] focus:border-transparent text-base touch-manipulation"
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent text-base touch-manipulation"
                 >
                   <option value="">Select industry</option>
                   {INDUSTRIES.map(industry => (
@@ -393,12 +393,12 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
               <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-[#DB4DBA] to-[#FCA207] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4">
                 <Target className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
-              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">AI Goals & Vision</h2>
-              <p className="text-gray-600 text-sm sm:text-base">What do you want to achieve with AI automation?</p>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Development Goals & Vision</h2>
+              <p className="text-gray-600 text-sm sm:text-base">What do you want to achieve with custom software?</p>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">AI Goals * (Select all that apply)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Development Goals * (Select all that apply)</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
                 {AI_GOALS.map(goal => (
                   <label key={goal} className="flex items-start space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer touch-manipulation active:bg-gray-100">
@@ -421,12 +421,12 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 onChange={(e) => updateData('specificUseCase', e.target.value)}
                 rows={4}
                 className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7661FB] focus:border-transparent text-base resize-none touch-manipulation"
-                placeholder="Describe the specific process or task you want to automate..."
+                placeholder="Describe the specific software or application you want to build..."
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Automation Priority *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Project Priority *</label>
               <select
                 value={data.automationPriority}
                 onChange={(e) => updateData('automationPriority', e.target.value)}
@@ -464,7 +464,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 <select
                   value={data.budget}
                   onChange={(e) => updateData('budget', e.target.value)}
-                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7661FB] focus:border-transparent text-base touch-manipulation"
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent text-base touch-manipulation"
                 >
                   <option value="">Select budget range</option>
                   {BUDGET_RANGES.map(budget => (
@@ -477,7 +477,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 <select
                   value={data.timeline}
                   onChange={(e) => updateData('timeline', e.target.value)}
-                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#7661FB] focus:border-transparent text-base touch-manipulation"
+                  className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent text-base touch-manipulation"
                 >
                   <option value="">Select timeline</option>
                   {TIMELINES.map(timeline => (
@@ -563,7 +563,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
             Our team will reach out to you ASAP!
           </p>
           <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-            Thank you for taking the time to share your automation needs. We've received your information and our AI automation experts are already reviewing your requirements.
+            Thank you for taking the time to share your software development needs. We've received your information and our expert developers are already reviewing your requirements.
           </p>
           <div className="bg-gradient-to-r from-[#F85B5D]/10 to-[#7661FB]/10 rounded-xl p-4 sm:p-6 border border-[#7661FB]/20">
             <div className="flex items-center justify-center gap-2 mb-3">
@@ -572,9 +572,9 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
             </div>
             <div className="text-xs sm:text-sm text-gray-600 space-y-1">
               <p>• Our team will contact you within 24 hours</p>
-              <p>• We'll prepare a customized automation audit</p>
-              <p>• You'll receive actionable insights and recommendations</p>
-              <p>• Ready to transform your business with AI! 🚀</p>
+              <p>• We'll prepare a customized project proposal</p>
+              <p>• You'll receive detailed development roadmap and timeline</p>
+              <p>• Ready to transform your business with custom software! 🚀</p>
             </div>
           </div>
         </div>
@@ -595,7 +595,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
           Awesome, Got It!
         </button>
         <button
-          onClick={() => window.open('mailto:hello@nexusbloom.com', '_blank')}
+          onClick={() => window.open('mailto:hello@codeurs.com', '_blank')}
           className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#7661FB] text-[#7661FB] rounded-xl font-semibold hover:bg-[#7661FB] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation min-h-[44px]"
         >
           <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -610,7 +610,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        Questions? Contact us at hello@nexusbloom.com or call +1 (555) 123-4567
+        Questions? Contact us at hello@codeurs.com or call +1 (555) 123-4567
       </motion.p>
     </motion.div>
   )
@@ -647,7 +647,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
               }}
             >
               {/* Header */}
-              <div className="relative bg-gradient-to-r from-[#F85B5D] to-[#7661FB] p-4 sm:p-6 text-white flex-shrink-0">
+              <div className="relative bg-gradient-to-r from-[#3B82F6] to-[#10B981] p-4 sm:p-6 text-white flex-shrink-0">
                 <button
                   onClick={onClose}
                   className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-8 sm:h-8 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors duration-200 touch-manipulation"
@@ -656,7 +656,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 </button>
                 
                 <div className="text-center pr-12">
-                  <h1 className="text-xl sm:text-2xl font-bold mb-2">Free Automation Audit</h1>
+                  <h1 className="text-xl sm:text-2xl font-bold mb-2">Free Project Consultation</h1>
                   <p className="text-white/90 text-sm sm:text-base">Step {currentStep} of {totalSteps}</p>
                 </div>
 
@@ -691,7 +691,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                     <div
                       key={i}
                       className={`w-2 h-2 rounded-full ${
-                        i + 1 <= currentStep ? 'bg-[#7661FB]' : 'bg-gray-300'
+                        i + 1 <= currentStep ? 'bg-[#3B82F6]' : 'bg-gray-300'
                       }`}
                     />
                   ))}
@@ -701,7 +701,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                   <button
                     onClick={handleSubmit}
                     disabled={!isStepValid(currentStep) || isSubmitting}
-                    className="flex items-center gap-2 px-6 sm:px-8 py-3 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto justify-center touch-manipulation min-h-[44px]"
+                    className="flex items-center gap-2 px-6 sm:px-8 py-3 bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto justify-center touch-manipulation min-h-[44px]"
                   >
                     {isSubmitting ? (
                       <>
@@ -710,7 +710,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                       </>
                     ) : (
                       <>
-                        Submit & Get Audit
+                        Submit & Get Proposal
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}
@@ -719,7 +719,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                   <button
                     onClick={nextStep}
                     disabled={!isStepValid(currentStep)}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto justify-center touch-manipulation min-h-[44px]"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto justify-center touch-manipulation min-h-[44px]"
                   >
                     Next
                     <ArrowRight className="w-4 h-4" />

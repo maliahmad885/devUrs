@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://nexus-bloom.vercel.app',
+  siteUrl: process.env.SITE_URL || 'https://codeurs.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   changefreq: 'weekly',
@@ -16,7 +16,7 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      'https://nexus-bloom.vercel.app/sitemap.xml',
+      'https://codeurs.com/sitemap.xml',
     ],
   },
 }; 
