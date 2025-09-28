@@ -56,7 +56,6 @@ export default function Navigation({ className }: NavigationProps) {
   const [activeSection, setActiveSection] = useState('')
   const [isScrolling, setIsScrolling] = useState(false)
   const navRef = useRef<HTMLElement>(null)
-  const [isClient, setIsClient] = useState(false)
   
   // Performance optimization refs
   const rafRef = useRef<number | undefined>(undefined)
@@ -180,8 +179,6 @@ export default function Navigation({ className }: NavigationProps) {
   }, [activeSection])
 
   useEffect(() => {
-    setIsClient(true)
-    
     let ticking = false
 
     const handleScroll = () => {
@@ -238,10 +235,6 @@ export default function Navigation({ className }: NavigationProps) {
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [isMobileMenuOpen, closeMobileMenu])
-
-  if (!isClient) {
-    return null
-  }
 
   return (
     <motion.nav
