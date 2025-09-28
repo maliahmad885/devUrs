@@ -589,14 +589,14 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
       >
         <button
           onClick={onClose}
-          className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#F85B5D] to-[#7661FB] text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation min-h-[44px]"
+          className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#10B981] to-[#059669] text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation min-h-[44px] hover:from-[#059669] hover:to-[#047857]"
         >
           <Check className="w-4 h-4 sm:w-5 sm:h-5" />
           Awesome, Got It!
         </button>
         <button
           onClick={() => window.open('mailto:hello@codeurs.com', '_blank')}
-          className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#7661FB] text-[#7661FB] rounded-xl font-semibold hover:bg-[#7661FB] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation min-h-[44px]"
+          className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#3B82F6] text-[#3B82F6] rounded-xl font-semibold hover:bg-[#3B82F6] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation min-h-[44px] hover:border-[#2563EB]"
         >
           <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
           Email Us Directly
