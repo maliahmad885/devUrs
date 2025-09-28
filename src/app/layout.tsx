@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
-import NoSSR from "@/components/NoSSR";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import AnalyticsWrapper from "@/components/Analytics";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -87,12 +86,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NoSSR>
-            <ErrorBoundary>
-              {children}
-              <AnalyticsWrapper />
-            </ErrorBoundary>
-          </NoSSR>
+          <ErrorBoundary>
+            {children}
+            <AnalyticsWrapper />
+          </ErrorBoundary>
         </ThemeProvider>
       </body>
     </html>
