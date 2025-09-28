@@ -366,7 +366,7 @@ export default function Navigation({ className }: NavigationProps) {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    whileHover={{ x: item.name === "Let's Connect" ? 0 : 5 }}
+                    whileHover={{ x: (item.name === "Let's Connect" || item.name === "AI Services") ? 0 : 5 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {item.name === "Let's Connect" ? (

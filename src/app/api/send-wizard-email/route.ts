@@ -71,7 +71,7 @@ This email was sent from the DevUrs website project consultation wizard.
     // Email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'maanali348@gmail.com',
+      to: 'm.aliahmadm875@gmail.com',
       subject: `New Project Consultation Request - ${data.firstName} ${data.lastName} (${data.company || 'Individual'})`,
       text: emailContent,
       html: `
