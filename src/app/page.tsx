@@ -25,45 +25,16 @@ const LoadingFallback = () => (
 )
 
 export default function Home() {
-  const [isClient, setIsClient] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
   const [isWizardOpen, setIsWizardOpen] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
-    
     // Ensure page starts at the top
     if (typeof window !== 'undefined') {
       window.scrollTo(0, 0)
     }
-    
-    // Simulate loading time for better UX
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-    
-    return () => clearTimeout(timer)
   }, [])
 
   const sections = ['home', 'about', 'features', 'services', 'projects', 'blogs', 'contact']
-
-  // Don't render scroll-related components during SSR
-  if (!isClient || isLoading) {
-    return (
-      <main className="min-h-screen">
-        <Navigation />
-        <Hero />
-        {/* Show loading state for other components */}
-        <div className="min-h-screen bg-gradient-to-br from-[#3B82F6]/10 via-white to-[#10B981]/10 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#3B82F6] to-[#10B981] rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading...</p>
-          </div>
-        </div>
-        <ScrollToTop />
-      </main>
-    )
-  }
 
   return (
     <main className="min-h-screen overflow-x-hidden">

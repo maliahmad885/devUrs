@@ -78,6 +78,10 @@
     scroll-behavior: smooth;
     /* Prevent scroll bounce on iOS */
     overscroll-behavior: none;
+    /* Prevent FOUC */
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
   }
   body {
     font-family: 'Georgia', 'Times New Roman', serif;
@@ -96,6 +100,10 @@
     overscroll-behavior: none;
     /* Prevent pull-to-refresh on mobile */
     overscroll-behavior-y: none;
+    /* Prevent FOUC */
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.1s ease-in-out;
   }
   
   /* Enhanced scroll progress bar */
