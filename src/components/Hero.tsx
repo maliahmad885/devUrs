@@ -1,10 +1,9 @@
 'use client'
 
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Play, MessageCircle, Zap, Sparkles, Rocket, Target, TrendingUp, Clock, Shield, CheckCircle, Star } from 'lucide-react'
+import { ArrowRight, Play, MessageCircle, Zap, Sparkles, Rocket, Target, TrendingUp, Clock, Shield, CheckCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useEffect, useRef, useState, useCallback } from 'react'
-import VideoModal from './VideoModal'
 import ClientWizard from './ClientWizard'
 
 // Types
@@ -23,41 +22,41 @@ interface Particle {
   color: string
 }
 
-// Enhanced Dynamic Headings with development-focused messaging
+// Dynamic headings grounded in real expertise
 const HEADING_VARIANTS = [
   {
-    main: "Transform Your Business",
-    sub: "With Custom Software",
-    description: "From mobile apps to web platforms, we build cutting-edge solutions that drive growth. Join 200+ businesses already scaling with our custom software.",
-    highlight: "30-day money-back guarantee",
+    main: "Ali Ahmad",
+    sub: "Full-Stack Developer & Automation Expert",
+    description: "5+ years building high-performance web applications and intelligent workflow systems. Specialized in Ruby on Rails, React.js, Next.js, and Node.js.",
+    highlight: "200+ workflow automations shipped",
     icon: Rocket
   },
   {
-    main: "3x More Customer Engagement",
-    sub: "Mobile Apps & Websites",
-    description: "Stunning mobile apps and responsive websites that convert visitors into customers. Average client sees 300% increase in user engagement within 60 days.",
-    highlight: "Modern, responsive design",
+    main: "Web Apps That Scale",
+    sub: "Rails · React · Next.js · Node",
+    description: "From admin platforms and marketplaces to travel-tech and teledermatology — production systems with billing, CRM sync, and cloud infrastructure.",
+    highlight: "8+ platforms shipped",
     icon: Target
   },
   {
-    main: "Streamline Operations",
-    sub: "CRM & SaaS Solutions",
-    description: "Custom CRM systems and SaaS platforms that automate your business processes. Our expert developers eliminate manual work so you can focus on growth.",
-    highlight: "Free consultation included",
+    main: "Intelligent Automation",
+    sub: "n8n · Make · Zapier",
+    description: "Certified automation professional. Workflows that cut manual work and save clients 20+ hours every week.",
+    highlight: "Automation that pays for itself",
     icon: MessageCircle
   },
   {
-    main: "Scale Revenue 5x Faster",
-    sub: "E-commerce & SaaS Platforms",
-    description: "Powerful e-commerce stores and SaaS platforms that handle growth automatically. Built for scale, designed for success.",
-    highlight: "Guaranteed performance boost",
+    main: "Building AI Agents",
+    sub: "LangChain · LangGraph",
+    description: "Expanding into AI agent development — connecting LLMs to real business workflows for smarter, more autonomous systems.",
+    highlight: "Next-gen workflow intelligence",
     icon: TrendingUp
   },
   {
-    main: "Complete Digital Solutions",
-    sub: "Full-Stack Development",
-    description: "End-to-end development services. From concept to deployment, we handle everything - mobile apps, web platforms, APIs, and cloud infrastructure.",
-    highlight: "Delivered in 4-8 weeks",
+    main: "End-to-End Ownership",
+    sub: "Backend · Frontend · DevOps",
+    description: "From architecture and APIs to Stripe billing, AWS CI/CD, and integrations — one builder who ships and maintains the full stack.",
+    highlight: "5+ years of shipping",
     icon: Zap
   }
 ]
@@ -273,10 +272,10 @@ const ParticleSystem = () => {
 // Enhanced Stats Component with development-focused metrics
 const StatsSection = () => {
   const stats = [
-    { number: "200+", label: "Projects Delivered", icon: Zap },
-    { number: "$10M+", label: "Revenue Generated", icon: Clock },
-    { number: "99.9%", label: "Uptime Guarantee", icon: Shield },
-    { number: "24h", label: "Response Time", icon: MessageCircle }
+    { number: "5+", label: "Years Experience", icon: Clock },
+    { number: "200+", label: "Automations Delivered", icon: Zap },
+    { number: "8+", label: "Platforms Shipped", icon: Shield },
+    { number: "20+", label: "Hours/Week Saved", icon: MessageCircle }
   ]
 
   return (
@@ -349,7 +348,6 @@ export default function Hero({ className }: HeroProps) {
   const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
 
   const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0)
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
   const [isWizardOpen, setIsWizardOpen] = useState(false)
 
   useEffect(() => {
@@ -365,6 +363,13 @@ export default function Hero({ className }: HeroProps) {
     const contactSection = document.getElementById('contact')
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [])
+
+  const scrollToProjects = useCallback(() => {
+    const projectsSection = document.getElementById('projects')
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' })
     }
   }, [])
 
@@ -511,24 +516,17 @@ export default function Hero({ className }: HeroProps) {
             </motion.button>
             
             <motion.button 
-              onClick={() => setIsVideoModalOpen(true)}
+              onClick={scrollToProjects}
               className="px-10 py-4 bg-white/90 backdrop-blur-md border-2 border-[#3B82F6] text-[#3B82F6] rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-3 hover:bg-[#3B82F6] hover:text-white"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
               <Play className="w-5 h-5" />
-              <span>View Our Portfolio</span>
+              <span>View Selected Work</span>
             </motion.button>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Video Modal */}
-      <VideoModal 
-        isOpen={isVideoModalOpen} 
-        onClose={() => setIsVideoModalOpen(false)} 
-        videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
-      />
 
       {/* Client Wizard Modal */}
       <ClientWizard 

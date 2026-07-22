@@ -54,52 +54,52 @@ export default function ContactSection() {
 
 
   const stats = [
-    { number: '24h', label: 'Response Time', icon: Clock },
-    { number: '99%', label: 'Satisfaction', icon: Star },
-    { number: '500+', label: 'Projects', icon: Rocket },
-    { number: '5+', label: 'Years Experience', icon: Shield }
+    { number: '5+', label: 'Years Experience', icon: Shield },
+    { number: '200+', label: 'Automations', icon: Rocket },
+    { number: '8+', label: 'Platforms Shipped', icon: Star },
+    { number: '20+', label: 'Hrs/Week Saved', icon: Clock }
   ]
 
   const faqData = [
     {
       question: "How much does custom software development cost?",
-      answer: "Costs vary based on project complexity and scope. Our free consultation will provide a detailed breakdown of costs and timeline. Most projects range from $10,000 to $100,000+ depending on requirements."
+      answer: "Costs depend on scope and complexity. After a discovery call, I can outline a realistic timeline and budget for your specific project."
     },
     {
       question: "What if the software doesn't meet my needs?",
-      answer: "We're so confident in our development process that we offer a free consultation first. We work closely with you throughout development to ensure the final product exceeds your expectations."
+      answer: "We scope clearly up front and iterate with regular check-ins so the build stays aligned with your goals throughout development."
     },
     {
       question: "How long does development take?",
-      answer: "Most projects are completed within 4-12 weeks depending on complexity. We provide regular updates and work in agile sprints to ensure timely delivery."
+      answer: "Timelines vary by project. Smaller features can ship in weeks; larger platforms take longer. I'll give a clear estimate after understanding the scope."
     },
     {
       question: "Do I need technical knowledge?",
-      answer: "No! Our expert developers handle all the technical work. You just tell us what you want built, and we'll create the perfect solution for your business."
+      answer: "No. You describe the product and outcomes you need — I handle the architecture, implementation, and deployment."
     },
     {
-      question: "What types of businesses do you work with?",
-      answer: "We work with businesses of all sizes - from startups to large enterprises. Our software solutions are customized for your specific industry and needs."
+      question: "What types of projects do you take on?",
+      answer: "Web platforms, admin systems, marketplaces, billing/integrations, workflow automation (n8n, Make, Zapier), and AI agent work with LangChain/LangGraph."
     },
     {
       question: "What technologies do you use?",
-      answer: "We use modern tech stacks including React, Next.js, Node.js, React Native, Flutter, Python, AWS, and more. We choose the best technology for your specific project needs."
+      answer: "Primarily Ruby on Rails, React, Next.js, and Node.js, plus Stripe, AWS, Sidekiq, and automation tools like n8n, Make, and Zapier."
     },
     {
       question: "Do you provide ongoing support?",
-      answer: "Yes! We provide comprehensive maintenance and support to ensure your software continues working smoothly. We're always available for updates and optimizations."
+      answer: "Yes — maintenance, iterations, and automation improvements after launch are available as needed."
     },
     {
-      question: "Can I modify the software later?",
-      answer: "Absolutely! We build scalable and maintainable software that can be easily modified as your business grows. We'll train your team or provide ongoing development support."
+      question: "Can the software be modified later?",
+      answer: "Yes. I build maintainable, scalable systems so you can extend features as the business grows."
     },
     {
-      question: "Do you handle mobile and web development?",
-      answer: "Yes! We specialize in both mobile app development (iOS, Android, React Native, Flutter) and web development (React, Next.js, full-stack applications)."
+      question: "Do you handle backend and DevOps?",
+      answer: "Yes. I often own backend and DevOps end-to-end — APIs, jobs, CI/CD, and AWS deployments."
     },
     {
       question: "Is my data secure?",
-      answer: "Security is our top priority. We implement enterprise-grade security measures, encrypted connections, and comply with GDPR and other data protection regulations."
+      answer: "Security is treated seriously: encrypted connections, careful access control, and practices aligned with common data-protection requirements."
     }
   ]
 
@@ -332,11 +332,10 @@ export default function ContactSection() {
         >
           
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Get Your <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Free Project Consultation</span>
+            Let&apos;s <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Build Something</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Transform your business with custom software solutions. Get a free consultation and discover how our expert developers can build the perfect solution for your needs.
-            We&apos;ll show you how to scale your business with cutting-edge technology.
+            Have a web app, platform, or automation project in mind? Tell me what you&apos;re building and I&apos;ll help you figure out the right approach.
           </p>
         </motion.div>
 
@@ -403,7 +402,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="text-3xl font-bold text-gray-900">Let's Connect</h3>
-                  <p className="text-gray-600">Worth $500 - Free consultation</p>
+                  <p className="text-gray-600">Tell me about your project</p>
                 </div>
               </motion.div>
               

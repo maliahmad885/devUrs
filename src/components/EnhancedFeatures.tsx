@@ -4,13 +4,9 @@ import { useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { 
   Zap, 
-  Shield, 
-  Globe, 
   Brain, 
   Rocket, 
   Lock, 
-  TrendingUp, 
-  Users,
   Code,
   Database,
   Cloud,
@@ -33,81 +29,81 @@ const features: Feature[] = [
     id: 1,
     icon: Code,
     title: "Full-Stack Development",
-    description: "Complete software solutions from frontend to backend with modern technologies and best practices.",
-    benefits: ["React & Next.js", "Node.js & Python", "Database design", "API development"],
+    description: "End-to-end web platforms with Ruby on Rails, React, Next.js, and Node.js.",
+    benefits: ["Ruby on Rails", "React & Next.js", "Node.js", "API development"],
     color: "from-orange-400 to-red-500",
     gradient: "bg-gradient-to-br from-orange-400 to-red-500",
     category: "Development"
   },
   {
     id: 2,
-    icon: Shield,
-    title: "Enterprise Security",
-    description: "Bank-grade security with SOC 2 compliance, end-to-end encryption, and advanced threat protection.",
-    benefits: ["SOC 2 certified", "HIPAA ready", "GDPR compliant", "24/7 monitoring"],
+    icon: Zap,
+    title: "Workflow Automation",
+    description: "Certified automation work with n8n, Make, and Zapier — 200+ workflows shipped.",
+    benefits: ["n8n", "Make", "Zapier", "Process automation"],
     color: "from-green-400 to-emerald-600",
     gradient: "bg-gradient-to-br from-green-400 to-emerald-600",
-    category: "Security"
+    category: "Automation"
   },
   {
     id: 3,
-    icon: Globe,
-    title: "Cross-Platform Apps",
-    description: "Build once, deploy everywhere with React Native and Flutter for iOS, Android, and web platforms.",
-    benefits: ["iOS & Android", "Web applications", "Single codebase", "Native performance"],
+    icon: Brain,
+    title: "AI Agent Development",
+    description: "Building intelligent agents with LangChain and LangGraph for real business workflows.",
+    benefits: ["LangChain", "LangGraph", "LLM workflows", "Agent tooling"],
     color: "from-blue-400 to-indigo-600",
     gradient: "bg-gradient-to-br from-blue-400 to-indigo-600",
-    category: "Mobile"
+    category: "AI"
   },
   {
     id: 4,
     icon: Database,
-    title: "Database Architecture",
-    description: "Scalable database design and management with PostgreSQL, MongoDB, and cloud solutions.",
-    benefits: ["SQL & NoSQL", "Data modeling", "Performance optimization", "Backup & recovery"],
+    title: "Integrations & Data",
+    description: "Payments, CRM, accounting, and commerce integrations wired into production apps.",
+    benefits: ["Stripe", "Xero", "Brevo", "Shopify"],
     color: "from-purple-400 to-violet-600",
     gradient: "bg-gradient-to-br from-purple-400 to-violet-600",
-    category: "Database"
+    category: "Integrations"
   },
   {
     id: 5,
     icon: Rocket,
-    title: "Lightning Fast Performance",
-    description: "Optimized applications with sub-second load times and 99.9% uptime guarantee.",
-    benefits: ["Performance optimization", "99.9% uptime", "Auto-scaling", "CDN integration"],
+    title: "Background Jobs & APIs",
+    description: "Reliable Sidekiq jobs, REST APIs, and async processing for scalable platforms.",
+    benefits: ["Sidekiq", "REST APIs", "Job queues", "Data sync"],
     color: "from-yellow-400 to-orange-500",
     gradient: "bg-gradient-to-br from-yellow-400 to-orange-500",
-    category: "Performance"
+    category: "Backend"
   },
   {
     id: 6,
     icon: Lock,
-    title: "Advanced Authentication",
-    description: "Secure user authentication and authorization with OAuth, JWT, and role-based access control.",
-    benefits: ["OAuth integration", "JWT tokens", "Role-based access", "Multi-factor auth"],
+    title: "Auth & Access Control",
+    description: "Secure authentication patterns with OAuth, JWT, and role-based access where projects need them.",
+    benefits: ["OAuth", "JWT", "Role-based access", "Session security"],
     color: "from-red-400 to-pink-600",
     gradient: "bg-gradient-to-br from-red-400 to-pink-600",
     category: "Security"
   },
   {
     id: 7,
-    icon: BarChart3,
-    title: "Analytics & Reporting",
-    description: "Comprehensive dashboards with real-time insights into your application performance and user behavior.",
-    benefits: ["Real-time analytics", "Custom dashboards", "User tracking", "Performance metrics"],
-    color: "from-teal-400 to-cyan-600",
-    gradient: "bg-gradient-to-br from-teal-400 to-cyan-600",
-    category: "Analytics"
-  },
-  {
-    id: 8,
     icon: Cloud,
-    title: "Cloud Deployment",
-    description: "Scalable cloud infrastructure with AWS, Azure, and Google Cloud for global reach and reliability.",
-    benefits: ["AWS & Azure", "Auto-scaling", "Global deployment", "Cost optimization"],
+    title: "Cloud & DevOps",
+    description: "AWS deployment, CI/CD pipelines, and NGINX — including solo backend/DevOps ownership.",
+    benefits: ["AWS", "CI/CD", "NGINX", "Deployments"],
     color: "from-indigo-400 to-purple-600",
     gradient: "bg-gradient-to-br from-indigo-400 to-purple-600",
     category: "Cloud"
+  },
+  {
+    id: 8,
+    icon: BarChart3,
+    title: "Platform Migrations",
+    description: "Framework migrations and modernization — including Django-to-Rails and React frontend work.",
+    benefits: ["Rails migrations", "React frontends", "Legacy modernization", "Refactoring"],
+    color: "from-teal-400 to-cyan-600",
+    gradient: "bg-gradient-to-br from-teal-400 to-cyan-600",
+    category: "Migrations"
   }
 ]
 
@@ -269,11 +265,11 @@ export default function EnhancedFeatures() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-gray-900">Powerful Features That Drive </span>
-            <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Results</span>
+            <span className="text-gray-900">Capabilities That </span>
+            <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Ship</span>
           </h2>
           <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
-            Discover the cutting-edge capabilities that make DevUrs the most trusted software development partner
+            Practical strengths from 5+ years of building platforms, automations, and integrations in production.
           </p>
         </motion.div>
 

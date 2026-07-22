@@ -12,9 +12,9 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = "DevUrs - Software Development Agency | Mobile Apps & Web Development",
-  description = "Leading software development agency specializing in mobile apps, web applications, CRM systems, and custom software solutions. Transform your business with cutting-edge technology.",
-  keywords = "mobile app development, web development, CRM development, SaaS development, e-commerce development, custom software, React Native, Next.js, Node.js, software development agency",
+  title = "DevUrs | Ali Ahmad — Full-Stack Developer & Automation Expert",
+  description = "Ali Ahmad — Full-Stack Developer & Automation Expert with 5+ years building high-performance web apps and intelligent workflows. Rails, React, Next.js, Node.js, n8n, Make, Zapier, LangChain.",
+  keywords = "full-stack developer, Ruby on Rails, React, Next.js, Node.js, n8n, Make, Zapier, workflow automation, LangChain, Ali Ahmad, DevUrs",
   image = "/og-image.svg",
   url = "https://codeurs.com",
   type = "website"
@@ -28,7 +28,7 @@ export default function SEO({
       <meta name="keywords" content={keywords} />
       <meta name="robots" content="index, follow" />
       <meta name="language" content="English" />
-      <meta name="author" content="DevUrs" />
+      <meta name="author" content="Ali Ahmad" />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
@@ -48,8 +48,8 @@ export default function SEO({
       
       {/* Additional Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content="#8B5CF6" />
-      <meta name="msapplication-TileColor" content="#8B5CF6" />
+      <meta name="theme-color" content="#059669" />
+      <meta name="msapplication-TileColor" content="#059669" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta name="apple-mobile-web-app-title" content="DevUrs" />
@@ -68,39 +68,23 @@ export default function SEO({
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       
-      {/* Structured Data */}
+      {/* Structured Data — sameAs left empty until real profile URLs are provided */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "DevUrs",
+            "@type": "Person",
+            "name": "Ali Ahmad",
+            "jobTitle": "Full-Stack Developer & Automation Expert",
             "description": description,
             "url": url,
-            "logo": image,
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "telephone": "+1-555-123-4567",
-              "contactType": "customer service",
-              "email": "hello@codeurs.com"
+            "worksFor": {
+              "@type": "Organization",
+              "name": "DevUrs",
+              "logo": image
             },
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "San Francisco",
-              "addressRegion": "CA",
-              "addressCountry": "US"
-            },
-            "sameAs": [
-              "https://github.com",
-              "https://twitter.com",
-              "https://linkedin.com"
-            ],
-            "offers": {
-              "@type": "Offer",
-              "name": "Software Development Services",
-              "description": "Professional mobile app development, web applications, and custom software solutions"
-            }
+            "sameAs": []
           })
         }}
       />

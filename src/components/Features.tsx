@@ -190,10 +190,10 @@ export default function Features() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
-            How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22c55e] to-[#0ea5e9]">Transform Your Business</span>
+            What I <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22c55e] to-[#0ea5e9]">Build</span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-            From mobile apps to enterprise software, here's exactly how our development solutions drive growth and deliver measurable results.
+            Full-stack web platforms, workflow automation, and integrations — grounded in Rails, React, and production DevOps.
           </p>
         </motion.div>
 
@@ -207,43 +207,43 @@ export default function Features() {
         >
           <Interactive3DCard
             icon={Cpu}
-            title="Mobile App Development"
-            description="Native iOS & Android apps built with React Native, Flutter, and Swift. Responsive design that converts users into customers."
+            title="Full-Stack Web Apps"
+            description="Rails, React, Next.js, and Node.js platforms — from admin systems and marketplaces to booking and study products."
             gradient="bg-gradient-to-br from-[#3B82F6] to-[#2563EB]"
             delay={0.6}
           />
           <Interactive3DCard
             icon={Rocket}
-            title="Web Development"
-            description="Modern websites and web applications using React, Next.js, and Node.js. Fast, secure, and optimized for conversions."
+            title="Workflow Automation"
+            description="n8n, Make, and Zapier automations that cut manual work — 200+ workflows shipped for real business processes."
             gradient="bg-gradient-to-br from-[#10B981] to-[#059669]"
             delay={0.8}
           />
           <Interactive3DCard
             icon={Brain}
-            title="CRM & SaaS Platforms"
-            description="Custom CRM systems and SaaS platforms that streamline operations. Built to scale with your business growth."
+            title="AI Agents"
+            description="LangChain and LangGraph agent development — connecting LLMs to real workflows for smarter automation."
             gradient="bg-gradient-to-br from-[#1E40AF] to-[#3B82F6]"
             delay={1.0}
           />
           <Interactive3DCard
             icon={Zap}
-            title="E-commerce Solutions"
-            description="Complete e-commerce platforms with payment integration, inventory management, and analytics. Ready to sell online."
+            title="Payments & Integrations"
+            description="Stripe billing, Xero accounting, Shopify commerce, Brevo CRM, and Craftcloud API integrations."
             gradient="bg-gradient-to-br from-[#2563EB] to-[#10B981]"
             delay={1.2}
           />
           <Interactive3DCard
             icon={Shield}
-            title="API Development"
-            description="RESTful APIs and microservices architecture. Connect your systems and enable seamless data flow across platforms."
+            title="APIs & Background Jobs"
+            description="RESTful APIs, Sidekiq job processing, and reliable data sync across systems."
             gradient="bg-gradient-to-br from-[#059669] to-[#3B82F6]"
             delay={1.4}
           />
           <Interactive3DCard
             icon={Sparkles}
-            title="Cloud Infrastructure"
-            description="AWS, Azure, and Google Cloud deployment. Scalable infrastructure that grows with your business needs."
+            title="Cloud & DevOps"
+            description="AWS deployment, CI/CD pipelines, and NGINX — solo backend and DevOps ownership when needed."
             gradient="bg-gradient-to-br from-[#3B82F6] to-[#10B981]"
             delay={1.6}
           />

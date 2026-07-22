@@ -599,18 +599,18 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
           className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#3B82F6] text-[#3B82F6] rounded-xl font-semibold hover:bg-[#3B82F6] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation min-h-[44px] hover:border-[#2563EB]"
         >
           <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
-          Email Us Directly
+          Email Directly
         </button>
       </motion.div>
 
-      {/* Footer note */}
+      {/* Footer note — TODO: confirm real email before launch */}
       <motion.p
         className="text-xs text-gray-400 mt-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        Questions? Contact us at hello@codeurs.com or call +1 (555) 123-4567
+        Questions? Reach out via the contact form or email hello@codeurs.com
       </motion.p>
     </motion.div>
   )

@@ -113,9 +113,9 @@ export default function TermsOfService() {
                 please contact our legal team:
               </p>
               <div className="space-y-2 text-gray-600">
-                <p>Email: legal@codeurs.com</p>
-                <p>Address: 123 Integration Street, Tech City, TC 12345</p>
-                <p>Phone: +1 (555) 123-4567</p>
+                {/* TODO: confirm real contact email before launch */}
+                <p>Email: hello@codeurs.com</p>
+                <p>Or use the contact form on the homepage.</p>
               </div>
             </motion.div>
           </div>

@@ -1,11 +1,11 @@
 {
-  "name": "DevUrs - Software Development",
+  "name": "DevUrs — Ali Ahmad",
   "short_name": "DevUrs",
-  "description": "Leading software development agency specializing in mobile apps, web applications, CRM systems, and custom software solutions.",
+  "description": "Ali Ahmad — Full-Stack Developer & Automation Expert. Rails, React, Next.js, Node.js, n8n, Make, Zapier, and AI agents.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#8B5CF6",
+  "theme_color": "#059669",
   "orientation": "portrait-primary",
   "icons": [
     {

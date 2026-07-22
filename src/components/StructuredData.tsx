@@ -3,67 +3,31 @@
 import Script from 'next/script'
 
 export default function StructuredData() {
+  // TODO: replace url, email, and sameAs with real contact/profile URLs when confirmed
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "DevUrs",
+    "@type": "Person",
+    "name": "Ali Ahmad",
+    "jobTitle": "Full-Stack Developer & Automation Expert",
     "url": "https://codeurs.com",
-    "logo": "https://codeurs.com/favicon.svg",
-    "description": "Leading software development agency specializing in mobile apps, web applications, CRM systems, and custom software solutions.",
-    "foundingDate": "2023",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "US"
+    "worksFor": {
+      "@type": "Organization",
+      "name": "DevUrs"
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "hello@codeurs.com"
-    },
-    "sameAs": [
-      "https://linkedin.com/company/codeurs",
-      "https://twitter.com/codeurs",
-      "https://facebook.com/codeurs"
+    "description": "Full-Stack Developer & Automation Expert with 5+ years of experience building high-performance web applications and intelligent workflow systems. Specialized in Ruby on Rails, React.js, Next.js, and Node.js. Certified automation professional with 200+ workflow automations using n8n, Make, and Zapier.",
+    "knowsAbout": [
+      "Ruby on Rails",
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "n8n",
+      "Make",
+      "Zapier",
+      "LangChain",
+      "LangGraph",
+      "Workflow Automation"
     ],
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 40.7128,
-        "longitude": -74.0060
-      },
-      "geoRadius": "50000"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Software Development Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Mobile App Development",
-            "description": "Native iOS and Android apps built with React Native, Flutter, and modern technologies."
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Web Development",
-            "description": "Modern web applications built with React, Next.js, and full-stack technologies."
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "CRM & SaaS Development",
-            "description": "Custom CRM systems and SaaS platforms tailored to your business needs."
-          }
-        }
-      ]
-    }
+    "sameAs": []
   }
 
   return (
@@ -73,4 +37,4 @@ export default function StructuredData() {
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
     />
   )
-} 
+}

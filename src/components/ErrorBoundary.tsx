@@ -119,10 +119,10 @@ export default class ErrorBoundary extends Component<Props, State> {
             <div className="mt-6 text-sm text-gray-500">
               <p>If this problem persists, please contact our support team:</p>
               <a 
-                href="mailto:support@codeurs.com" 
+                href="mailto:hello@codeurs.com" 
                 className="text-purple-600 hover:text-purple-700 underline"
               >
-                support@codeurs.com
+                hello@codeurs.com
               </a>
             </div>
           </div>

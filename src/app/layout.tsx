@@ -6,16 +6,16 @@ import AnalyticsWrapper from "@/components/Analytics";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "DevUrs - Mobile Apps, Websites, CRM & SaaS Development | Transform Your Business",
-  description: "Leading development agency specializing in mobile apps, websites, CRM systems, e-commerce platforms, and SaaS software. Transform your business with cutting-edge technology solutions.",
-  keywords: "mobile app development, website development, CRM development, SaaS software, e-commerce development, custom software, web applications, mobile applications, business automation, digital transformation",
-  authors: [{ name: "DevUrs" }],
-  creator: "DevUrs",
+  title: "DevUrs | Ali Ahmad — Full-Stack Developer & Automation Expert",
+  description: "Ali Ahmad — Full-Stack Developer & Automation Expert with 5+ years building high-performance web apps and intelligent workflows. Rails, React, Next.js, Node.js, n8n, Make, Zapier, LangChain.",
+  keywords: "full-stack developer, Ruby on Rails, React, Next.js, Node.js, n8n, Make, Zapier, workflow automation, LangChain, LangGraph, Ali Ahmad, DevUrs",
+  authors: [{ name: "Ali Ahmad" }],
+  creator: "Ali Ahmad / DevUrs",
   publisher: "DevUrs",
   robots: "index, follow",
   openGraph: {
-    title: "DevUrs - Mobile Apps, Websites, CRM & SaaS Development | Transform Your Business",
-    description: "Leading development agency specializing in mobile apps, websites, CRM systems, e-commerce platforms, and SaaS software.",
+    title: "DevUrs | Ali Ahmad — Full-Stack Developer & Automation Expert",
+    description: "5+ years building high-performance web applications and intelligent workflow systems. Rails, React, Next.js, automation, and AI agents.",
     url: "https://codeurs.com",
     siteName: "DevUrs",
     images: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "DevUrs - Development Agency",
+        alt: "DevUrs — Ali Ahmad, Full-Stack Developer",
       },
     ],
     locale: "en_US",
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevUrs - Mobile Apps, Websites, CRM & SaaS Development | Transform Your Business",
-    description: "Leading development agency specializing in mobile apps, websites, CRM systems, e-commerce platforms, and SaaS software.",
+    title: "DevUrs | Ali Ahmad — Full-Stack Developer & Automation Expert",
+    description: "5+ years building high-performance web applications and intelligent workflow systems.",
     images: ["/og-image.svg"],
   },
   viewport: "width=device-width, initial-scale=1",
