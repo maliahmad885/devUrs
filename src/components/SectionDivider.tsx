@@ -6,9 +6,19 @@ import { ChevronDown, Sparkles, Zap } from 'lucide-react'
 interface SectionDividerProps {
   variant?: 'flowing' | 'magnetic' | 'sparkle'
   className?: string
+  /** Section id to scroll to when the magnetic button is clicked */
+  targetId?: string
 }
 
-export default function SectionDivider({ variant = 'flowing', className }: SectionDividerProps) {
+export default function SectionDivider({ variant = 'flowing', className, targetId = 'about' }: SectionDividerProps) {
+  const scrollToTarget = () => {
+    const element = document.getElementById(targetId)
+    if (!element) return
+
+    const navHeight = 80
+    const targetPosition = element.getBoundingClientRect().top + window.scrollY - navHeight
+    window.scrollTo({ top: targetPosition, behavior: 'smooth' })
+  }
   const flowingVariants: Variants = {
     hidden: { opacity: 0, scaleY: 0 },
     visible: { 
@@ -140,9 +150,13 @@ export default function SectionDivider({ variant = 'flowing', className }: Secti
         viewport={{ once: true, margin: "-50px" }}
       >
         <div className="flex items-center justify-center h-full">
-          <motion.div
-            className="relative"
-            whileHover={{ scale: 1.2 }}
+          <motion.button
+            type="button"
+            onClick={scrollToTarget}
+            aria-label="Scroll to next section"
+            className="relative cursor-pointer bg-transparent border-0 p-0"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <motion.div
@@ -158,13 +172,11 @@ export default function SectionDivider({ variant = 'flowing', className }: Secti
               }}
             >
               <motion.div
-                animate={{
-                  rotate: 360
-                }}
+                animate={{ y: [0, 4, 0] }}
                 transition={{
-                  duration: 4,
+                  duration: 1.2,
                   repeat: Infinity,
-                  ease: "linear"
+                  ease: "easeInOut"
                 }}
               >
                 <ChevronDown className="w-6 h-6 text-purple-500" />
@@ -173,7 +185,7 @@ export default function SectionDivider({ variant = 'flowing', className }: Secti
             
             {/* Magnetic glow effect */}
             <motion.div
-              className="absolute inset-0 rounded-full bg-purple-500/20"
+              className="absolute inset-0 rounded-full bg-purple-500/20 pointer-events-none"
               animate={{
                 scale: [1, 1.5, 1],
                 opacity: [0, 0.5, 0]
@@ -184,7 +196,7 @@ export default function SectionDivider({ variant = 'flowing', className }: Secti
                 ease: "easeInOut"
               }}
             />
-          </motion.div>
+          </motion.button>
         </div>
       </motion.div>
     )

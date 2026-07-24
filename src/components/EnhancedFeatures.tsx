@@ -199,9 +199,9 @@ const FeatureCard = ({ feature, index }: { feature: Feature; index: number }) =>
           
           {/* Benefits List */}
           <motion.div
-            className="relative z-10"
+            className="relative z-10 overflow-hidden"
             initial={false}
-            animate={{ height: isExpanded ? "auto" : "0" }}
+            animate={{ height: isExpanded ? "auto" : 0, opacity: isExpanded ? 1 : 0 }}
             transition={{ duration: 0.3 }}
           >
             <div className="space-y-2 mb-4">
@@ -209,7 +209,7 @@ const FeatureCard = ({ feature, index }: { feature: Feature; index: number }) =>
                 <motion.div
                   key={idx}
                   className="flex items-center gap-2 text-sm text-gray-600"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={false}
                   animate={{ opacity: isExpanded ? 1 : 0, x: isExpanded ? 0 : -20 }}
                   transition={{ duration: 0.3, delay: idx * 0.1 }}
                 >
@@ -222,7 +222,11 @@ const FeatureCard = ({ feature, index }: { feature: Feature; index: number }) =>
           
           {/* Expand/Collapse Button */}
           <motion.button
-            onClick={() => setIsExpanded(!isExpanded)}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsExpanded(!isExpanded)
+            }}
             className="relative z-10 w-full text-center text-purple-600 font-semibold text-sm hover:text-purple-700 transition-colors duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -234,7 +238,7 @@ const FeatureCard = ({ feature, index }: { feature: Feature; index: number }) =>
         {/* Hover Glow Effect */}
         {isHovered && (
           <motion.div
-            className={`absolute inset-0 ${feature.gradient} rounded-2xl blur-xl opacity-20`}
+            className={`absolute inset-0 ${feature.gradient} rounded-2xl blur-xl opacity-20 pointer-events-none`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.2 }}
             transition={{ duration: 0.3 }}

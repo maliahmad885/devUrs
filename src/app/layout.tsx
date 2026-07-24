@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -35,8 +35,6 @@ export const metadata: Metadata = {
     description: "5+ years building high-performance web applications and intelligent workflow systems.",
     images: ["/og-image.svg"],
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#059669",
   manifest: "/manifest.json",
   icons: {
     icon: [
@@ -53,6 +51,12 @@ export const metadata: Metadata = {
     ],
     shortcut: "/favicon.ico",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#059669",
 };
 
 export default function RootLayout({

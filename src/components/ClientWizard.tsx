@@ -190,20 +190,11 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
         console.log('Email sent successfully, setting isSubmitted to true')
         setIsSubmitted(true)
       } else {
-        // If email service is not configured, show a fallback message
-        if (result.message && result.message.includes('not configured')) {
-          console.log('Email service not configured. Form data:', data)
-          alert('Thank you for your information! Since our email service is currently being set up, we\'ll contact you directly at ' + data.email + ' within 24 hours.')
-          setIsSubmitted(true)
-        } else {
-          throw new Error(result.message || 'Failed to send email')
-        }
+        throw new Error(result.message || 'Failed to send email')
       }
     } catch (error) {
       console.error('Error sending email:', error)
-      // Show the form data in console for debugging
-      console.log('Form data that would have been sent:', data)
-      alert('There was an error sending your information. Please try again or contact us directly at naumankhan642@gmail.com')
+      alert('Email send nahi hui. Please try again or contact us directly.')
     } finally {
       setIsSubmitting(false)
     }

@@ -5,13 +5,6 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
     
-    console.log('Received form data:', data)
-    console.log('Environment variables check:')
-    console.log('EMAIL_USER exists:', !!process.env.EMAIL_USER)
-    console.log('EMAIL_PASS exists:', !!process.env.EMAIL_PASS)
-    console.log('EMAIL_USER value:', process.env.EMAIL_USER)
-    console.log('EMAIL_PASS length:', process.env.EMAIL_PASS?.length)
-
     // Check if environment variables are set
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error('Email configuration missing. Please set EMAIL_USER and EMAIL_PASS environment variables.')
@@ -28,8 +21,8 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: "m.aliahmadm875@gmail.com",
-        pass: "utik fsbb ookb irnw"
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
       }
     })
 
@@ -71,7 +64,7 @@ This email was sent from the DevUrs website project consultation wizard.
     // Email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'm.aliahmadm875@gmail.com',
+      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
       subject: `New Project Consultation Request - ${data.firstName} ${data.lastName} (${data.company || 'Individual'})`,
       text: emailContent,
       html: `
@@ -126,13 +119,6 @@ This email was sent from the DevUrs website project consultation wizard.
     }
 
     // Send email
-    console.log('Attempting to send email...')
-    console.log('Mail options:', {
-      from: mailOptions.from,
-      to: mailOptions.to,
-      subject: mailOptions.subject
-    })
-    
     const result = await transporter.sendMail(mailOptions)
     console.log('Email sent successfully:', result.messageId)
 
