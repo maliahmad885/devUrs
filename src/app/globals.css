@@ -62,26 +62,24 @@
     --font-extrabold: 800;
   }
   
+  /*
+   * Scrolling rules — read before changing:
+   * The viewport (html) is the ONLY scroll container. `body`, `main` and the
+   * sections must NOT get `overflow-x: hidden` (use `clip`) or
+   * `overscroll-behavior`, because that turns them into scroll containers
+   * that swallow mouse-wheel events instead of chaining them to the viewport.
+   */
   html {
-    scroll-behavior: auto;
     /* Fixed scroll padding for navigation offset */
     scroll-padding-top: 80px;
-    /* Removed conflicting scroll-snap */
+    scroll-behavior: smooth;
     font-size: 16px; /* Base font size */
     line-height: 1.6; /* Base line height */
-    /* Prevent horizontal overflow */
+    /* Prevent horizontal overflow (viewport level only) */
     overflow-x: hidden;
     width: 100%;
-    /* Improved scroll performance */
-    -webkit-overflow-scrolling: touch;
-    /* Mobile scroll fix */
-    scroll-behavior: smooth;
-    /* Prevent scroll bounce on iOS */
-    overscroll-behavior: none;
-    /* Prevent FOUC */
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.1s ease-in-out;
+    /* Prevent scroll bounce / pull-to-refresh at the viewport level */
+    overscroll-behavior-y: none;
   }
   body {
     font-family: 'Georgia', 'Times New Roman', serif;
@@ -90,20 +88,10 @@
     line-height: var(--leading-normal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Prevent horizontal overflow */
-    overflow-x: hidden;
+    /* `clip` hides horizontal overflow WITHOUT creating a scroll container */
+    overflow-x: clip;
     width: 100%;
     position: relative;
-    /* Improved scroll performance */
-    -webkit-overflow-scrolling: touch;
-    /* Mobile scroll fixes */
-    overscroll-behavior: none;
-    /* Prevent pull-to-refresh on mobile */
-    overscroll-behavior-y: none;
-    /* Prevent FOUC */
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.1s ease-in-out;
   }
   
   /* Enhanced scroll progress bar */
@@ -1098,21 +1086,10 @@ html {
   html {
     /* Disable smooth scrolling on mobile to prevent conflicts */
     scroll-behavior: auto;
-    /* Prevent iOS bounce */
-    overscroll-behavior: none;
     /* Fix mobile viewport */
     -webkit-text-size-adjust: 100%;
   }
-  
-  body {
-    /* Prevent mobile scroll issues */
-    overscroll-behavior: none;
-    /* Fix touch scrolling */
-    -webkit-overflow-scrolling: touch;
-    /* Prevent pull-to-refresh */
-    overscroll-behavior-y: none;
-  }
-  
+
   /* Fix mobile button interactions */
   button, a {
     /* Improve touch targets */
@@ -1120,16 +1097,6 @@ html {
     min-width: 44px;
     /* Prevent double-tap zoom */
     touch-action: manipulation;
-  }
-  
-  /* Fix mobile scroll containers */
-  .scroll-section {
-    /* Ensure proper scrolling */
-    overflow-x: hidden;
-    /* Fix mobile scroll performance */
-    -webkit-overflow-scrolling: touch;
-    /* Prevent scroll chaining */
-    overscroll-behavior: contain;
   }
   
   /* Mobile navigation fixes */
@@ -1157,10 +1124,9 @@ html {
     touch-action: manipulation;
   }
   
-  /* Fix touch scrolling */
-  html, body {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
+  /* Prevent pull-to-refresh bounce at the viewport level only */
+  html {
+    overscroll-behavior-y: none;
   }
   
   /* Prevent zoom on input focus */
@@ -1172,14 +1138,11 @@ html {
 /* iOS Safari specific fixes */
 @supports (-webkit-touch-callout: none) {
   html {
-    /* Fix iOS Safari scroll issues */
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
+    /* Prevent iOS bounce at the viewport level only */
+    overscroll-behavior-y: none;
   }
-  
+
   body {
-    /* Prevent iOS bounce */
-    overscroll-behavior: none;
     /* Fix iOS Safari viewport */
     -webkit-text-size-adjust: 100%;
   }

@@ -223,11 +223,10 @@ module.exports = {
       },
       
       fontFamily: {
-        'sans': ['Montserrat', 'system-ui', 'sans-serif'],
+        'sans': ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
         'serif': ['Georgia', 'Times New Roman', 'serif'],
-        'display': ['Montserrat', 'system-ui', 'sans-serif'],
-        'montserrat': ['Montserrat', 'system-ui', 'sans-serif'],
-        'poppins': ['Poppins', 'system-ui', 'sans-serif'],
+        'display': ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
+        'montserrat': ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
       },
       
       spacing: {

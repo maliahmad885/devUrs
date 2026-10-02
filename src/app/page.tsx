@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, lazy, useEffect, useState } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
@@ -10,58 +10,46 @@ import CookieConsent from '@/components/CookieConsent'
 import ScrollToTop from '@/components/ScrollToTop'
 import ContactSection from '@/components/ContactSection'
 import ClientWizard from '@/components/ClientWizard'
+import {
+  AUTOMATIONS_SHIPPED,
+  HOURS_SAVED_PER_WEEK,
+  PLATFORMS_SHIPPED,
+  YEARS_EXPERIENCE,
+} from '@/lib/site'
 
-// Lazy load heavy components
+// Lazy load heavy / decorative components
 const ThreeDBackground = lazy(() => import('@/components/3DBackground'))
 const ScrollIndicator = lazy(() => import('@/components/ScrollIndicator'))
 const ScrollProgress = lazy(() => import('@/components/ScrollProgress'))
 const SectionDivider = lazy(() => import('@/components/SectionDivider'))
-const ScrollDebug = lazy(() => import('@/components/ScrollDebug'))
 
-// Loading component for lazy-loaded components
-const LoadingFallback = () => (
-  <div className="w-full h-32 bg-gradient-to-r from-gray-100 to-gray-200 animate-pulse rounded-lg" />
-)
+// Must match the section ids rendered below.
+const SECTIONS = ['home', 'about', 'features', 'projects', 'contact']
 
 export default function Home() {
   const [isWizardOpen, setIsWizardOpen] = useState(false)
-
-  useEffect(() => {
-    // Ensure page starts at the top
-    if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0)
-    }
-  }, [])
-
-  const sections = ['home', 'about', 'features', 'services', 'projects', 'contact']
+  const openWizard = () => setIsWizardOpen(true)
+  const closeWizard = () => setIsWizardOpen(false)
 
   return (
-    <main className="min-h-screen overflow-x-hidden">
-      {/* 3D Interactive Background - Lazy loaded */}
-      <Suspense fallback={<LoadingFallback />}>
+    <main className="min-h-screen overflow-x-clip">
+      <Suspense fallback={null}>
         <ThreeDBackground />
       </Suspense>
-      
-      {/* Scroll Progress Bar - Lazy loaded */}
+
       <Suspense fallback={null}>
         <ScrollProgress />
       </Suspense>
-      
-      {/* Innovative Scroll Indicator - Lazy loaded */}
+
       <Suspense fallback={null}>
-        <ScrollIndicator sections={sections} />
+        <ScrollIndicator sections={SECTIONS} />
       </Suspense>
-      
-      {/* Scroll Debug Component (development only) - Lazy loaded */}
-      <Suspense fallback={null}>
-        <ScrollDebug />
-      </Suspense>
-      
+
       <Navigation />
-      
+
       {/* Hero Section */}
       <section id="home" className="scroll-section bg-gradient-to-br from-[#22c55e]/10 via-white to-[#0ea5e9]/10 bg-pattern overflow-hidden">
-        <Hero />
+        <Hero onOpenWizard={openWizard} />
       </section>
 
       {/* Innovative Section Divider */}
@@ -82,7 +70,7 @@ export default function Home() {
               About <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Ali Ahmad</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0 leading-relaxed">
-              Ali Ahmad — Full-Stack Developer &amp; Automation Expert with 5+ years of experience building high-performance web applications and intelligent workflow systems. Specialized in Ruby on Rails, React.js, Next.js, and Node.js. Certified automation professional with 200+ workflow automations shipped using n8n, Make, and Zapier. Currently expanding into AI agent development with LangChain and LangGraph.
+              Ali Ahmad — Full-Stack Developer &amp; Automation Expert with {YEARS_EXPERIENCE} years of experience building high-performance web applications and intelligent workflow systems. Specialized in Ruby on Rails, React.js, Next.js, and Node.js. Certified automation professional with {AUTOMATIONS_SHIPPED} workflow automations shipped using n8n, Make, and Zapier. Currently expanding into AI agent development with LangChain and LangGraph.
             </p>
           </div>
 
@@ -125,7 +113,7 @@ export default function Home() {
                   </li>
                   <li className="flex gap-3">
                     <span className="text-[#3B82F6] font-bold">→</span>
-                    <span>200+ shipped automations with n8n, Make, and Zapier</span>
+                    <span>{AUTOMATIONS_SHIPPED} shipped automations with n8n, Make, and Zapier</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-[#3B82F6] font-bold">→</span>
@@ -156,19 +144,19 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">By the Numbers</h3>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <h3 className="text-3xl font-bold bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent mb-2">5+</h3>
+                    <h3 className="text-3xl font-bold bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent mb-2">{YEARS_EXPERIENCE}</h3>
                     <p className="text-sm text-gray-600 font-medium">Years Experience</p>
                   </div>
                   <div className="text-center">
-                    <h3 className="text-3xl font-bold bg-gradient-to-r from-[#10B981] to-[#3B82F6] bg-clip-text text-transparent mb-2">200+</h3>
+                    <h3 className="text-3xl font-bold bg-gradient-to-r from-[#10B981] to-[#3B82F6] bg-clip-text text-transparent mb-2">{AUTOMATIONS_SHIPPED}</h3>
                     <p className="text-sm text-gray-600 font-medium">Automations Delivered</p>
                   </div>
                   <div className="text-center">
-                    <h3 className="text-3xl font-bold bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent mb-2">8+</h3>
+                    <h3 className="text-3xl font-bold bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent mb-2">{PLATFORMS_SHIPPED}</h3>
                     <p className="text-sm text-gray-600 font-medium">Platforms Shipped</p>
                   </div>
                   <div className="text-center">
-                    <h3 className="text-3xl font-bold bg-gradient-to-r from-[#10B981] to-[#3B82F6] bg-clip-text text-transparent mb-2">20+</h3>
+                    <h3 className="text-3xl font-bold bg-gradient-to-r from-[#10B981] to-[#3B82F6] bg-clip-text text-transparent mb-2">{HOURS_SAVED_PER_WEEK}</h3>
                     <p className="text-sm text-gray-600 font-medium">Hours/Week Saved for Clients</p>
                   </div>
                 </div>
@@ -347,8 +335,9 @@ export default function Home() {
           <div className="text-center bg-gradient-to-r from-[#22c55e]/10 to-[#0ea5e9]/10 rounded-2xl p-8 border border-[#22c55e]/20">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Have a project in mind?</h3>
             <p className="text-gray-600 mb-6">Web apps, platforms, integrations, or automation — let&apos;s talk about what you need to ship.</p>
-            <button 
-              onClick={() => setIsWizardOpen(true)}
+            <button
+              type="button"
+              onClick={openWizard}
               className="bg-gradient-to-r from-[#22c55e] to-[#0ea5e9] text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
             >
               Start a Conversation
@@ -359,11 +348,8 @@ export default function Home() {
 
       <ContactSection />
 
-      {/* Client Wizard Modal */}
-      <ClientWizard 
-        isOpen={isWizardOpen} 
-        onClose={() => setIsWizardOpen(false)} 
-      />
+      {/* Single wizard instance for the whole page */}
+      <ClientWizard isOpen={isWizardOpen} onClose={closeWizard} />
 
       {/* Cookie Consent Banner */}
       <CookieConsent />

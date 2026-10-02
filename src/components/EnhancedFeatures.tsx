@@ -12,6 +12,7 @@ import {
   Cloud,
   BarChart3
 } from 'lucide-react'
+import { YEARS_EXPERIENCE } from '@/lib/site'
 
 interface Feature {
   id: number
@@ -273,7 +274,7 @@ export default function EnhancedFeatures() {
             <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Ship</span>
           </h2>
           <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
-            Practical strengths from 5+ years of building platforms, automations, and integrations in production.
+            Practical strengths from {YEARS_EXPERIENCE} years of building platforms, automations, and integrations in production.
           </p>
         </motion.div>
 

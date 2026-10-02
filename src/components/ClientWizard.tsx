@@ -1,13 +1,15 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ArrowRight, ArrowLeft, Check, Building, Target, DollarSign, User, Mail, Phone, Calendar, MessageSquare, Zap } from 'lucide-react'
-import { useState } from 'react'
+import { X, ArrowRight, ArrowLeft, Check, Building, Target, DollarSign, User, Zap, AlertCircle } from 'lucide-react'
+import { useCallback, useEffect, useState } from 'react'
 
 interface ClientWizardProps {
   isOpen: boolean
   onClose: () => void
 }
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 interface WizardData {
   // Step 1: Basic Info
@@ -71,32 +73,31 @@ const TEAM_SIZES = [
 ]
 
 const CHALLENGES = [
-  'Need a mobile app',
-  'Outdated website',
-  'Manual processes',
-  'Data management issues',
-  'No online presence',
-  'Customer management',
-  'E-commerce needs',
-  'API integrations',
-  'Scalability issues',
-  'Security concerns',
-  'Performance problems',
-  'User experience issues',
-  'Cross-platform compatibility'
+  'Too many manual processes',
+  'Tools that do not talk to each other',
+  'Outdated or slow web app',
+  'Need a new platform built',
+  'Billing / payments headaches',
+  'Scaling or performance issues',
+  'Legacy code to modernize',
+  'No backend / DevOps owner',
+  'Want to use AI in our workflow',
+  'Data sync and reporting gaps',
+  'Security or access-control concerns',
+  'Other'
 ]
 
 const AI_GOALS = [
-  'Build a mobile app',
-  'Create a website',
-  'Develop a CRM system',
-  'Build an e-commerce platform',
-  'Create a SaaS product',
-  'API development',
-  'Database design',
-  'Cloud deployment',
-  'User authentication',
-  'Payment integration'
+  'Build a web application (Rails / React / Next.js)',
+  'Automate workflows (n8n / Make / Zapier)',
+  'Integrate payments (Stripe) or accounting (Xero)',
+  'Connect CRM, Shopify, or other SaaS tools',
+  'Build an AI agent (LangChain / LangGraph)',
+  'Design or extend an API',
+  'Migrate or modernize an existing platform',
+  'Set up AWS deployment and CI/CD',
+  'Add authentication and roles',
+  'Ongoing maintenance and improvements'
 ]
 
 const AUTOMATION_PRIORITIES = [
@@ -122,33 +123,59 @@ const TIMELINES = [
   'Flexible timeline'
 ]
 
+const INITIAL_DATA: WizardData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  company: '',
+  businessType: '',
+  industry: '',
+  teamSize: '',
+  currentChallenges: [],
+  aiGoals: [],
+  specificUseCase: '',
+  automationPriority: '',
+  budget: '',
+  timeline: '',
+  additionalInfo: ''
+}
+
 export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [data, setData] = useState<WizardData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    company: '',
-    businessType: '',
-    industry: '',
-    teamSize: '',
-    currentChallenges: [],
-    aiGoals: [],
-    specificUseCase: '',
-    automationPriority: '',
-    budget: '',
-    timeline: '',
-    additionalInfo: ''
-  })
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [data, setData] = useState<WizardData>(INITIAL_DATA)
 
   const totalSteps = 4
 
-  const updateData = (field: keyof WizardData, value: any) => {
+  // Reset the wizard once the close animation has finished so reopening
+  // starts fresh instead of showing the previous success screen.
+  useEffect(() => {
+    if (isOpen) return
+    const timer = setTimeout(() => {
+      setCurrentStep(1)
+      setIsSubmitted(false)
+      setSubmitError(null)
+      setData(INITIAL_DATA)
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [isOpen])
+
+  // Close on Escape while open.
+  useEffect(() => {
+    if (!isOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !isSubmitting) onClose()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [isOpen, isSubmitting, onClose])
+
+  const updateData = useCallback(<K extends keyof WizardData>(field: K, value: WizardData[K]) => {
     setData(prev => ({ ...prev, [field]: value }))
-  }
+  }, [])
 
   const toggleArrayItem = (field: 'currentChallenges' | 'aiGoals', value: string) => {
     setData(prev => ({
@@ -173,43 +200,43 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
 
   const handleSubmit = async () => {
     setIsSubmitting(true)
-    
+    setSubmitError(null)
+
     try {
       const response = await fetch('/api/send-wizard-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
 
-      const result = await response.json()
-      console.log('Response result:', result)
+      const result = await response.json().catch(() => ({}))
 
-      if (response.ok && result.success) {
-        console.log('Email sent successfully, setting isSubmitted to true')
-        setIsSubmitted(true)
-      } else {
-        throw new Error(result.message || 'Failed to send email')
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Failed to send your request')
       }
+
+      setIsSubmitted(true)
     } catch (error) {
-      console.error('Error sending email:', error)
-      alert('Email send nahi hui. Please try again or contact us directly.')
+      setSubmitError(
+        error instanceof Error && error.message
+          ? error.message
+          : 'Something went wrong while sending your request. Please try again in a moment.'
+      )
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  const isStepValid = (step: number) => {
+  const isStepValid = (step: number): boolean => {
     switch (step) {
       case 1:
-        return data.firstName && data.lastName && data.email && data.phone
+        return Boolean(data.firstName.trim() && data.lastName.trim() && EMAIL_RE.test(data.email) && data.phone.trim())
       case 2:
-        return data.businessType && data.industry && data.teamSize && data.currentChallenges.length > 0
+        return Boolean(data.businessType && data.industry && data.teamSize && data.currentChallenges.length > 0)
       case 3:
-        return data.aiGoals.length > 0 && data.specificUseCase && data.automationPriority
+        return Boolean(data.aiGoals.length > 0 && data.specificUseCase.trim() && data.automationPriority)
       case 4:
-        return data.budget && data.timeline
+        return Boolean(data.budget && data.timeline)
       default:
         return false
     }
@@ -230,8 +257,8 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
               <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-[#3B82F6] to-[#10B981] rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4">
                 <User className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
-              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Let's Get Started!</h2>
-              <p className="text-gray-600 text-sm sm:text-base">Tell us about yourself and your company</p>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Let&apos;s Get Started!</h2>
+              <p className="text-gray-600 text-sm sm:text-base">Tell me about yourself and your company</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -306,7 +333,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 <Building className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">About Your Business</h2>
-              <p className="text-gray-600 text-sm sm:text-base">Help us understand your business better</p>
+              <p className="text-gray-600 text-sm sm:text-base">Help me understand your business better</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -446,7 +473,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                 <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">Budget & Timeline</h2>
-              <p className="text-gray-600 text-sm sm:text-base">Final details to help us prepare your proposal</p>
+              <p className="text-gray-600 text-sm sm:text-base">Final details so I can prepare your proposal</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -551,21 +578,20 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
         </h2>
         <div className="space-y-4 mb-6 sm:mb-8">
           <p className="text-lg sm:text-xl text-gray-700 font-semibold">
-            Our team will reach out to you ASAP!
+            I&apos;ll reach out to you shortly!
           </p>
           <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-            Thank you for taking the time to share your software development needs. We've received your information and our expert developers are already reviewing your requirements.
+            Thank you for sharing the details of your project. I&apos;ve received your request and will review it personally.
           </p>
-          <div className="bg-gradient-to-r from-[#F85B5D]/10 to-[#7661FB]/10 rounded-xl p-4 sm:p-6 border border-[#7661FB]/20">
+          <div className="bg-gradient-to-r from-[#3B82F6]/10 to-[#10B981]/10 rounded-xl p-4 sm:p-6 border border-[#3B82F6]/20">
             <div className="flex items-center justify-center gap-2 mb-3">
-              <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#7661FB]" />
-              <span className="font-semibold text-[#7661FB] text-sm sm:text-base">What happens next?</span>
+              <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#3B82F6]" />
+              <span className="font-semibold text-[#3B82F6] text-sm sm:text-base">What happens next?</span>
             </div>
             <div className="text-xs sm:text-sm text-gray-600 space-y-1">
-              <p>• Our team will contact you within 24 hours</p>
-              <p>• We'll prepare a customized project proposal</p>
-              <p>• You'll receive detailed development roadmap and timeline</p>
-              <p>• Ready to transform your business with custom software! 🚀</p>
+              <p>• I&apos;ll get back to you within 24 hours</p>
+              <p>• We&apos;ll schedule a short discovery call if it makes sense</p>
+              <p>• You&apos;ll receive a proposal with scope, timeline, and estimate</p>
             </div>
           </div>
         </div>
@@ -579,29 +605,22 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
         transition={{ delay: 0.8 }}
       >
         <button
+          type="button"
           onClick={onClose}
           className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#10B981] to-[#059669] text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation min-h-[44px] hover:from-[#059669] hover:to-[#047857]"
         >
           <Check className="w-4 h-4 sm:w-5 sm:h-5" />
           Awesome, Got It!
         </button>
-        <button
-          onClick={() => window.open('mailto:hello@codeurs.com', '_blank')}
-          className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-[#3B82F6] text-[#3B82F6] rounded-xl font-semibold hover:bg-[#3B82F6] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation min-h-[44px] hover:border-[#2563EB]"
-        >
-          <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
-          Email Directly
-        </button>
       </motion.div>
 
-      {/* Footer note — TODO: confirm real email before launch */}
       <motion.p
         className="text-xs text-gray-400 mt-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        Questions? Reach out via the contact form or email hello@codeurs.com
+        Questions in the meantime? Use the contact form on the homepage.
       </motion.p>
     </motion.div>
   )
@@ -620,6 +639,9 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
           >
             {/* Modal */}
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="wizard-title"
               className="relative w-full max-w-2xl bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden mx-auto my-auto touch-manipulation flex flex-col"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -640,14 +662,16 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
               {/* Header */}
               <div className="relative bg-gradient-to-r from-[#3B82F6] to-[#10B981] p-4 sm:p-6 text-white flex-shrink-0">
                 <button
+                  type="button"
                   onClick={onClose}
+                  aria-label="Close"
                   className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-8 sm:h-8 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors duration-200 touch-manipulation"
                 >
                   <X className="w-5 h-5" />
                 </button>
-                
+
                 <div className="text-center pr-12">
-                  <h1 className="text-xl sm:text-2xl font-bold mb-2">Free Project Consultation</h1>
+                  <h2 id="wizard-title" className="text-xl sm:text-2xl font-bold mb-2">Free Project Consultation</h2>
                   <p className="text-white/90 text-sm sm:text-base">Step {currentStep} of {totalSteps}</p>
                 </div>
 
@@ -667,8 +691,18 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
 
               {/* Footer */}
               {!isSubmitted && (
-              <div className="flex flex-col sm:flex-row justify-between items-center p-4 sm:p-6 bg-gray-50 border-t gap-4 sm:gap-0 flex-shrink-0">
+              <div className="flex flex-col sm:flex-row justify-between items-center p-4 sm:p-6 bg-gray-50 border-t gap-4 sm:gap-0 flex-shrink-0 relative">
+                {submitError && (
+                  <div
+                    role="alert"
+                    className="w-full sm:absolute sm:-top-14 sm:left-4 sm:right-4 sm:w-auto flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs sm:text-sm text-red-700"
+                  >
+                    <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                    <span>{submitError}</span>
+                  </div>
+                )}
                 <button
+                  type="button"
                   onClick={prevStep}
                   disabled={currentStep === 1}
                   className="flex items-center gap-2 px-4 sm:px-6 py-3 text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 text-sm sm:text-base touch-manipulation min-h-[44px]"
@@ -690,6 +724,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
 
                 {currentStep === totalSteps ? (
                   <button
+                    type="button"
                     onClick={handleSubmit}
                     disabled={!isStepValid(currentStep) || isSubmitting}
                     className="flex items-center gap-2 px-6 sm:px-8 py-3 bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto justify-center touch-manipulation min-h-[44px]"
@@ -708,6 +743,7 @@ export default function ClientWizard({ isOpen, onClose }: ClientWizardProps) {
                   </button>
                 ) : (
                   <button
+                    type="button"
                     onClick={nextStep}
                     disabled={!isStepValid(currentStep)}
                     className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base w-full sm:w-auto justify-center touch-manipulation min-h-[44px]"

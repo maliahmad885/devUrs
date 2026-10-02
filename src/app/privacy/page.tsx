@@ -1,126 +1,105 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { Shield, Eye, Lock, Database, Users, Globe } from 'lucide-react'
+import type { Metadata } from 'next'
+import { Shield, Eye, Database, Users, Lock, BarChart3 } from 'lucide-react'
 import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
+import Link from 'next/link'
+import { LEGAL_LAST_UPDATED, SITE_NAME } from '@/lib/site'
+
+export const metadata: Metadata = {
+  title: `Privacy Policy | ${SITE_NAME}`,
+  description: `How ${SITE_NAME} handles the information you share through the contact forms and analytics on this site.`,
+  robots: { index: true, follow: true },
+}
+
+const sections = [
+  {
+    icon: Eye,
+    title: 'Information I Collect',
+    content:
+      'When you use the contact form or project consultation wizard, I receive what you enter: your name, email address, phone number, company, and the details of your project. The request also records your IP address and browser user-agent to help filter spam.',
+  },
+  {
+    icon: Database,
+    title: 'How I Use It',
+    content:
+      'Your submission is emailed to me so I can reply to your enquiry and prepare a proposal. I do not use it for marketing lists, and I do not send newsletters.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Analytics',
+    content:
+      'If you allow it in the banner, this site loads Vercel Analytics and Speed Insights to measure page views and performance. These tools are privacy-focused and do not use cross-site tracking cookies. Your choice is stored in your browser so the banner does not reappear.',
+  },
+  {
+    icon: Users,
+    title: 'Sharing',
+    content:
+      'I do not sell or trade your information. Submissions pass through the email provider used to deliver them (Google Workspace / Gmail) and the hosting provider that runs this site (Vercel). No other third parties receive your data.',
+  },
+  {
+    icon: Lock,
+    title: 'Security & Retention',
+    content:
+      'Form submissions travel over HTTPS and are stored only in my mailbox. I keep enquiry emails for as long as needed to follow up on the conversation, after which they can be deleted on request.',
+  },
+  {
+    icon: Shield,
+    title: 'Your Rights',
+    content:
+      'You can ask me to access, correct, or delete anything you have sent at any time. Email me and I will take care of it promptly.',
+  },
+]
 
 export default function PrivacyPolicy() {
-  const sections = [
-    {
-      icon: Eye,
-      title: "Information We Collect",
-      content: "We collect information you provide directly to us, such as when you create an account, contact us, or use our services. This may include your name, email address, company information, and any other information you choose to provide."
-    },
-    {
-      icon: Database,
-      title: "How We Use Your Information",
-      content: "We use the information we collect to provide, maintain, and improve our services, communicate with you, and develop new features. We may also use your information to send you technical notices, updates, and support messages."
-    },
-    {
-      icon: Users,
-      title: "Information Sharing",
-      content: "We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy. We may share information with service providers who assist us in operating our website and providing services."
-    },
-    {
-      icon: Lock,
-      title: "Data Security",
-      content: "We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure."
-    },
-    {
-      icon: Globe,
-      title: "International Transfers",
-      content: "Your information may be transferred to and processed in countries other than your own. We ensure that such transfers comply with applicable data protection laws and that your information receives adequate protection."
-    },
-    {
-      icon: Shield,
-      title: "Your Rights",
-      content: "You have the right to access, correct, or delete your personal information. You may also have the right to restrict or object to certain processing of your information. Contact us to exercise these rights."
-    }
-  ]
-
   return (
     <>
       <Navigation />
-      
-      <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 pt-20">
+
+      <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 pt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="text-center mb-16">
+            <div className="w-20 h-20 bg-gradient-to-br from-[#3B82F6] to-[#10B981] rounded-full flex items-center justify-center mx-auto mb-6">
               <Shield className="w-10 h-10 text-white" />
             </div>
-            <h1 className="heading-2 md:text-5xl text-gray-900 mb-6">
-              Privacy Policy
-            </h1>
-            <p className="text-body-large text-gray-600 max-w-3xl mx-auto">
-              We respect your privacy and are committed to protecting your personal information. 
-              This policy explains how we collect, use, and safeguard your data.
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              This site is run by Ali Ahmad ({SITE_NAME}). This policy explains, in plain language,
+              what information the site collects and what happens to it.
             </p>
-            <div className="mt-6 text-sm text-gray-500">
-              Last updated: {new Date().toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
-            </div>
-          </motion.div>
+            <div className="mt-6 text-sm text-gray-500">Last updated: {LEGAL_LAST_UPDATED}</div>
+          </div>
 
-          {/* Content */}
-          <div className="space-y-12">
-            {sections.map((section, index) => (
-              <motion.div
-                key={section.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="glass-card rounded-2xl p-8"
-              >
+          <div className="space-y-8">
+            {sections.map((section) => (
+              <section key={section.title} className="glass-card rounded-2xl p-8">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#10B981] rounded-xl flex items-center justify-center">
                       <section.icon className="w-6 h-6 text-white" />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h2 className="heading-5 text-gray-900 mb-4">
-                      {section.title}
-                    </h2>
-                    <p className="text-body text-gray-600">
-                      {section.content}
-                    </p>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-3">{section.title}</h2>
+                    <p className="text-gray-600 leading-relaxed">{section.content}</p>
                   </div>
                 </div>
-              </motion.div>
+              </section>
             ))}
 
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="glass-card rounded-2xl p-8 text-center"
-            >
-              <h2 className="heading-5 text-gray-900 mb-4">
-                Contact Us
-              </h2>
-              <p className="text-body text-gray-600 mb-6">
-                If you have any questions about this Privacy Policy or our data practices, 
-                please contact us:
+            <section className="glass-card rounded-2xl p-8 text-center">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Questions?</h2>
+              <p className="text-gray-600 mb-4">
+                If anything here is unclear or you want to exercise your rights, get in touch.
               </p>
-              <div className="space-y-2 text-gray-600">
-                {/* TODO: confirm real contact email before launch */}
-                <p>Email: hello@codeurs.com</p>
-                <p>Or use the contact form on the homepage.</p>
-              </div>
-            </motion.div>
+              <Link href="/#contact" className="text-[#3B82F6] hover:text-[#2563EB] font-semibold">
+                Use the contact form →
+              </Link>
+            </section>
           </div>
         </div>
       </main>
+
+      <Footer />
     </>
   )
-} 
+}

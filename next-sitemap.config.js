@@ -1,22 +1,18 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://codeurs.com',
+  siteUrl: process.env.SITE_URL || 'https://devurs.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  changefreq: 'weekly',
+  changefreq: 'monthly',
   priority: 0.7,
-  sitemapSize: 5000,
-  exclude: ['/admin/*', '/api/*'],
+  exclude: ['/api/*', '/opengraph-image'],
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api/'],
+        disallow: ['/api/'],
       },
     ],
-    additionalSitemaps: [
-      'https://codeurs.com/sitemap.xml',
-    ],
   },
-}; 
+};

@@ -1,9 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { Cpu, Rocket, Brain, Zap, Shield, Sparkles } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
-import { useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { AUTOMATIONS_SHIPPED } from '@/lib/site'
 
 // Interactive 3D Card Component
 const Interactive3DCard = ({ 
@@ -169,14 +170,14 @@ export default function Features() {
           ease: "easeInOut" 
         }}
       >
-        <img 
-          src="/images/workflow-builder.svg" 
-          alt="Development Workflow" 
-          className="w-full h-full object-contain"
-          style={{
-            imageRendering: 'crisp-edges',
-            filter: 'drop-shadow(0 0 10px rgba(34, 197, 94, 0.3))'
-          }}
+        <Image
+          src="/images/workflow-builder.svg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="128px"
+          className="object-contain"
+          style={{ filter: 'drop-shadow(0 0 10px rgba(34, 197, 94, 0.3))' }}
         />
       </motion.div>
       
@@ -215,7 +216,7 @@ export default function Features() {
           <Interactive3DCard
             icon={Rocket}
             title="Workflow Automation"
-            description="n8n, Make, and Zapier automations that cut manual work — 200+ workflows shipped for real business processes."
+            description={`n8n, Make, and Zapier automations that cut manual work — ${AUTOMATIONS_SHIPPED} workflows shipped for real business processes.`}
             gradient="bg-gradient-to-br from-[#10B981] to-[#059669]"
             delay={0.8}
           />

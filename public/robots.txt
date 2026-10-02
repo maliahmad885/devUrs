@@ -1,11 +1,10 @@
 # *
 User-agent: *
 Allow: /
-Disallow: /admin/
 Disallow: /api/
 
 # Host
-Host: https://codeurs.com
+Host: https://devurs.com
 
 # Sitemaps
-Sitemap: https://codeurs.com/sitemap.xml
+Sitemap: https://devurs.com/sitemap.xml

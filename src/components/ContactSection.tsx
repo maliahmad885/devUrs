@@ -1,63 +1,71 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import ClientWizard from './ClientWizard'
-import { 
-  Send, 
-  User, 
-  Mail, 
+import {
+  Send,
+  User,
+  Mail,
   Phone,
-  MessageSquare, 
-  FileText, 
-  CheckCircle, 
+  MessageSquare,
+  FileText,
+  CheckCircle,
   AlertCircle,
   Sparkles,
   Zap,
   Clock,
   Star,
-  Heart,
   Globe,
   Shield,
   Rocket,
-  ChevronDown,
-  ChevronUp
+  ChevronDown
 } from 'lucide-react'
+import {
+  AUTOMATIONS_SHIPPED,
+  HOURS_SAVED_PER_WEEK,
+  PLATFORMS_SHIPPED,
+  YEARS_EXPERIENCE,
+} from '@/lib/site'
+
+const INITIAL_FORM = {
+  name: '',
+  email: '',
+  phone: '',
+  company: '',
+  subject: '',
+  message: '',
+  service: '',
+  // Honeypot: hidden from humans, bots tend to fill it.
+  website: '',
+}
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    subject: '',
-    message: '',
-    service: ''
-  })
+  const [formData, setFormData] = useState(INITIAL_FORM)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
-  const [isWizardOpen, setIsWizardOpen] = useState(false)
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
 
   const services = [
-    'Mobile App Development',
-    'Web Development',
-    'CRM Development',
-    'E-commerce Solutions',
-    'SaaS Platform Development',
-    'API Development',
-    'Custom Software',
+    'Web Application (Rails / React / Next.js)',
+    'Workflow Automation (n8n / Make / Zapier)',
+    'API & Integrations (Stripe, Xero, Shopify, CRM)',
+    'AI Agents (LangChain / LangGraph)',
+    'Platform Migration or Modernization',
+    'Cloud & DevOps (AWS, CI/CD)',
+    'Ongoing Maintenance & Support',
     'Other'
   ]
 
 
   const stats = [
-    { number: '5+', label: 'Years Experience', icon: Shield },
-    { number: '200+', label: 'Automations', icon: Rocket },
-    { number: '8+', label: 'Platforms Shipped', icon: Star },
-    { number: '20+', label: 'Hrs/Week Saved', icon: Clock }
+    { number: YEARS_EXPERIENCE, label: 'Years Experience', icon: Shield },
+    { number: AUTOMATIONS_SHIPPED, label: 'Automations', icon: Rocket },
+    { number: PLATFORMS_SHIPPED, label: 'Platforms Shipped', icon: Star },
+    { number: HOURS_SAVED_PER_WEEK, label: 'Hrs/Week Saved', icon: Clock }
   ]
 
   const faqData = [
@@ -134,17 +142,18 @@ export default function ContactSection() {
     e.preventDefault()
     
     if (!validateForm()) return
-    
+
     setIsSubmitting(true)
-    
+    setSubmitError(null)
+
     try {
-      // Prepare data for the API
+      const [firstName, ...rest] = formData.name.trim().split(/\s+/)
       const emailData = {
-        firstName: formData.name.split(' ')[0] || formData.name,
-        lastName: formData.name.split(' ').slice(1).join(' ') || '',
+        firstName,
+        lastName: rest.join(' '),
         email: formData.email,
         phone: formData.phone,
-        company: formData.company || '',
+        company: formData.company,
         businessType: 'Contact Form',
         industry: 'General',
         teamSize: 'Not specified',
@@ -154,40 +163,31 @@ export default function ContactSection() {
         automationPriority: 'Not specified',
         budget: 'Not specified',
         timeline: 'Not specified',
-        additionalInfo: `Subject: ${formData.subject}\nService: ${formData.service}\nMessage: ${formData.message}`
+        additionalInfo: `Subject: ${formData.subject}\nService: ${formData.service}`,
+        website: formData.website,
       }
 
       const response = await fetch('/api/send-wizard-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(emailData),
       })
 
-      const result = await response.json()
+      const result = await response.json().catch(() => ({}))
 
-      if (response.ok && result.success) {
-        setIsSubmitted(true)
-        // Reset form after successful submission
-        setTimeout(() => {
-          setIsSubmitted(false)
-          setFormData({ 
-            name: '', 
-            email: '', 
-            phone: '', 
-            company: '', 
-            subject: '', 
-            message: '', 
-            service: '' 
-          })
-        }, 4000)
-      } else {
-        throw new Error(result.message || 'Failed to send email')
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Failed to send message')
       }
+
+      setIsSubmitted(true)
+      setFormData(INITIAL_FORM)
+      setTimeout(() => setIsSubmitted(false), 6000)
     } catch (error) {
-      console.error('Error sending email:', error)
-      alert('There was an error sending your message. Please try again or contact us directly.')
+      setSubmitError(
+        error instanceof Error && error.message
+          ? error.message
+          : 'There was an error sending your message. Please try again.'
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -235,17 +235,17 @@ export default function ContactSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              Thank you for reaching out! We&apos;ll get back to you within 24 hours with a personalized response.
+              Thank you for reaching out! I&apos;ll get back to you within 24 hours with a personal reply.
             </motion.p>
 
             <motion.div
-              className="flex items-center justify-center space-x-2 text-purple-600"
+              className="flex items-center justify-center space-x-2 text-[#3B82F6]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
               <Sparkles className="w-5 h-5" />
-              <span className="font-semibold">We&apos;re excited to help you transform your business!</span>
+              <span className="font-semibold">Looking forward to hearing about your project!</span>
             </motion.div>
           </motion.div>
         </div>
@@ -263,27 +263,27 @@ export default function ContactSection() {
       </div>
 
         {/* Development Icon - Floating in background */}
-        <motion.div 
+        <motion.div
           className="absolute top-32 right-12 w-28 h-28 sm:w-36 sm:h-36 opacity-40"
-          animate={{ 
+          aria-hidden="true"
+          animate={{
             x: [0, 15, -15, 0],
             y: [0, -10, 10, 0],
             rotate: [0, 2, -2, 0]
           }}
-          transition={{ 
-            duration: 12, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
           }}
         >
-          <img 
-            src="/images/workflow-builder.svg" 
-            alt="Development Workflow" 
-            className="w-full h-full object-contain"
-            style={{
-              imageRendering: 'crisp-edges',
-              filter: 'drop-shadow(0 0 12px rgba(118, 97, 251, 0.25))'
-            }}
+          <Image
+            src="/images/workflow-builder.svg"
+            alt=""
+            fill
+            sizes="144px"
+            className="object-contain"
+            style={{ filter: 'drop-shadow(0 0 12px rgba(59, 130, 246, 0.25))' }}
           />
         </motion.div>
 
@@ -401,12 +401,26 @@ export default function ContactSection() {
                   <Send className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-gray-900">Let's Connect</h3>
+                  <h3 className="text-3xl font-bold text-gray-900">Let&apos;s Connect</h3>
                   <p className="text-gray-600">Tell me about your project</p>
                 </div>
               </motion.div>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                {/* Honeypot: hidden from people, visible to bots */}
+                <div className="absolute -left-[10000px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="contact-website">Website</label>
+                  <input
+                    id="contact-website"
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.website}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
                 {/* Name and Email Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <motion.div
@@ -607,7 +621,7 @@ export default function ContactSection() {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Tell us about your software development needs, current challenges, and goals..."
+                    placeholder="Tell me about the product or workflow you want to build, current challenges, and goals..."
                     required
                     rows={6}
                     className={`w-full pl-12 pr-4 py-4 bg-white/80 border rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:bg-white transition-all duration-300 resize-none ${
@@ -625,6 +639,16 @@ export default function ContactSection() {
                     </motion.div>
                   )}
                 </motion.div>
+
+                {submitError && (
+                  <div
+                    role="alert"
+                    className="flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                  >
+                    <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                    <span>{submitError}</span>
+                  </div>
+                )}
 
                 {/* Submit Button */}
                 <motion.button
@@ -764,12 +788,6 @@ export default function ContactSection() {
           </motion.div>
         </div>
       </div>
-
-      {/* Client Wizard Modal */}
-      <ClientWizard 
-        isOpen={isWizardOpen} 
-        onClose={() => setIsWizardOpen(false)} 
-      />
     </section>
   )
 }
