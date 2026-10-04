@@ -57,6 +57,81 @@ export default function Home() {
         <SectionDivider variant="magnetic" />
       </Suspense>
 
+      {/* Experience & Leadership Section */}
+      <section className="scroll-section bg-gradient-to-br from-[#10B981]/5 via-white to-[#3B82F6]/5 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl text-gray-900 mb-6 sm:mb-8 font-bold">
+              Experience & <span className="bg-gradient-to-r from-[#10B981] to-[#3B82F6] bg-clip-text text-transparent">Leadership</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0 leading-relaxed">
+              Building high-performance teams, shipping quality software, and scaling operations across diverse technical domains.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">👥</div>
+                <h3 className="text-xl font-bold text-gray-900">Team Leadership</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Led and mentored a team of 8 developers, accelerating junior developer onboarding by 6 weeks through structured guidance and knowledge sharing.</p>
+              <div className="text-sm font-semibold text-[#10B981]">8 Developers Managed</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">✅</div>
+                <h3 className="text-xl font-bold text-gray-900">Code Quality</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Implemented comprehensive code review process, resulting in 30% reduction in production bugs and improved code maintainability across all projects.</p>
+              <div className="text-sm font-semibold text-[#3B82F6]">30% Bug Reduction</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">🎓</div>
+                <h3 className="text-xl font-bold text-gray-900">Mentorship</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Actively mentored junior developers on best practices, system architecture, and problem-solving techniques, enabling faster career growth and technical excellence.</p>
+              <div className="text-sm font-semibold text-[#10B981]">6 Weeks Faster Onboarding</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">🤝</div>
+                <h3 className="text-xl font-bold text-gray-900">Cross-Functional Collaboration</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Collaborated with product, design, and operations teams to streamline workflows and improve overall organizational efficiency by 40%.</p>
+              <div className="text-sm font-semibold text-[#3B82F6]">40% Efficiency Gain</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">🚀</div>
+                <h3 className="text-xl font-bold text-gray-900">Full-Stack Development</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Designed and developed full-stack applications using React, Node.js, MongoDB, and AWS, improving user engagement by 30% through thoughtful UX and performant architecture.</p>
+              <div className="text-sm font-semibold text-[#10B981]">30% Engagement Growth</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">🤖</div>
+                <h3 className="text-xl font-bold text-gray-900">AI & Automation</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Developed Generative AI applications using Langchain and LangGraph, enabling intelligent automation of complex workflows and enhancing product capabilities.</p>
+              <div className="text-sm font-semibold text-[#3B82F6]">LangChain & LangGraph</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Innovative Section Divider */}
+      <Suspense fallback={null}>
+        <SectionDivider variant="magnetic" />
+      </Suspense>
+
       {/* About Section */}
       <section id="about" className="scroll-section bg-gradient-to-br from-[#3B82F6]/5 via-white to-[#10B981]/5 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -194,6 +269,82 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Skills Section */}
+      <section className="scroll-section bg-gradient-to-br from-[#f59e0b]/5 via-white to-[#3B82F6]/5 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl text-gray-900 mb-6 sm:mb-8 font-bold">
+              <span className="text-gray-900">Technical</span> <span className="bg-gradient-to-r from-[#f59e0b] to-[#3B82F6] bg-clip-text text-transparent">Skills & Expertise</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0 leading-relaxed">
+              A comprehensive toolkit spanning frontend, backend, AI, infrastructure, and modern development practices.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                title: '🎨 Frontend Development',
+                skills: ['React.js', 'Next.js', 'Remix', 'Vue.js', 'Angular', 'Redux Toolkit', 'TailwindCSS', 'Material UI', 'jQuery'],
+              },
+              {
+                title: '⚙️ Backend & APIs',
+                skills: ['Ruby on Rails', 'Node.js', 'Express.js', 'Nest.js', 'GraphQL', 'REST APIs', 'Swagger', 'Socket.IO'],
+              },
+              {
+                title: '🤖 AI & LLM Development',
+                skills: ['LangChain', 'LangGraph', 'OpenAI API', 'Claude API', 'Llama', 'GPT-powered Chatbots', 'AI-Assisted Dev'],
+              },
+              {
+                title: '🔄 Automation & Workflows',
+                skills: ['n8n', 'Zapier', 'Make.com', 'GoHighLevel', 'HubSpot', 'Airtable'],
+              },
+              {
+                title: '🗄️ Databases & Caching',
+                skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Supabase', 'Redis'],
+              },
+              {
+                title: '☁️ Infrastructure & DevOps',
+                skills: ['AWS (EC2, Lambda, S3)', 'Docker', 'Kubernetes', 'Vercel', 'Railway', 'NGINX', 'Apache', 'Git', 'CI/CD'],
+              },
+              {
+                title: '💳 Payments & Integrations',
+                skills: ['Stripe', 'Xero', 'PayPal', 'Square', 'Shopify', 'Vonage', 'Mailtrap', 'Postmark'],
+              },
+              {
+                title: '📋 Project Management & Soft Skills',
+                skills: ['Agile', 'Scrum', 'Jira', 'ClickUp', 'Communication', 'Teamwork', 'Mentoring', 'Independence', 'Adaptability'],
+              },
+            ].map((category, idx) => (
+              <div key={idx} className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-8 hover:shadow-2xl transition-all duration-300">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">{category.title}</h3>
+                <div className="flex flex-wrap gap-3">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-4 py-2 bg-gradient-to-r from-[#f59e0b]/10 to-[#3B82F6]/10 text-gray-800 text-sm font-medium rounded-lg border border-[#f59e0b]/20 hover:shadow-md transition-shadow"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center bg-gradient-to-r from-[#f59e0b]/10 to-[#3B82F6]/10 rounded-2xl p-8 border border-[#f59e0b]/20">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">Core Competencies</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {['Full-Stack Development', 'System Design', 'End-to-End Delivery', 'Website Design', 'Web Applications', 'AI & Automation'].map((comp) => (
+                <span key={comp} className="px-4 py-2 bg-white rounded-lg text-gray-800 font-medium shadow-md">
+                  {comp}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section id="features" className="scroll-section bg-gradient-to-br from-[#f59e0b]/5 via-white to-[#22c55e]/5 bg-pattern overflow-hidden">
         <Features />
@@ -219,6 +370,32 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {[
               {
+                initial: 'C',
+                gradient: 'from-[#3B82F6] to-[#0ea5e9]',
+                title: 'Construction Pro (CORE)',
+                subtitle: 'Time & Shift Management',
+                url: 'https://coreapp.ca',
+                description: 'Platform enabling team leaders and workers to log daily hours in a flexible, customizable environment with real-time notifications, dynamic time recording, and seamless admin oversight.',
+                stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'AWS EC2'],
+              },
+              {
+                initial: 'T',
+                gradient: 'from-[#f59e0b] to-[#d97706]',
+                title: 'Toaster Home',
+                subtitle: 'Shopify Inventory Management',
+                url: 'https://dpak.toasterhome.com/',
+                description: 'Custom Shopify solution managing inventory across multiple warehouses, reducing shipping costs by 20% through automated order placement and optimized warehouse selection algorithms.',
+                stack: ['Shopify', 'Node.js', 'MongoDB', 'Warehouse APIs'],
+              },
+              {
+                initial: 'T',
+                gradient: 'from-[#d97706] to-[#ea580c]',
+                title: 'Tshirt Deal GPT',
+                subtitle: 'AI Chatbot',
+                description: 'GPT-powered chatbot deployed for Tshirtdeal, automating 95% of customer queries with multilingual support and live agent escalation across WhatsApp, Messenger, and Instagram.',
+                stack: ['React.js', 'Express.js', 'MongoDB', 'AWS EC2', 'GPT', 'WhatsApp API'],
+              },
+              {
                 initial: 'M',
                 gradient: 'from-[#22c55e] to-[#0ea5e9]',
                 title: 'MYSMSF',
@@ -238,16 +415,15 @@ export default function Home() {
               },
               {
                 initial: 'T',
-                gradient: 'from-[#f59e0b] to-[#d97706]',
+                gradient: 'from-[#f59e0b] to-[#fbbf24]',
                 title: 'Teleport / Radiangen',
                 subtitle: '3D Modeling & Design',
-                url: undefined,
                 description: '3D modeling and design platform with Craftcloud API integration. Solo ownership of backend and DevOps.',
                 stack: ['Backend', 'Craftcloud API', 'DevOps'],
               },
               {
                 initial: 'A',
-                gradient: 'from-[#d97706] to-[#22c55e]',
+                gradient: 'from-[#fbbf24] to-[#22c55e]',
                 title: 'AirAsia (Vidi)',
                 subtitle: 'Travel-Tech Booking',
                 url: 'https://airasia.com',
