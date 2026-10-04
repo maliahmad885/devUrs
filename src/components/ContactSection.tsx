@@ -64,7 +64,7 @@ export default function ContactSection() {
   const stats = [
     { number: YEARS_EXPERIENCE, label: 'Years Experience', icon: Shield },
     { number: AUTOMATIONS_SHIPPED, label: 'Automations', icon: Rocket },
-    { number: PLATFORMS_SHIPPED, label: 'Platforms Shipped', icon: Star },
+    { number: PLATFORMS_SHIPPED, label: 'Applications Built', icon: Star },
     { number: HOURS_SAVED_PER_WEEK, label: 'Hrs/Week Saved', icon: Clock }
   ]
 

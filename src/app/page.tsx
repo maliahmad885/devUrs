@@ -11,6 +11,7 @@ import ScrollToTop from '@/components/ScrollToTop'
 import ContactSection from '@/components/ContactSection'
 import ClientWizard from '@/components/ClientWizard'
 import {
+  ABOUT_PARAGRAPHS,
   AUTOMATIONS_SHIPPED,
   HOURS_SAVED_PER_WEEK,
   PLATFORMS_SHIPPED,
@@ -57,81 +58,6 @@ export default function Home() {
         <SectionDivider variant="magnetic" />
       </Suspense>
 
-      {/* Experience & Leadership Section */}
-      <section className="scroll-section bg-gradient-to-br from-[#10B981]/5 via-white to-[#3B82F6]/5 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl text-gray-900 mb-6 sm:mb-8 font-bold">
-              Experience & <span className="bg-gradient-to-r from-[#10B981] to-[#3B82F6] bg-clip-text text-transparent">Leadership</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0 leading-relaxed">
-              Building high-performance teams, shipping quality software, and scaling operations across diverse technical domains.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">👥</div>
-                <h3 className="text-xl font-bold text-gray-900">Team Leadership</h3>
-              </div>
-              <p className="text-gray-600 mb-3">Led and mentored a team of 8 developers, accelerating junior developer onboarding by 6 weeks through structured guidance and knowledge sharing.</p>
-              <div className="text-sm font-semibold text-[#10B981]">8 Developers Managed</div>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">✅</div>
-                <h3 className="text-xl font-bold text-gray-900">Code Quality</h3>
-              </div>
-              <p className="text-gray-600 mb-3">Implemented comprehensive code review process, resulting in 30% reduction in production bugs and improved code maintainability across all projects.</p>
-              <div className="text-sm font-semibold text-[#3B82F6]">30% Bug Reduction</div>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">🎓</div>
-                <h3 className="text-xl font-bold text-gray-900">Mentorship</h3>
-              </div>
-              <p className="text-gray-600 mb-3">Actively mentored junior developers on best practices, system architecture, and problem-solving techniques, enabling faster career growth and technical excellence.</p>
-              <div className="text-sm font-semibold text-[#10B981]">6 Weeks Faster Onboarding</div>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">🤝</div>
-                <h3 className="text-xl font-bold text-gray-900">Cross-Functional Collaboration</h3>
-              </div>
-              <p className="text-gray-600 mb-3">Collaborated with product, design, and operations teams to streamline workflows and improve overall organizational efficiency by 40%.</p>
-              <div className="text-sm font-semibold text-[#3B82F6]">40% Efficiency Gain</div>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">🚀</div>
-                <h3 className="text-xl font-bold text-gray-900">Full-Stack Development</h3>
-              </div>
-              <p className="text-gray-600 mb-3">Designed and developed full-stack applications using React, Node.js, MongoDB, and AWS, improving user engagement by 30% through thoughtful UX and performant architecture.</p>
-              <div className="text-sm font-semibold text-[#10B981]">30% Engagement Growth</div>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">🤖</div>
-                <h3 className="text-xl font-bold text-gray-900">AI & Automation</h3>
-              </div>
-              <p className="text-gray-600 mb-3">Developed Generative AI applications using Langchain and LangGraph, enabling intelligent automation of complex workflows and enhancing product capabilities.</p>
-              <div className="text-sm font-semibold text-[#3B82F6]">LangChain & LangGraph</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Innovative Section Divider */}
-      <Suspense fallback={null}>
-        <SectionDivider variant="magnetic" />
-      </Suspense>
-
       {/* About Section */}
       <section id="about" className="scroll-section bg-gradient-to-br from-[#3B82F6]/5 via-white to-[#10B981]/5 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -144,9 +70,13 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl text-gray-900 mb-6 sm:mb-8 font-bold">
               About <span className="bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent">Ali Ahmad</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0 leading-relaxed">
-              Ali Ahmad — Full-Stack Developer &amp; Automation Expert with {YEARS_EXPERIENCE} years of experience building high-performance web applications and intelligent workflow systems. Specialized in Ruby on Rails, React.js, Next.js, and Node.js. Certified automation professional with {AUTOMATIONS_SHIPPED} workflow automations shipped using n8n, Make, and Zapier. Currently expanding into AI agent development with LangChain and LangGraph.
-            </p>
+            <div className="max-w-4xl mx-auto px-4 sm:px-0 space-y-4 text-left sm:text-center">
+              {ABOUT_PARAGRAPHS.map((paragraph) => (
+                <p key={paragraph} className="text-lg text-gray-600 leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -228,7 +158,7 @@ export default function Home() {
                   </div>
                   <div className="text-center">
                     <h3 className="text-3xl font-bold bg-gradient-to-r from-[#3B82F6] to-[#10B981] bg-clip-text text-transparent mb-2">{PLATFORMS_SHIPPED}</h3>
-                    <p className="text-sm text-gray-600 font-medium">Platforms Shipped</p>
+                    <p className="text-sm text-gray-600 font-medium">Applications Built</p>
                   </div>
                   <div className="text-center">
                     <h3 className="text-3xl font-bold bg-gradient-to-r from-[#10B981] to-[#3B82F6] bg-clip-text text-transparent mb-2">{HOURS_SAVED_PER_WEEK}</h3>
@@ -264,6 +194,76 @@ export default function Home() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Let&apos;s Talk</h3>
                 <p className="text-sm text-gray-600">Have a web app, platform, or automation challenge? Reach out and we&apos;ll figure out the right approach together.</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience & Leadership Section */}
+      <section className="scroll-section bg-gradient-to-br from-[#10B981]/5 via-white to-[#3B82F6]/5 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl text-gray-900 mb-6 sm:mb-8 font-bold">
+              Experience & <span className="bg-gradient-to-r from-[#10B981] to-[#3B82F6] bg-clip-text text-transparent">Leadership</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0 leading-relaxed">
+              Building high-performance teams, shipping quality software, and scaling operations across diverse technical domains.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">👥</div>
+                <h3 className="text-xl font-bold text-gray-900">Team Leadership</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Led and mentored a team of 8 developers, accelerating junior developer onboarding by 6 weeks through structured guidance and knowledge sharing.</p>
+              <div className="text-sm font-semibold text-[#10B981]">8 Developers Managed</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">✅</div>
+                <h3 className="text-xl font-bold text-gray-900">Code Quality</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Implemented comprehensive code review process, resulting in 30% reduction in production bugs and improved code maintainability across all projects.</p>
+              <div className="text-sm font-semibold text-[#3B82F6]">30% Bug Reduction</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">🎓</div>
+                <h3 className="text-xl font-bold text-gray-900">Mentorship</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Actively mentored junior developers on best practices, system architecture, and problem-solving techniques, enabling faster career growth and technical excellence.</p>
+              <div className="text-sm font-semibold text-[#10B981]">6 Weeks Faster Onboarding</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">🤝</div>
+                <h3 className="text-xl font-bold text-gray-900">Cross-Functional Collaboration</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Collaborated with product, design, and operations teams to streamline workflows and improve overall organizational efficiency by 40%.</p>
+              <div className="text-sm font-semibold text-[#3B82F6]">40% Efficiency Gain</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6]/20 to-[#10B981]/20 rounded-lg flex items-center justify-center text-2xl">🚀</div>
+                <h3 className="text-xl font-bold text-gray-900">Full-Stack Development</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Designed and developed full-stack applications using React, Node.js, MongoDB, and AWS, improving user engagement by 30% through thoughtful UX and performant architecture.</p>
+              <div className="text-sm font-semibold text-[#10B981]">30% Engagement Growth</div>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 shadow-xl rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#10B981]/20 to-[#3B82F6]/20 rounded-lg flex items-center justify-center text-2xl">🤖</div>
+                <h3 className="text-xl font-bold text-gray-900">AI & Automation</h3>
+              </div>
+              <p className="text-gray-600 mb-3">Developed Generative AI applications using Langchain and LangGraph, enabling intelligent automation of complex workflows and enhancing product capabilities.</p>
+              <div className="text-sm font-semibold text-[#3B82F6]">LangChain & LangGraph</div>
             </div>
           </div>
         </div>

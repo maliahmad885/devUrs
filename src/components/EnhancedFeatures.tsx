@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { 
+import { AUTOMATIONS_SHIPPED } from '@/lib/site'
+import {
   Zap, 
   Brain, 
   Rocket, 
@@ -40,7 +41,7 @@ const features: Feature[] = [
     id: 2,
     icon: Zap,
     title: "Workflow Automation",
-    description: "Certified automation work with n8n, Make, and Zapier — 200+ workflows shipped.",
+    description: `Certified automation work with n8n, Make, and Zapier — ${AUTOMATIONS_SHIPPED} workflows shipped.`,
     benefits: ["n8n", "Make", "Zapier", "Process automation"],
     color: "from-green-400 to-emerald-600",
     gradient: "bg-gradient-to-br from-green-400 to-emerald-600",
